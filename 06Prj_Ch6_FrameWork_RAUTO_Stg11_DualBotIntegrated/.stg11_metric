@@ -1,0 +1,13 @@
+n_trend=292
+n_sway=50
+trend_total_pct=411.84
+trend_mdd=-23.57
+sway_total_pct=18.35
+sway_mdd=-1.56
+combined_total_pct=215.09
+combined_mdd=-17.54
+n_months=36
+avg_monthly_pct=5.97
+pos_months=21
+funding=REAL
+label_in_feature=False

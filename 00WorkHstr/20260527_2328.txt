@@ -1,0 +1,15 @@
+[작업분석] Sideway4Champ_V2_stg3  (2026-05-27T23:28:13)
+[오염검사 종합] PASS
+------------------------------------------------------------
+  O 1.필수파일존재: all present
+  O 2.결과CSV非공백: ok
+  O 3.코드해시기록: {'measure.py': 'cf1eb1d9eb9b36fd', 'check.py': '3f443b4a880abfdd'}
+  O 4.결과중복없음: 중복0행
+  O 5.측정성격명시: 측정용 미래봉(진입신호 아님) 명시됨
+  O 6.4장세완전: 장세 ['L_RANGE', 'Q_RANGE', 'S_TREND', 'W_TREND']
+  O 7.회귀표완전: 240행
+  O 8.VERDICT존재: VERDICT(얕은<=1ATR 롱회귀 Q_RANGE vs S_TREND): TF4h Q=9...
+------------------------------------------------------------
+[VERDICT] VERDICT(얕은<=1ATR 롱회귀 Q_RANGE vs S_TREND): TF4h Q=92.2%(n116.0) vs S=89.9%(n446.0) diff=2.3%p | TF6h Q=92.5%(n80.0) vs S=91.1%(n292.0) diff=1.4%p | TF8h Q=95.7%(n47.0) vs S=90.9%(n176.0) diff=4.8%p | TF12h Q=73.1%(n26.0) vs S=90.3%(n124.0) diff=-17.2%p
+[코드해시] {'measure.py': 'cf1eb1d9eb9b36fd', 'check.py': '3f443b4a880abfdd'}
+[해석] Q_RANGE(조용한횡보) 얕은회귀율이 S_TREND(강추세)보다 높으면 stg8게이트 유효.

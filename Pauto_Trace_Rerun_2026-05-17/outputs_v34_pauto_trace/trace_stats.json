@@ -1,0 +1,19 @@
+{
+  "n_total_bars": 525540,
+  "n_long_signals": 3036,
+  "n_short_signals": 276335,
+  "n_wait": 246169,
+  "regime_distribution": {
+    "BULLISH_EXPANSION": 0,
+    "BEARISH_EXPANSION": 0,
+    "CHOPPY": 525540,
+    "OTHER": 0
+  },
+  "signal_pct": {
+    "long": 0.577691517296495,
+    "short": 52.5811546219127
+  },
+  "trace_csv_path": "D:\\ML\\Verify\\Pauto_Trace_Rerun_2026-05-17\\outputs_v34_pauto_trace\\trace.csv",
+  "trace_rows": 525540,
+  "prob_nan_count": 246169
+}

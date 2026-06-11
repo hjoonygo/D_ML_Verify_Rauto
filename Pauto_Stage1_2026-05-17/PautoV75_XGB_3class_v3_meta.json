@@ -1,0 +1,38 @@
+{
+  "version": "v7.7-3class",
+  "train_start": "2023-05-01 12:00:00+00:00",
+  "train_end": "2025-04-30 00:00:00+00:00",
+  "train_rows": 1051201,
+  "features": [
+    "rsi_14",
+    "ema_dist",
+    "atr_14",
+    "fvg_bull",
+    "fvg_bear",
+    "oi_delta",
+    "rvol_20",
+    "vol_accel",
+    "delta_streak"
+  ],
+  "objective": "multi:softprob",
+  "num_class": 3,
+  "class_labels": {
+    "0": "stay",
+    "1": "long",
+    "2": "short"
+  },
+  "label_distribution": {
+    "0": 411788,
+    "2": 318331,
+    "1": 317297
+  },
+  "n_estimators": 150,
+  "max_depth": 6,
+  "learning_rate": 0.03,
+  "corrections_applied": [
+    "\u24df-6 \uc591\ubc29\ud5a5 3-class",
+    "\u24df-11 look-ahead \uc815\uc815",
+    "\u24df-12 ATR 3\ud56d"
+  ],
+  "created_at": "2026-05-17T20:12:31.906894"
+}

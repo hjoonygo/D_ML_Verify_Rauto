@@ -1,0 +1,6 @@
+[07Prj_Ch3_Stg3_TrendStack_OPVnNRemoval] build_ch3s3_v1 2026-06-09 19:12
+목적(E1): Stg2 숏컷 깔린 상태에서 OPVnN(역추세 NMULT배) 제거 가능여부 검증
+오염검사 8/8 (OK)
+결론: OPVnN 제거(NMULT=1.0) 전체MDD -22.4% = -20% 위반 → 제거 불가(기각)
+한도내 최적 NMULT=0.6 : ret827% MDD-16.1% (최악폴드-16.4% 연도-14.3%)
+의미: OPVnN은 군더더기 아닌 낙폭통제 필수. NMULT는 레버와 함께 다룰 'MDD 예산 다이얼'(0.6 보수유지, 0.8은 여유부족). code_sha=e08099fda999

@@ -1,0 +1,2 @@
+python test_06Prj_Ch6_FrameWork_RAUTO_Stg13_TrendStackFinalize.py
+python check_06Prj_Ch6_FrameWork_RAUTO_Stg13_TrendStackFinalize.py

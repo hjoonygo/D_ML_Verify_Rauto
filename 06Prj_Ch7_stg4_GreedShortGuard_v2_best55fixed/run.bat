@@ -1,0 +1,2 @@
+python test_06Prj_Ch7_stg4_GreedShortGuard.py
+python check_06Prj_Ch7_stg4_GreedShortGuard.py

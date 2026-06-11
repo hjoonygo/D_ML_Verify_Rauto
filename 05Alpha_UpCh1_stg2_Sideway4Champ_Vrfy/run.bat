@@ -1,0 +1,3 @@
+@echo off
+python test_05Alpha_UpCh1_stg2_Sideway4Champ_Vrfy.py
+python check_05Alpha_UpCh1_stg2_Sideway4Champ_Vrfy.py

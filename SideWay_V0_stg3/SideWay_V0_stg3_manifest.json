@@ -1,0 +1,23 @@
+{
+  "version": "SideWay_V0_stg3",
+  "input_file": "merged_data.csv",
+  "input_sha256": "e397a33201dd2cd7f90f377b83fd82b910fd77cf86ad933a35fcad0647d9f38c",
+  "outputs": {
+    "SideWay_V0_stg3_summary.csv": "6b2984f90051720410972060c239046784c0132cd61321b15fc70c0a65d5daeb",
+    "SideWay_V0_stg3_trades.csv": "a989086977954d50d3f09b549b546e07dd4044e0618e9f28bffdad24b32b1d8c",
+    "SideWay_V0_stg3_equity.csv": "08a156573a90167d51dcf47b16e4707f8ae709a6ec05465ff1d8712ad38cd4aa",
+    "SideWay_V0_stg3_results.json": "ce07c7728772c598841fb9e9f97742e53304cd836b54dfeee1d415fbd8d52c4f"
+  },
+  "n_4h_bars": 6576,
+  "data_quality": {
+    "rows": 1578240,
+    "duplicates_removed": 0,
+    "minute_gaps": 0,
+    "nan_close": 0,
+    "nan_volume": 0,
+    "start": "2023-05-01 00:00:00+00:00",
+    "end": "2026-04-30 23:59:00+00:00"
+  },
+  "out_dir": "D:\\ML\\Verify\\SideWay_V0_stg3",
+  "index_dir": "D:\\ML\\Verify\\00WorkHstr"
+}

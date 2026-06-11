@@ -1,0 +1,32 @@
+[작업분석] ChampBot_SidewayDCA4RAUTO_06_Ch4_Stg3  (2026-05-31T13:17:59)
+[오염검사 종합] PASS
+----------------------------------------------------------------
+  O 1.필수파일존재: all present
+  O 2.결과CSV非공백: ok
+  O 3.코드해시기록: {'test_06Prj_Ch4_SidewayDCA4RAUTO_Stg3.py': '80d8896d8c91678a', 'check_06Prj_Ch4_SidewayDCA4RAUTO_Stg3.py': '42c66353706386a5'}
+  O 4.거래중복없음: 진입시간 중복 0건
+  O 5.미래참조가드: 음수shift 없음 + dz_oi backward(resample last)
+  O 6.OFFvsON정상: 거래 OFF334->ON270 (ON<=OFF여야 정상)
+  O 7.8시나리오완전: S1~S8 중 8개
+  O 8.VERDICT존재: VERDICT 무덤필터 실증 | 전체 OFF PF1.474 cumR136.59% MDD-12.3% ...
+----------------------------------------------------------------
+[VERDICT] VERDICT 무덤필터 실증 | 전체 OFF PF1.474 cumR136.59% MDD-12.3% 수익금14
+[무덤필터 효과] PF 1.474->1.558 | MDD -12.3%->-9.9% | 수익금 14761.0->14526.0
+[거래·trend_flip] 334->270건 | trend_flip 21->14
+[코드해시] {'test_06Prj_Ch4_SidewayDCA4RAUTO_Stg3.py': '80d8896d8c91678a', 'check_06Prj_Ch4_SidewayDCA4RAUTO_Stg3.py': '42c66353706386a5'}
+[8시나리오 요약]
+  S1_전체_OFFvsON: OFF PF1.474 cumR136.59 -> ON PF1.558 cumR130.75 PF 1.474->1.558 | MDD -12.3->-9.9% | 수익금 14,761->14,526
+  S2_연도_2023: OFF PF1.673 cumR37.58 -> ON PF1.783 cumR36.66 nan
+  S2_연도_2024: OFF PF1.841 cumR79.98 -> ON PF2.241 cumR94.68 nan
+  S2_연도_2025: OFF PF0.82 cumR-19.76 -> ON PF0.686 cumR-26.55 nan
+  S2_연도_2026: OFF PF2.393 cumR38.8 -> ON PF1.97 cumR25.95 nan
+  S3_방향_롱: OFF PF1.767 cumR111.25 -> ON PF1.838 cumR106.45 nan
+  S3_방향_숏: OFF PF1.177 cumR25.34 -> ON PF1.226 cumR24.3 nan
+  S4_청산_trend_flip: OFF PF0.0 cumR-50.77 -> ON PF0.0 cumR-37.12 trend_flip 21건->14건
+  S5_train_2325: OFF PF1.375 cumR97.79 -> ON PF1.505 cumR104.79 nan
+  S5_test_26: OFF PF2.393 cumR38.8 -> ON PF1.97 cumR25.95 nan
+  S6_경계_0~1: OFF PF1.474 cumR136.59 -> ON PF1.558 cumR130.75 무덤[0.0~1.0) 차단시 PF 1.558 MDD -9.9%
+  S6_경계_0~0.5: OFF PF1.474 cumR136.59 -> ON PF1.495 cumR130.68 무덤[0.0~0.5) 차단시 PF 1.495 MDD -9.5%
+  S6_경계_0.5~1: OFF PF1.474 cumR136.59 -> ON PF1.513 cumR134.03 무덤[0.5~1.0) 차단시 PF 1.513 MDD -12.7%
+  S7_큰이익3제거_ON: OFF PF1.474 cumR136.59 -> ON PF1.229 cumR53.66 상위3이익 제거후 ON PF 1.229 (OFF PF 1.474보다 높으면 견고)
+  S8_위험_OFFvsON: OFF PF1.474 cumR136.59 -> ON PF1.558 cumR130.75 MDD -12.3%->-9.9% | 수익금 14,761->14,526

@@ -1,0 +1,2 @@
+python test_05Prj_Ch1_Stg6_SidewayDCA_AlphaUp.py
+python check_05Prj_Ch1_Stg6_SidewayDCA_AlphaUp.py

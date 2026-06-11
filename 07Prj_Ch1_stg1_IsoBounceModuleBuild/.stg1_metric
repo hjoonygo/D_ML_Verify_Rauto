@@ -1,0 +1,14 @@
+selfcheck_ok=True
+n_modes=4
+n_grid_cases=48
+n_boundary_cases=8
+n_boundary_match=8
+n_demo_trades=10
+n_demo_liquidations=4
+exposure_default=0.975
+tail_cut_default=-0.075
+liq_distance_default=-0.0719
+enable_tail_cut_default=True
+lookahead_block=synthetic_only_no_real_data
+label_in_feature=False
+start=N/A(stg1_module_test)

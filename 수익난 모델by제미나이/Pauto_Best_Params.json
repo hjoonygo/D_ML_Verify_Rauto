@@ -1,0 +1,10 @@
+{
+    "leverage": 8,
+    "ml_long_threshold": 0.7,
+    "ml_short_threshold": 0.3,
+    "fib_trigger_roe": 17.5,
+    "fib_sl_roe": 6.0,
+    "fib_ext_pct": 0.5,
+    "optimized_period": "2026-01-01 ~ 2026-01-31",
+    "updated_at": "2026-04-18 17:03:44"
+}

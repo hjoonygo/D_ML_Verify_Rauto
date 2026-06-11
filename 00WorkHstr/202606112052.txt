@@ -1,0 +1,13 @@
+VERDICT 08Prj_Dauto_Ch1_Collector_Stg1_RestPoller | 오염검사 4/4 | collector_sha256=0aa01d98688f6629... | 분당 3콜(가중치~4/2400) read-only | 저장루트 C:\BinanceData
+[PASS] 동봉파일6종 | 전부 존재
+[PASS] read-only(금지문자열0) | 주문/키 문자열 없음
+[PASS] CSV스키마13컬럼 | BTCUSDT_1m_20260611.csv 헤더 일치
+[PASS] PC실측(=사전실행) | VERDICT 4/4 PASS | A=30min GAP=3min | root=C:\BinanceData
+
+[전문] VERDICT 4/4 PASS | A=30min GAP=3min | root=C:\BinanceData
+[PASS] A1_30분행수 | live 29행 / 기대 29±1
+[PASS] A2_결측0 | live행 결측 0건
+[PASS] B1_구멍백필 | 구멍 2분 중 2행 복구, oi_src=['hist']
+[PASS] B2_oi_src플래그 | 플래그 유효성(['hist'])
+
+collector SHA256(전체): 0aa01d98688f66298e4ee3e1b7372df7339a08efde9e7b6be986fab71f5428f4

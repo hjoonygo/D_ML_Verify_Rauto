@@ -1,0 +1,13 @@
+repl_ok=True
+match_rate=100.0
+cum_eng=177.3
+cum_hon=175.8
+bubble=1.5
+n_bubble=9
+funding=REAL(BTCUSDT_funding_history_8h.csv,3288건)
+dec2025_trig=16
+dec2025_short=12
+dec2025_block=0
+trend_E=1.5
+sdca_E=10.0
+n_trades=318

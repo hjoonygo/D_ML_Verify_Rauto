@@ -1,0 +1,45 @@
+{
+  "scenario_id": "S3",
+  "mode": "fixed",
+  "desc": "중간 확대 + 벽 스케일",
+  "future_n": 30,
+  "base_n": null,
+  "pt_mult": 2.0,
+  "sl_mult": 1.4,
+  "used_n_info": "고정 30봉",
+  "features": [
+    "rsi_14",
+    "ema_dist",
+    "atr_14",
+    "fvg_bull",
+    "fvg_bear",
+    "oi_delta",
+    "rvol_20",
+    "vol_accel",
+    "delta_streak"
+  ],
+  "xgb_params": {
+    "n_estimators": 150,
+    "max_depth": 6,
+    "learning_rate": 0.03,
+    "colsample_bytree": 0.8,
+    "random_state": 42,
+    "objective": "multi:softprob",
+    "num_class": 3
+  },
+  "train_label_dist": {
+    "stay": 196985,
+    "long": 450252,
+    "short": 453459,
+    "stay_pct": 17.896403730003563,
+    "long_pct": 40.90611758378335,
+    "short_pct": 41.19747868621309
+  },
+  "oos_auc": {
+    "long": 0.5151094707919932,
+    "short": 0.5144101173179344
+  },
+  "macro_auc": 0.5147597940549637,
+  "n_train": 1100696,
+  "train_end": "2025-06-06"
+}

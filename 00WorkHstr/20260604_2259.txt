@@ -1,0 +1,19 @@
+[07Prj_Ch1_RautoGreedShortGuard_stg5] 검증 20260604_2259 통과 6/8
+============================================================
+[PASS] S1_files: ok
+[PASS] S2_sweep7: rows=7 (expect 7)
+[PASS] S3_mae_col: mae_pct present
+[PASS] S4_sumR_col: ok
+[FAIL] S5_cut_mono: n_cut [74, 47, 56, 29, 7, 2, 0]
+[FAIL] S6_mae_neg: max_mae=0.183
+[PASS] S7_md5: {'stg5_mae_per_trade.csv': '744bd14c243a', 'stg5_sl_sweep.csv': 'e16071dfff24', 'summary.csv': '681142285a47'}
+[PASS] S8_deep_win: deep_win_n=11
+------------------------------------------------------------
+[손절폭 스윕]
+  손절 0.5% | 합계R -195.7% | PF 0.352 | 컷 74건
+  손절 1.0% | 합계R 72.2% | PF 1.263 | 컷 47건
+  손절 1.4% | 합계R 97.2% | PF 1.338 | 컷 56건
+  손절 2.0% | 합계R 129.5% | PF 1.45 | 컷 29건
+  손절 3.0% | 합계R 165.7% | PF 1.622 | 컷 7건
+  손절 5.0% | 합계R 171.7% | PF 1.659 | 컷 2건
+  손절 7.4% | 합계R 179.7% | PF 1.711 | 컷 0건

@@ -1,0 +1,63 @@
+
+======================================================================
+[Stage 1 측정 시작] 2026-05-18 18:25:57.246427
+======================================================================
+
+그리드: 안 X 9개 시나리오 (fib_trigger × SL multi)
+  S1. fib_trigger=ATR×0.5, SL=ATR×1.0
+  S2. fib_trigger=ATR×0.5, SL=ATR×1.5
+  S3. fib_trigger=ATR×0.5, SL=ATR×2.0
+  S4. fib_trigger=ATR×1.0, SL=ATR×1.0
+  S5. fib_trigger=ATR×1.0, SL=ATR×1.5
+  S6. fib_trigger=ATR×1.0, SL=ATR×2.0
+  S7. fib_trigger=ATR×1.5, SL=ATR×1.5
+  S8. fib_trigger=ATR×1.5, SL=ATR×2.0
+  S9. fib_trigger=ATR×2.0, SL=ATR×2.0
+
+고정: OB TF 60m, Holding 28, Lev 10, Filter off
+
+[1/6] 데이터 로드
+  전체: 2023-05-01 00:00:00+00:00 ~ 2026-04-30 23:59:00+00:00 (1,578,240봉)
+  OOS: idx 1104768~1578239 (473,472봉)
+
+[2/6] 1m별 15m ATR_pct 사전 계산
+  계산 시간: 17.1초
+  ATR_pct mean: 0.3276%
+
+[3/6] ML 신호 추출 (filter=off, 1회)
+  Long 371, Short 86, total 457
+  추출 시간: 78.7분
+
+[4/6] 4장세 사후 분류
+  분포: {'uptrend': 140074, 'downtrend': 128955, 'hivol_range': 126257, 'lovol_range': 78186}
+
+[5/6] TF aggregate
+  2h봉: 13152, 60m봉: 26304
+
+[6/6] 9 시나리오 시뮬레이션
+  [1/9] fib0.5_sl1.0...
+    n_valid=236, pf=0.209, win=0.326, fib_lock=0, fib_act_rate=0.720, hard_sl=55, ratchet=170, (34.6s)
+  [2/9] fib0.5_sl1.5...
+    n_valid=234, pf=0.2, win=0.350, fib_lock=0, fib_act_rate=0.765, hard_sl=44, ratchet=179, (32.5s)
+  [3/9] fib0.5_sl2.0...
+    n_valid=233, pf=0.205, win=0.369, fib_lock=0, fib_act_rate=0.798, hard_sl=35, ratchet=186, (30.6s)
+  [4/9] fib1.0_sl1.0...
+    n_valid=225, pf=0.454, win=0.409, fib_lock=0, fib_act_rate=0.564, hard_sl=84, ratchet=127, (32.7s)
+  [5/9] fib1.0_sl1.5...
+    n_valid=221, pf=0.486, win=0.480, fib_lock=0, fib_act_rate=0.638, hard_sl=65, ratchet=141, (29.4s)
+  [6/9] fib1.0_sl2.0...
+    n_valid=218, pf=0.506, win=0.527, fib_lock=0, fib_act_rate=0.693, hard_sl=50, ratchet=151, (30.0s)
+  [7/9] fib1.5_sl1.5...
+    n_valid=215, pf=0.581, win=0.461, fib_lock=0, fib_act_rate=0.567, hard_sl=77, ratchet=122, (28.3s)
+  [8/9] fib1.5_sl2.0...
+    n_valid=212, pf=0.571, win=0.500, fib_lock=0, fib_act_rate=0.609, hard_sl=66, ratchet=129, (30.3s)
+  [9/9] fib2.0_sl2.0...
+    n_valid=204, pf=0.593, win=0.451, fib_lock=0, fib_act_rate=0.495, hard_sl=81, ratchet=100, (28.0s)
+
+  요약: D:\ML\Verify\v34_stage_1_2026-05-18\outputs_stage_1\all_scenarios_stage_1.csv
+
+[알파 후보 (PF>=1.3, n>=30, overall)]: 0건
+
+[본전 이상 (PF>=1.0, overall)]: 0건
+
+[총 소요: 5022.1초 = 83.7분 = 1.40시간]

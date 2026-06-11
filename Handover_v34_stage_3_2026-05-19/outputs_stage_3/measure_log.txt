@@ -1,0 +1,57 @@
+
+======================================================================
+[Stage 3 측정 시작] 2026-05-19 09:23:02.729021
+======================================================================
+
+그리드: SL_MAX 4개
+  sl_fixed_100bp: SL_MAX=100bp
+  sl_max_120bp: SL_MAX=120bp
+  sl_max_150bp: SL_MAX=150bp
+  sl_max_180bp: SL_MAX=180bp
+
+Stage 3 새 규칙:
+  유동 SL = atr_pct_at_entry × multiplier
+  multiplier: 저변동(ATR<0.25%) 3.5 / 중변동 3.0 / 고변동(ATR>=0.45%) 2.0
+  SL 거리 = max(32bp, min(SL_MAX, ATR x multiplier))
+  OB SL과 ATR SL 충돌 시 더 작은 쪽 사용 (보수적)
+
+고정: OB TF 60m, Lev 10, Filter off
+
+[1/6] 데이터 로드
+  전체: 2023-05-01 00:00:00+00:00 ~ 2026-04-30 23:59:00+00:00 (1,578,240봉)
+  OOS: idx 1104768~1578239 (473,472봉)
+
+[2/6] 1m별 15m ATR_pct 사전 계산
+  계산 시간: 16.5초
+  ATR_pct mean: 0.3276%
+  -> SL 유동화에 사용됨
+
+[3/6] ML 신호 추출 (filter=off, 1회 — 4개 시나리오 공유)
+  Long 313, Short 82
+  추출 시간: 88.1분
+  충돌 제거 후: Long 313, Short 82
+  캐시 저장: D:\ML\Verify\Handover_v34_stage_3_2026-05-19\signals_cache_stage_3.pkl
+
+[4/6] 4장세 사후 분류
+  분포: {'uptrend': 140074, 'downtrend': 128955, 'hivol_range': 126257, 'lovol_range': 78186}
+
+[5/6] TF aggregate (60m + 2h)
+  2h봉: 13152, 60m봉: 26304
+
+[6/6] 4 시나리오 시뮬레이션 (OB TF 60m 고정, SL_MAX 그리드)
+  [1/4] sl_fixed_100bp (SL_MAX=100bp)...
+    n_valid=175, pf=0.619, win=0.423, step_act=0.223, avg_SL=84bp, atr_dyn=169 ob_nat=6, (59.9s)
+  [2/4] sl_max_120bp (SL_MAX=120bp)...
+    n_valid=174, pf=0.654, win=0.431, step_act=0.230, avg_SL=91bp, atr_dyn=168 ob_nat=6, (60.9s)
+  [3/4] sl_max_150bp (SL_MAX=150bp)...
+    n_valid=173, pf=0.691, win=0.439, step_act=0.237, avg_SL=94bp, atr_dyn=167 ob_nat=6, (60.4s)
+  [4/4] sl_max_180bp (SL_MAX=180bp)...
+    n_valid=173, pf=0.74, win=0.445, step_act=0.243, avg_SL=95bp, atr_dyn=167 ob_nat=6, (60.9s)
+
+  요약: D:\ML\Verify\Handover_v34_stage_3_2026-05-19\outputs_stage_3\all_scenarios_stage_3.csv
+
+[알파 후보 (PF>=1.3, n>=30, overall)]: 0건
+
+[본전 이상 (PF>=1.0, overall)]: 0건
+
+[총 소요: 5557.5초 = 92.6분]

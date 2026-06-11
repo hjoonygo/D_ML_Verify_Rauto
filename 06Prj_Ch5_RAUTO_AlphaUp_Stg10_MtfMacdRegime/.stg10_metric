@@ -1,0 +1,17 @@
+macd_acc_7h=32.9
+maj=36.5
+macd_acc_all={'6h': 32.2, '7h': 32.9, '8h': 30.0}
+trend_auc={'6h': 0.522, '7h': 0.496, '8h': 0.477}
+oos_pf_base=1.641
+oos_pf_uncond=1.577
+oos_pf_cond=1.444
+oos_ret_base=54.12
+oos_ret_uncond=57.01
+oos_ret_cond=41.45
+full_ret_base=177.27
+full_ret_uncond=229.69
+full_ret_cond=162.13
+n_trades=318
+has_label_in_feats=False
+funding=REAL
+verdict_flag=조건부POV 제한적/무효 — base 유지 권고

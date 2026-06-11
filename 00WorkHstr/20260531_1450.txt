@@ -1,0 +1,30 @@
+[작업분석] ChampBot_SidewayDCA4RAUTO_06_Ch4_Stg4  (2026-05-31T14:50:32)
+[오염검사 종합] PASS
+----------------------------------------------------------------
+  O 1.필수파일존재: all present
+  O 2.결과CSV非공백: ok
+  O 3.코드해시기록: {'test_06Prj_Ch4_SidewayDCA4RAUTO_Stg4.py': '1dec7dbbac6df1b2', 'check_06Prj_Ch4_SidewayDCA4RAUTO_Stg4.py': 'd5773fc4fe790c3f'}
+  O 4.거래중복없음: 진입시간 중복 0건
+  O 5.미래참조가드: 음수shift 없음 + dz_oi backward(resample last)
+  O 6.ML판정존재: ML판정 10조합, 최고 score=87.0
+  O 7.8시나리오완전: S1~S8 중 8개
+  O 8.VERDICT존재: VERDICT 장세판단 | 원본 PF1.474 test2.393 | ML최고=S2_무덤_항상ON s...
+----------------------------------------------------------------
+[VERDICT] VERDICT 장세판단 | 원본 PF1.474 test2.393 | ML최고=S2_무덤_항상ON score=87.0 견고(채택후보) (train PF1.505 test PF1.97 gap0.465) | best연도별 2024:PF2.241cumR94.68% 2025:PF0.686cumR-26.55% 2026:PF1.97cumR25.95% | OI O BB O
+[무덤필터 효과] PF 1.474->? | MDD ?%->?% | 수익금 ?->?
+[거래·trend_flip] ?->?건 | trend_flip ?->?
+[코드해시] {'test_06Prj_Ch4_SidewayDCA4RAUTO_Stg4.py': '1dec7dbbac6df1b2', 'check_06Prj_Ch4_SidewayDCA4RAUTO_Stg4.py': 'd5773fc4fe790c3f'}
+[8시나리오 요약]
+  S1_원본_필터OFF: OFF PF cumR -> ON PF cumR 기준선
+  S2_무덤_항상ON: OFF PF cumR -> ON PF cumR Stg3 방식
+  S3_무덤×ADX25: OFF PF cumR -> ON PF cumR nan
+  S4_무덤×ER0.4: OFF PF cumR -> ON PF cumR nan
+  S5_무덤×ADX_BB: OFF PF cumR -> ON PF cumR nan
+  S6_ADX스윕_22.0: OFF PF cumR -> ON PF cumR nan
+  S6_ADX스윕_25.0: OFF PF cumR -> ON PF cumR nan
+  S6_ADX스윕_28.0: OFF PF cumR -> ON PF cumR nan
+  S6_ER스윕_0.35: OFF PF cumR -> ON PF cumR nan
+  S6_ER스윕_0.4: OFF PF cumR -> ON PF cumR nan
+  S6_ER스윕_0.45: OFF PF cumR -> ON PF cumR nan
+  S7_ML판정: OFF PF cumR -> ON PF cumR 최고=S2_무덤_항상ON score=87.0 견고(채택후보) gap=0.465
+  S8_연도별_best: OFF PF cumR -> ON PF cumR 2024:PF2.241cumR94.68% 2025:PF0.686cumR-26.55% 2026:PF1.97cumR25.95% 

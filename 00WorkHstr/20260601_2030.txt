@@ -1,0 +1,17 @@
+VERDICT 06Prj_Ch6_Stg3_RegimeClassifier | 8시나리오 8/8 PASS | [BEST] w=0.0 CHOP>60.0 ADX>30.0 다수결3/4 | 일치율 27.0%(무작위25) 분리도 2.594 | 추세봇 추세국면PF 2.215 vs 레인지 1.48 / 횡보봇 레인지PF 2.425 vs 추세 0.566 | 전환 186.1회/년 | WF6창 OOS[np.float64(23.7), np.float64(26.6), np.float64(32.1), np.float64(19.6), np.float64(34.0), np.float64(27.0)] | ML 41.8% vs 표준 27.0% -> ML | check:PASS
+
+[8시나리오 상세]
+  [OK] S1 필수파일/비공백(혼동행렬 포함) : 6종 OK
+  [OK] S2 엔진해시 무수정 : 일치
+  [OK] S3 미래참조 가드(shift- 없음) : 없음
+  [OK] S4 거래>0 & 격자90 : 추세318/횡보90/격자90
+  [OK] S5 정답지 분류기입력 배제 : False
+  [OK] S6 분리도>0 & 일치율>무작위25% : 분리도2.594 일치율27.0%
+  [OK] S7 워크포워드 창>=5 & OOS일치율 기록 : 창6 OOS[np.float64(23.7), np.float64(26.6), np.float64(32.1), np.float64(19.6), np.float64(34.0), np.float64(27.0)]
+  [OK] S8 ML 대체비교 완료(표준 vs ML) : 표준27.0% vs ML41.8% 추천ML
+
+[엔진 무수정 해시]
+  SpTrd_Fib_V1_Champion.py = 7f9192e3d50b1afd...
+  SidewayDCA_Stg7_engine.py = dfdfac4394cd7809...
+
+[메모] 장세판단(4국면) 분류기 완성. 분리도>0 = 추세봇/횡보봇을 올바른 국면에 배정. 표준값이 ML보다 낫거나 비슷하면 표준 채택(단순·견고). 이 분류기는 앞으로 모든 알파가 공유.

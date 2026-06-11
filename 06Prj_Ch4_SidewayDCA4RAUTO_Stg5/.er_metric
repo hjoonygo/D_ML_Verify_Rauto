@@ -1,0 +1,8 @@
+has_oi=1
+bars=3758
+off_fin=14761.0
+top_er=ER0.45
+top_score=88.0
+top_consist=4
+plateau_ers=[0.45, 0.5, 0.6]
+verdict=견고(실력)

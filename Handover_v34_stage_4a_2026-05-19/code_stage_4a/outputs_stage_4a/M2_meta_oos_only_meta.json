@@ -1,0 +1,55 @@
+{
+  "scenario": "meta_oos_only",
+  "features": [
+    "rsi_14",
+    "ema_dist",
+    "atr_14",
+    "fvg_bull",
+    "fvg_bear",
+    "oi_delta",
+    "rvol_20",
+    "vol_accel",
+    "delta_streak",
+    "prob_long",
+    "prob_short",
+    "prob_stay",
+    "side_long",
+    "side_short"
+  ],
+  "n_features": 14,
+  "cv_scores": {
+    "folds": [
+      {
+        "fold": 1,
+        "n_train": 128,
+        "n_test": 64,
+        "auc": 0.5135135135135134,
+        "f1": 0.4166666666666667
+      },
+      {
+        "fold": 2,
+        "n_train": 128,
+        "n_test": 64,
+        "auc": 0.5607843137254902,
+        "f1": 0.5161290322580645
+      },
+      {
+        "fold": 3,
+        "n_train": 128,
+        "n_test": 65,
+        "auc": 0.6079545454545454,
+        "f1": 0.5666666666666667
+      }
+    ],
+    "mean_auc": 0.5607507908978496,
+    "mean_f1": 0.49982078853046596
+  },
+  "n_train_total": 193,
+  "positive_rate": 0.46632124352331605,
+  "mean_sample_weight": 1.1642656502799418,
+  "created_at": "2026-05-20T01:47:02.898989",
+  "sample_weight_method": "abs_net_return",
+  "m2_threshold": 0.5,
+  "warning": "small_sample_size",
+  "reliability_note": "OOS 193건만 학습. 300건+ 학술 권장 미달."
+}

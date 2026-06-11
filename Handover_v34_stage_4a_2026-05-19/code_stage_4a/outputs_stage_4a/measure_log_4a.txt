@@ -1,0 +1,105 @@
+
+==============================================================================
+[Stage 4A Phase 1 측정] 2026-05-20 10:46:25.084521
+내부버전: v2.0_verified_no_estimation
+==============================================================================
+실행 폴더: D:\ML\Verify\Handover_v34_stage_4a_2026-05-19\code_stage_4a
+결과 폴더: D:\ML\Verify\Handover_v34_stage_4a_2026-05-19\code_stage_4a\outputs_stage_4a
+
+사용자 결정:
+  결정1(Y): 5 시나리오 (base_no_meta, meta_simple, meta_purged, meta_regime, meta_oos_only)
+  결정2(b): PF 임계 1.2/0.95
+  결정3: 사전 의사결정 트리 + 우선순위 1/2/3
+  결정4(a): 분별력 10%/90%
+  M2 threshold: 0.5
+
+[1/8] 데이터 로드: D:\ML\Verify\Handover_v34_stage_4a_2026-05-19\code_stage_4a\Merged_Data.csv
+  전체: 2023-05-01 00:00:00+00:00 ~ 2026-04-30 23:59:00+00:00 (1,578,240봉)
+  Train: idx 0~1104767 (1,104,768봉)
+  OOS:   idx 1104768~1578239 (473,472봉)
+
+[2/8] Train atr_med 계산
+  Train atr_med: 0.059728%
+
+[3/8] 15m ATR_pct 사전 계산
+  소요 16.2초, mean=0.3276%
+
+[4/8] Step 0 — Regime_Master 분포 측정
+
+[Step 0] Regime_Master 분포 측정
+  샘플 7892개, 소요 10.1초
+    BULLISH_EXPANSION: 1874 (23.7%)
+    BEARISH_EXPANSION: 1907 (24.2%)
+    CHOPPY: 4111 (52.1%)
+  분별력 (10%/90%): Regime_Master: OK (max 52.1%, min 23.7%)
+  저장: regime_master_at_entry.pkl (7892 샘플)
+  4장세 분포: {'uptrend': 489066, 'downtrend': 429888, 'hivol_range': 391908, 'lovol_range': 267378}
+
+[5/8] TF aggregate
+  2h봉: 13152, 60m봉: 26304
+
+[6/8] OOS 신호 추출/로드
+  OOS 신호 캐시 로드: D:\ML\Verify\Handover_v34_stage_4a_2026-05-19\code_stage_4a\signals_cache_stage_3_5.pkl
+    Long 371, Short 86
+
+[7/8] Step 1 — Train 기간 시뮬 + features 캐시
+  Train 시뮬 캐시 발견, 재사용
+  OOS features 캐시 재사용
+
+[중간] train_meta_model_v1.py subprocess 호출
+  소요 0.0분, returncode=0
+
+[8/8] Step 2 — OOS 5 시나리오 시뮬
+
+  ---- base_no_meta ----
+    M2 통과: Long 371/371, Short 86/86, 거부 0
+    n=193, PF=0.816, win=0.4663, net=-11.93%, mdd=-16.33%, (49.6s)
+
+  ---- meta_simple ----
+    M2 로드: features=14
+    M2 통과: Long 96/371, Short 16/86, 거부 345
+    n=77, PF=2.652, win=0.7013, net=+24.84%, mdd=-3.26%, (14.8s)
+
+  ---- meta_purged ----
+    M2 로드: features=14
+    M2 통과: Long 96/371, Short 16/86, 거부 345
+    n=77, PF=2.652, win=0.7013, net=+24.84%, mdd=-3.26%, (14.5s)
+
+  ---- meta_regime ----
+    M2 로드: features=21
+    M2 통과: Long 100/371, Short 14/86, 거부 343
+    n=77, PF=2.722, win=0.7273, net=+25.72%, mdd=-3.24%, (14.9s)
+
+  ---- meta_oos_only ----
+    M2 로드: features=14
+    M2 통과: Long 132/371, Short 37/86, 거부 288
+    n=98, PF=4.932, win=0.8061, net=+40.89%, mdd=-3.01%, (24.9s)
+
+저장: all_scenarios_stage_4a.csv
+
+========================================================================
+[Step 3] 사전 의사결정 트리 자동 평가
+========================================================================
+
+PF 요약:
+  base_no_meta:   0.816
+  meta_simple:    2.652
+  meta_purged:    2.652
+  meta_regime:    2.722
+  meta_oos_only:  4.932
+
+[1순위] Lookahead 안전성
+  ✓ CV 안전
+  ✓ A:b 안전
+  → 1순위: 안전 ✓
+
+[2순위] M2 효과
+  → 2순위: 효과 입증 (PF 2.652) → Phase 2 feature 확장
+
+[3순위] Feature 확장
+  → 3순위: Regime 약함 (점프 +0.070)
+
+저장: decision_tree_evaluation.csv
+
+[추가] M1 prob 분포
+  저장: additional_m1_prob_distribution.csv

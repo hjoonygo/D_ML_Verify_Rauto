@@ -1,0 +1,20 @@
+VERDICT 06Prj_Ch6_Stg5_AllBarMLCPCV | 8시나리오 8/8 PASS | 전봉ML표본 3729(거래봉408 대비) 보유상한 추세6/횡보2 | best RandForest 단일OOS_AUC 0.506 | CPCV 15경로 평균 0.495 최저 0.449 p25 0.484 | -> ML무효(표본늘려도 동전) | 미래참조차단=feat_shift1+cpcv_purge+embargo | check:PASS
+
+[8시나리오 상세]
+  [OK] S1 필수파일/비공백(10종) : 10종 OK
+  [OK] S2 엔진해시 무수정 : 일치
+  [OK] S3 미래참조 가드(shift- 없음) : 없음
+  [OK] S4 거래>0 & 전봉ML표본>408(표본증가확인) : 추세318/횡보90/전봉ML표본3729(거래봉408 대비)
+  [OK] S5 label 특징배제 : False
+  [OK] S6 CPCV 15경로 생성(N6,k2) : 경로 15개(15 표준, purge로 일부 제외가능)
+  [OK] S7 CPCV 누수경보(평균<0.95) : 단일 0.506 vs CPCV평균 0.495 (격차 0.011: 클수록 단일경로 과적합=CPCV가 잡아냄)
+  [OK] S8 ML 유효성 결론(CPCV 분포기반) : ML무효(표본늘려도 동전) | CPCV p25=0.484 최저=0.449
+
+[엔진 무수정 해시]
+  SpTrd_Fib_V1_Champion.py = 7f9192e3d50b1afd...
+  SidewayDCA_Stg7_engine.py = dfdfac4394cd7809...
+
+[메모] 사장님 확정 (C)전봉강제진입+거른이유특징 + 방식2고정청산 + 보유상한자동 + CPCV(N6,k2).
+  표본을 408→전봉으로 늘려 'ML 실패가 표본부족 탓인가'를 끝까지 검증. CPCV는 단일경로 과적합을 분포로 폭로.
+  ★해석: CPCV p25(하위25%)가 0.55 위면 ML유효, 아니면 표본 늘려도 동전 → ML 장세예측 최종 폐기 근거.
+  단일분할 AUC가 높아도 CPCV 평균이 낮으면 그 높은값은 운(한 경로)일 뿐 — 이게 CPCV를 쓴 이유.

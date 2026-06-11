@@ -1,0 +1,20 @@
+[작업분석] RAUTO_ConceptRefine_06_Ch5_Stg6_RegimeReferee (2026-06-01T00:53:09)
+[오염검사] PASS
+------------------------------------------------------------
+  O 1.필수파일: ok
+  O 2.CSV非공백: ok
+  O 3.코드해시: {'test_06Prj_Ch5_RAUTO_ConceptRefine_Stg6_RegimeReferee.py': '475a43e3530ed592', 'check_06Prj_Ch5_RAUTO_ConceptRefine_Stg6_RegimeReferee.py': 'b47b620007d3eca7'}
+  O 4.중복없음: 중복0
+  O 5.미래참조가드+label제외: 음수shift 미사용 — 특징 과거봉만 | label_smc 특징제외 확인
+  O 6.4장세 분류산출: 정확도56.2% 기준선36.5%
+  O 7.추세이분 OOS AUC: 검증AUC0.571(RF0.535)
+  O 8.라우팅 잭팟보존: 보존90.0% (항상풀-11.8->라우팅-12.3)
+  O 9.다중TF+엔진해시: TF={'4h': None, '8h': None, '12h': None, '1 | SpTrd_Fib_V1_Champion.py=OK SidewayDCA_Stg7_engine.py=OK
+  O 10.VERDICT: VERDICT Stg6 | CVD=진짜CVD(taker_buy/delta) | label=...
+------------------------------------------------------------
+[VERDICT] VERDICT Stg6 | CVD=진짜CVD(taker_buy/delta) | label=label_smc_8 특징25개 | 4장세정확도 56.2%(기준선36.5%) | 추세이분 검증AUC 0.571(RF0.535) | 장세별AUC {'uptrend': 0.81, 'downtrend': 0.901, 'volatile_range': 0.766, 'dead_range': 0.785} | 변동성: 잭팟이 확대국면 비율 41.7%, R(확대/축소/정체) {'확대': 80.4, '축소': 78.9, '정체': 18.0} | 봇x장세 추세봇 {'uptrend': 73.4, 'downtrend': 77.3, 'volatile_range': 20.6, 'dead_range': 5.9} / 횡보봇 {'dead_range': 4.2, 'uptrend': 8.2, 'volatile_range': 8.7, 'downtrend': 3.0} | 라우팅(검증기간): 항상풀 63.6%/MDD-11.8 -> 라우팅 47.2%/MDD-12.3, 잭팟보존90.0% | 다중TF 추세AUC {'4h': None, '8h': None, '12h': None, '1d': None}(best ?=0) | => 두봇병행이 나음(라우팅 무효)
+[4장세] 정확도 56.2% vs 기준선 36.5% | 장세별AUC {'uptrend': 0.81, 'downtrend': 0.901, 'volatile_range': 0.766, 'dead_range': 0.785}
+[추세이분] 검증AUC 0.571 (RF 0.535) | 다중TF {'4h': None, '8h': None, '12h': None, '1d': None}
+[변동성] 잭팟 확대국면 비율 41.7%
+[라우팅] 항상풀 63.6%/MDD-11.8 -> 라우팅 47.2%/MDD-12.3 | 잭팟보존 90.0%
+[코드해시] {'test_06Prj_Ch5_RAUTO_ConceptRefine_Stg6_RegimeReferee.py': '475a43e3530ed592', 'check_06Prj_Ch5_RAUTO_ConceptRefine_Stg6_RegimeReferee.py': 'b47b620007d3eca7'}

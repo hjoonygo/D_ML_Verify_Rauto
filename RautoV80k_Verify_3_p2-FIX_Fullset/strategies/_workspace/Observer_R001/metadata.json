@@ -1,0 +1,38 @@
+{
+  "name": "Observer",
+  "version": "R001",
+  "series": "V80k",
+  "description": "검증 데이터 수집 전용 — 거래 X. 12 시나리오 50+ 컬럼 기록",
+  "internal_version": "V80k_Verify_1",
+  "modules": {
+    "R": "R_module",
+    "P": "P_module",
+    "E": "E_module"
+  },
+  "module_class_or_function": {
+    "R": "determine_regime_kinematics",
+    "P": "get_signal",
+    "E": "evaluate_exit"
+  },
+  "required_models": [
+    "PautoV80_Regime_Model_v6.json",
+    "PautoV80_TBM_BULL_v2.json",
+    "PautoV80_TBM_BEAR_v2.json",
+    "PautoV80_TBM_CHOP_v2.json"
+  ],
+  "models_dir": "../3balancedTBM_R001/models",
+  "depends_on_strategies": ["3balancedTBM_R001"],
+  "is_observer": true,
+  "trades": false,
+  "safety_guarantees": [
+    "P_module always returns action='WAIT'",
+    "E_module always returns action='NO_ACTION'",
+    "Selftest passed: never holds position"
+  ],
+  "compatible_with": ["V80k", "V80k_Verify_1"],
+  "csv_output_pattern": "RautoV80k_Observer_<bot_id>_<YYYYMMDD>.csv",
+  "csv_columns": 71,
+  "scenarios_covered": 12,
+  "created_at": "2026-05-01",
+  "author": "V80k_Verify_2 사이클"
+}

@@ -1,0 +1,29 @@
+작업분석 — 07Prj_Ch4_RunAWS_Stg1_8Scenario
+초기자본 $10,000 복리 · 합성데이터(배선 강건성, 숫자 트랙 아님)
+
+[1] 오염검사 — 검증모듈 SHA256 무수정 대조
+  [OK] bot_trendstack_signal.py  040da0d277d166ca…
+  [OK] trendstack_signal_engine.py  c9d784bfd81e8ed4…
+  [OK] trendstack_poc.py  3065230c60756bac…
+  [OK] trendstack_regime.py  d573d7d522455fc0…
+  [OK] rauto_contract.py  40b974ac7859a95f…
+  [OK] rauto_paper_engine.py  f3ff3e652c2d6033…
+  [OK] mock_candles.py  bcddc841e0395123…
+[1b] 필수 파일 존재
+  [OK] test_07Prj_Ch4_RunAWS_Stg1_8Scenario.py
+  [OK] check_07Prj_Ch4_RunAWS_Stg1_8Scenario.py
+  [OK] run.bat
+  [OK] 07Prj_Ch4_RunAWS_Stg1_8Scenario_results.csv
+[1c] 중복 .py: 없음
+
+[2] 8시나리오 결과
+  S1_normal        PASS ent=6 liq=0 match=True ret=-9.4% mdd=-9.4%
+  S2_uptrend_cut   PASS ent=0 liq=0 match= ret=0.0% mdd=0.0%
+  S3_gap_liq       PASS ent=3 liq=1 match=True ret=-9.65% mdd=-9.65%
+  S4_oi_missing    PASS ent=6 liq=0 match=True ret=-9.4% mdd=-9.4%
+  S5_warmup_short  PASS ent=0 liq=0 match=True ret=0.0% mdd=0.0%
+  S6_range_only    PASS ent=5 liq=0 match=True ret=-7.91% mdd=-7.91%
+  S7_vol_comp_exp  PASS ent=4 liq=0 match=True ret=-6.37% mdd=-6.37%
+  S8_reentry       PASS ent=7 liq=1 match=True ret=-15.41% mdd=-15.41%
+
+[판정] 오염검사 OK · 시나리오 8/8 · 전체 PASS

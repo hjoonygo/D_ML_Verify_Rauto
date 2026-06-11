@@ -1,0 +1,84 @@
+
+======================================================================
+[Phase B 측정 시작] 2026-05-18 12:29:35.523094
+======================================================================
+
+그리드: ATR_multi [1.5, 2.0, 2.5, 3.0] × Lev [10] × Filter ['off', 'p20_p80', 'p10_p90'] = 12 시나리오
+고정: OB TF 60m, Holding 28봉, Rolling lookback 14일
+학습/OOS 비율: 70% / 30%
+
+[1/6] 데이터 로드: D:\ML\Verify\v34_phase_b_2026-05-18_v2\..\Merged_Data.csv
+  전체: 2023-05-01 00:00:00+00:00 ~ 2026-04-30 23:59:00+00:00 (1,578,240봉)
+  학습 IS: idx 0~1104767 (1,104,768봉, 2023-05-01 00:00:00+00:00 ~ 2025-06-06 04:47:00+00:00)
+  OOS: idx 1104768~1578239 (473,472봉, 2025-06-06 04:48:00+00:00 ~ 2026-04-30 23:59:00+00:00)
+
+[2/6] 1m봉별 15m ATR_pct 사전 계산
+  계산 시간: 18.2초
+  ATR_pct mean: 0.3276%
+  ATR_pct min/max: 0.0201% / 2.2262%
+
+[3/6] ML 신호 추출 (3개 필터 모드)
+
+  filter_mode=off (예상 시간: 10~30분)
+    Long 371, Short 86, total 457
+    필터 거부 (저변동): 0
+    필터 거부 (고변동): 0
+    필터 통과: 457
+    거부율: 0.00%
+    추출 시간: 78.8분
+
+  filter_mode=p20_p80 (예상 시간: 10~30분)
+    Long 119, Short 17, total 136
+    필터 거부 (저변동): 181
+    필터 거부 (고변동): 140
+    필터 통과: 136
+    거부율: 70.24%
+    추출 시간: 79.1분
+
+  filter_mode=p10_p90 (예상 시간: 10~30분)
+    Long 171, Short 23, total 194
+    필터 거부 (저변동): 156
+    필터 거부 (고변동): 107
+    필터 통과: 194
+    거부율: 57.55%
+    추출 시간: 83.3분
+
+[4/6] 4장세 사후 분류
+  4장세 분포: {'uptrend': 140074, 'downtrend': 128955, 'hivol_range': 126257, 'lovol_range': 78186}
+
+[5/6] OB TF 60m + 2h aggregate
+  2h봉: 13152, 60m봉: 26304
+
+[6/6] 12 시나리오 시뮬레이션
+  [1/12] atr1.5_lev10_filteroff...
+    n_valid=196, pf=0.586, win=0.347, fib_lock=0, hard_sl=113, avg_sl_dist=0.0066 (28.7s)
+  [2/12] atr1.5_lev10_filterp20_p80...
+    n_valid=82, pf=0.404, win=0.256, fib_lock=0, hard_sl=58, avg_sl_dist=0.0055 (10.7s)
+  [3/12] atr1.5_lev10_filterp10_p90...
+    n_valid=121, pf=0.58, win=0.322, fib_lock=0, hard_sl=78, avg_sl_dist=0.0057 (16.5s)
+  [4/12] atr2.0_lev10_filteroff...
+    n_valid=190, pf=0.586, win=0.384, fib_lock=0, hard_sl=99, avg_sl_dist=0.0087 (26.3s)
+  [5/12] atr2.0_lev10_filterp20_p80...
+    n_valid=79, pf=0.511, win=0.329, fib_lock=0, hard_sl=50, avg_sl_dist=0.0072 (11.1s)
+  [6/12] atr2.0_lev10_filterp10_p90...
+    n_valid=119, pf=0.615, win=0.378, fib_lock=0, hard_sl=70, avg_sl_dist=0.0075 (16.1s)
+  [7/12] atr2.5_lev10_filteroff...
+    n_valid=187, pf=0.573, win=0.412, fib_lock=0, hard_sl=87, avg_sl_dist=0.0109 (24.4s)
+  [8/12] atr2.5_lev10_filterp20_p80...
+    n_valid=78, pf=0.445, win=0.333, fib_lock=0, hard_sl=47, avg_sl_dist=0.0090 (10.0s)
+  [9/12] atr2.5_lev10_filterp10_p90...
+    n_valid=116, pf=0.568, win=0.397, fib_lock=0, hard_sl=63, avg_sl_dist=0.0094 (15.2s)
+  [10/12] atr3.0_lev10_filteroff...
+    n_valid=184, pf=0.58, win=0.440, fib_lock=0, hard_sl=75, avg_sl_dist=0.0131 (24.0s)
+  [11/12] atr3.0_lev10_filterp20_p80...
+    n_valid=77, pf=0.447, win=0.364, fib_lock=0, hard_sl=40, avg_sl_dist=0.0109 (10.0s)
+  [12/12] atr3.0_lev10_filterp10_p90...
+    n_valid=113, pf=0.561, win=0.425, fib_lock=0, hard_sl=54, avg_sl_dist=0.0113 (15.1s)
+
+  ✓ 요약: D:\ML\Verify\v34_phase_b_2026-05-18_v2\outputs_phase_b\all_scenarios_phase_b.csv
+
+[알파 후보 (PF≥1.3 + n≥30, overall)]: 0건
+
+[본전 이상 (PF≥1.0, overall)]: 0건
+
+[총 소요: 14706.0초 = 245.1분 = 4.08시간]

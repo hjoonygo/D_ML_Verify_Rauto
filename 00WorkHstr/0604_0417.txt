@@ -1,0 +1,12 @@
+[07Prj_Ch1_RautoGreedShortGuard_stg3_ExposureSlip] 오염검사 8시나리오 — 2026-06-04T04:17:29
+================================================================
+S1 파일명규칙: PASS | test/check stg3 파일명 규칙 일치
+S2 해시: PASS | {'summary.csv': '1e77a2bb498760a2', 'stg4_greed_grid.csv': 'caf1e15c4cb59493', 'stg4_by_month.csv': '6fc924bdc9e7a185', 'stg4_coverage.csv': '09b8d73e9120dba8', 'stg4_best_ledger.csv': '67fbcdc969d9c3a2'}
+S3 중복: PASS | 중복 없음
+S4 누락: PASS | 고정3+엔진7 모두 존재 | 산출물 존재
+S5 백테무결성: PASS | n_raw=318, n_bars=3758, FNG커버=100.0%
+S6 노출·슬리피지반영: PASS | EXPOSURE곱=True, slip_cost적용=True, 고정COST_RT제거=True
+S7 룩어헤드: PASS | 슬리피지=체결봉 기준, 미래참조 없음
+S8 INDEX정합: PASS | 중복 없음
+================================================================
+종합: 8/8 통과

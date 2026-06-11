@@ -1,0 +1,2 @@
+python test_07Prj_Ch3_Stg2_TrendStack_UptrendShortCut.py
+python check_07Prj_Ch3_Stg2_TrendStack_UptrendShortCut.py

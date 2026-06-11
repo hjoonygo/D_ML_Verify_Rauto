@@ -1,0 +1,5 @@
+VERDICT 4/4 PASS | A=30min GAP=3min | root=C:\BinanceData
+[PASS] A1_30분행수 | live 29행 / 기대 29±1
+[PASS] A2_결측0 | live행 결측 0건
+[PASS] B1_구멍백필 | 구멍 2분 중 2행 복구, oi_src=['hist']
+[PASS] B2_oi_src플래그 | 플래그 유효성(['hist'])

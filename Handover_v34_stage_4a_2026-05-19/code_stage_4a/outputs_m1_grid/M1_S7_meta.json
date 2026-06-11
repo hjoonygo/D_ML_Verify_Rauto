@@ -1,0 +1,45 @@
+{
+  "scenario_id": "S7",
+  "mode": "dynamic",
+  "desc": "동적 horizon(변동성 따라 자동 조절)",
+  "future_n": null,
+  "base_n": 60,
+  "pt_mult": 2.0,
+  "sl_mult": 1.4,
+  "used_n_info": "동적 평균 73.3봉 (min 20, max 180)",
+  "features": [
+    "rsi_14",
+    "ema_dist",
+    "atr_14",
+    "fvg_bull",
+    "fvg_bear",
+    "oi_delta",
+    "rvol_20",
+    "vol_accel",
+    "delta_streak"
+  ],
+  "xgb_params": {
+    "n_estimators": 150,
+    "max_depth": 6,
+    "learning_rate": 0.03,
+    "colsample_bytree": 0.8,
+    "random_state": 42,
+    "objective": "multi:softprob",
+    "num_class": 3
+  },
+  "train_label_dist": {
+    "stay": 196815,
+    "long": 450267,
+    "short": 453614,
+    "stay_pct": 17.880958956878192,
+    "long_pct": 40.90748035788265,
+    "short_pct": 41.21156068523916
+  },
+  "oos_auc": {
+    "long": 0.5201758994700983,
+    "short": 0.5189204577986577
+  },
+  "macro_auc": 0.5195481786343781,
+  "n_train": 1100696,
+  "train_end": "2025-06-06"
+}

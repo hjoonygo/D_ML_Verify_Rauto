@@ -1,0 +1,25 @@
+|--- g_rr <= 1.98
+|   |--- f_vol30 <= 0.00
+|   |   |--- g_sl_dist <= 0.01
+|   |   |   |--- class: 1
+|   |   |--- g_sl_dist >  0.01
+|   |   |   |--- adx_chg <= -0.83
+|   |   |   |   |--- class: 0
+|   |   |   |--- adx_chg >  -0.83
+|   |   |   |   |--- class: 0
+|   |--- f_vol30 >  0.00
+|   |   |--- class: 1
+|--- g_rr >  1.98
+|   |--- oi_zscore_24h <= 1.15
+|   |   |--- top_retail_divergence <= -1.25
+|   |   |   |--- class: 1
+|   |   |--- top_retail_divergence >  -1.25
+|   |   |   |--- norm_atr <= 1.09
+|   |   |   |   |--- class: 1
+|   |   |   |--- norm_atr >  1.09
+|   |   |   |   |--- class: 1
+|   |--- oi_zscore_24h >  1.15
+|   |   |--- ema20_slope <= -0.00
+|   |   |   |--- class: 1
+|   |   |--- ema20_slope >  -0.00
+|   |   |   |--- class: 0

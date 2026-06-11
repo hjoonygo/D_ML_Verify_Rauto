@@ -1,0 +1,24 @@
+[작업분석] RAUTO_ConceptRefine_06_Ch5_Stg2_GateSplitAudit  (2026-05-31T22:41:58)
+[오염검사] PASS
+------------------------------------------------------------
+  O 1.필수파일존재: all present
+  O 2.결과CSV非공백: ok
+  O 3.코드해시기록: {'test_06Prj_Ch5_RAUTO_ConceptRefine_Stg2_GateSplitAudit.py': 'a741fe637342b75c', 'check_06Prj_Ch5_RAUTO_ConceptRefine_Stg2_GateSplitAudit.py': '8171e480de2bd27d'}
+  O 4.분할거래중복없음: 중복0행
+  O 5.미래참조가드: 음수shift 미사용(주석제외, 하네스+엔진)
+  O 6.진입재현일치(내판정=엔진진입): repl_ok=True
+  O 7.분할평단재현일치: match_rate=100.0%
+  O 8.게이트감사 연도/월 커버: 연도[2023, 2024, 2025, 2026] 2025월수12
+  O 9.엔진원본일치(무수정증빙): SpTrd_Fib_V1_Champion.py=일치 SidewayDCA_Stg7_engine.py=일치
+  O 10.VERDICT존재: VERDICT Stg2 | 펀딩=REAL(BTCUSDT_funding_history_8h....
+------------------------------------------------------------
+[VERDICT] VERDICT Stg2 | 펀딩=REAL(BTCUSDT_funding_history_8h.csv,3288건) | 진입재현=일치(말미 미청산진입 1건 제외, 트리거+게이트+포지션=엔진) | 분할평단재현=100.0% | 분할A거품: 엔진 177.3% -> 정직 175.8% (거품 1.5%p, 당김거래 9건) | 2025-12: 진입트리거 16건(숏 12), 무덤차단 0건, 그달거래 12건 | 지정노출(향후): 추세E=1.5 횡보E=10.0
+[분할A거품] 엔진 177.3% -> 정직 175.8% = 거품 1.5%p (당김거래 9건)
+[2025-12] 진입트리거 16건(숏 12), 무덤차단 0건
+[지정노출(향후)] 추세E=1.5 횡보E=10.0
+[게이트 감사 연도별]
+  2023: 롱신호61 숏신호36 무덤차단2 진입67 보유중28
+  2024: 롱신호80 숏신호54 무덤차단2 진입103 보유중29
+  2025: 롱신호65 숏신호84 무덤차단3 진입113 보유중33
+  2026: 롱신호25 숏신호24 무덤차단0 진입35 보유중13
+[코드해시] {'test_06Prj_Ch5_RAUTO_ConceptRefine_Stg2_GateSplitAudit.py': 'a741fe637342b75c', 'check_06Prj_Ch5_RAUTO_ConceptRefine_Stg2_GateSplitAudit.py': '8171e480de2bd27d'}

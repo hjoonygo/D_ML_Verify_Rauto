@@ -1,0 +1,31 @@
+{
+  "scenario": "meta_simple",
+  "features": [
+    "rsi_14",
+    "ema_dist",
+    "atr_14",
+    "fvg_bull",
+    "fvg_bear",
+    "oi_delta",
+    "rvol_20",
+    "vol_accel",
+    "delta_streak",
+    "prob_long",
+    "prob_short",
+    "prob_stay",
+    "side_long",
+    "side_short"
+  ],
+  "n_features": 14,
+  "cv_scores": {
+    "folds": [],
+    "mean_auc": null,
+    "mean_f1": null
+  },
+  "n_train_total": 765,
+  "positive_rate": 0.4196078431372549,
+  "mean_sample_weight": 1.2154076735105088,
+  "created_at": "2026-05-20T01:47:01.452208",
+  "sample_weight_method": "abs_net_return",
+  "m2_threshold": 0.5
+}

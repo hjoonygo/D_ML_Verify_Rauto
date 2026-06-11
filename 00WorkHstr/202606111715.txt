@@ -1,0 +1,22 @@
+작업분석 — 07Prj_Ch4_RunAWS_Stg3_NMultSweep
+초기자본 $10,000 복리 · devledger 264 실거래 재구성(절대수치 근사, NMULT 상대비교)
+
+[1] 오염검사 — 근간 데이터·원본 로직 SHA256 무수정 대조
+  [OK] 07Prj_Ch2_Stg2_TrendStack_OPVnNSweep_devledger.csv  a786876e1b565617…
+  [OK] bot_trendstack_signal.py  040da0d277d166ca…
+  [OK] trendstack_poc.py  3065230c60756bac…
+[1b] 필수 파일 존재
+  [OK] test_07Prj_Ch4_RunAWS_Stg3_NMultSweep.py
+  [OK] check_07Prj_Ch4_RunAWS_Stg3_NMultSweep.py
+  [OK] run.bat
+  [OK] 07Prj_Ch4_RunAWS_Stg3_NMultSweep_results.csv
+[1c] 중복 .py: 없음
+
+[2] NMULT 스윕 · CPCV 견고성
+  NMULT=0.4  full 527.0%/MDD-14.0% Calmar37.6  CPCV최악MDD -18.2% 한도위반 0
+  NMULT=0.5  full 620.8%/MDD-14.5% Calmar43.0  CPCV최악MDD -19.2% 한도위반 0
+  NMULT=0.6  full 724.9%/MDD-15.4% Calmar47.2  CPCV최악MDD -20.2% 한도위반 1
+  NMULT=0.7  full 840.1%/MDD-16.5% Calmar50.8  CPCV최악MDD -21.3% 한도위반 1
+  NMULT=0.8  full 966.9%/MDD-17.8% Calmar54.5  CPCV최악MDD -22.4% 한도위반 1
+
+[판정] 오염검사 OK · 트레이드오프: 기준0.6(CPCV1위반,실경로-15.4%안전) / 견고쿠션 NMULT=0.5(0위반,620.8%) / Calmar최고 NMULT=0.8(Calmar54.5) → 사장님 결정사안

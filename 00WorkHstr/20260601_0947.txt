@@ -1,0 +1,19 @@
+[작업분석] RAUTO_AlphaUp_06_Ch5_Stg8_DualGrid (2026-06-01T09:47:31)
+[오염검사] PASS
+------------------------------------------------------------
+  O 1.필수파일: ok
+  O 2.CSV非공백: ok
+  O 3.코드해시: {'test_06Prj_Ch5_RAUTO_AlphaUp_Stg8_DualGrid.py': '72fe474221440d68', 'check_06Prj_Ch5_RAUTO_AlphaUp_Stg8_DualGrid.py': 'ae7eeaf0513fb9e5'}
+  O 4.중복없음: 중복0
+  O 5.미래참조가드: 음수shift 미사용 — 엔진 무수정, dev/atr 진입시점 과거기반
+  O 6.제안1그리드: 행18 | 진입확대 무효(늘리면 PF훼손)
+  O 7.제안2그리드: 행60 | POV사이징 유효
+  O 8.제안2잭팟보존: best잭팟보존103.0%
+  O 9.다중TF+엔진해시: TF그리드산출 | SpTrd_Fib_V1_Champion.py=OK SidewayDCA_Stg7_engine.py=OK
+  O 10.VERDICT: 제안1: 진입확대 무효(늘리면 PF훼손) | 제안2: POV사이징 유효 (best 7h 일치×2.0 반대×1...
+------------------------------------------------------------
+[VERDICT] 제안1: 진입확대 무효(늘리면 PF훼손) | 제안2: POV사이징 유효 (best 7h 일치×2.0 반대×1.0 승률31.4% 수익률268.98% 잭팟103.0%)
+[제안1] 기본 거래86/PF2.653 -> PF2.39 이상 유지하며 거래 늘리는 조합 없음
+[제안2] 기본7h 승률31.4%/손익비3.581/수익률177.27%/$88635.0
+        best 7h 일치×2.0 반대×1.0: 승률31.4%/손익비3.572/수익률268.98%/$134488.0/잭팟103.0%
+[코드해시] {'test_06Prj_Ch5_RAUTO_AlphaUp_Stg8_DualGrid.py': '72fe474221440d68', 'check_06Prj_Ch5_RAUTO_AlphaUp_Stg8_DualGrid.py': 'ae7eeaf0513fb9e5'}

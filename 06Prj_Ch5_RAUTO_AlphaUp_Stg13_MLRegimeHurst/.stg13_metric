@@ -1,0 +1,17 @@
+best_model=GradBoost
+best_acc=63.2
+baseline=36.5
+beats_any=YES
+n_feats=35
+hurst_rank=[13, 14, 20, 26]
+top_feat=feat_break_8
+has_label_in_feats=False
+base_ret=177.27
+ml_ret=249.31
+base_mdd=-25.8
+ml_mdd=-33.2
+ml_liq=NO
+oos_base_ret=54.12
+oos_ml_ret=75.49
+funding=REAL
+model_rows=3

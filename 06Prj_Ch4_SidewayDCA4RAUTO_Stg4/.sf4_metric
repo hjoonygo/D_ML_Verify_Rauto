@@ -1,0 +1,10 @@
+has_oi=1
+has_bb=1
+bars=3758
+off_PF=1.474
+off_test_PF=2.393
+ml_best=S2_무덤_항상ON
+ml_score=87.0
+best_train_PF=1.505
+best_test_PF=1.97
+best_gap=0.465

@@ -1,0 +1,45 @@
+{
+  "scenario_id": "S1",
+  "mode": "fixed",
+  "desc": "horizon만 확대(벽 그대로) - 라벨붕괴 확인용 대조군",
+  "future_n": 60,
+  "base_n": null,
+  "pt_mult": 1.5,
+  "sl_mult": 1.0,
+  "used_n_info": "고정 60봉",
+  "features": [
+    "rsi_14",
+    "ema_dist",
+    "atr_14",
+    "fvg_bull",
+    "fvg_bear",
+    "oi_delta",
+    "rvol_20",
+    "vol_accel",
+    "delta_streak"
+  ],
+  "xgb_params": {
+    "n_estimators": 150,
+    "max_depth": 6,
+    "learning_rate": 0.03,
+    "colsample_bytree": 0.8,
+    "random_state": 42,
+    "objective": "multi:softprob",
+    "num_class": 3
+  },
+  "train_label_dist": {
+    "stay": 195624,
+    "long": 451633,
+    "short": 453439,
+    "stay_pct": 17.772754693394,
+    "long_pct": 41.03158365252531,
+    "short_pct": 41.19566165408069
+  },
+  "oos_auc": {
+    "long": 0.5147377573320291,
+    "short": 0.5124867477285494
+  },
+  "macro_auc": 0.5136122525302893,
+  "n_train": 1100696,
+  "train_end": "2025-06-06"
+}

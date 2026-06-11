@@ -1,0 +1,23 @@
+[작업분석] 04All_IDEA4Concept_ch9_SideWayDCA_Alpha_stg10  (2026-05-30T11:35:22)
+[오염검사 종합] FAIL
+------------------------------------------------------------
+  X 1.필수파일존재: 누락:['run_04All_IDEA4Concept_ch9_SideWayDCA_Alpha_stg10.bat']
+  O 2.결과CSV非공백: ok
+  O 3.코드해시기록: {'test_04All_IDEA4Concept_ch9_SideWayDCA_Alpha_stg10.py': 'f41c0bf3e96a65ca', 'check_04All_IDEA4Concept_ch9_SideWayDCA_Alpha_stg10.py': '924f3b0d950fb8f6'}
+  O 4.거래중복없음: 중복0행
+  O 5.미래참조가드: shift(-)/[i+1] 진입신호 미사용 확인
+  O 6.거래비중첩: 중첩0건
+  O 7.8시나리오완전: 8행
+  O 8.VERDICT존재: VERDICT stg10 | BEST_PF(제약없음) TF8h adxhi22 gate=strict ts=1....
+------------------------------------------------------------
+[VERDICT] VERDICT stg10 | BEST_PF(제약없음) TF8h adxhi22 gate=strict ts=1.0 | train PF=1.7 cumR=11.09% MDD=-13.0% | test PF=1.296 cumR=4.72% MDD=-11.7% | all MDD=-17.3% WFE=76.2% || BEST_PF_MDD_CAPPED(-15%안) TF8h adxhi22 gate=short_only ts=0.5 | train PF=1.308 cumR=6.79% MDD=-10.9% | test PF=1.202 cumR=3.8% MDD=-9.7% | all MDD=-14.0% WFE=91.9% || GATE효과: {'long_only': {'avg_PF': 0.91, 'avg_MDD': -48.36, 'avg_cumR': -11.14, 'avg_n': 209.42}, 'off': {'avg_PF': 0.92, 'avg_MDD': -48.14, 'avg_cumR': -9.39, 'avg_n': 236.69}, 'short_only': {'avg_PF': 0.87, 'avg_MDD': -45.07, 'avg_cumR': -12.32, 'avg_n': 208.22}, 'strict': {'avg_PF': 0.84, 'avg_MDD': -45.34, 'avg_cumR': -13.74, 'avg_n': 180.44}} || TREND_SZ효과: {0.0: {'avg_PF': 0.85, 'avg_MDD': -44.65, 'avg_cumR': -11.18}, 0.3: {'avg_PF': 0.88, 'avg_MDD': -44.92, 'avg_cumR': -11.38}, 0.5: {'avg_PF': 0.89, 'avg_MDD': -46.25, 'avg_cumR': -11.66}, 1.0: {'avg_PF': 0.92, 'avg_MDD': -51.08, 'avg_cumR': -12.37}}
+[코드해시] {'test_04All_IDEA4Concept_ch9_SideWayDCA_Alpha_stg10.py': 'f41c0bf3e96a65ca', 'check_04All_IDEA4Concept_ch9_SideWayDCA_Alpha_stg10.py': '924f3b0d950fb8f6'}
+[8시나리오 누적R(train/test)]
+  SCEN_clean_range: train n19 R2.19% | test n21 R2.7%
+  SCEN_break_up: train n37 R0.49% | test n19 R0.18%
+  SCEN_break_down: train n0 R0.0% | test n0 R0.0%
+  SCEN_fake_break: train n0 R0.0% | test n0 R0.0%
+  SCEN_v_reversal: train n0 R0.0% | test n0 R0.0%
+  SCEN_low_vol_range: train n0 R0.0% | test n0 R0.0%
+  SCEN_strong_trend: train n0 R0.0% | test n0 R0.0%
+  SCEN_regime_shift: train n34 R4.11% | test n28 R0.92%

@@ -1,0 +1,42 @@
+============================================================
+S7 백테스트 v1.0 (Phase 2 - 3단계, 출구 (b) 정합)
+S7 정합: 손절 ATR×1.4, timeout 120분
+============================================================
+
+[0/6] S7 모델 장착
+  원본 백업: D:\ML\Verify\Handover_v34_stage_4a_2026-05-19\code_stage_4a\PautoV75_XGB_3class_v2.json.bak_s7test
+  S7 장착: D:\ML\Verify\Handover_v34_stage_4a_2026-05-19\code_stage_4a\M1_S7.json → D:\ML\Verify\Handover_v34_stage_4a_2026-05-19\code_stage_4a\PautoV75_XGB_3class_v2.json
+  손절 정합: compute_dynamic_sl → ATR×1.4 패치 완료
+
+[1/6] 데이터 로드: D:\ML\Verify\Handover_v34_stage_4a_2026-05-19\code_stage_4a\Merged_Data.csv
+  전체: 2023-05-01 00:00:00+00:00 ~ 2026-04-30 23:59:00+00:00 (1,578,240봉)
+  OOS: idx 1104768~1578239 (473,472봉)
+
+[2/6] ATR 사전 계산
+  Train atr_med: 0.059728%
+  15m ATR_pct mean=0.3276%
+
+[3/6] regime + TF aggregate
+  4장세 분포: {'uptrend': 489066, 'downtrend': 429888, 'hivol_range': 391908, 'lovol_range': 267378}
+  2h봉 13152, 60m봉 26304
+
+[4/6] S7 신호 재추출 (OOS만, 약 90분 예상)
+  S7 신호: Long 218494, Short 248186, 소요 67.7분
+
+[5/6] S7 정합 백테스트 (timeout 120분, M2 끔)
+  거래 466680, 소요 29.1분
+
+[6/6] 성과 측정
+
+============================================================
+=== S7 백테스트 결과 ===
+============================================================
+  valid 거래수: 3558
+  PF: 0.5473
+  승률: 0.3387
+  순수익: -604.09%
+
+  [비교 기준] 기존 base (S0=10봉, 기존출구): PF 0.816
+  ❌ base(0.816) 이하 — horizon 가설 거의 부정 (features 재설계 필요)
+
+[복원] 원본 M1 모델 복원 완료 (PautoV75_XGB_3class_v2.json)

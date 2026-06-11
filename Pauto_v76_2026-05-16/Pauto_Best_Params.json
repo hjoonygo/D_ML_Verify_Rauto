@@ -1,0 +1,10 @@
+{
+  "leverage": 5,
+  "ml_long_threshold": 0.80,
+  "ml_short_threshold": 0.20,
+  "fib_trigger_roe": 15.0,
+  "fib_sl_roe": 5.73,
+  "fib_ext_pct": 0.618,
+  "optimized_period": "v7.5 재현용 수동 설정 (Optuna 미실행)",
+  "updated_at": "2026-05-17 (v7.6 점프 ⓟ-9 정정판)"
+}

@@ -1,0 +1,11 @@
+n_trades=318
+n_streak=194
+n_start=49
+auc_in_te=0.547
+auc_in_tr=0.661
+auc_st_te=0.473
+auc_st_tr=0.736
+top_feature=bandw
+top_auc=0.578
+have_sklearn=True
+feasible=예측불가(심판은 늦은반응만)

@@ -1,0 +1,4 @@
+@echo off
+chcp 65001 >nul
+python test_06Prj_Ch6_FrameWork_RAUTO_Stg8_Y2025Forensics.py
+python check_06Prj_Ch6_FrameWork_RAUTO_Stg8_Y2025Forensics.py

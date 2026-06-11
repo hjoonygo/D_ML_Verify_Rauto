@@ -1,0 +1,3 @@
+@echo off
+python test_05Alpha_UpCh1_stg3_SLpos_Sweep.py
+python check_05Alpha_UpCh1_stg3_SLpos_Sweep.py

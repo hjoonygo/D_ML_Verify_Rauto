@@ -1,0 +1,53 @@
+{
+  "scenario": "meta_purged",
+  "features": [
+    "rsi_14",
+    "ema_dist",
+    "atr_14",
+    "fvg_bull",
+    "fvg_bear",
+    "oi_delta",
+    "rvol_20",
+    "vol_accel",
+    "delta_streak",
+    "prob_long",
+    "prob_short",
+    "prob_stay",
+    "side_long",
+    "side_short"
+  ],
+  "n_features": 14,
+  "cv_scores": {
+    "folds": [
+      {
+        "fold": 1,
+        "n_train": 503,
+        "n_test": 255,
+        "auc": 0.564738919247116,
+        "f1": 0.25396825396825395
+      },
+      {
+        "fold": 2,
+        "n_train": 503,
+        "n_test": 255,
+        "auc": 0.5755577468260815,
+        "f1": 0.4930232558139535
+      },
+      {
+        "fold": 3,
+        "n_train": 510,
+        "n_test": 255,
+        "auc": 0.5896179608037707,
+        "f1": 0.48826291079812206
+      }
+    ],
+    "mean_auc": 0.5766382089589893,
+    "mean_f1": 0.4117514735267765
+  },
+  "n_train_total": 765,
+  "positive_rate": 0.4196078431372549,
+  "mean_sample_weight": 1.2154076735105088,
+  "created_at": "2026-05-20T01:47:02.000893",
+  "sample_weight_method": "abs_net_return",
+  "m2_threshold": 0.5
+}

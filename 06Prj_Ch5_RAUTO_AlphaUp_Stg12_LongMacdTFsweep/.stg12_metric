@@ -1,0 +1,9 @@
+best_tf=15m
+best_acc=31.3
+baseline=36.5
+any_beats=NO
+up_recall_best_tf=15m
+up_recall_best=19.8
+n_tf=6
+has_label_in_feats=False
+verdict_flag=전TF 기준선 미달 — 장기MACD 판별 한계 확인(best 15m 31.3%)

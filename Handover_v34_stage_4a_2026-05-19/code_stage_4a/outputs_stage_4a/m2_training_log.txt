@@ -1,0 +1,27 @@
+
+========================================================================
+[Stage 4A M2 학습] 2026-05-20 10:47:01.297026
+내부버전: v2.0_uses_features_cache
+출력: D:\ML\Verify\Handover_v34_stage_4a_2026-05-19\code_stage_4a\outputs_stage_4a
+========================================================================
+
+[입력]
+  train_trades: D:\ML\Verify\Handover_v34_stage_4a_2026-05-19\code_stage_4a\outputs_stage_4a\trades_train_phase_4a.csv
+  oos_trades:   D:\ML\Verify\Handover_v34_stage_4a_2026-05-19\code_stage_4a\trades_s0_v10_baseline_sl180.csv
+  train_feats:  D:\ML\Verify\Handover_v34_stage_4a_2026-05-19\code_stage_4a\outputs_stage_4a\signal_features_train_4a.pkl
+  oos_feats:    D:\ML\Verify\Handover_v34_stage_4a_2026-05-19\code_stage_4a\outputs_stage_4a\signal_features_oos_4a.pkl
+  rm_lookup:    D:\ML\Verify\Handover_v34_stage_4a_2026-05-19\code_stage_4a\outputs_stage_4a\regime_master_at_entry.pkl
+  features cache: train 4891, oos 457
+  rm_lookup: 7892
+
+---- meta_simple ----
+  n=765, features=14, pos_rate=0.420
+
+---- meta_purged ----
+  n=765, features=14, pos_rate=0.420
+
+---- meta_regime ----
+  n=765, features=21, pos_rate=0.420
+
+---- meta_oos_only ----
+  n=193, features=14, pos_rate=0.466

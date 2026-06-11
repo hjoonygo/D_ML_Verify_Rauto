@@ -1,0 +1,256 @@
+{
+  "pipeline_version": "V80k_Verify_3_S4",
+  "timestamp": "2026-05-04T12:22:27.683619Z",
+  "args": {
+    "tp_pct": 0.3,
+    "sl_pct": 0.1,
+    "horizon": 30,
+    "tag": "3balancedTBM_R002"
+  },
+  "train_result": {
+    "metrics": {
+      "BULL": {
+        "n_train": 11178,
+        "n_val": 1973,
+        "train_acc": 0.8092682054034711,
+        "val_acc": 0.4668018246325393,
+        "conf_metrics": {
+          "conf_50": {
+            "n": 791,
+            "acc": 0.5625790139064475
+          },
+          "conf_60": {
+            "n": 376,
+            "acc": 0.6409574468085106
+          },
+          "conf_70": {
+            "n": 131,
+            "acc": 0.7251908396946565
+          }
+        },
+        "tbm_label_dist_train": {
+          "LONG": 5069,
+          "SHORT": 1058,
+          "NO_PROFIT": 5051
+        },
+        "best_iteration": 299
+      },
+      "BEAR": {
+        "n_train": 13224,
+        "n_val": 2334,
+        "train_acc": 0.7689050211736237,
+        "val_acc": 0.4961439588688946,
+        "conf_metrics": {
+          "conf_50": {
+            "n": 1116,
+            "acc": 0.5546594982078853
+          },
+          "conf_60": {
+            "n": 447,
+            "acc": 0.6510067114093959
+          },
+          "conf_70": {
+            "n": 145,
+            "acc": 0.7448275862068966
+          }
+        },
+        "tbm_label_dist_train": {
+          "LONG": 1122,
+          "SHORT": 6149,
+          "NO_PROFIT": 5953
+        },
+        "best_iteration": 300
+      },
+      "CHOP": {
+        "n_train": 79916,
+        "n_val": 14103,
+        "train_acc": 0.7751514089794284,
+        "val_acc": 0.7771396156846061,
+        "conf_metrics": {
+          "conf_50": {
+            "n": 11086,
+            "acc": 0.8251849179144868
+          },
+          "conf_60": {
+            "n": 7488,
+            "acc": 0.9017094017094017
+          },
+          "conf_70": {
+            "n": 4733,
+            "acc": 0.9427424466511726
+          }
+        },
+        "tbm_label_dist_train": {
+          "LONG": 2029,
+          "SHORT": 2077,
+          "NO_PROFIT": 75810
+        },
+        "best_iteration": 300
+      }
+    },
+    "regression_test": {
+      "BULL": {
+        "comparisons": [
+          {
+            "metric": "n_train",
+            "actual": 11178,
+            "target": 6306,
+            "diff_pct": 0.7725975261655567,
+            "pass": false
+          },
+          {
+            "metric": "val_acc",
+            "actual": 0.4668018246325393,
+            "target": 0.4447,
+            "abs_diff": 0.02210182463253929,
+            "pass": true
+          },
+          {
+            "metric": "conf_07_acc",
+            "actual": 0.7251908396946565,
+            "target": 0.5714,
+            "abs_diff": 0.15379083969465646,
+            "pass": false
+          }
+        ],
+        "pass_count": 1,
+        "total": 3,
+        "pass": false
+      },
+      "BEAR": {
+        "comparisons": [
+          {
+            "metric": "n_train",
+            "actual": 13224,
+            "target": 6387,
+            "diff_pct": 1.0704556129638327,
+            "pass": false
+          },
+          {
+            "metric": "val_acc",
+            "actual": 0.4961439588688946,
+            "target": 0.5222,
+            "abs_diff": 0.02605604113110538,
+            "pass": true
+          },
+          {
+            "metric": "conf_07_acc",
+            "actual": 0.7448275862068966,
+            "target": 0.7593,
+            "abs_diff": 0.014472413793103378,
+            "pass": true
+          }
+        ],
+        "pass_count": 2,
+        "total": 3,
+        "pass": false
+      },
+      "CHOP": {
+        "comparisons": [
+          {
+            "metric": "n_train",
+            "actual": 79916,
+            "target": 68768,
+            "diff_pct": 0.16211028385295487,
+            "pass": false
+          },
+          {
+            "metric": "val_acc",
+            "actual": 0.7771396156846061,
+            "target": 0.8386,
+            "abs_diff": 0.06146038431539391,
+            "pass": false
+          },
+          {
+            "metric": "conf_07_acc",
+            "actual": 0.9427424466511726,
+            "target": 0.9783,
+            "abs_diff": 0.035557553348827375,
+            "pass": true
+          }
+        ],
+        "pass_count": 1,
+        "total": 3,
+        "pass": false
+      },
+      "overall_pass": false,
+      "overall_pass_count": 4,
+      "overall_fail_count": 5
+    },
+    "split_idx": 644112,
+    "split_date": "2025-09-21 07:12:00+00:00"
+  },
+  "oos_result": {
+    "oos_conf_distribution": {
+      "BULL": {
+        "n_oos": 65535,
+        "conf_05_pct": 54.65934233615625,
+        "conf_06_pct": 25.796902418554975,
+        "conf_07_pct": 8.48401617456321,
+        "action_dist": {
+          "LONG": 48937,
+          "SHORT": 2283,
+          "NO_PROFIT": 14315
+        }
+      },
+      "BEAR": {
+        "n_oos": 76897,
+        "conf_05_pct": 61.41461955602949,
+        "conf_06_pct": 27.93346944614224,
+        "conf_07_pct": 5.515169642508811,
+        "action_dist": {
+          "LONG": 3157,
+          "SHORT": 59698,
+          "NO_PROFIT": 14042
+        }
+      },
+      "CHOP": {
+        "n_oos": 133616,
+        "conf_05_pct": 82.02236259130643,
+        "conf_06_pct": 61.86759070769967,
+        "conf_07_pct": 42.76508801341157,
+        "action_dist": {
+          "LONG": 8802,
+          "SHORT": 9285,
+          "NO_PROFIT": 115529
+        }
+      }
+    },
+    "golden_comparison": {
+      "BULL": {
+        "metric": "conf_07_pct",
+        "actual": 8.48401617456321,
+        "golden": 22.7,
+        "abs_diff_pct": 14.215983825436789,
+        "tolerance": 5.0,
+        "pass": false
+      },
+      "BEAR": {
+        "metric": "conf_07_pct",
+        "actual": 5.515169642508811,
+        "golden": 29.5,
+        "abs_diff_pct": 23.98483035749119,
+        "tolerance": 5.0,
+        "pass": false
+      },
+      "CHOP": {
+        "metric": "conf_07_pct",
+        "actual": 42.76508801341157,
+        "golden": 68.8,
+        "abs_diff_pct": 26.034911986588426,
+        "tolerance": 5.0,
+        "pass": false
+      }
+    },
+    "overall_pass": false,
+    "tbm_action_distribution": {
+      "LONG": 60896,
+      "SHORT": 71266,
+      "NO_PROFIT": 143886
+    },
+    "split_idx": 644112,
+    "oos_n": 276048
+  },
+  "overall_pass": false,
+  "next_action_recommendation": "⚠ FAIL — 학습 메트릭 회귀 미달 + OOS conf 분포 골든 미달. 원인: (1) 데이터 차이, (2) 시드 변동, (3) 라벨링 임계 재검토. train_report.json을 클로드 채팅에 업로드하여 진단 받으세요."
+}

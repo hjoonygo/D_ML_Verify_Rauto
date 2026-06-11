@@ -1,0 +1,18 @@
+VERDICT 06Prj_Ch6_Stg4_ChipFilterMLSizing | 8시나리오 8/8 PASS | [칩필터BEST] pre_n=0 hold_k=1 CHOP>55.0 OR SQZ=0.0 | 칩OFF PF2.099(2025_33) -> 칩ON PF2.099(2025_33) | ML best_auc 0.721 사이징PF 1.633 vs 표준 1.582 -> STANDARD | 미래참조차단=trade_bar_minus1 | check:PASS
+
+[8시나리오 상세]
+  [OK] S1 필수파일/비공백(11종) : 11종 OK
+  [OK] S2 엔진해시 무수정 : 일치
+  [OK] S3 미래참조 가드(shift- 없음) : 없음
+  [OK] S4 거래>0 & 칩격자243 : 추세318/횡보90/격자243
+  [OK] S5 label_smc 특징배제 : False
+  [OK] S6 칩필터 ON 효과(PF개선 or 2025켜짐회복) : OFF PF2.099 -> ON PF2.099 / 2025켜짐 33건
+  [OK] S7 ML 누수경보(AUC<0.95) : best AUC 0.721 (정상)
+  [OK] S8 ML 비교완료(표준 vs ML 사이징) : ML사이징PF 1.633 vs 표준 1.582 추천 STANDARD 특징10개
+
+[엔진 무수정 해시]
+  SpTrd_Fib_V1_Champion.py = 7f9192e3d50b1afd...
+  SidewayDCA_Stg7_engine.py = dfdfac4394cd7809...
+
+[메모] 칩필터 S1~S5+Squeeze 243격자로 2025 횡보봇 부활 시도 + ML 사이징(봇수익타깃·거래있는봉만·미래참조 구조차단). ML AUC가 0.95+면 누수 의심하고 즉시 코드 재점검. ML이 OOS서 표준 못이기면 STANDARD 채택(단순·견고 우선).
+매트릭스: ledger_trades.csv로 장세×년도×롱숏 × PF·수익률·payoff·거래수·수익금 전량 확인 가능.

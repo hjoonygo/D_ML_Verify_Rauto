@@ -1,0 +1,22 @@
+VERDICT 06Prj_Ch7_stg1_TrendStackEquivConfirm | 8시나리오 8/8 PASS | $10k복리·재최적화없음 | [④확정] $51184(411.84% MDD-23.57 pf1.74 2025_6.65% p251.57) raw318->최종292 | [동치] keep동일=True 잔고동일=True (백테$51184.23=실물$51184.23) | [칩출처차] dCHOP0.0 dER0.1837 dADX0.0 판정상이1건 | check:PASS
+
+[8시나리오 상세]
+  [OK] S1 필수파일/비공백(6종) : 6종 OK
+  [OK] S2 엔진해시 무수정 : 일치
+  [OK] S3 미래참조 가드(shift- 없음) : 없음
+  [OK] S4 복리기준 $10,000 : start=10000.0
+  [OK] S5 label 입력배제 : False
+  [OK] S6 백테↔실물 동치 : keep동일=True(백테292=실물292) 잔고동일=True(백테$51184.23=실물$51184.23)
+  [OK] S7 재최적화 없음(확정값 고정) : er0.45/칩65.0·0.35·25.0/쿨K4M8 reopt=False
+  [OK] S8 CPCV 견고성+④잔고 산출 : ④ $51184(411.84% MDD-23.57) 2025_6.65% p251.57
+
+[엔진 무수정 해시]
+  SpTrd_Fib_V1_Champion.py = 7f9192e3d50b1afd...
+  SidewayDCA_Stg7_engine.py = dfdfac4394cd7809...
+
+[메모] Ch7 Stg1: RAUTO 추세봇 ④스택을 확정값으로 단일 산출(재최적화 없음).
+  ★핵심: 백테스트 경로(cooldown.apply_cooldown)와 실물 경로(CooldownState+decide_realtime)가
+  같은 거래를 차단하고 같은 복리잔고를 내는지(동치) 직접 돌려 확인. 일치하면 백테스트가
+  약속한 2025 방어가 실물에서 재현된다는 근거. Ch6 후임 지적①(리셋규칙) 수정의 실증.
+  칩 지표 출처 = regime_classifier(헤드라인 출처). 엔진 compute_signals 값과의 차이도 기록(지적②).
+  다음: 동치 확인 후 RAUTO 실물 아키텍처 또는 시장변수 보강(사장님 방향 결정).

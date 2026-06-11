@@ -1,0 +1,18 @@
+VERDICT 07Prj_Ch1_stg2_SizingGridCompare | 8시나리오 7/8 FAIL | 4모드 stg1원장(264거래) 적용 | liq_distance=-0.0724 (K33+Binance) | M0=$56,017 M3=$53,725 (M3 청산 1건) | M0동치 None | M3 MDD -15.71% | check:FAIL
+
+[8시나리오 상세]
+  [OK] S1 필수파일/비공백(7종) : 7종 OK
+  [OK] S2 모듈 자가검증 + liq=-0.0724 : liq_distance=-0.0724 (-0.0724 정직화 OK)
+  [X ] S3 ★ M0 동치검증 (stg4 best_end) : .stg4_metric 못 읽음 또는 stg4 best_end 누락 — 사장님 PC에서 stg4 먼저 굴려야 함
+  [OK] S4 4모드 잔고 합리성 : M0=$56,017 M1=$15,945 M2=$53,890 M3=$53,725
+  [OK] S5 청산건수 정합 : sanity 2건 청산검증 전부 OK
+  [OK] S6 M3 > M1 (격리튕김 > cross) : M3 $53,725 vs M1 $15,945 (+236.9%) [★MDD -15% 초과 -15.71% — stg4 보강 필요]
+  [OK] S7 미래참조 가드 (shift- 없음) : 없음
+  [OK] S8 ALPHA_PROVENANCE 메타 : 6키 모두 존재 (K33+Binance 근거 포함)
+
+[stg2 메모] stg1 모듈을 06Prj_Ch7_stg4의 best 원장에 4모드 적용.
+  ★liq_distance=-0.0724 정직화 (K33 BTC2025 변동 2.24%×3σ=6.72%, Binance Tier1 MMR0.4%+taker0.05%).
+  ★사장님 원래 의도(-7.2% 견딤)와 정확 일치.
+  ★M0 동치검증 = 모듈 무변형 입증 (자본 1배 결과가 stg4 best_end와 일치).
+  M3 MDD가 -15% 초과면 stg4 RobustnessFinalize에서 연속청산 분포·쿨다운 강화.
+  다음: stg3 CrashStressTest — 2025-10-11 폭락 + intrabar 청산검증.

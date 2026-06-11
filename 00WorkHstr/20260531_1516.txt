@@ -1,0 +1,37 @@
+[작업분석] ChampBot_SidewayDCA4RAUTO_06_Ch4_Stg6  (2026-05-31T15:16:47)
+[오염검사 종합] PASS
+----------------------------------------------------------------
+  O 1.필수파일존재: all present
+  O 2.결과CSV非공백: ok
+  O 3.코드해시기록: {'test_06Prj_Ch4_SidewayDCA4RAUTO_Stg6.py': '2b5e13ca789f2c7f', 'check_06Prj_Ch4_SidewayDCA4RAUTO_Stg6.py': '9d8e31750b97a004'}
+  O 4.거래중복없음: 진입시간 중복 0건
+  O 5.미래참조가드: 음수shift 없음 + dz_oi backward(resample last)
+  O 6.연도일관성기록: 연도×ER 4행, 원본대비우위 4건
+  O 7.8시나리오완전: S1~S8 중 8개
+  O 8.VERDICT존재: VERDICT 묶음2 | 기준선 PF1.512 cumR143.12% | best피보=(0.3...
+----------------------------------------------------------------
+[VERDICT] VERDICT 묶음2 | 기준선 PF1.512 cumR143.12% | best피보=(0.3
+[무덤필터 효과] PF ?->? | MDD ?%->?% | 수익금 ?->?
+[거래·trend_flip] ?->?건 | trend_flip ?->?
+[코드해시] {'test_06Prj_Ch4_SidewayDCA4RAUTO_Stg6.py': '2b5e13ca789f2c7f', 'check_06Prj_Ch4_SidewayDCA4RAUTO_Stg6.py': '9d8e31750b97a004'}
+[8시나리오 요약]
+  S1_기준선_ER0.45: OFF PF cumR -> ON PF cumR 피보(.3,.5,.6) lev1 분할없음
+  S2_피보_현행_3_5_6: OFF PF cumR -> ON PF cumR fib=(0.3, 0.5, 0.6)
+  S2_피보_모두0.38: OFF PF cumR -> ON PF cumR fib=(0.38, 0.38, 0.38)
+  S2_피보_모두0.5: OFF PF cumR -> ON PF cumR fib=(0.5, 0.5, 0.5)
+  S2_피보_모두0.61: OFF PF cumR -> ON PF cumR fib=(0.61, 0.61, 0.61)
+  S2_피보_계단_38_50_61: OFF PF cumR -> ON PF cumR fib=(0.382, 0.5, 0.618)
+  S3_분할A_2분할: OFF PF cumR -> ON PF cumR 방식A 2등분
+  S3_분할A_3분할: OFF PF cumR -> ON PF cumR 방식A 3등분
+  S3_분할B_2분할: OFF PF cumR -> ON PF cumR 방식B 2등분
+  S3_분할B_3분할: OFF PF cumR -> ON PF cumR 방식B 3등분
+  S4_결합_피보(0.3, 0.5, 0.6)_분할('A', 3): OFF PF cumR -> ON PF cumR best피보×best분할
+  S5_수량_10%: OFF PF cumR -> ON PF cumR 자본10% 베팅 → 수익금11512 MDD-4.0% 파산NO
+  S5_수량_20%: OFF PF cumR -> ON PF cumR 자본20% 베팅 → 수익금13194 MDD-7.8% 파산NO
+  S5_수량_30%: OFF PF cumR -> ON PF cumR 자본30% 베팅 → 수익금15055 MDD-11.5% 파산NO
+  S6_레버리지_1x: OFF PF cumR -> ON PF cumR 1x → 수익금15055 MDD-11.5% 파산NO
+  S6_레버리지_2x: OFF PF cumR -> ON PF cumR 2x → 수익금21817 MDD-21.8% 파산NO
+  S6_레버리지_3x: OFF PF cumR -> ON PF cumR 3x → 수익금30522 MDD-31.0% 파산NO ★MDD위험(>30%)
+  S6_레버리지_5x: OFF PF cumR -> ON PF cumR 5x → 수익금54261 MDD-46.3% 파산NO ★MDD위험(>30%)
+  S7_연도일관_결합: OFF PF cumR -> ON PF cumR 결합이 기준선대비 우위 4/4년
+  S8_ML판정_결합: OFF PF cumR -> ON PF cumR score90.0 견고(채택) 일관4/4년

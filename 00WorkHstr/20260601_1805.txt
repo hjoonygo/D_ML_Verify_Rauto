@@ -1,0 +1,17 @@
+VERDICT 06Prj_Ch6_Stg1_DualBotIntegBacktest | 8시나리오 8/8 PASS | 기준노출 합산 393.46%/MDD-29.1%(청산NO) | 단독 추세 PF1.643/177.27% 횡보 PF1.539/15.95% | 2025 추세2.07%+횡보24.23%=26.3% | 겹침 추세대비4.7%/횡보대비67.1% | 권고노출 1.5/5.0->590.34%/MDD-34.8% | 파라미터=CURRENT_SNOOPED(optimistic_ceiling) | check:PASS
+
+[8시나리오 상세]
+  [OK] S1 필수파일/비공백 : 6종 OK
+  [OK] S2 엔진해시 무수정 : 일치
+  [OK] S3 미래참조 가드(shift- 없음) : 음수shift 없음
+  [OK] S4 두 봇 거래>0 : 추세318/횡보105
+  [OK] S5 라벨 봇입력 배제 : False
+  [OK] S6 자본배분 70/30 동결 : 0.7
+  [OK] S7 합산결과 정합 : MDD -29.1% 청산 NO
+  [OK] S8 낙관상한치 라벨+펀딩REAL : CURRENT_SNOOPED(optimistic_ceiling) | 펀딩 추세REAL/횡보REAL
+
+[엔진 무수정 해시 기준]
+  SpTrd_Fib_V1_Champion.py = 7f9192e3d50b1afd...
+  SidewayDCA_Stg7_engine.py = dfdfac4394cd7809...
+
+[메모] 이 수치는 '현재 파라미터=낙관 상한치'다. 월목표 판단용 결정숫자는 Stg2(파라미터 동결+워크포워드) 이후.

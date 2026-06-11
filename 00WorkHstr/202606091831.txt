@@ -1,0 +1,7 @@
+[07Prj_Ch3_Stg2_TrendStack_UptrendShortCut] build_ch3s2_v1 2026-06-09 18:31
+목적: Stg1 전체uptrend축소의 2024손해를 개선 — '상승구조 역행 숏'만 외과적 축소(실시간 feat+side 1줄판정)
+오염검사 8/8 (OK)
+숏승수 SH_best=0.0 / uptrend숏거래=16건(4년 전부 적자 구조성=1)
+전체: 기준선 ret585% MDD-20.1% → 룰 ret827% MDD-16.1%
+MDD가드 최악폴드-16.4% 최악연도-14.3% (한도 -20%)
+판정: Stg1대비 수익·Calmar 우위·2024 개선·CPCV 견고면 채택후보 → Rauto 실시간룰 박제. code_sha=64a4a57de1d2

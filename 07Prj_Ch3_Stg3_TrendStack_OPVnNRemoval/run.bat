@@ -1,0 +1,2 @@
+python test_07Prj_Ch3_Stg3_TrendStack_OPVnNRemoval.py
+python check_07Prj_Ch3_Stg3_TrendStack_OPVnNRemoval.py

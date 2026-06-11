@@ -1,0 +1,5 @@
+trend_safe_E=1.2
+sdca_safe_E=5.0
+funding=REAL(BTCUSDT_funding_history_8h.csv, 3288건, 누락0)
+cost_rt=0.0014
+mdd_limit=-35.0

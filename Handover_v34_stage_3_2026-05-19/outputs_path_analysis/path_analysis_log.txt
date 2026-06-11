@@ -1,0 +1,82 @@
+==============================================================================
+[Entry Path Analysis 시작] 2026-05-19 13:54:26.169614
+==============================================================================
+실행 폴더: D:\ML\Verify\Handover_v34_stage_3_2026-05-19
+Raw 1m봉:  D:\ML\Verify\Handover_v34_stage_3_2026-05-19\..\Merged_Data.csv
+Trades csv: D:\ML\Verify\Handover_v34_stage_3_2026-05-19\outputs_stage_3\trades_sl_max_180bp.csv
+결과 폴더:  D:\ML\Verify\Handover_v34_stage_3_2026-05-19\outputs_path_analysis
+
+[1/4] 데이터 로드
+  Raw 1m봉: D:\ML\Verify\Handover_v34_stage_3_2026-05-19\..\Merged_Data.csv
+    2023-05-01 00:00:00+00:00 ~ 2026-04-30 23:59:00+00:00 (1,578,240봉)
+  Trades csv: D:\ML\Verify\Handover_v34_stage_3_2026-05-19\outputs_stage_3\trades_sl_max_180bp.csv
+    진입 거래: 173건
+    분석 대상 (uptrend long + hivol_range long): 118건
+      uptrend long: 44건
+      hivol_range long: 74건
+
+[2/4] 거래별 path 추출 (각 +12H = 720분)
+    20/118 처리 중...
+    40/118 처리 중...
+    60/118 처리 중...
+    80/118 처리 중...
+    100/118 처리 중...
+  완료: 118건 (소요 0.1초)
+
+  결과 csv 저장: D:\ML\Verify\Handover_v34_stage_3_2026-05-19\outputs_path_analysis\entry_paths_full.csv
+
+[3/4] 패턴 분류 결과
+==============================================================================
+
+[전체 118건 패턴 분포]
+  other                    :  35건 (29.7%)
+  normal_win               :  23건 (19.5%)
+  immediate_reverse        :  17건 (14.4%)
+  whipsaw_recover          :  16건 (13.6%)
+  stagnation               :  14건 (11.9%)
+  gradual_loss             :  13건 (11.0%)
+
+[regime별 패턴 분포]
+pattern      gradual_loss  immediate_reverse  normal_win  other  stagnation  whipsaw_recover
+regime                                                                                      
+hivol_range             9                 11          17     22           3               12
+uptrend                 4                  6           6     13          11                4
+
+[휩쏘 후 회복 거래 — 사용자 가설 핵심]
+  전체 휩쏘 후 회복: 27/118건 = 22.9%
+  uptrend: 6/44건 = 13.6%
+  hivol_range: 21/74건 = 28.4%
+
+[4H timeout 이후 회복 통계 (4H → 12H 가격 변화)]
+  유효 데이터: 118/118건
+  4H → 12H 평균: -0.069%
+  4H → 12H median: +0.055%
+  회복 (>+0.5%): 40건
+  계속 손실 (<-0.5%): 36건
+  무변화 (±0.5%): 42건
+
+[timeout_4h로 끝난 거래의 12H 시점 가격]
+  n=59
+  12H 시점 평균 가격 변화: -0.162%
+  12H 시점 회복 (>+0.5%): 20건
+  12H 시점 계속 손실: 20건
+
+[initial_sl 발동 거래의 12H 시점 가격]
+  n=29
+  12H 시점 평균 가격 변화: -0.596%
+  12H 시점 회복 (>+0.5%): 7건
+  12H 시점 계속 손실: 15건
+  → SL 발동 후에도 가격이 회복했는가? 위 회복 건수로 확인
+
+[4/4] 사용자 가설 직접 답변
+==============================================================================
+
+  '휩쏘 후 회복' 패턴: 27/118건 = 22.9%
+  '정체 (stagnation)' 패턴: 14/118건 = 11.9%
+  '즉시 역방향' 패턴: 17/118건 = 14.4%
+  '점진적 손실' 패턴: 13/118건 = 11.0%
+
+  → 휩쏘 비율이 30% 이상이면 사용자 가설 부분 타당
+  → 휩쏘 비율이 10% 미만이면 사용자 가설 부정
+
+[총 소요: 6.8초]

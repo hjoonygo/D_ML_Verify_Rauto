@@ -1,0 +1,3 @@
+pip install numpy pandas smartmoneyconcepts -q
+python test_07Prj_Ch4_RunAWS_Stg1_8Scenario.py
+python check_07Prj_Ch4_RunAWS_Stg1_8Scenario.py

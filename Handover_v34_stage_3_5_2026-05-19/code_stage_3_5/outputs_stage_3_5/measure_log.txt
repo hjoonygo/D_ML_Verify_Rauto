@@ -1,0 +1,75 @@
+
+==============================================================================
+[Stage 3.5 측정 시작] 2026-05-19 15:05:35.289174
+==============================================================================
+
+실행 폴더: D:\ML\Verify\Handover_v34_stage_3_5_2026-05-19\code_stage_3_5
+데이터:    D:\ML\Verify\Handover_v34_stage_3_5_2026-05-19\code_stage_3_5\..\Merged_Data.csv
+결과 폴더: D:\ML\Verify\Handover_v34_stage_3_5_2026-05-19\code_stage_3_5\outputs_stage_3_5
+
+그리드: 4 시나리오
+  s0_v10_baseline_sl180: regime_policy=False, hivol_long=(SL 180bp, timeout 240min=4H)
+  s1_uptrend_block_only: regime_policy=True, hivol_long=(SL 180bp, timeout 240min=4H)
+  s2_full_500bp_16H: regime_policy=True, hivol_long=(SL 500bp, timeout 960min=16H)
+  s3_full_500bp_18H: regime_policy=True, hivol_long=(SL 500bp, timeout 1080min=18H)
+
+사용자 정책:
+  uptrend long: 진입 차단
+  hivol_range long: SL 500bp + timeout 16H 또는 18H
+  그 외: 기존 v10 (SL 150bp 동적 / timeout 4H)
+
+Lookahead 처리: Train 70% 기간 atr_med 고정 사용
+고정: OB TF 60m, Lev 10
+
+[1/7] 데이터 로드
+  전체: 2023-05-01 00:00:00+00:00 ~ 2026-04-30 23:59:00+00:00 (1,578,240봉)
+  Train: idx 0~1104767 (1,104,768봉, 70%)
+  OOS:   idx 1104768~1578239 (473,472봉, 30%)
+
+[2/7] Train 70% atr_med 계산 (lookahead 차단용)
+  Train atr_med: 0.059728 %
+  이 값을 OOS 4장세 분류에 사용 (Stage 3에서는 OOS 자체 median 사용 = lookahead)
+
+[3/7] 1m별 15m ATR_pct 사전 계산
+  계산 시간: 16.6초
+  ATR_pct mean: 0.3276%
+
+[4/7] ML 신호 추출 (filter=off, 1회)
+  Long 371, Short 86
+  추출 시간: 78.6분
+  충돌 제거 후: Long 371, Short 86
+  캐시 저장: D:\ML\Verify\Handover_v34_stage_3_5_2026-05-19\code_stage_3_5\signals_cache_stage_3_5.pkl
+
+[5/7] 4장세 분류 — Train fixed median 사용 (lookahead 차단)
+  전체 분포: {'uptrend': 489066, 'downtrend': 429888, 'hivol_range': 391908, 'lovol_range': 267378}
+  OOS 분포: {'uptrend': 143951, 'downtrend': 134193, 'hivol_range': 98354, 'lovol_range': 96974}
+
+[6/7] TF aggregate
+  2h봉: 13152, 60m봉: 26304
+
+[7/7] 4 시나리오 시뮬레이션
+
+  [1/4] s0_v10_baseline_sl180 (regime_policy=False)...
+    n_valid=193, pf=0.816, win=0.466, net_sum=-11.93%, blocked_regime=0, (51.6s)
+
+  [2/4] s1_uptrend_block_only (regime_policy=True)...
+    n_valid=149, pf=0.953, win=0.517, net_sum=-2.30%, blocked_regime=80, (40.5s)
+
+  [3/4] s2_full_500bp_16H (regime_policy=True)...
+    n_valid=146, pf=0.963, win=0.548, net_sum=-2.01%, blocked_regime=74, (42.7s)
+
+  [4/4] s3_full_500bp_18H (regime_policy=True)...
+    n_valid=146, pf=0.956, win=0.548, net_sum=-2.38%, blocked_regime=74, (42.9s)
+
+  요약: D:\ML\Verify\Handover_v34_stage_3_5_2026-05-19\code_stage_3_5\outputs_stage_3_5\all_scenarios_stage_3_5.csv
+
+[Overall 비교]
+             scenario  n_valid    pf  win_rate  net_sum  mdd_pct  n_blocked_regime
+s0_v10_baseline_sl180      193 0.816    0.4663  -0.1193  -16.332                 0
+s1_uptrend_block_only      149 0.953    0.5168  -0.0230  -10.506                80
+    s2_full_500bp_16H      146 0.963    0.5479  -0.0201  -13.749                74
+    s3_full_500bp_18H      146 0.956    0.5479  -0.0238  -13.876                74
+
+[알파 후보 (PF>=1.0, n>=30, overall)]: 0건
+
+[총 소요: 4922.9초 = 82.0분]

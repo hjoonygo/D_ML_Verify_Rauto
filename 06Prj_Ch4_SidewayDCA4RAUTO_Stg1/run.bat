@@ -1,0 +1,2 @@
+python test_06Prj_Ch4_SidewayDCA4RAUTO_Stg1.py
+python check_06Prj_Ch4_SidewayDCA4RAUTO_Stg1.py

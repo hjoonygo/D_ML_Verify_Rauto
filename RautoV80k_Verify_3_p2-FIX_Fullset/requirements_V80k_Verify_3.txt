@@ -1,0 +1,7 @@
+# V80k_Verify_3 PC 학습 환경 — requirements.txt
+# 사용: pip install -r requirements.txt
+xgboost>=1.7,<3.0
+pandas>=1.5
+numpy>=1.23
+scikit-learn>=1.2
+psutil>=5.9

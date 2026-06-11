@@ -1,0 +1,1224 @@
+{
+  "version": "SideWay_V0_stg2",
+  "config": {
+    "VERSION": "SideWay_V0_stg2",
+    "DATA_FILENAME": "merged_data.csv",
+    "INDEX_DIRNAME": "00WorkHstr",
+    "TF": "4h",
+    "MA_PERIOD": 6,
+    "DROP_RATE": 1.0,
+    "INIT_CAPITAL": 10000.0,
+    "LEVERAGE": 5.0,
+    "NOTIONAL_FRAC": 0.5,
+    "MMR": 0.004,
+    "FEE_RATE": 0.0005,
+    "SLIPPAGE": 0.0002,
+    "FUNDING_RATE": 0.0001,
+    "FUNDING_HOURS": [
+      0,
+      8,
+      16
+    ],
+    "ADX_PERIOD": 14,
+    "ADX_MAX": 25.0,
+    "TREND_EMA": 200,
+    "MODES": [
+      "both_raw",
+      "long_only",
+      "both_adx",
+      "both_adx_dir",
+      "long_only_adx"
+    ],
+    "STOP_CASES": [
+      0.02,
+      0.03,
+      0.04,
+      0.05,
+      0.06,
+      0.07,
+      0.08,
+      0.09,
+      0.1,
+      0.12,
+      0.15,
+      null
+    ],
+    "PERIODS_PER_YR": 2191.5
+  },
+  "data_quality": {
+    "rows": 1578240,
+    "duplicates_removed": 0,
+    "minute_gaps": 0,
+    "nan_close": 0,
+    "nan_volume": 0,
+    "start": "2023-05-01 00:00:00+00:00",
+    "end": "2026-04-30 23:59:00+00:00"
+  },
+  "input_file": "merged_data.csv",
+  "input_sha256": "e397a33201dd2cd7f90f377b83fd82b910fd77cf86ad933a35fcad0647d9f38c",
+  "n_4h_bars": 6576,
+  "summaries": [
+    {
+      "mode": "both_raw",
+      "stop_pct": 0.02,
+      "final_equity": 9712.86,
+      "total_return_pct": -2.87,
+      "CAGR_pct": -0.97,
+      "MDD_pct": -8.09,
+      "sharpe": -0.199,
+      "num_trades": 42,
+      "win_rate_pct": 45.24,
+      "profit_factor": 0.865,
+      "longs": 18,
+      "shorts": 24,
+      "long_pnl": 695.48,
+      "short_pnl": -982.62,
+      "exit_by_reason": {
+        "stop": 19,
+        "signal": 23
+      }
+    },
+    {
+      "mode": "both_raw",
+      "stop_pct": 0.03,
+      "final_equity": 10153.66,
+      "total_return_pct": 1.54,
+      "CAGR_pct": 0.51,
+      "MDD_pct": -8.29,
+      "sharpe": 0.129,
+      "num_trades": 42,
+      "win_rate_pct": 54.76,
+      "profit_factor": 1.078,
+      "longs": 18,
+      "shorts": 24,
+      "long_pnl": 828.37,
+      "short_pnl": -674.71,
+      "exit_by_reason": {
+        "stop": 10,
+        "signal": 32
+      }
+    },
+    {
+      "mode": "both_raw",
+      "stop_pct": 0.04,
+      "final_equity": 10281.41,
+      "total_return_pct": 2.81,
+      "CAGR_pct": 0.93,
+      "MDD_pct": -7.67,
+      "sharpe": 0.21,
+      "num_trades": 41,
+      "win_rate_pct": 56.1,
+      "profit_factor": 1.142,
+      "longs": 17,
+      "shorts": 24,
+      "long_pnl": 1201.85,
+      "short_pnl": -920.44,
+      "exit_by_reason": {
+        "stop": 7,
+        "signal": 34
+      }
+    },
+    {
+      "mode": "both_raw",
+      "stop_pct": 0.05,
+      "final_equity": 10558.4,
+      "total_return_pct": 5.58,
+      "CAGR_pct": 1.83,
+      "MDD_pct": -7.38,
+      "sharpe": 0.354,
+      "num_trades": 40,
+      "win_rate_pct": 57.5,
+      "profit_factor": 1.306,
+      "longs": 17,
+      "shorts": 23,
+      "long_pnl": 1239.55,
+      "short_pnl": -681.15,
+      "exit_by_reason": {
+        "stop": 4,
+        "signal": 36
+      }
+    },
+    {
+      "mode": "both_raw",
+      "stop_pct": 0.06,
+      "final_equity": 10650.71,
+      "total_return_pct": 6.51,
+      "CAGR_pct": 2.12,
+      "MDD_pct": -8.33,
+      "sharpe": 0.398,
+      "num_trades": 40,
+      "win_rate_pct": 57.5,
+      "profit_factor": 1.379,
+      "longs": 17,
+      "shorts": 23,
+      "long_pnl": 1235.55,
+      "short_pnl": -584.84,
+      "exit_by_reason": {
+        "stop": 3,
+        "signal": 37
+      }
+    },
+    {
+      "mode": "both_raw",
+      "stop_pct": 0.07,
+      "final_equity": 10651.99,
+      "total_return_pct": 6.52,
+      "CAGR_pct": 2.13,
+      "MDD_pct": -7.84,
+      "sharpe": 0.397,
+      "num_trades": 39,
+      "win_rate_pct": 56.41,
+      "profit_factor": 1.386,
+      "longs": 17,
+      "shorts": 22,
+      "long_pnl": 1236.74,
+      "short_pnl": -584.75,
+      "exit_by_reason": {
+        "signal": 37,
+        "stop": 2
+      }
+    },
+    {
+      "mode": "both_raw",
+      "stop_pct": 0.08,
+      "final_equity": 10540.62,
+      "total_return_pct": 5.41,
+      "CAGR_pct": 1.77,
+      "MDD_pct": -8.32,
+      "sharpe": 0.334,
+      "num_trades": 39,
+      "win_rate_pct": 56.41,
+      "profit_factor": 1.303,
+      "longs": 17,
+      "shorts": 22,
+      "long_pnl": 1224.88,
+      "short_pnl": -684.26,
+      "exit_by_reason": {
+        "signal": 37,
+        "stop": 2
+      }
+    },
+    {
+      "mode": "both_raw",
+      "stop_pct": 0.09,
+      "final_equity": 10430.37,
+      "total_return_pct": 4.3,
+      "CAGR_pct": 1.41,
+      "MDD_pct": -8.8,
+      "sharpe": 0.273,
+      "num_trades": 39,
+      "win_rate_pct": 56.41,
+      "profit_factor": 1.23,
+      "longs": 17,
+      "shorts": 22,
+      "long_pnl": 1213.1,
+      "short_pnl": -782.73,
+      "exit_by_reason": {
+        "signal": 37,
+        "stop": 2
+      }
+    },
+    {
+      "mode": "both_raw",
+      "stop_pct": 0.1,
+      "final_equity": 10320.7,
+      "total_return_pct": 3.21,
+      "CAGR_pct": 1.06,
+      "MDD_pct": -9.28,
+      "sharpe": 0.21,
+      "num_trades": 39,
+      "win_rate_pct": 56.41,
+      "profit_factor": 1.164,
+      "longs": 17,
+      "shorts": 22,
+      "long_pnl": 1201.39,
+      "short_pnl": -880.69,
+      "exit_by_reason": {
+        "signal": 37,
+        "stop": 2
+      }
+    },
+    {
+      "mode": "both_raw",
+      "stop_pct": 0.12,
+      "final_equity": 10103.64,
+      "total_return_pct": 1.04,
+      "CAGR_pct": 0.34,
+      "MDD_pct": -10.24,
+      "sharpe": 0.087,
+      "num_trades": 39,
+      "win_rate_pct": 56.41,
+      "profit_factor": 1.048,
+      "longs": 17,
+      "shorts": 22,
+      "long_pnl": 1178.2,
+      "short_pnl": -1074.55,
+      "exit_by_reason": {
+        "signal": 37,
+        "stop": 2
+      }
+    },
+    {
+      "mode": "both_raw",
+      "stop_pct": 0.15,
+      "final_equity": 10184.14,
+      "total_return_pct": 1.84,
+      "CAGR_pct": 0.61,
+      "MDD_pct": -9.87,
+      "sharpe": 0.133,
+      "num_trades": 38,
+      "win_rate_pct": 57.89,
+      "profit_factor": 1.088,
+      "longs": 17,
+      "shorts": 21,
+      "long_pnl": 1191.95,
+      "short_pnl": -1007.8,
+      "exit_by_reason": {
+        "signal": 37,
+        "stop": 1
+      }
+    },
+    {
+      "mode": "both_raw",
+      "stop_pct": "none",
+      "final_equity": 10042.9,
+      "total_return_pct": 0.43,
+      "CAGR_pct": 0.14,
+      "MDD_pct": -11.12,
+      "sharpe": 0.054,
+      "num_trades": 37,
+      "win_rate_pct": 59.46,
+      "profit_factor": 1.019,
+      "longs": 17,
+      "shorts": 20,
+      "long_pnl": 1178.6,
+      "short_pnl": -1135.7,
+      "exit_by_reason": {
+        "signal": 37
+      }
+    },
+    {
+      "mode": "long_only",
+      "stop_pct": 0.02,
+      "final_equity": 10742.53,
+      "total_return_pct": 7.43,
+      "CAGR_pct": 2.42,
+      "MDD_pct": -3.2,
+      "sharpe": 0.812,
+      "num_trades": 18,
+      "win_rate_pct": 66.67,
+      "profit_factor": 2.477,
+      "longs": 18,
+      "shorts": 0,
+      "long_pnl": 742.53,
+      "short_pnl": 0,
+      "exit_by_reason": {
+        "signal": 14,
+        "stop": 4
+      }
+    },
+    {
+      "mode": "long_only",
+      "stop_pct": 0.03,
+      "final_equity": 10882.09,
+      "total_return_pct": 8.82,
+      "CAGR_pct": 2.86,
+      "MDD_pct": -3.86,
+      "sharpe": 0.908,
+      "num_trades": 18,
+      "win_rate_pct": 72.22,
+      "profit_factor": 3.007,
+      "longs": 18,
+      "shorts": 0,
+      "long_pnl": 882.09,
+      "short_pnl": 0,
+      "exit_by_reason": {
+        "signal": 16,
+        "stop": 2
+      }
+    },
+    {
+      "mode": "long_only",
+      "stop_pct": 0.04,
+      "final_equity": 11303.86,
+      "total_return_pct": 13.04,
+      "CAGR_pct": 4.17,
+      "MDD_pct": -1.63,
+      "sharpe": 1.259,
+      "num_trades": 17,
+      "win_rate_pct": 76.47,
+      "profit_factor": 8.017,
+      "longs": 17,
+      "shorts": 0,
+      "long_pnl": 1303.86,
+      "short_pnl": 0,
+      "exit_by_reason": {
+        "signal": 17
+      }
+    },
+    {
+      "mode": "long_only",
+      "stop_pct": 0.05,
+      "final_equity": 11303.86,
+      "total_return_pct": 13.04,
+      "CAGR_pct": 4.17,
+      "MDD_pct": -1.63,
+      "sharpe": 1.259,
+      "num_trades": 17,
+      "win_rate_pct": 76.47,
+      "profit_factor": 8.017,
+      "longs": 17,
+      "shorts": 0,
+      "long_pnl": 1303.86,
+      "short_pnl": 0,
+      "exit_by_reason": {
+        "signal": 17
+      }
+    },
+    {
+      "mode": "long_only",
+      "stop_pct": 0.06,
+      "final_equity": 11303.86,
+      "total_return_pct": 13.04,
+      "CAGR_pct": 4.17,
+      "MDD_pct": -1.63,
+      "sharpe": 1.259,
+      "num_trades": 17,
+      "win_rate_pct": 76.47,
+      "profit_factor": 8.017,
+      "longs": 17,
+      "shorts": 0,
+      "long_pnl": 1303.86,
+      "short_pnl": 0,
+      "exit_by_reason": {
+        "signal": 17
+      }
+    },
+    {
+      "mode": "long_only",
+      "stop_pct": 0.07,
+      "final_equity": 11303.86,
+      "total_return_pct": 13.04,
+      "CAGR_pct": 4.17,
+      "MDD_pct": -1.63,
+      "sharpe": 1.259,
+      "num_trades": 17,
+      "win_rate_pct": 76.47,
+      "profit_factor": 8.017,
+      "longs": 17,
+      "shorts": 0,
+      "long_pnl": 1303.86,
+      "short_pnl": 0,
+      "exit_by_reason": {
+        "signal": 17
+      }
+    },
+    {
+      "mode": "long_only",
+      "stop_pct": 0.08,
+      "final_equity": 11303.86,
+      "total_return_pct": 13.04,
+      "CAGR_pct": 4.17,
+      "MDD_pct": -1.63,
+      "sharpe": 1.259,
+      "num_trades": 17,
+      "win_rate_pct": 76.47,
+      "profit_factor": 8.017,
+      "longs": 17,
+      "shorts": 0,
+      "long_pnl": 1303.86,
+      "short_pnl": 0,
+      "exit_by_reason": {
+        "signal": 17
+      }
+    },
+    {
+      "mode": "long_only",
+      "stop_pct": 0.09,
+      "final_equity": 11303.86,
+      "total_return_pct": 13.04,
+      "CAGR_pct": 4.17,
+      "MDD_pct": -1.63,
+      "sharpe": 1.259,
+      "num_trades": 17,
+      "win_rate_pct": 76.47,
+      "profit_factor": 8.017,
+      "longs": 17,
+      "shorts": 0,
+      "long_pnl": 1303.86,
+      "short_pnl": 0,
+      "exit_by_reason": {
+        "signal": 17
+      }
+    },
+    {
+      "mode": "long_only",
+      "stop_pct": 0.1,
+      "final_equity": 11303.86,
+      "total_return_pct": 13.04,
+      "CAGR_pct": 4.17,
+      "MDD_pct": -1.63,
+      "sharpe": 1.259,
+      "num_trades": 17,
+      "win_rate_pct": 76.47,
+      "profit_factor": 8.017,
+      "longs": 17,
+      "shorts": 0,
+      "long_pnl": 1303.86,
+      "short_pnl": 0,
+      "exit_by_reason": {
+        "signal": 17
+      }
+    },
+    {
+      "mode": "long_only",
+      "stop_pct": 0.12,
+      "final_equity": 11303.86,
+      "total_return_pct": 13.04,
+      "CAGR_pct": 4.17,
+      "MDD_pct": -1.63,
+      "sharpe": 1.259,
+      "num_trades": 17,
+      "win_rate_pct": 76.47,
+      "profit_factor": 8.017,
+      "longs": 17,
+      "shorts": 0,
+      "long_pnl": 1303.86,
+      "short_pnl": 0,
+      "exit_by_reason": {
+        "signal": 17
+      }
+    },
+    {
+      "mode": "long_only",
+      "stop_pct": 0.15,
+      "final_equity": 11303.86,
+      "total_return_pct": 13.04,
+      "CAGR_pct": 4.17,
+      "MDD_pct": -1.63,
+      "sharpe": 1.259,
+      "num_trades": 17,
+      "win_rate_pct": 76.47,
+      "profit_factor": 8.017,
+      "longs": 17,
+      "shorts": 0,
+      "long_pnl": 1303.86,
+      "short_pnl": 0,
+      "exit_by_reason": {
+        "signal": 17
+      }
+    },
+    {
+      "mode": "long_only",
+      "stop_pct": "none",
+      "final_equity": 11303.86,
+      "total_return_pct": 13.04,
+      "CAGR_pct": 4.17,
+      "MDD_pct": -1.63,
+      "sharpe": 1.259,
+      "num_trades": 17,
+      "win_rate_pct": 76.47,
+      "profit_factor": 8.017,
+      "longs": 17,
+      "shorts": 0,
+      "long_pnl": 1303.86,
+      "short_pnl": 0,
+      "exit_by_reason": {
+        "signal": 17
+      }
+    },
+    {
+      "mode": "both_adx",
+      "stop_pct": 0.02,
+      "final_equity": 9403.01,
+      "total_return_pct": -5.97,
+      "CAGR_pct": -2.03,
+      "MDD_pct": -7.19,
+      "sharpe": -1.168,
+      "num_trades": 10,
+      "win_rate_pct": 10.0,
+      "profit_factor": 0.218,
+      "longs": 3,
+      "shorts": 7,
+      "long_pnl": -252.2,
+      "short_pnl": -344.79,
+      "exit_by_reason": {
+        "signal": 4,
+        "stop": 6
+      }
+    },
+    {
+      "mode": "both_adx",
+      "stop_pct": 0.03,
+      "final_equity": 9813.76,
+      "total_return_pct": -1.86,
+      "CAGR_pct": -0.62,
+      "MDD_pct": -4.62,
+      "sharpe": -0.3,
+      "num_trades": 10,
+      "win_rate_pct": 40.0,
+      "profit_factor": 0.629,
+      "longs": 3,
+      "shorts": 7,
+      "long_pnl": -24.82,
+      "short_pnl": -161.42,
+      "exit_by_reason": {
+        "signal": 8,
+        "stop": 2
+      }
+    },
+    {
+      "mode": "both_adx",
+      "stop_pct": 0.04,
+      "final_equity": 9713.26,
+      "total_return_pct": -2.87,
+      "CAGR_pct": -0.97,
+      "MDD_pct": -5.59,
+      "sharpe": -0.47,
+      "num_trades": 10,
+      "win_rate_pct": 40.0,
+      "profit_factor": 0.523,
+      "longs": 3,
+      "shorts": 7,
+      "long_pnl": -24.67,
+      "short_pnl": -262.07,
+      "exit_by_reason": {
+        "signal": 8,
+        "stop": 2
+      }
+    },
+    {
+      "mode": "both_adx",
+      "stop_pct": 0.05,
+      "final_equity": 9677.84,
+      "total_return_pct": -3.22,
+      "CAGR_pct": -1.09,
+      "MDD_pct": -5.94,
+      "sharpe": -0.507,
+      "num_trades": 10,
+      "win_rate_pct": 40.0,
+      "profit_factor": 0.494,
+      "longs": 3,
+      "shorts": 7,
+      "long_pnl": -24.4,
+      "short_pnl": -297.75,
+      "exit_by_reason": {
+        "signal": 9,
+        "stop": 1
+      }
+    },
+    {
+      "mode": "both_adx",
+      "stop_pct": 0.06,
+      "final_equity": 9914.44,
+      "total_return_pct": -0.86,
+      "CAGR_pct": -0.29,
+      "MDD_pct": -3.64,
+      "sharpe": -0.118,
+      "num_trades": 10,
+      "win_rate_pct": 40.0,
+      "profit_factor": 0.787,
+      "longs": 3,
+      "shorts": 7,
+      "long_pnl": -25.56,
+      "short_pnl": -60.0,
+      "exit_by_reason": {
+        "signal": 10
+      }
+    },
+    {
+      "mode": "both_adx",
+      "stop_pct": 0.07,
+      "final_equity": 9914.44,
+      "total_return_pct": -0.86,
+      "CAGR_pct": -0.29,
+      "MDD_pct": -3.64,
+      "sharpe": -0.118,
+      "num_trades": 10,
+      "win_rate_pct": 40.0,
+      "profit_factor": 0.787,
+      "longs": 3,
+      "shorts": 7,
+      "long_pnl": -25.56,
+      "short_pnl": -60.0,
+      "exit_by_reason": {
+        "signal": 10
+      }
+    },
+    {
+      "mode": "both_adx",
+      "stop_pct": 0.08,
+      "final_equity": 9914.44,
+      "total_return_pct": -0.86,
+      "CAGR_pct": -0.29,
+      "MDD_pct": -3.64,
+      "sharpe": -0.118,
+      "num_trades": 10,
+      "win_rate_pct": 40.0,
+      "profit_factor": 0.787,
+      "longs": 3,
+      "shorts": 7,
+      "long_pnl": -25.56,
+      "short_pnl": -60.0,
+      "exit_by_reason": {
+        "signal": 10
+      }
+    },
+    {
+      "mode": "both_adx",
+      "stop_pct": 0.09,
+      "final_equity": 9914.44,
+      "total_return_pct": -0.86,
+      "CAGR_pct": -0.29,
+      "MDD_pct": -3.64,
+      "sharpe": -0.118,
+      "num_trades": 10,
+      "win_rate_pct": 40.0,
+      "profit_factor": 0.787,
+      "longs": 3,
+      "shorts": 7,
+      "long_pnl": -25.56,
+      "short_pnl": -60.0,
+      "exit_by_reason": {
+        "signal": 10
+      }
+    },
+    {
+      "mode": "both_adx",
+      "stop_pct": 0.1,
+      "final_equity": 9914.44,
+      "total_return_pct": -0.86,
+      "CAGR_pct": -0.29,
+      "MDD_pct": -3.64,
+      "sharpe": -0.118,
+      "num_trades": 10,
+      "win_rate_pct": 40.0,
+      "profit_factor": 0.787,
+      "longs": 3,
+      "shorts": 7,
+      "long_pnl": -25.56,
+      "short_pnl": -60.0,
+      "exit_by_reason": {
+        "signal": 10
+      }
+    },
+    {
+      "mode": "both_adx",
+      "stop_pct": 0.12,
+      "final_equity": 9914.44,
+      "total_return_pct": -0.86,
+      "CAGR_pct": -0.29,
+      "MDD_pct": -3.64,
+      "sharpe": -0.118,
+      "num_trades": 10,
+      "win_rate_pct": 40.0,
+      "profit_factor": 0.787,
+      "longs": 3,
+      "shorts": 7,
+      "long_pnl": -25.56,
+      "short_pnl": -60.0,
+      "exit_by_reason": {
+        "signal": 10
+      }
+    },
+    {
+      "mode": "both_adx",
+      "stop_pct": 0.15,
+      "final_equity": 9914.44,
+      "total_return_pct": -0.86,
+      "CAGR_pct": -0.29,
+      "MDD_pct": -3.64,
+      "sharpe": -0.118,
+      "num_trades": 10,
+      "win_rate_pct": 40.0,
+      "profit_factor": 0.787,
+      "longs": 3,
+      "shorts": 7,
+      "long_pnl": -25.56,
+      "short_pnl": -60.0,
+      "exit_by_reason": {
+        "signal": 10
+      }
+    },
+    {
+      "mode": "both_adx",
+      "stop_pct": "none",
+      "final_equity": 9914.44,
+      "total_return_pct": -0.86,
+      "CAGR_pct": -0.29,
+      "MDD_pct": -3.64,
+      "sharpe": -0.118,
+      "num_trades": 10,
+      "win_rate_pct": 40.0,
+      "profit_factor": 0.787,
+      "longs": 3,
+      "shorts": 7,
+      "long_pnl": -25.56,
+      "short_pnl": -60.0,
+      "exit_by_reason": {
+        "signal": 10
+      }
+    },
+    {
+      "mode": "both_adx_dir",
+      "stop_pct": 0.02,
+      "final_equity": 9624.37,
+      "total_return_pct": -3.76,
+      "CAGR_pct": -1.27,
+      "MDD_pct": -3.76,
+      "sharpe": -1.23,
+      "num_trades": 4,
+      "win_rate_pct": 0.0,
+      "profit_factor": 0.0,
+      "longs": 1,
+      "shorts": 3,
+      "long_pnl": -105.93,
+      "short_pnl": -269.7,
+      "exit_by_reason": {
+        "stop": 3,
+        "signal": 1
+      }
+    },
+    {
+      "mode": "both_adx_dir",
+      "stop_pct": 0.03,
+      "final_equity": 9860.26,
+      "total_return_pct": -1.4,
+      "CAGR_pct": -0.47,
+      "MDD_pct": -2.87,
+      "sharpe": -0.393,
+      "num_trades": 4,
+      "win_rate_pct": 50.0,
+      "profit_factor": 0.363,
+      "longs": 1,
+      "shorts": 3,
+      "long_pnl": 67.23,
+      "short_pnl": -206.96,
+      "exit_by_reason": {
+        "signal": 3,
+        "stop": 1
+      }
+    },
+    {
+      "mode": "both_adx_dir",
+      "stop_pct": 0.04,
+      "final_equity": 9809.64,
+      "total_return_pct": -1.9,
+      "CAGR_pct": -0.64,
+      "MDD_pct": -3.37,
+      "sharpe": -0.521,
+      "num_trades": 4,
+      "win_rate_pct": 50.0,
+      "profit_factor": 0.295,
+      "longs": 1,
+      "shorts": 3,
+      "long_pnl": 67.23,
+      "short_pnl": -257.58,
+      "exit_by_reason": {
+        "signal": 3,
+        "stop": 1
+      }
+    },
+    {
+      "mode": "both_adx_dir",
+      "stop_pct": 0.05,
+      "final_equity": 9759.53,
+      "total_return_pct": -2.4,
+      "CAGR_pct": -0.81,
+      "MDD_pct": -3.86,
+      "sharpe": -0.645,
+      "num_trades": 4,
+      "win_rate_pct": 50.0,
+      "profit_factor": 0.249,
+      "longs": 1,
+      "shorts": 3,
+      "long_pnl": 67.23,
+      "short_pnl": -307.7,
+      "exit_by_reason": {
+        "signal": 3,
+        "stop": 1
+      }
+    },
+    {
+      "mode": "both_adx_dir",
+      "stop_pct": 0.06,
+      "final_equity": 9998.12,
+      "total_return_pct": -0.02,
+      "CAGR_pct": -0.01,
+      "MDD_pct": -1.92,
+      "sharpe": 0.003,
+      "num_trades": 4,
+      "win_rate_pct": 50.0,
+      "profit_factor": 0.977,
+      "longs": 1,
+      "shorts": 3,
+      "long_pnl": 67.23,
+      "short_pnl": -69.11,
+      "exit_by_reason": {
+        "signal": 4
+      }
+    },
+    {
+      "mode": "both_adx_dir",
+      "stop_pct": 0.07,
+      "final_equity": 9998.12,
+      "total_return_pct": -0.02,
+      "CAGR_pct": -0.01,
+      "MDD_pct": -1.92,
+      "sharpe": 0.003,
+      "num_trades": 4,
+      "win_rate_pct": 50.0,
+      "profit_factor": 0.977,
+      "longs": 1,
+      "shorts": 3,
+      "long_pnl": 67.23,
+      "short_pnl": -69.11,
+      "exit_by_reason": {
+        "signal": 4
+      }
+    },
+    {
+      "mode": "both_adx_dir",
+      "stop_pct": 0.08,
+      "final_equity": 9998.12,
+      "total_return_pct": -0.02,
+      "CAGR_pct": -0.01,
+      "MDD_pct": -1.92,
+      "sharpe": 0.003,
+      "num_trades": 4,
+      "win_rate_pct": 50.0,
+      "profit_factor": 0.977,
+      "longs": 1,
+      "shorts": 3,
+      "long_pnl": 67.23,
+      "short_pnl": -69.11,
+      "exit_by_reason": {
+        "signal": 4
+      }
+    },
+    {
+      "mode": "both_adx_dir",
+      "stop_pct": 0.09,
+      "final_equity": 9998.12,
+      "total_return_pct": -0.02,
+      "CAGR_pct": -0.01,
+      "MDD_pct": -1.92,
+      "sharpe": 0.003,
+      "num_trades": 4,
+      "win_rate_pct": 50.0,
+      "profit_factor": 0.977,
+      "longs": 1,
+      "shorts": 3,
+      "long_pnl": 67.23,
+      "short_pnl": -69.11,
+      "exit_by_reason": {
+        "signal": 4
+      }
+    },
+    {
+      "mode": "both_adx_dir",
+      "stop_pct": 0.1,
+      "final_equity": 9998.12,
+      "total_return_pct": -0.02,
+      "CAGR_pct": -0.01,
+      "MDD_pct": -1.92,
+      "sharpe": 0.003,
+      "num_trades": 4,
+      "win_rate_pct": 50.0,
+      "profit_factor": 0.977,
+      "longs": 1,
+      "shorts": 3,
+      "long_pnl": 67.23,
+      "short_pnl": -69.11,
+      "exit_by_reason": {
+        "signal": 4
+      }
+    },
+    {
+      "mode": "both_adx_dir",
+      "stop_pct": 0.12,
+      "final_equity": 9998.12,
+      "total_return_pct": -0.02,
+      "CAGR_pct": -0.01,
+      "MDD_pct": -1.92,
+      "sharpe": 0.003,
+      "num_trades": 4,
+      "win_rate_pct": 50.0,
+      "profit_factor": 0.977,
+      "longs": 1,
+      "shorts": 3,
+      "long_pnl": 67.23,
+      "short_pnl": -69.11,
+      "exit_by_reason": {
+        "signal": 4
+      }
+    },
+    {
+      "mode": "both_adx_dir",
+      "stop_pct": 0.15,
+      "final_equity": 9998.12,
+      "total_return_pct": -0.02,
+      "CAGR_pct": -0.01,
+      "MDD_pct": -1.92,
+      "sharpe": 0.003,
+      "num_trades": 4,
+      "win_rate_pct": 50.0,
+      "profit_factor": 0.977,
+      "longs": 1,
+      "shorts": 3,
+      "long_pnl": 67.23,
+      "short_pnl": -69.11,
+      "exit_by_reason": {
+        "signal": 4
+      }
+    },
+    {
+      "mode": "both_adx_dir",
+      "stop_pct": "none",
+      "final_equity": 9998.12,
+      "total_return_pct": -0.02,
+      "CAGR_pct": -0.01,
+      "MDD_pct": -1.92,
+      "sharpe": 0.003,
+      "num_trades": 4,
+      "win_rate_pct": 50.0,
+      "profit_factor": 0.977,
+      "longs": 1,
+      "shorts": 3,
+      "long_pnl": 67.23,
+      "short_pnl": -69.11,
+      "exit_by_reason": {
+        "signal": 4
+      }
+    },
+    {
+      "mode": "long_only_adx",
+      "stop_pct": 0.02,
+      "final_equity": 9746.4,
+      "total_return_pct": -2.54,
+      "CAGR_pct": -0.85,
+      "MDD_pct": -2.54,
+      "sharpe": -0.94,
+      "num_trades": 3,
+      "win_rate_pct": 0.0,
+      "profit_factor": 0.0,
+      "longs": 3,
+      "shorts": 0,
+      "long_pnl": -253.6,
+      "short_pnl": 0,
+      "exit_by_reason": {
+        "signal": 1,
+        "stop": 2
+      }
+    },
+    {
+      "mode": "long_only_adx",
+      "stop_pct": 0.03,
+      "final_equity": 9974.01,
+      "total_return_pct": -0.26,
+      "CAGR_pct": -0.09,
+      "MDD_pct": -1.22,
+      "sharpe": -0.069,
+      "num_trades": 3,
+      "win_rate_pct": 33.33,
+      "profit_factor": 0.72,
+      "longs": 3,
+      "shorts": 0,
+      "long_pnl": -25.99,
+      "short_pnl": 0,
+      "exit_by_reason": {
+        "signal": 3
+      }
+    },
+    {
+      "mode": "long_only_adx",
+      "stop_pct": 0.04,
+      "final_equity": 9974.01,
+      "total_return_pct": -0.26,
+      "CAGR_pct": -0.09,
+      "MDD_pct": -1.22,
+      "sharpe": -0.069,
+      "num_trades": 3,
+      "win_rate_pct": 33.33,
+      "profit_factor": 0.72,
+      "longs": 3,
+      "shorts": 0,
+      "long_pnl": -25.99,
+      "short_pnl": 0,
+      "exit_by_reason": {
+        "signal": 3
+      }
+    },
+    {
+      "mode": "long_only_adx",
+      "stop_pct": 0.05,
+      "final_equity": 9974.01,
+      "total_return_pct": -0.26,
+      "CAGR_pct": -0.09,
+      "MDD_pct": -1.22,
+      "sharpe": -0.069,
+      "num_trades": 3,
+      "win_rate_pct": 33.33,
+      "profit_factor": 0.72,
+      "longs": 3,
+      "shorts": 0,
+      "long_pnl": -25.99,
+      "short_pnl": 0,
+      "exit_by_reason": {
+        "signal": 3
+      }
+    },
+    {
+      "mode": "long_only_adx",
+      "stop_pct": 0.06,
+      "final_equity": 9974.01,
+      "total_return_pct": -0.26,
+      "CAGR_pct": -0.09,
+      "MDD_pct": -1.22,
+      "sharpe": -0.069,
+      "num_trades": 3,
+      "win_rate_pct": 33.33,
+      "profit_factor": 0.72,
+      "longs": 3,
+      "shorts": 0,
+      "long_pnl": -25.99,
+      "short_pnl": 0,
+      "exit_by_reason": {
+        "signal": 3
+      }
+    },
+    {
+      "mode": "long_only_adx",
+      "stop_pct": 0.07,
+      "final_equity": 9974.01,
+      "total_return_pct": -0.26,
+      "CAGR_pct": -0.09,
+      "MDD_pct": -1.22,
+      "sharpe": -0.069,
+      "num_trades": 3,
+      "win_rate_pct": 33.33,
+      "profit_factor": 0.72,
+      "longs": 3,
+      "shorts": 0,
+      "long_pnl": -25.99,
+      "short_pnl": 0,
+      "exit_by_reason": {
+        "signal": 3
+      }
+    },
+    {
+      "mode": "long_only_adx",
+      "stop_pct": 0.08,
+      "final_equity": 9974.01,
+      "total_return_pct": -0.26,
+      "CAGR_pct": -0.09,
+      "MDD_pct": -1.22,
+      "sharpe": -0.069,
+      "num_trades": 3,
+      "win_rate_pct": 33.33,
+      "profit_factor": 0.72,
+      "longs": 3,
+      "shorts": 0,
+      "long_pnl": -25.99,
+      "short_pnl": 0,
+      "exit_by_reason": {
+        "signal": 3
+      }
+    },
+    {
+      "mode": "long_only_adx",
+      "stop_pct": 0.09,
+      "final_equity": 9974.01,
+      "total_return_pct": -0.26,
+      "CAGR_pct": -0.09,
+      "MDD_pct": -1.22,
+      "sharpe": -0.069,
+      "num_trades": 3,
+      "win_rate_pct": 33.33,
+      "profit_factor": 0.72,
+      "longs": 3,
+      "shorts": 0,
+      "long_pnl": -25.99,
+      "short_pnl": 0,
+      "exit_by_reason": {
+        "signal": 3
+      }
+    },
+    {
+      "mode": "long_only_adx",
+      "stop_pct": 0.1,
+      "final_equity": 9974.01,
+      "total_return_pct": -0.26,
+      "CAGR_pct": -0.09,
+      "MDD_pct": -1.22,
+      "sharpe": -0.069,
+      "num_trades": 3,
+      "win_rate_pct": 33.33,
+      "profit_factor": 0.72,
+      "longs": 3,
+      "shorts": 0,
+      "long_pnl": -25.99,
+      "short_pnl": 0,
+      "exit_by_reason": {
+        "signal": 3
+      }
+    },
+    {
+      "mode": "long_only_adx",
+      "stop_pct": 0.12,
+      "final_equity": 9974.01,
+      "total_return_pct": -0.26,
+      "CAGR_pct": -0.09,
+      "MDD_pct": -1.22,
+      "sharpe": -0.069,
+      "num_trades": 3,
+      "win_rate_pct": 33.33,
+      "profit_factor": 0.72,
+      "longs": 3,
+      "shorts": 0,
+      "long_pnl": -25.99,
+      "short_pnl": 0,
+      "exit_by_reason": {
+        "signal": 3
+      }
+    },
+    {
+      "mode": "long_only_adx",
+      "stop_pct": 0.15,
+      "final_equity": 9974.01,
+      "total_return_pct": -0.26,
+      "CAGR_pct": -0.09,
+      "MDD_pct": -1.22,
+      "sharpe": -0.069,
+      "num_trades": 3,
+      "win_rate_pct": 33.33,
+      "profit_factor": 0.72,
+      "longs": 3,
+      "shorts": 0,
+      "long_pnl": -25.99,
+      "short_pnl": 0,
+      "exit_by_reason": {
+        "signal": 3
+      }
+    },
+    {
+      "mode": "long_only_adx",
+      "stop_pct": "none",
+      "final_equity": 9974.01,
+      "total_return_pct": -0.26,
+      "CAGR_pct": -0.09,
+      "MDD_pct": -1.22,
+      "sharpe": -0.069,
+      "num_trades": 3,
+      "win_rate_pct": 33.33,
+      "profit_factor": 0.72,
+      "longs": 3,
+      "shorts": 0,
+      "long_pnl": -25.99,
+      "short_pnl": 0,
+      "exit_by_reason": {
+        "signal": 3
+      }
+    }
+  ]
+}

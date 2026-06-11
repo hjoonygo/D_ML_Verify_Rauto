@@ -1,0 +1,3 @@
+pip install numpy pandas matplotlib -q
+python test_07Prj_Ch4_RunAWS_Stg2_NBoostSweep.py
+python check_07Prj_Ch4_RunAWS_Stg2_NBoostSweep.py

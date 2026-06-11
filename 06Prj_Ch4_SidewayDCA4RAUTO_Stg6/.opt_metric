@@ -1,0 +1,8 @@
+has_oi=1
+bars=3758
+base_PF=1.512
+combo_PF=1.763
+best_fib=(0.3, 0.5, 0.6)
+best_split=('A', 3)
+ml_score=90.0
+consist=4

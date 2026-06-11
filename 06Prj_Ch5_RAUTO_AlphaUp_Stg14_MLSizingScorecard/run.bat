@@ -1,0 +1,4 @@
+@echo off
+chcp 65001 >nul
+python test_06Prj_Ch5_RAUTO_AlphaUp_Stg14_MLSizingScorecard.py
+python check_06Prj_Ch5_RAUTO_AlphaUp_Stg14_MLSizingScorecard.py

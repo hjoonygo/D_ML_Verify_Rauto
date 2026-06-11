@@ -1,0 +1,15 @@
+repl_ok=True
+split_noop=True
+maxdiff=0.000000
+eng_n=318
+v0_n=318
+ve_n=318
+v1_n=319
+v0_cum=376.3
+ve_cum=529.8
+v1_cum=560.0
+gap_exit=-153.5
+gap_real=-183.7
+funding=REAL(3288건)
+trend_E=1.5
+sdca_E=10.0

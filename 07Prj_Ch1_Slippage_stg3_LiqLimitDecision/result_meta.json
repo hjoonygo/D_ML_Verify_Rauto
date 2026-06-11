@@ -1,0 +1,13 @@
+{
+  "version": "LiqLimit_v1.0",
+  "run_time": "2026-06-06 23:34:30",
+  "data_path": "D:\\ML\\Verify\\06Prj_Ch7_stg4_GreedShortGuard_v2_best55fixed\\stg4_best_ledger.csv",
+  "data_sha256": "f586f07cdb8787d006494e5bc668723652e00275aadb68cb8bc56249055e980c",
+  "n_trades": 264,
+  "start_capital": 10000.0,
+  "MMR": 0.005,
+  "FEE": 0.0125,
+  "kelly_optimal": 3.0,
+  "half_kelly": 1.5,
+  "peak_idx": 261
+}

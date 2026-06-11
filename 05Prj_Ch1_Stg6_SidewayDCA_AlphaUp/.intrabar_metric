@@ -1,0 +1,4 @@
+ambig_pct=0.5
+held_bars=221
+ambig_bars=1
+trades_label=FILTER_1차+2차(OI)

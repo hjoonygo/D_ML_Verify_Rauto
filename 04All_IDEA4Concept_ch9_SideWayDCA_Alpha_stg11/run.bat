@@ -1,0 +1,2 @@
+python test_04All_IDEA4Concept_ch9_SideWayDCA_Alpha_stg11.py
+python check_04All_IDEA4Concept_ch9_SideWayDCA_Alpha_stg11.py

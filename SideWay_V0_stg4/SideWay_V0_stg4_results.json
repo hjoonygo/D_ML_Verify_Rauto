@@ -1,0 +1,110 @@
+{
+  "version": "SideWay_V0_stg4",
+  "config": {
+    "VERSION": "SideWay_V0_stg4",
+    "DATA_FILENAME": "merged_data.csv",
+    "INDEX_DIRNAME": "00WorkHstr",
+    "MA_PERIOD": 6,
+    "DROP_RATE": 1.0,
+    "INIT_CAPITAL": 10000.0,
+    "MMR": 0.004,
+    "FEE_RATE": 0.0005,
+    "SLIPPAGE": 0.0002,
+    "FUNDING_RATE": 0.0001,
+    "FUNDING_HOURS": [
+      0,
+      8,
+      16
+    ],
+    "STOP_PCT": 0.06,
+    "NOTIONAL_FRAC": 1.0,
+    "TREND_EMA_HOURS": 800,
+    "TF_LIST": [
+      [
+        "1h",
+        1
+      ],
+      [
+        "2h",
+        2
+      ],
+      [
+        "4h",
+        4
+      ]
+    ],
+    "FINAL_SIZE_NOTE": 2.5
+  },
+  "data_quality": {
+    "rows": 1578240,
+    "duplicates_removed": 0,
+    "minute_gaps": 0,
+    "nan_close": 0,
+    "nan_volume": 0,
+    "start": "2023-05-01 00:00:00+00:00",
+    "end": "2026-04-30 23:59:00+00:00"
+  },
+  "input_file": "merged_data.csv",
+  "input_sha256": "e397a33201dd2cd7f90f377b83fd82b910fd77cf86ad933a35fcad0647d9f38c",
+  "summaries": [
+    {
+      "tf": "1h",
+      "final_equity": 10370.95,
+      "total_return_pct": 3.71,
+      "CAGR_pct": 1.22,
+      "MDD_pct": -6.5,
+      "sharpe": 0.281,
+      "num_trades": 6,
+      "win_rate_pct": 66.67,
+      "profit_factor": 2.197,
+      "total_cost": 63.41,
+      "total_gross": 434.36,
+      "cost_drag_pct": 14.6,
+      "regime_up_n": 1,
+      "regime_up_pnl": -110.07,
+      "regime_down_n": 5,
+      "regime_down_pnl": 481.01
+    },
+    {
+      "tf": "2h",
+      "final_equity": 11781.31,
+      "total_return_pct": 17.81,
+      "CAGR_pct": 5.62,
+      "MDD_pct": -2.53,
+      "sharpe": 1.126,
+      "num_trades": 8,
+      "win_rate_pct": 87.5,
+      "profit_factor": 31.677,
+      "total_cost": 97.12,
+      "total_gross": 1878.43,
+      "cost_drag_pct": 5.2,
+      "regime_up_n": 0,
+      "regime_up_pnl": 0,
+      "regime_down_n": 8,
+      "regime_down_pnl": 1781.31
+    },
+    {
+      "tf": "4h",
+      "final_equity": 12730.42,
+      "total_return_pct": 27.3,
+      "CAGR_pct": 8.38,
+      "MDD_pct": -3.25,
+      "sharpe": 1.261,
+      "num_trades": 17,
+      "win_rate_pct": 76.47,
+      "profit_factor": 8.118,
+      "total_cost": 214.89,
+      "total_gross": 2945.32,
+      "cost_drag_pct": 7.3,
+      "regime_up_n": 4,
+      "regime_up_pnl": 231.2,
+      "regime_down_n": 13,
+      "regime_down_pnl": 2499.23
+    }
+  ],
+  "n_bars_by_tf": {
+    "tf1h": 26304,
+    "tf2h": 13152,
+    "tf4h": 6576
+  }
+}

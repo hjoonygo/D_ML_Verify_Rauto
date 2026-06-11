@@ -1,0 +1,19 @@
+VERDICT 06Prj_Ch6_Stg6_ChipShortCPCV | 8시나리오 6/8 FAIL | 추세318(롱167/숏151)/횡보90 | [A 칩필터2of3] ON CPCV p25 2.85 vs OFF 1.517 -> 견고 | [B 숏] 기존PF 1.369 -> BEST(하락0/ADX0.0/펀딩0) PF 1.369(n151.0) -> 개선못함 | check:FAIL
+
+[8시나리오 상세]
+  [OK] S1 필수파일/비공백(7종) : 7종 OK
+  [OK] S2 엔진해시 무수정 : 일치
+  [OK] S3 미래참조 가드(shift- 없음) : 없음
+  [X ] S4 거래>0 & 숏격자18 : 추세318/숏151/격자12
+  [OK] S5 label 입력배제 : False
+  [OK] S6 A 칩필터 CPCV 효과(ON p25>=OFF) : ON p25 2.85 vs OFF p25 1.517 | 견고 (PF<1경로 0/15)
+  [X ] S7 B 숏필터 개선 & degenerate아님 : 기존 1.369 -> BEST 1.369 (개선못함) degenerate아님=True CPCV_p25=1.009
+  [OK] S8 A·B 결론 기록완료 : 칩필터 견고 / 숏 개선못함
+
+[엔진 무수정 해시]
+  SpTrd_Fib_V1_Champion.py = 7f9192e3d50b1afd...
+  SidewayDCA_Stg7_engine.py = dfdfac4394cd7809...
+
+[메모] (라) ML폐기 후 확실수확 굳히기. A=칩필터2of3을 CPCV(PF+거래수)로 과최적검증, B=숏약점을 장세/년도 분해 후 필터격자(하락장·ADX·OI펀딩)로 개선·CPCV검증.
+  ★해석: A는 ON p25가 OFF p25보다 높고 PF<1경로 적으면 채택. B는 숏 PF개선+degenerate아님+CPCV견고면 채택.
+  다음(Stg7)=C 제3 알파(두 봇과 상관낮은 새 수익원, 월목표 갭의 본질).

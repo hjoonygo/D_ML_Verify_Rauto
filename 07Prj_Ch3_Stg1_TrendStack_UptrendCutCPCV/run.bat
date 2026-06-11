@@ -1,0 +1,2 @@
+python test_07Prj_Ch3_Stg1_TrendStack_UptrendCutCPCV.py
+python check_07Prj_Ch3_Stg1_TrendStack_UptrendCutCPCV.py
