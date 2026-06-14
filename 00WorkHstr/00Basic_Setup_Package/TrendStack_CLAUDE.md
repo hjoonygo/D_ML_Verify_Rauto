@@ -15,6 +15,8 @@
 - OI [0,1) 구간 알파는 SidewayDCA와 부호 반대 — 이식 금지(TIL 2-4).
 - MAE는 '보유 구간' 1분 극값으로만 (7h봉 전체 고저로 계산하면 가짜 강제청산 발생).
 - 2025는 추세 열화의 해(전 추세장세 PF 붕괴) — 사이징 파라미터로 못 고침(3회 검증됨).
+- ★oi_zscore_24h(무덤필터 입력) 계보: 라이브 표준 = REPAIRED 계보(z 전체 1봉 지연·mp720·±10클립,
+  Stg13 oi_zscore_adapter.py). 원본 v2 수식 사용 금지 — D:\ML\LINEAGE_WARNING_oi_zscore.txt 필독.
 
 ## 이중 리샘플링
 1분봉 → 7h 버킷(시그널+POC) + 4h 버킷(feat_struct). label 계열 실시간 사용 금지.

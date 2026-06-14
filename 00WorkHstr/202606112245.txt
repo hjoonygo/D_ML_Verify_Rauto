@@ -1,0 +1,29 @@
+VERDICT 07Prj_Ch4_RunAWS_Stg9_DualKSweepCausal | 오염검사 6/6 | VERDICT Stg9 | ⓑMDD차이=정렬기준(exit_t vs entry_t)로 전량설명(-19.1 vs -19.9) | ⓒ제안 k=0.77 (+1059.6%/MDD -19.33%) — MDD -19.5% 이내 최대 k(채택은 캡틴) | 동시보유 37/1090일 최대노출 5.56x
+[PASS] causal_ledger=§8해시 | c4964c5566af9631
+[PASS] 사본=원본 test_07Prj_Ch4_RunAWS_Stg6_DualSynthesis.py | 동일
+[PASS] 사본=원본 07Prj_Ch2_Stg2_TrendStack_OPVnNSweep_devledger.csv | 동일
+[PASS] 사본=원본 stg6_levsweep_ledger.csv | 동일
+[PASS] 사본=원본 07Prj_Ch2_SidewayDCARebuild_Stg1_ExpCutLiqSweep_ledger.csv | 동일
+[PASS] 결과 존재 | VERDICT Stg9 | ⓑMDD차이=정렬기준(exit_t vs entry_t)로 전량설명(-19.1 vs -19.9) | ⓒ제안 k=0.77
+
+[전문]
+[B-원인] 같은 데이터 k=0.8 | exit_t순(정식): +1079.6%/MDD -19.1% | entry_t순(Stg8 자체): +1079.6%/MDD -19.9%
+[B-결론] ret 차이 0.00%p(순서무관 확인) / MDD 차이 0.78%p → -19.9 vs -19.1은 '정렬 기준(exit_t vs entry_t)' 차이로 전량 설명
+
+[C] 인과 듀얼 k스윕(정식 exit_t순) — 목표: MDD -19.5% 이내 최대 k
+     k      ret%     MDD%  -19.5%내   -20%내
+   0.7     844.1   -17.67        O       O
+  0.71     872.4   -17.91        O       O
+  0.72     901.5   -18.14        O       O
+  0.73     931.5   -18.38        O       O
+  0.74     962.2   -18.62        O       O
+  0.75     993.8   -18.85        O       O
+  0.76    1026.3   -19.09        O       O
+  0.77    1059.6   -19.33        O       O
+  0.78    1093.9   -19.56        X       O
+  0.79    1129.1   -19.80        X       O
+   0.8    1165.2   -20.03        X       X
+
+[동시보유·인과] 최대 합산노출 5.56x · 동시보유 37/1090일 (3.4%)  (박제 기준 32/1091일 2.9%)
+
+VERDICT Stg9 | ⓑMDD차이=정렬기준(exit_t vs entry_t)로 전량설명(-19.1 vs -19.9) | ⓒ제안 k=0.77 (+1059.6%/MDD -19.33%) — MDD -19.5% 이내 최대 k(채택은 캡틴) | 동시보유 37/1090일 최대노출 5.56x

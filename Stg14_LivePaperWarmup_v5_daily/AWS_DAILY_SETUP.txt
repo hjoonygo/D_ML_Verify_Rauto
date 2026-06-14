@@ -1,0 +1,22 @@
+================================================================================
+Stg14 공식 1주 — AWS 무인 일일 루틴 설치 (1회만, 관리자 명령프롬프트)
+================================================================================
+[등록 — UTC 자정+10분, 1일 1회. AWS Windows는 UTC 기본이므로 /ST 00:10 그대로]
+  schtasks /Create /TN "Stg14_DailyPaper" ^
+    /TR "<폴더경로>\run_daily.bat" ^
+    /SC DAILY /ST 00:10 /RU SYSTEM /RL HIGHEST /F
+
+[루틴 내용 — run_daily.bat]
+  test 재관통(전 데이터 멱등 재생성 — append보다 강건, 누락일 자동 복원)
+  → check(오염검사 AWS모드, aws_workhstr.log) → daily_health.py(예외/갭/동치 점검,
+  하나라도 깨지면 stg14_health.log 줄머리 ★긴급)
+
+[확인]
+  즉시 1회: schtasks /Run /TN "Stg14_DailyPaper"
+  결과:    type <폴더경로>\stg14_health.log   ← "OK ..." 1줄이면 정상
+  해제:    schtasks /Delete /TN "Stg14_DailyPaper" /F
+
+[주의] PC시각이 UTC가 아닌 환경(로컬 PC 테스트)에선 /ST를 UTC 자정+10분에 해당하는
+  현지시각으로 환산할 것. 데이터 경로는 C:\BinanceData 공통 — Dauto 수집봇이 같은
+  인스턴스에서 가동 중이어야 한다(선행: Dauto_Collector 태스크).
+================================================================================

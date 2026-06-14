@@ -1,0 +1,50 @@
+================================================================================
+Stg17 ImpatientFork — AWS 병렬 배포 가이드 (기존 라이브 Rauto_Daily 와 동시 가동)
+작성=Claude Code(PC) 2026-06-14 · 분기 = "인내심 없는" TS(피벗확정 대기 제거) + 동일 SW
+★원칙: 기존 라이브(C:\run_Rauto / 태스크 Rauto_Daily)는 절대 안 건드린다. 완전 격리 병렬.
+================================================================================
+
+[격리 설계 — 충돌 0]
+  · 폴더    : 라이브 C:\run_Rauto   ↔  분기 C:\run_Rauto_Impatient (별도)
+  · 태스크  : 라이브 Rauto_Daily(00:10)  ↔  분기 Rauto_Impatient(00:20, 10분 시차)
+  · 산출/상태: run_daily.bat이 RAUTO_DIR·RAUTO_OPS_STATE를 분기폴더로 강제 →
+              ops_state.json·paper_ledger·scorecard·health 전부 분기폴더에만 쓴다.
+              (ops_common.rauto_dir()도 C:\run_Rauto 폴백 제거됨 — 라이브 절대 미참조)
+  · 입력    : C:\BinanceData (공통, 읽기전용 시장데이터 — 공유 안전)
+  · 텔레그램: TELEGRAM_BOT_TOKEN/CHAT_ID 머신변수 공유(같은 폰 수신).
+              분기 알림은 태그 [PAPER-IMP] 로 자동 구분(라이브는 [PAPER]).
+
+[0. 설치] 본 폴더 전체를 AWS C:\run_Rauto_Impatient\ 로 복사.
+   (필수: test_/check_/daily_health.py/run_daily.bat/ops_common.py/alert_telegram.py/
+    alert_check.py/bots\ . 선택제외: ab_local_replay.py·diag_equiv.py = 로컬검증용 스크래치)
+
+[1. 중복 방지 확인]
+   schtasks /Query /TN "Rauto_Impatient" 2>nul
+   → 있으면: schtasks /Delete /TN "Rauto_Impatient" /F
+
+[2. 등록 — UTC 00:20(라이브 00:10과 10분 시차), 1일 1회]
+   schtasks /Create /TN "Rauto_Impatient" /TR "C:\run_Rauto_Impatient\run_daily.bat" ^
+     /SC DAILY /ST 00:20 /RU SYSTEM /RL HIGHEST /F
+   (HOURLY로 돌리려면 라이브와 동일하게: /SC HOURLY /MO 1 /ST 00:20 로 변경)
+
+[3. 즉시 1회 강제 실행 — 무인 완주 검증]
+   schtasks /Run /TN "Rauto_Impatient"
+   확인:
+     type C:\run_Rauto_Impatient\stg14_health.log     ← 마지막 줄 "OK ..."면 정상
+     type C:\run_Rauto_Impatient\rauto_daily.log      ← 단계별 스탬프
+     폰 텔레그램에 [PAPER-IMP] 🟢 시작 + 일일요약 1장 도착 확인
+
+[로컬 PC 검증 결과(2026-06-14, 31일 창 2026-05-12~06-11)] — 이미 PASS
+   분기 TS 11거래 / 잔고 $12,067.49 (+20.67%) / MDD -1.26% / 동치True / 예외0 / 오염검사 19/19
+   vs 기존(동일창) TS 7거래 / +13.65% / MDD -2.53%.  SW는 양쪽 0거래(동일·무변경).
+   ※31일·11거래 = 결론 아님. 06-19까지 라이브 페이퍼로 두 모델 직접 비교가 목적.
+
+[해제]  schtasks /Delete /TN "Rauto_Impatient" /F
+
+[주의]
+  · 로컬 PC(UTC 아님)서 테스트 시 /ST는 KST 환산(00:20 UTC = 09:20 KST).
+  · 선행: Dauto_Collector가 C:\BinanceData 갱신 중이어야 함(라이브와 공유).
+  · kill_guard/telegram_poll(분당 태스크)은 본 페이퍼 A/B엔 선택사항 — 필요 시 Stg16에서
+    별도 RAUTO_KILL_FLAG/state로 분기 등록(기본은 미등록 권장, 라이브 킬스위치와 분리).
+  · 봇 본체(§8) 무수정 확인: check가 매 배치 해시 19종 대조(분기봇 2a335822 포함). FAIL이면 발신.
+================================================================================

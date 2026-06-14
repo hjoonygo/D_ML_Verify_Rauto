@@ -1,0 +1,3 @@
+set PYTHONIOENCODING=utf-8
+python test_07Prj_Ch5_PO3AlphaMeasure_Stg3_CtxFeatDelta.py
+python check_07Prj_Ch5_PO3AlphaMeasure_Stg3_CtxFeatDelta.py

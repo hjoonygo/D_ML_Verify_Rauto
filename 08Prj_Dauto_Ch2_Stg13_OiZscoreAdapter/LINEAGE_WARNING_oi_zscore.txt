@@ -1,0 +1,33 @@
+================================================================================
+LINEAGE WARNING — oi_zscore_24h 계보 분기 (2026-06-12 캡틴 확정, Stg13 핀포인트)
+================================================================================
+★같은 컬럼명, 다른 수식 2계보가 존재한다. 라이브 표준은 [B] REPAIRED 계보다.
+
+[A] 원본 v2 — compute_oi_derived_features.py (SHA256 33ecde59…, 이 폴더 원본 무수정 보존)
+    z_t = clip( (x_t - mean(x[t-1440..t-1])) / std(x[t-1440..t-1], ddof=1), ±10 )
+    · 통계만 1봉 늦춤(분자=현재봉) · min_periods=1440 (워밍업 24h)
+    · 용도: Merged_36mo_With_OI_Derived.csv(2026-05-07 17:11) 생성 — 그 파일과 0불일치 확인
+    · ★실사용 Merged_Data.csv와는 값불일치 311,819·패턴불일치 720 — 라이브 사용 금지
+
+[B] REPAIRED 계보 — 라이브 표준 (Merged_Data.csv = Merged_36mo_With_OI_Derived_REPAIRED.csv,
+    2026-05-11 00:58. 재계산 스크립트 원본은 미발견 — 수식은 전수 수치 일치로 핀포인트)
+    z_t = clip( zscore(x_{t-1}; 창 x[t-1440..t-1] 자기봉 포함, ddof=1), ±10 ).
+    구현: ((x - rolling_mean(1440, min_periods=720)) / rolling_std(…)).shift(1) 후 ±10 클립
+    = pandas: compute_oi_zscore(x, win=1440, ddof=1, minp=720, shift=1, clip=10.0)
+    · 전체 1봉 지연(분자도 직전봉) = [A]보다 보수적 · 워밍업 12h(720행)
+    · 입력 x = oi_sum(BTC 단위 sumOpenInterest)
+    · 표준 구현체: D:\ML\verify\08Prj_Dauto_Ch2_Stg13_OiZscoreAdapter\oi_zscore_adapter.py
+
+[검증표 — 전수 대조(1,578,240행, 허용오차 1e-6), 분석 202606121121.txt·202606121121 이후 check 기록]
+  수식 → 대상                | Derived(05-07)      | Merged_Data(=REPAIRED 05-11)
+  [A] 원본 v2                | 0 / 0 완전일치       | 값 311,819 · 패턴 720 불일치
+  [B] REPAIRED(경로B 유일해) | 값 222,758 불일치    | 0 / 0 완전일치 (96후보 중 유일)
+
+[채택 근거 — 캡틴 결정 ① 2026-06-12]
+  모든 확정 알파(무덤필터 p=0.0001, OI 2차필터, SidewayDCA +170.2% 인과 재인증)는
+  Merged_Data.csv 값으로 검증됨 → 라이브는 '백테가 본 그 값'을 재현해야 사슬 유지.
+  +1봉 지연=보수적, 워밍업 12h 단축은 부수 이점.
+
+[라이브 입력 정책] Dauto oi_src=live/hist → 값 사용(hist는 oi_blunt=1 'z 뭉툭화' 플래그 병기),
+  oi_src=na → NaN 전파(신호봇 무덤필터 NaN=통과 관성).
+================================================================================

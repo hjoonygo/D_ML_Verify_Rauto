@@ -1,0 +1,33 @@
+작업분석 — 07Prj_Ch4_RunAWS_Stg6_DualSynthesis
+초기자본 $10,000 · 두 봇 거래단위 합성(사후 원장 스윕 아키텍처 프로토타입)
+
+[1] 오염검사 — 근간 원장3종·엔진 SHA256 무수정 대조
+  [OK] 07Prj_Ch2_Stg2_TrendStack_OPVnNSweep_devledger  a786876e1b5656…
+  [OK] stg6_levsweep_ledger.csv  c6e8e12cfb80b4…
+  [OK] 07Prj_Ch2_SidewayDCARebuild_Stg1_ExpCutLiqSwee  382177289d08eb…
+  [OK] SidewayDCA_Stg7_engine.py  dfdfac4394cd78…
+[1b] 필수 파일 존재
+  [OK] test_07Prj_Ch4_RunAWS_Stg6_DualSynthesis.py
+  [OK] check_07Prj_Ch4_RunAWS_Stg6_DualSynthesis.py
+  [OK] run.bat
+  [OK] 07Prj_Ch4_RunAWS_Stg6_DualSynthesis_results.csv
+[1c] 중복 .py: 없음
+
+[2] 노출배분 스윕
+  k,ret_pct,mdd_pct,within_limit
+  0.5,391.0,-12.2,True
+  0.55,471.0,-13.4,True
+  0.6,562.0,-14.6,True
+  0.65,667.0,-15.7,True
+  0.7,786.0,-16.9,True
+  0.75,923.0,-18.0,True
+  0.8,1080.0,-19.1,True
+  0.85,1258.0,-20.2,False
+  0.9,1460.0,-21.3,False
+  0.95,1691.0,-22.4,False
+  1.0,1952.0,-23.5,False
+  recommend,0.8,1080.0,-19.1
+  max_concurrent_exp,5.56,32/1091days,
+
+[결론] 듀얼 GO·노출배분 필수. 권장 k=0.8 → 1080.0% / MDD -19.1% (한도내 최대)
+[미해결] 라이브 스트리밍 배선은 ADR9 결정 + PC 698MB 데이터 필요(엔진은 배치).

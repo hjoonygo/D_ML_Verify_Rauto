@@ -1,0 +1,38 @@
+================================================================================
+Stg14 공식 1주 — AWS 무인 일일 루틴 설치 v2 (1회만, 관리자 명령프롬프트)
+(v2 2026-06-12: 캡틴 지시 반영 — 태스크명 Rauto_Daily / 설치폴더 C:\run_Rauto /
+ 단계별 stdout을 rauto_daily.log에 날짜스탬프 append / 긴급 시 dauto_health.log ★RAUTO 미러)
+================================================================================
+[0. 설치 — Stg14 zip을 C:\run_Rauto 에 풀기]
+  본 폴더 전체(test/check/run_daily.bat/daily_health.py/bots\)를 C:\run_Rauto\ 로 복사.
+  run_daily.bat은 %~dp0 기준 동작 → C:\run_Rauto\rauto_daily.log 에 로그 쌓임.
+
+[1. ★기존 태스크 중복 방지 — 먼저 확인·정리]
+  schtasks /Query /TN "Stg14_DailyPaper" 2>nul
+  → 있으면 삭제(같은 루틴 2회 실행 방지):
+  schtasks /Delete /TN "Stg14_DailyPaper" /F
+
+[2. 등록 — UTC 자정+10분, 1일 1회. AWS Windows는 UTC 기본이므로 /ST 00:10 그대로]
+  schtasks /Create /TN "Rauto_Daily" /TR "C:\run_Rauto\run_daily.bat" ^
+    /SC DAILY /ST 00:10 /RU SYSTEM /RL HIGHEST /F
+
+[3. 즉시 1회 강제 실행 — 무인 모드(창 없음) 완주 검증]
+  schtasks /Run /TN "Rauto_Daily"
+  완료 확인: schtasks /Query /TN "Rauto_Daily" /V /FO LIST | findstr "결과 Result"
+  결과 확인: type C:\run_Rauto\stg14_health.log        ← 마지막 줄 "OK ..."면 정상
+            type C:\run_Rauto\rauto_daily.log          ← 단계별 스탬프+stdout
+            (긴급 시에만) type C:\BinanceData\dauto_health.log ← ★RAUTO 줄
+
+[루틴 내용 — run_daily.bat]
+  test 재관통(전 데이터 멱등 재생성 — append보다 강건, 누락일 자동 복원)
+  → check(오염검사 AWS모드, aws_workhstr.log 자동 전환) → daily_health.py v2
+  (예외/갭/동치 점검, 깨지면 stg14_health.log 줄머리 ★긴급 + dauto_health.log ★RAUTO 미러)
+
+[해제]  schtasks /Delete /TN "Rauto_Daily" /F
+
+[주의] PC시각이 UTC가 아닌 환경(로컬 PC 테스트)에선 /ST를 UTC 자정+10분에 해당하는
+  현지시각으로 환산할 것(KST=09:10). 데이터 경로는 C:\BinanceData 공통 — Dauto 수집봇이
+  같은 인스턴스에서 가동 중이어야 한다(선행: Dauto_Collector 태스크).
+[참고] 일일 배치는 상주 프로세스가 아님 — tasklist에 python.exe가 안 보이는 것이 정상.
+  가동 여부 판정은 tasklist가 아니라 stg14_health.log 날짜줄/rauto_daily.log 스탬프로 한다.
+================================================================================

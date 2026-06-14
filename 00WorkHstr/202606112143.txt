@@ -1,0 +1,22 @@
+VERDICT 07Prj_Ch4_RunAWS_Stg8_CausalRecert | 오염검사 8/8 | VERDICT 5/5 | 재현OK R교차0 MAE위반0 | 인과(84) ret 170.2% MDD -15.6% PF 2.36 CPCVp25 81.3% (기준 148.8/-13.61/2.653/70.9) | 게이트 MDDPASS·CPCVPASS | 동시보유: devledger에 exit_t 없어 계산불가(Stg6 zip 필요)
+[PASS] 박제엔진(§8) | dfdfac4394cd7809
+[PASS] devledger264(근간) | a786876e1b565617
+[PASS] 사본=원본 test_07Prj_Ch2_SidewayDCARebuild_Stg1_ExpCutLiqSweep.py | 동일
+[PASS] 사본=원본 test_07Prj_Ch4_RunAWS_Stg3_NMultSweep.py | 동일
+[PASS] 사본=원본 07Prj_Ch2_SidewayDCARebuild_Stg1_ExpCutLiqSweep_ledger.csv | 동일
+[PASS] 사본=원본 bot_sidewaydca_signal.py | 동일
+[PASS] 산출4종 존재 | OK
+[PASS] 재인증 VERDICT | VERDICT 5/5 | 재현OK R교차0 MAE위반0 | 인과(84) ret 170.2% MDD -15.6% PF 2.36 CPCVp25 81.3% (기준 148.8/-13.61/2.653/70.9) | 게이트 MDDPASS·CPCVPASS | 동시보유: devledger에 exit_t 없어 계산불가(Stg6 zip 필요)
+
+[전문]
+VERDICT 5/5 | 재현OK R교차0 MAE위반0 | 인과(84) ret 170.2% MDD -15.6% PF 2.36 CPCVp25 81.3% (기준 148.8/-13.61/2.653/70.9) | 게이트 MDDPASS·CPCVPASS | 동시보유: devledger에 exit_t 없어 계산불가(Stg6 zip 필요)
+
+[k스윕]
+  k  paste_ret  paste_mdd  causal_ret  causal_mdd
+0.5      391.3      -12.7       415.2       -12.8
+0.6      562.0      -15.2       599.8       -15.3
+0.7      786.4      -17.6       844.1       -17.7
+0.8     1079.6      -19.9      1165.2       -20.0
+0.9     1460.4      -22.2      1584.6       -22.4
+1.0     1952.0      -24.5      2128.7       -24.6
+

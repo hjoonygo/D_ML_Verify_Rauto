@@ -1,0 +1,53 @@
+================================================================================
+Stg16 OpsGuard — AWS 설치 (1회만, 관리자 명령프롬프트) v2 2026-06-13
+(v2: 1차 채팅 토큰 노출 → BotFather Revoke 재발급 절차 + 노출 런북 추가, 코드 무변경)
+구성: Kill Switch(단방향) + Telegram 알림(read-only) + 가시성(status_check / /status·/kill)
+원칙: 봇 본체 무수정 · 자동복구 금지 · 토큰은 환경변수 전용(파일·코드 평문 금지)
+================================================================================
+[0. 설치] 본 폴더의 *.py + status_check.bat 전부를 C:\run_Rauto\ 에 복사.
+  ※ ops_state.json / ops_poll_state.json / ops_alert.log 는 복사 금지(상태파일 —
+    AWS에서 새로 생성돼야 '시작 알림 1회'가 정상 발신됨).
+  run_daily.bat 은 동봉된 STEP4 포함판으로 교체(C:\run_Rauto\run_daily.bat 덮어쓰기).
+
+[1. 캡틴 액션 — 텔레그램 자격 1회 (관리자 cmd, /M = 머신 전역)]
+  ⓐ 기존 토큰이 채팅·문서 등 어디든 노출된 적 있으면 먼저 Revoke(아래 런북) 후 새 토큰 사용.
+  ⓑ setx TELEGRAM_BOT_TOKEN "<봇토큰>" /M
+     setx TELEGRAM_CHAT_ID "<chat_id>" /M
+  ※ setx 후 새 cmd/태스크부터 적용. 미설정 상태에선 전 모듈 NO-OP(안전판).
+  ※ 주입 경로는 시스템 환경변수 단 하나 — 파일·코드·로그·INDEX·G드라이브 평문 저장 금지.
+    check_...Stg16.py 오염검사에 '토큰 평문 0건' grep 자체검사 포함(토큰 모양
+    숫자8~10:영숫자32+ 패턴을 산출물·로그 전수 스캔 — 발견 시 FAIL).
+
+[1R. 런북 — 토큰 노출 시 즉시 조치 (목표 ≤10분, 체크리스트 A-5 키 롤오버 원칙과 동일)]
+  1. 텔레그램 @BotFather → /mybots → 해당 봇 → API Token → Revoke current token
+     (Revoke 즉시 구토큰 전부 무효 — 노출본 악용 차단).
+  2. 새 토큰 발급 확인 → AWS 관리자 cmd: setx TELEGRAM_BOT_TOKEN "<새토큰>" /M
+  3. schtasks 재기동 불필요(태스크는 매 실행마다 env를 새로 읽음 — python 단발 프로세스).
+     단, 열려있는 cmd 창은 닫고 새로 열 것(구 env 캐시).
+  4. 검증: python -c "import alert_telegram as t; print(t.send('롤오버 확인'))" → 200
+  5. 노출 경위를 00WorkHstr INDEX에 1줄 기록(토큰 자체는 절대 기록 금지).
+
+[2. schtasks 등록 — 1분 간격 2종]
+  schtasks /Create /TN "Kill_Guard" /TR "python C:\run_Rauto\kill_guard.py" ^
+    /SC MINUTE /MO 1 /RU SYSTEM /RL HIGHEST /F
+  schtasks /Create /TN "Telegram_Poll" /TR "python C:\run_Rauto\telegram_poll.py" ^
+    /SC MINUTE /MO 1 /RU SYSTEM /RL HIGHEST /F
+  ※ Rauto_Daily(00:10 UTC)는 기존 등록 유지 — STEP4(alert_check)가 추가됐을 뿐.
+
+[3. 실발송 1회 검증 (캡틴 — 토큰 입력 후)]
+  cd /d C:\run_Rauto && python -c "import alert_telegram as t; print(t.send('설치 확인'))"
+  → 텔레그램에 "[PAPER] 설치 확인" 수신 + 콘솔 200 이면 정상.
+
+[동작 요약]
+  - Kill: 텔레그램 /kill 또는 수동으로 C:\BinanceData\kill.flag 생성
+    → Kill_Guard(1분)가 Rauto_Daily·Dauto_Collector /DISABLE + 청산stub(페이퍼=로깅만)
+    + stg14_health.log·텔레그램 ★KILL 1줄. 해제=수동(flag+kill.flag.handled 삭제 후
+    schtasks /Change /TN <태스크> /ENABLE) — 자동복구 금지.
+  - 알림: Rauto_Daily STEP4(alert_check)가 직전 실행 대비 diff —
+    ①시작(첫 OK 1회) ②진입 ③청산(신규 원장행당 2장) ④오류(★긴급/kill) | 머리 [PAPER]/[LIVE]
+    (실거래 전환 시 환경변수 RAUTO_MODE=LIVE 로 태그 전환)
+  - 가시성: RDP에서 status_check.bat 더블클릭(4축) / 텔레그램 /status(동일 4축 회신,
+    동일 chat_id 외 전부 거부)
+
+[해제] schtasks /Delete /TN "Kill_Guard" /F  &  schtasks /Delete /TN "Telegram_Poll" /F
+================================================================================

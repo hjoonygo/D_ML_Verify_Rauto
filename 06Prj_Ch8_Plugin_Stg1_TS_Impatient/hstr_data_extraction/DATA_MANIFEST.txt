@@ -1,0 +1,23 @@
+DATA_MANIFEST — Hstr_Ver_Up_TrendStack 데이터추출 패키지
+작성 2026-06-15 · 06Prj_Ch8
+
+[포함된 추출 코드]
+ - compute_oi_derived_features.py : OI 파생피처(oi_zscore_24h 등) 생성 원본(v2)
+ - oi_zscore_adapter.py           : Stg13 라이브 표준 oi_zscore 어댑터(REPAIRED 계보)
+ - atr_ratio_adapter.py           : Stg15 atr_ratio 어댑터(워밍업 N=137 4H봉)
+ - regime_feature_extractor.py    : feat_struct/atr_ratio 생성원(SMC 4장세 라벨)
+ - dauto_loader.py                : Dauto 1m 스트림 로더
+[포함된 소형 데이터]
+ - stg6_levsweep_ledger.csv          : TrendStack 확정 거래원장 264건(전략 테스트 기준)
+ - Merged_Data_SAMPLE_2000rows.csv   : 통합데이터 구조 샘플(첫 2000행)
+
+[★대용량 데이터 — zip 미포함(용량). 위치·해시로 재현 보장]
+ - Merged_Data.csv (약 454MB) @ D:\ML\Verify
+     sha256 = e397a33201dd2cd7f90f377b83fd82b910fd77cf86ad933a35fcad0647d9f38c
+ - Merged_Data_with_Regime_Features.csv (약 665MB) @ D:\ML\Verify
+     sha256 = 7d8114c53d57154966871da448f86d629e4410197855773bb235a495cf6855b3
+ - 원본 보관: G:\...\자동매매\08 BTC거래데이터\ (BTC by Binance=원본 / 36month BTC Data=통합)
+ - 규모: 1,578,240행(1분봉) · 2023-05-01~2026-04-30(36개월) · UTC naive.
+
+[왜 동봉하나] 이 추출코드·데이터는 실 매매봇엔 불필요하지만, 없으면 데이터 보강·수정·재현이 불가.
+ 라벨/피처 구분: label_smc_*=채점용(실시간 금지) / feat_*=봇입력(실시간 안전, shift 처리).
