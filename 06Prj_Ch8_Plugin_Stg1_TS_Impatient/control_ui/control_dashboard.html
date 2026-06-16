@@ -104,7 +104,7 @@
     <button class="emerg" onclick="openEmerg()">⚠ 긴급상황</button>
 
     <div class="panel">
-      <div class="ph"><span>차트 · 체결 (UTC) <span style="color:#5a6472;font-size:10px;font-weight:400">b18</span></span><span id="dauto" class="conn" style="background:var(--grnbg);color:#5fd3a0">● Dauto</span></div>
+      <div class="ph"><span>차트 · 체결 (UTC) <span style="color:#5a6472;font-size:10px;font-weight:400">b19</span></span><span id="dauto" class="conn" style="background:var(--grnbg);color:#5fd3a0">● Dauto</span></div>
       <div class="tabs">
         <span class="tab" data-tf="15">15m</span><span class="tab" data-tf="60">1H</span><span class="tab on" data-tf="240">4H</span><span class="tab" data-tf="1440">1D</span>
         <span style="flex:1"></span>
@@ -263,12 +263,13 @@
    // 거래 = 진입→청산 ㄱ자 점선(가로=보유기간 @진입가, 세로=청산가로 낙차). 숏=분홍 롱=청색. 끝점=점, 수익률 텍스트.
    // ★끝점 배치 = '거래 시각 t 근처(t-1봉 ~ t+8h)에서만' 그 가격 캔들 검색 → 시간순 보장.
    //   (구 findCi=전역 가격검색 → 비슷한 가격 거래들이 같은 x로 몰리고 진입/청산 역전되는 치명버그였음. 폐기)
-   function locX(t,p){var lim=t+8*3600000,bi=-1,bs=1e18;
-     for(var z=0;z<vis.length;z++){var c=vis[z];if(c.t>=t-SP&&c.t<=lim&&p>=c.l-0.5&&p<=c.h+0.5){var dt=Math.abs(c.t-t);if(dt<bs){bs=dt;bi=z;}}}
+   function locX(t,p,lo,hi){var bi=-1,bs=1e18;   // [lo,hi] 시간창 안에서 가격 p 든 캔들 중 t에 가장 가까운 것
+     for(var z=0;z<vis.length;z++){var c=vis[z];if(c.t>=lo&&c.t<=hi&&p>=c.l-0.5&&p<=c.h+0.5){var dt=Math.abs(c.t-t);if(dt<bs){bs=dt;bi=z;}}}
      if(bi<0){var bt=Math.floor(t/SP)*SP;for(var z3=0;z3<vis.length;z3++){if(vis[z3].t===bt){bi=z3;break;}}}
      return bi;}
    trades.forEach(function(tr){
-     var ie=locX(tr.et,tr.ep), ix=locX(tr.xt,tr.xp); if(ie<0||ix<0)return;
+     // 검색을 '그 거래 기간 내'로 한정 → 청산가가 실제 지난 캔들에 붙음(이탈 해소), 교차오염 없음
+     var ie=locX(tr.et,tr.ep, tr.et-SP, tr.xt+SP), ix=locX(tr.xt,tr.xp, tr.et-SP, tr.xt+8*3600000); if(ie<0||ix<0)return;
      if(ix<ie)ix=ie;   // 안전장치: 청산이 진입보다 왼쪽이면 역전 방지
      var Xe=pxi(ie), Xx=pxi(ix), Ye=py(tr.ep), Yx=py(tr.xp), col=tr.side==='S'?'#ff3d8b':'#3b82f6';
      g.strokeStyle=col;g.fillStyle=col;
@@ -280,9 +281,9 @@
      g.beginPath();g.moveTo(Xe-hl,Ye);g.lineTo(Xe+hl,Ye);g.moveTo(Xe,Ye-hl);g.lineTo(Xe,Ye+hl);g.stroke();
      g.beginPath();g.moveTo(Xx-hl,Yx);g.lineTo(Xx+hl,Yx);g.moveTo(Xx,Yx-hl);g.lineTo(Xx,Yx+hl);g.stroke();
      g.lineWidth=1;
-     if(tr.pnl!=null){var down=Yx>=Ye;   // 세로가 아래로(청산가<진입가)=ㄱ→수익률 위 / 위로=ㄴ→아래
-       g.font='bold 9px sans-serif';g.textAlign='right';g.fillStyle=tr.pnl<0?'#ef5350':'#3b82f6';   // 마이너스=빨강, 플러스=파랑
-       g.fillText((tr.pnl>0?'+':'')+tr.pnl+'%', Xx-2, down? Ye-4 : Ye+13);}});
+     if(tr.pnl!=null){   // 수익률: 마지막 글자가 청산선(Xx) 바로 위에. +파랑/-빨강
+       g.font='bold 9px sans-serif';g.textAlign='right';g.fillStyle=tr.pnl<0?'#ef5350':'#3b82f6';
+       g.fillText((tr.pnl>0?'+':'')+tr.pnl+'%', Xx, Math.min(Ye,Yx)-4);}});
    if(CHCR){g.strokeStyle='#5a6472';g.setLineDash([3,3]);g.beginPath();g.moveTo(CHCR.x,padT);g.lineTo(CHCR.x,ch-padB);g.moveTo(padL,CHCR.y);g.lineTo(cw-padR,CHCR.y);g.stroke();g.setLineDash([]);
      g.fillStyle='#2a3340';g.fillRect(CHCR.x-19,ch-padB+1,38,14);g.fillStyle='#e6edf3';g.font='bold 9px sans-serif';g.textAlign='center';g.fillText(hhmm(CHCR.t),CHCR.x,ch-padB+11);
      if(CHCR.y>padT&&CHCR.y<ch-padB){var pr=hi-(CHCR.y-padT)/(ch-padB-padT)*rng;g.fillStyle='#2a3340';g.fillRect(cw-padR,CHCR.y-7,50,14);g.fillStyle='#e6edf3';g.textAlign='left';g.fillText(pr.toFixed(0),cw-padR+3,CHCR.y+3);}}

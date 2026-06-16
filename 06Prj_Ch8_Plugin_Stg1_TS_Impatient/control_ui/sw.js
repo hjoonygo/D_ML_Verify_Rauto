@@ -1,5 +1,5 @@
 /* Rauto Control PWA service worker — 셸 캐시(오프라인) + state.json은 항상 네트워크 우선 */
-const CACHE = 'rauto-v18';  // b18: 마커 시간순 배치(locX)·stacking/역전 버그 수정
+const CACHE = 'rauto-v19';  // b18: 마커 시간순 배치(locX)·stacking/역전 버그 수정
 const SHELL = ['./control_dashboard.html', './manifest.json', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', (e) => {
