@@ -5,6 +5,8 @@ REM ===== Rauto Control Server (git clone에서 실행 + 자동 pull) =====
 REM 이 파일은 클론된 repo 안의 control_ui 폴더에서 더블클릭. 서버가 180초마다 git pull로 자기 갱신.
 set PY=python
 REM (SYSTEM에서 python 못찾으면 풀경로:) REM set PY=C:\Users\Administrator\AppData\Local\Programs\Python\Python310\python.exe
+REM git이 PATH에 없을 때도 auto-pull 되도록 표준 설치경로를 PATH에 추가
+set "PATH=%PATH%;C:\Program Files\Git\cmd"
 
 set RAUTO_REPO=C:\RautoRepo
 set RAUTO_GIT_PULL=1
