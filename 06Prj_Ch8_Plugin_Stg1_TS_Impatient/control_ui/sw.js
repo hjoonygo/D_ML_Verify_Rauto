@@ -1,5 +1,5 @@
 /* Rauto Control PWA service worker — 셸 캐시(오프라인) + state.json은 항상 네트워크 우선 */
-const CACHE = 'rauto-v16';  // 캐시 버전 올리면 폰 PWA가 새 화면으로 자동 갱신(수익률 +파랑/-빨강)
+const CACHE = 'rauto-v17';  // b17: git auto-pull 검증용 빌드태그
 const SHELL = ['./control_dashboard.html', './manifest.json', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', (e) => {
