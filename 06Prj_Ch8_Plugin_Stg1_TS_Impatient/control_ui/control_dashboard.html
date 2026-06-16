@@ -104,7 +104,7 @@
     <button class="emerg" onclick="openEmerg()">⚠ 긴급상황</button>
 
     <div class="panel">
-      <div class="ph"><span>차트 · 체결 (UTC) <span style="color:#5a6472;font-size:10px;font-weight:400">b17</span></span><span id="dauto" class="conn" style="background:var(--grnbg);color:#5fd3a0">● Dauto</span></div>
+      <div class="ph"><span>차트 · 체결 (UTC) <span style="color:#5a6472;font-size:10px;font-weight:400">b18</span></span><span id="dauto" class="conn" style="background:var(--grnbg);color:#5fd3a0">● Dauto</span></div>
       <div class="tabs">
         <span class="tab" data-tf="15">15m</span><span class="tab" data-tf="60">1H</span><span class="tab on" data-tf="240">4H</span><span class="tab" data-tf="1440">1D</span>
         <span style="flex:1"></span>
@@ -261,13 +261,15 @@
      var yb=py(Math.max(d.o,d.c)),hb=Math.max(1,Math.abs(py(d.o)-py(d.c)));g.fillRect(pxi(i)-bw/2,yb,bw,hb);});
    if(CHEMA){var k=2/10,e=null;g.strokeStyle='#e0a23a';g.lineWidth=1.4;g.beginPath();vis.forEach(function(d,i){e=(e==null)?d.c:e+k*(d.c-e);i?g.lineTo(pxi(i),py(e)):g.moveTo(pxi(i),py(e));});g.stroke();g.lineWidth=1;}
    // 거래 = 진입→청산 ㄱ자 점선(가로=보유기간 @진입가, 세로=청산가로 낙차). 숏=분홍 롱=청색. 끝점=점, 수익률 텍스트.
-   // 끝점을 '그 가격이 실제 지나간 캔들(시간 최근)'에 스냅 → 7H봉 시작시각 어긋남 해결
-   function findCi(t,p){var bi=-1,bs=1e18;
-     for(var z=0;z<vis.length;z++){var c=vis[z];if(p>=c.l-0.5&&p<=c.h+0.5){var dt=Math.abs(c.t-t);if(dt<bs){bs=dt;bi=z;}}}
-     if(bi<0){for(var z2=0;z2<vis.length;z2++){var dt2=Math.abs(vis[z2].t-t);if(dt2<bs){bs=dt2;bi=z2;}}}
+   // ★끝점 배치 = '거래 시각 t 근처(t-1봉 ~ t+8h)에서만' 그 가격 캔들 검색 → 시간순 보장.
+   //   (구 findCi=전역 가격검색 → 비슷한 가격 거래들이 같은 x로 몰리고 진입/청산 역전되는 치명버그였음. 폐기)
+   function locX(t,p){var lim=t+8*3600000,bi=-1,bs=1e18;
+     for(var z=0;z<vis.length;z++){var c=vis[z];if(c.t>=t-SP&&c.t<=lim&&p>=c.l-0.5&&p<=c.h+0.5){var dt=Math.abs(c.t-t);if(dt<bs){bs=dt;bi=z;}}}
+     if(bi<0){var bt=Math.floor(t/SP)*SP;for(var z3=0;z3<vis.length;z3++){if(vis[z3].t===bt){bi=z3;break;}}}
      return bi;}
    trades.forEach(function(tr){
-     var ie=findCi(tr.et,tr.ep), ix=findCi(tr.xt,tr.xp); if(ie<0||ix<0)return;
+     var ie=locX(tr.et,tr.ep), ix=locX(tr.xt,tr.xp); if(ie<0||ix<0)return;
+     if(ix<ie)ix=ie;   // 안전장치: 청산이 진입보다 왼쪽이면 역전 방지
      var Xe=pxi(ie), Xx=pxi(ix), Ye=py(tr.ep), Yx=py(tr.xp), col=tr.side==='S'?'#ff3d8b':'#3b82f6';
      g.strokeStyle=col;g.fillStyle=col;
      g.lineWidth=0.8;g.setLineDash([]);g.beginPath();g.moveTo(Xe,Ye);g.lineTo(Xx,Ye);g.stroke();          // 수평=가는 실선(진입가 레벨)
