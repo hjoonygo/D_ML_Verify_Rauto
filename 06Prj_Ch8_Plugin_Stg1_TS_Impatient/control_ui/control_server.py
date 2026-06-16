@@ -4,7 +4,7 @@
 #         ③ POST /cmd?action=killall|pause|resume|flat&slot= → 플래그 파일 기록(봇 Guard가 읽음)
 #   ★보안(필수): localhost 또는 Tailscale/VPN 내부에서만 노출. 공인망 직접노출 금지(토큰 추가 전엔).
 #   실행: python control_server.py   (기본 0.0.0.0:8787) → 폰 브라우저로 http://<PC_IP>:8787
-import http.server, socketserver, json, os, glob, urllib.parse, datetime, threading, subprocess, time
+import http.server, socketserver, json, os, glob, urllib.parse, datetime, threading, subprocess, time, shutil, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 # 봇이 매 배치 끝에 쓰는 상태파일(없으면 예시 사용). RAUTO_DIR 환경변수 우선.
@@ -17,11 +17,23 @@ PORT = int(os.environ.get("RAUTO_CTRL_PORT", "8787"))
 REPO = os.environ.get("RAUTO_REPO", "")
 
 
+BOT_SRC = os.path.join(REPO, "06Prj_Ch8_Plugin_Stg1_TS_Impatient", "rauto1", "test_Rauto1.py") if REPO else ""
+BOT_DST = r"C:\Rauto1\test_Rauto1.py"
+
+
 def _git_pull_loop():
     while True:
         time.sleep(180)
         try:
             subprocess.run(["git", "-C", REPO, "pull", "--ff-only"], capture_output=True, timeout=60)
+            # 봇 동기화: repo의 test_Rauto1.py가 바뀌면 C:\Rauto1로 복사 후 1회 실행(state.json 갱신)
+            if BOT_SRC and os.path.exists(BOT_SRC):
+                a = open(BOT_SRC, "rb").read()
+                b = open(BOT_DST, "rb").read() if os.path.exists(BOT_DST) else b""
+                if a != b:
+                    shutil.copy2(BOT_SRC, BOT_DST)
+                    subprocess.run([sys.executable, "test_Rauto1.py"], cwd=os.path.dirname(BOT_DST),
+                                   capture_output=True, timeout=180)
         except Exception:
             pass
 
