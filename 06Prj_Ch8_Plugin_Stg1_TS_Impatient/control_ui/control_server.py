@@ -4,7 +4,7 @@
 #         ③ POST /cmd?action=killall|pause|resume|flat&slot= → 플래그 파일 기록(봇 Guard가 읽음)
 #   ★보안(필수): localhost 또는 Tailscale/VPN 내부에서만 노출. 공인망 직접노출 금지(토큰 추가 전엔).
 #   실행: python control_server.py   (기본 0.0.0.0:8787) → 폰 브라우저로 http://<PC_IP>:8787
-import http.server, socketserver, json, os, glob, urllib.parse, datetime
+import http.server, socketserver, json, os, glob, urllib.parse, datetime, threading, subprocess, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 # 봇이 매 배치 끝에 쓰는 상태파일(없으면 예시 사용). RAUTO_DIR 환경변수 우선.
@@ -13,6 +13,17 @@ STATE_SRC = os.environ.get("RAUTO_STATE_JSON", os.path.join(HERE, "state_example
 STATE_GLOB = os.environ.get("RAUTO_STATE_GLOB", r"C:\Rauto*\state.json")
 FLAG_DIR = os.environ.get("RAUTO_FLAG_DIR", os.environ.get("RAUTO_DAUTO_DIR", r"C:\BinanceData"))
 PORT = int(os.environ.get("RAUTO_CTRL_PORT", "8787"))
+# git auto-pull: RAUTO_GIT_PULL=1 + RAUTO_REPO=클론경로 → 서버가 180초마다 git pull(대시보드 자동갱신, RDP 불요)
+REPO = os.environ.get("RAUTO_REPO", "")
+
+
+def _git_pull_loop():
+    while True:
+        time.sleep(180)
+        try:
+            subprocess.run(["git", "-C", REPO, "pull", "--ff-only"], capture_output=True, timeout=60)
+        except Exception:
+            pass
 
 
 def aggregate_state():
@@ -97,5 +108,8 @@ class H(http.server.SimpleHTTPRequestHandler):
 if __name__ == "__main__":
     print(f"[control_server] http://0.0.0.0:{PORT}  | glob={STATE_GLOB} | fallback={STATE_SRC} | flags={FLAG_DIR}")
     print("  ★localhost/Tailscale 내부에서만. 공인망 노출 시 토큰인증 추가 필수.")
+    if os.environ.get("RAUTO_GIT_PULL") == "1" and REPO:
+        threading.Thread(target=_git_pull_loop, daemon=True).start()
+        print(f"[git] auto-pull every 180s from {REPO}")
     with socketserver.ThreadingTCPServer(("0.0.0.0", PORT), H) as httpd:
         httpd.serve_forever()
