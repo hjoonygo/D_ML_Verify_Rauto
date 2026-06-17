@@ -50,6 +50,13 @@
  #chartwrap{position:relative;width:100%;aspect-ratio:1/1}
  #cchart{width:100%;height:100%;display:block;border-radius:8px;background:#0b0e13;cursor:crosshair}
  #rdbox{position:absolute;left:8px;top:6px;font-size:10.5px;color:#9aa6b2;pointer-events:none;white-space:nowrap}
+ .diag{margin-top:8px;padding:8px 10px;background:var(--card2);border:0.5px solid var(--bd);border-radius:8px;font-size:11px}
+ .diag .dh{font-weight:600;margin-bottom:5px;color:#cbd5e1}
+ .diag .dr{display:flex;justify-content:space-between;gap:8px;padding:2px 0;border-top:0.5px solid #20272f}
+ .diag .dr:first-of-type{border-top:0}
+ .diag .dr span{color:var(--mut);white-space:nowrap}
+ .diag .dr b{font-weight:600;text-align:right}
+ .diag .verdict{margin-top:6px;padding-top:6px;border-top:0.5px solid var(--bd);color:#cbd5e1;font-size:10.5px;line-height:1.45}
  #tvbox{width:100%;aspect-ratio:1/1;border-radius:8px;overflow:hidden;display:none}
  .chartwarn{width:100%;aspect-ratio:1/1;display:none;align-items:center;justify-content:center;text-align:center;background:var(--redbg);border-radius:8px;color:#f3a0a0;font-weight:600;font-size:14px}
  .slot{display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:9px;border:0.5px solid var(--bd);cursor:pointer}
@@ -104,7 +111,7 @@
     <button class="emerg" onclick="openEmerg()">⚠ 긴급상황</button>
 
     <div class="panel">
-      <div class="ph"><span>차트 · 체결 (UTC) <span style="color:#5a6472;font-size:10px;font-weight:400">b21</span></span><span id="dauto" class="conn" style="background:var(--grnbg);color:#5fd3a0">● Dauto</span></div>
+      <div class="ph"><span>차트 · 체결 (UTC) <span style="color:#5a6472;font-size:10px;font-weight:400">b22</span></span><span id="dauto" class="conn" style="background:var(--grnbg);color:#5fd3a0">● Dauto</span></div>
       <div class="tabs">
         <span class="tab" data-tf="15">15m</span><span class="tab" data-tf="60">1H</span><span class="tab on" data-tf="240">4H</span><span class="tab" data-tf="1440">1D</span>
         <span style="flex:1"></span>
@@ -113,6 +120,7 @@
       <div id="chartwrap"><canvas id="cchart"></canvas><div id="rdbox"></div></div>
       <div id="tvbox"></div>
       <div id="chartwarn" class="chartwarn">가격 데이터 없음<br/>(봇 1회 실행 후 표시)</div>
+      <div id="diagbox" class="diag" style="display:none"></div>
     </div>
 
     <div class="slotwrap">
@@ -237,7 +245,39 @@
  function dlab(ms){var d=new Date(ms);return(d.getUTCFullYear()%100)+'/'+pad2(d.getUTCMonth()+1)+'/'+pad2(d.getUTCDate());}
  function showChart(){var wrap=document.getElementById('chartwrap'),tv=document.getElementById('tvbox');
    if(TVmode){wrap.style.display='none';tv.style.display='block';initTV();}
-   else{tv.style.display='none';wrap.style.display='block';drawChart();}}
+   else{tv.style.display='none';wrap.style.display='block';drawChart();}
+   diagBox(CHSLOT);}
+ // 체결 품질 분석: 방향편향·수익집중·백테vs실시간·국면 — 폰에서 바로 보는 진단(state.json trd만으로 계산)
+ function diagBox(s){var el=document.getElementById('diagbox');if(!el)return;
+   var trd=(s&&s.trd)||[];if(!trd.length){el.style.display='none';el.innerHTML='';return;}
+   el.style.display='block';
+   var DEP=Date.UTC(2026,5,12);   // 실시간(전방) 시작 경계 = 2026-06-12
+   function agg(a){var n=a.length,w=0,sum=0;for(var i=0;i<n;i++){if(a[i].pnl>0)w++;sum+=a[i].pnl;}return {n:n,win:n?Math.round(w/n*100):0,avg:n?sum/n:0,sum:sum};}
+   function f(v){return (v>=0?'+':'')+v.toFixed(1);}
+   function w(c){return c?' style="color:#ef9a9a"':'';}
+   var S=trd.filter(function(t){return t.side==='S';}),L=trd.filter(function(t){return t.side==='L';});
+   var aS=agg(S),aL=agg(L),aB=agg(trd.filter(function(t){return t.et<DEP;})),aV=agg(trd.filter(function(t){return t.et>=DEP;})),aAll=agg(trd);
+   var mx=trd[0];for(var i=1;i<trd.length;i++)if(trd[i].pnl>mx.pnl)mx=trd[i];
+   var share=aAll.sum?Math.round(mx.pnl/aAll.sum*100):0;
+   var reg='—',regWarn=false,px=(s.px)||[];
+   if(px.length){var seg=px.filter(function(d){return d[0]>=DEP;});
+     if(seg.length>5){var p0=seg[0][4],p1=seg[seg.length-1][4],hi=-1e18,lo=1e18;
+       for(var z=0;z<seg.length;z++){if(seg[z][2]>hi)hi=seg[z][2];if(seg[z][3]<lo)lo=seg[z][3];}
+       var net=(p1-p0)/p0*100,span=(hi-lo)/p0*100,tr=span?Math.abs(net)/span*100:0;
+       regWarn=(tr<50);reg=f(net)+'% · '+(tr>=50?'추세장':'횡보/왕복장')+' ('+Math.round(tr)+'%)';}}
+   var oneLeg=(aS.n===0||aL.n===0||aL.n<=1);
+   var vd=[];
+   if(oneLeg)vd.push('방향 한쪽(숏'+aS.n+'/롱'+aL.n+')—반대장세 미검증');
+   if(share>=40)vd.push('수익 '+share+'% 단일거래 집중');
+   if(aV.n&&aV.avg<aB.avg)vd.push('실시간 평균R '+f(aB.avg)+'→'+f(aV.avg));
+   el.innerHTML=
+     '<div class="dh">체결 품질 분석 <span style="color:var(--mut);font-weight:400">· 실시간=6/12↑</span></div>'+
+     '<div class="dr"><span>방향</span><b'+w(oneLeg)+'>숏 '+aS.n+'건 '+f(aS.sum)+'% · 롱 '+aL.n+'건 '+f(aL.sum)+'%</b></div>'+
+     '<div class="dr"><span>수익 집중</span><b'+w(share>=40)+'>최대 1거래 '+f(mx.pnl)+'% = 전체 '+share+'%</b></div>'+
+     '<div class="dr"><span>백테(&lt;6/12)</span><b>'+aB.n+'건 · 승률'+aB.win+'% · 평균'+f(aB.avg)+'%</b></div>'+
+     '<div class="dr"><span>실시간(&ge;6/12)</span><b'+w(aV.n&&aV.avg<aB.avg)+'>'+aV.n+'건 · 승률'+aV.win+'% · 평균'+f(aV.avg)+'%</b></div>'+
+     '<div class="dr"><span>실시간 국면</span><b'+w(regWarn)+'>'+reg+'</b></div>'+
+     '<div class="verdict">'+(vd.length?('⚠ '+vd.join(' · ')):'특이 취약신호 없음')+'</div>';}
  function drawChart(){var cv=document.getElementById('cchart');if(!cv)return;var wrap=document.getElementById('chartwrap');
    var cw=wrap.clientWidth||320, ch=wrap.clientHeight||210; cv.width=cw; cv.height=ch;
    var g=cv.getContext('2d'); g.clearRect(0,0,cw,ch);
@@ -384,7 +424,7 @@
      if(x.status==='예약')d.style.opacity=.45;
      // 길게눌러 선택(플릭=스크롤, ≥450ms 홀드=진동+선택). 짧은 탭/플릭은 선택 안 함.
      function doSel(){SEL=x.name;document.getElementById('cBot').disabled=false;document.getElementById('cFlat').disabled=(x.status!=='보유');renderCmp(st);
-       box.querySelectorAll('.slot').forEach(e=>e.classList.remove('sel'));d.classList.add('sel');CHSLOT=x;CHOFF=0;if(!TVmode)drawChart();}
+       box.querySelectorAll('.slot').forEach(e=>e.classList.remove('sel'));d.classList.add('sel');CHSLOT=x;CHOFF=0;if(!TVmode)drawChart();diagBox(x);}
      var _pt=null,_sy=0,_base=(x.status==='예약'?'0.45':'');
      d.addEventListener('pointerdown',function(ev){_sy=ev.clientY;d.style.opacity='0.6';
        _pt=setTimeout(function(){_pt=null;d.style.opacity=_base;doSel();feedback(35);},450);});

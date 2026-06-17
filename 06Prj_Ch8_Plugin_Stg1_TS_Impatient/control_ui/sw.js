@@ -1,5 +1,5 @@
 /* Rauto Control PWA service worker — 셸 캐시(오프라인) + state.json은 항상 네트워크 우선 */
-const CACHE = 'rauto-v21';  // b21: 차트 패닝(터치드래그·휠·Ctrl휠줌·더블탭복귀) 데이터 전구간
+const CACHE = 'rauto-v22';  // b22: 체결 품질 분석 패널(방향편향·수익집중·백테vs실시간·국면, 폰서 바로)
 const SHELL = ['./control_dashboard.html', './manifest.json', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', (e) => {
