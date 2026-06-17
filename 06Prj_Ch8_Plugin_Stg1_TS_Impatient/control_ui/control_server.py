@@ -17,8 +17,30 @@ PORT = int(os.environ.get("RAUTO_CTRL_PORT", "8787"))
 REPO = os.environ.get("RAUTO_REPO", "")
 
 
-BOT_SRC = os.path.join(REPO, "06Prj_Ch8_Plugin_Stg1_TS_Impatient", "rauto1", "test_Rauto1.py") if REPO else ""
+_P = os.path.join(REPO, "06Prj_Ch8_Plugin_Stg1_TS_Impatient") if REPO else ""
+BOT_SRC = os.path.join(_P, "rauto1", "test_Rauto1.py") if REPO else ""
 BOT_DST = r"C:\Rauto1\test_Rauto1.py"
+R2_SRC = os.path.join(_P, "rauto2", "test_Rauto2.py") if REPO else ""
+R2_DST = r"C:\Rauto2\test_Rauto2.py"
+R2_KING_SRC = os.path.join(_P, "rauto2", "bots", "bot_trendstack_impatient_king.py") if REPO else ""
+
+
+def _changed(src, dst):
+    # src가 dst와 다르면 복사(필요시 폴더생성) 후 True
+    if not (src and os.path.exists(src)):
+        return False
+    a = open(src, "rb").read()
+    b = open(dst, "rb").read() if os.path.exists(dst) else b""
+    if a != b:
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
+        shutil.copy2(src, dst)
+        return True
+    return False
+
+
+def _run(path):
+    subprocess.run([sys.executable, os.path.basename(path)], cwd=os.path.dirname(path),
+                   capture_output=True, timeout=180)
 
 
 def _git_pull_loop():
@@ -26,14 +48,18 @@ def _git_pull_loop():
         time.sleep(180)
         try:
             subprocess.run(["git", "-C", REPO, "pull", "--ff-only"], capture_output=True, timeout=60)
-            # 봇 동기화: repo의 test_Rauto1.py가 바뀌면 C:\Rauto1로 복사 후 1회 실행(state.json 갱신)
-            if BOT_SRC and os.path.exists(BOT_SRC):
-                a = open(BOT_SRC, "rb").read()
-                b = open(BOT_DST, "rb").read() if os.path.exists(BOT_DST) else b""
-                if a != b:
-                    shutil.copy2(BOT_SRC, BOT_DST)
-                    subprocess.run([sys.executable, "test_Rauto1.py"], cwd=os.path.dirname(BOT_DST),
-                                   capture_output=True, timeout=180)
+            # Rauto1(성급): 러너 바뀌면 C:\Rauto1로 복사+실행(state.json 갱신)
+            if _changed(BOT_SRC, BOT_DST):
+                _run(BOT_DST)
+            # Rauto2(성급왕 페이퍼): bots를 Rauto1에서 부트스트랩 + king봇·러너 동기화 후 실행 → 대시보드 R2 자동
+            if R2_SRC and os.path.exists(R2_SRC):
+                r2b = r"C:\Rauto2\bots"
+                if not os.path.isdir(r2b) and os.path.isdir(r"C:\Rauto1\bots"):
+                    shutil.copytree(r"C:\Rauto1\bots", r2b)
+                ck = _changed(R2_KING_SRC, os.path.join(r2b, "bot_trendstack_impatient_king.py"))
+                cr = _changed(R2_SRC, R2_DST)
+                if ck or cr:
+                    _run(R2_DST)
         except Exception:
             pass
 
