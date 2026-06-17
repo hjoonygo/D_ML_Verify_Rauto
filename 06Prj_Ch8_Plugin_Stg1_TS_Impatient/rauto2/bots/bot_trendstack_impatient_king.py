@@ -23,12 +23,22 @@ from bot_trendstack_impatient import TrendStackImpatientBot
 from rauto_contract import Signal, Action, Side
 
 
+GRID_ANCHOR = pd.Timestamp("2023-05-01 00:00:00")   # 백테 resample 그리드 원점(Merged_Data 첫날 자정)
+
+
 class TrendStackImpatientKingBot(TrendStackImpatientBot):
-    META = {"name": "TrendStack_KING", "version": "impatient-king-v1",
+    META = {"name": "TrendStack_KING", "version": "impatient-king-v2",
             "timeframe": "7h + 1m SL guard", "needs": ["oi", "volume"],
             "engine": "SpTrd_Fib_V1_Champion(1:1)",
             "sizing": "POC/dev(OPVnN)+feat_struct8, self-contained",
             "fork": "impatient entry + 1m intrabar SL guard"}
+
+    # ★봉경계 핀고정: 7H(420)를 백테 resample(첫날자정 원점)과 동일 그리드로 버킷팅
+    #   → 라이브 on_bar 7H봉 = 백테 resample 7H봉 일치(live≡replay 복원). 4H(240)는 epoch=start_day 일치라 부모 그대로.
+    def _bucket(self, ts, width):
+        if width == BUCKET_7H:
+            return int((pd.Timestamp(ts).value - GRID_ANCHOR.value) // (width * 60_000_000_000))
+        return super()._bucket(ts, width)
 
     def on_init(self, ctx=None):
         super().on_init(ctx)
@@ -41,7 +51,7 @@ class TrendStackImpatientKingBot(TrendStackImpatientBot):
     def _step(self, i, arr, sig, dz_oi, eh):
         ev = super()._step(i, arr, sig, dz_oi, eh)
         if ev is not None and ev[0] == 'ENTER' and self._cooldown_bucket is not None:
-            bucket = int(pd.Timestamp(arr['idx'][i]).value // 60_000_000_000) // BUCKET_7H
+            bucket = self._bucket(arr['idx'][i], BUCKET_7H)   # 앵커(핀고정) 버킷 — _cooldown_bucket과 동일 방식
             if bucket == self._cooldown_bucket:
                 self.pos = 0; self.entry_price = np.nan; self.entry_i = -1
                 self.sl = np.nan; self.pb = 0
