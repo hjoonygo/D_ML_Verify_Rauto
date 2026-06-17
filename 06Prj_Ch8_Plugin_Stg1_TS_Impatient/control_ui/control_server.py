@@ -23,6 +23,11 @@ BOT_DST = r"C:\Rauto1\test_Rauto1.py"
 R2_SRC = os.path.join(_P, "rauto2", "test_Rauto2.py") if REPO else ""
 R2_DST = r"C:\Rauto2\test_Rauto2.py"
 R2_KING_SRC = os.path.join(_P, "rauto2", "bots", "bot_trendstack_impatient_king.py") if REPO else ""
+DUAL_RUNNER_SRC = os.path.join(_P, "rauto3", "test_dual_runner.py") if REPO else ""
+DUAL_BOTS_SRC = os.path.join(_P, "rauto3", "bots") if REPO else ""
+# (폴더, DUAL_SLOT, 전략명, k, er, w) — R3 최적듀얼 / R4 최고Calmar듀얼. 둘 다 페이퍼·champ=0(챔피언은 R2)
+DUAL_SLOTS = [("Rauto3", "R3", "최적듀얼", "1.1", "0.40", "0.0"),
+              ("Rauto4", "R4", "최고Calmar듀얼", "1.4", "0.40", "0.0")]
 
 
 def _changed(src, dst):
@@ -43,6 +48,12 @@ def _run(path):
                    capture_output=True, timeout=180)
 
 
+def _run_env(path, env):
+    e = dict(os.environ); e.update(env)
+    subprocess.run([sys.executable, os.path.basename(path)], cwd=os.path.dirname(path),
+                   env=e, capture_output=True, timeout=240)
+
+
 def _git_pull_loop():
     while True:
         time.sleep(180)
@@ -60,6 +71,18 @@ def _git_pull_loop():
                 cr = _changed(R2_SRC, R2_DST)
                 if ck or cr:
                     _run(R2_DST)
+            # Rauto3/4(듀얼 페이퍼): repo rauto3/bots 부트스트랩 + 러너 동기화 후 env로 실행 → 대시보드 R3·R4 자동
+            if DUAL_RUNNER_SRC and os.path.exists(DUAL_RUNNER_SRC):
+                for folder, slot, strat, k, er, w in DUAL_SLOTS:
+                    base = "C:\\" + folder; bots = os.path.join(base, "bots")
+                    if not os.path.isdir(bots) and os.path.isdir(DUAL_BOTS_SRC):
+                        shutil.copytree(DUAL_BOTS_SRC, bots)
+                    rk = _changed(R2_KING_SRC, os.path.join(bots, "bot_trendstack_impatient_king.py"))
+                    runner = os.path.join(base, "test_dual_runner.py")
+                    cr2 = _changed(DUAL_RUNNER_SRC, runner)
+                    if rk or cr2 or not os.path.exists(os.path.join(base, "state.json")):
+                        _run_env(runner, {"DUAL_SLOT": slot, "DUAL_STRAT": strat, "DUAL_K": k,
+                                          "DUAL_ER": er, "DUAL_W": w, "DUAL_CHAMP": "0"})
         except Exception:
             pass
 

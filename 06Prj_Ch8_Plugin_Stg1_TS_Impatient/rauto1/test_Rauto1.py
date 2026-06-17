@@ -225,7 +225,7 @@ def main():
                  "trade_cost": None, "profit_net": None, "withdraw": None,
                  "seed_topup": None, "other_cost": None},
         "updated": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "slots": [{"name": f"{SLOT}·{STRAT}", "side": sd, "pnl": upnl, "champ": True, "kind": "추세",
+        "slots": [{"name": f"{SLOT}·{STRAT}", "side": sd, "pnl": upnl, "champ": False, "kind": "추세",
                    "status": "보유" if open_now else "대기",
                    "entry": round(float(bot.entry_price), 2) if open_now else None,
                    "trades": len(bot._trades), "bal": round(acct.bal, 2),
