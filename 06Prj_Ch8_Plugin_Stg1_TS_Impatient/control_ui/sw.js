@@ -1,5 +1,5 @@
 /* Rauto Control PWA service worker — 셸 캐시(오프라인) + state.json은 항상 네트워크 우선 */
-const CACHE = 'rauto-v20';  // b20: 마커 near()+클램프 = 십자가 항상 캔들에 붙음(이탈 0), Y축 캔들범위만
+const CACHE = 'rauto-v21';  // b21: 차트 패닝(터치드래그·휠·Ctrl휠줌·더블탭복귀) 데이터 전구간
 const SHELL = ['./control_dashboard.html', './manifest.json', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', (e) => {

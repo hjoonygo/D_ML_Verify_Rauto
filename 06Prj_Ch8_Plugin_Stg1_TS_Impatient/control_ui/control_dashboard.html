@@ -104,7 +104,7 @@
     <button class="emerg" onclick="openEmerg()">⚠ 긴급상황</button>
 
     <div class="panel">
-      <div class="ph"><span>차트 · 체결 (UTC) <span style="color:#5a6472;font-size:10px;font-weight:400">b20</span></span><span id="dauto" class="conn" style="background:var(--grnbg);color:#5fd3a0">● Dauto</span></div>
+      <div class="ph"><span>차트 · 체결 (UTC) <span style="color:#5a6472;font-size:10px;font-weight:400">b21</span></span><span id="dauto" class="conn" style="background:var(--grnbg);color:#5fd3a0">● Dauto</span></div>
       <div class="tabs">
         <span class="tab" data-tf="15">15m</span><span class="tab" data-tf="60">1H</span><span class="tab on" data-tf="240">4H</span><span class="tab" data-tf="1440">1D</span>
         <span style="flex:1"></span>
@@ -226,6 +226,7 @@
    new TradingView.widget({symbol:"BINANCE:BTCUSDT.P",interval:"60",container_id:"tvbox",autosize:true,theme:"dark",style:"1",locale:"kr",hide_top_toolbar:false,studies:["STD;EMA"],timezone:"Etc/UTC"});}
  // ── 자체 체결 차트(캔들+TF+진입/청산마커+십자선, UTC) ──
  var CTF=240, CHEMA=true, TVmode=false, CHSLOT=null, CHCR=null;
+ var CHOFF=0, CHN=110;   // CHOFF=오른쪽끝을 최신에서 왼쪽으로 민 캔들 수(0=최신), CHN=한 화면 캔들 수(Ctrl+휠 줌)
  function aggPx(px,m){ if(!px||!px.length)return []; var out=[],cur=null,sp=m*60000;
    for(var j=0;j<px.length;j++){var d=px[j],bt=Math.floor(d[0]/sp)*sp;
      if(!cur||cur.t!==bt){cur={t:bt,o:d[1],h:d[2],l:d[3],c:d[4]};out.push(cur);}
@@ -242,7 +243,10 @@
    var g=cv.getContext('2d'); g.clearRect(0,0,cw,ch);
    var px=CHSLOT&&CHSLOT.px;
    if(!px||!px.length){g.fillStyle='#6b7480';g.font='12px sans-serif';g.textAlign='center';g.fillText('가격 데이터 없음',cw/2,ch/2);return;}
-   var all=aggPx(px,CTF),vis=all.slice(-110),SP=CTF*60000,T0=vis[0].t,T1=vis[vis.length-1].t+SP;
+   var all=aggPx(px,CTF),SP=CTF*60000;                          // 패닝: all 전체 중 [end-N, end) 창만 표시
+   var N=Math.min(CHN,all.length||1),maxOff=Math.max(0,all.length-N);
+   if(CHOFF<0)CHOFF=0; if(CHOFF>maxOff)CHOFF=maxOff;            // 데이터 있는 구간 밖으론 못 넘어감
+   var end=all.length-CHOFF,vis=all.slice(end-N,end),T0=vis[0].t,T1=vis[vis.length-1].t+SP;
    var padR=50,padB=26,padT=8,padL=4,n=vis.length,CW=(cw-padR-padL)/n;
    var lo=1e18,hi=-1e18; vis.forEach(function(d){lo=Math.min(lo,d.l);hi=Math.max(hi,d.h);});
    var trades=(CHSLOT.trd||[]).filter(function(tr){return tr.xt>=T0&&tr.et<T1;});
@@ -283,14 +287,34 @@
    if(CHCR){g.strokeStyle='#5a6472';g.setLineDash([3,3]);g.beginPath();g.moveTo(CHCR.x,padT);g.lineTo(CHCR.x,ch-padB);g.moveTo(padL,CHCR.y);g.lineTo(cw-padR,CHCR.y);g.stroke();g.setLineDash([]);
      g.fillStyle='#2a3340';g.fillRect(CHCR.x-19,ch-padB+1,38,14);g.fillStyle='#e6edf3';g.font='bold 9px sans-serif';g.textAlign='center';g.fillText(hhmm(CHCR.t),CHCR.x,ch-padB+11);
      if(CHCR.y>padT&&CHCR.y<ch-padB){var pr=hi-(CHCR.y-padT)/(ch-padB-padT)*rng;g.fillStyle='#2a3340';g.fillRect(cw-padR,CHCR.y-7,50,14);g.fillStyle='#e6edf3';g.textAlign='left';g.fillText(pr.toFixed(0),cw-padR+3,CHCR.y+3);}}
+   if(CHOFF>0){g.fillStyle='rgba(42,51,64,0.85)';g.fillRect(padL+2,padT+2,150,14);   // 과거 보는 중 안내
+     g.fillStyle='#e6edf3';g.font='9px sans-serif';g.textAlign='left';g.fillText('◀ 과거 '+CHOFF+'봉 · 더블탭=최신',padL+6,padT+12);}
    cv._meta={vis:vis,pxi:pxi,CW:CW,padL:padL,n:n};}
  (function(){var cv=document.getElementById('cchart');
-   if(cv){cv.addEventListener('mousemove',function(e){var m=cv._meta;if(!m)return;var rc=cv.getBoundingClientRect(),sx=cv.width/rc.width,sy=cv.height/rc.height;
-     var mx=(e.clientX-rc.left)*sx,my=(e.clientY-rc.top)*sy;var i=Math.round((mx-m.padL)/m.CW-0.5);i=Math.max(0,Math.min(m.n-1,i));var d=m.vis[i];
-     document.getElementById('rdbox').textContent='O '+d.o.toFixed(0)+' H '+d.h.toFixed(0)+' L '+d.l.toFixed(0)+' C '+d.c.toFixed(0);CHCR={x:m.pxi(i),t:d.t,y:my};drawChart();});
-   cv.addEventListener('mouseleave',function(){CHCR=null;drawChart();});}
+   var DRAG=null;   // 드래그 패닝 상태({x:시작화면X, off:시작CHOFF})
+   function panTo(curClientX){var m=cv._meta;if(!m||!DRAG)return;var rc=cv.getBoundingClientRect(),sx=cv.width/rc.width;
+     var dc=Math.round((curClientX-DRAG.x)*sx/m.CW);CHOFF=DRAG.off+dc;drawChart();}   // 오른쪽으로 끌면 과거(CHOFF↑)
+   if(cv){
+     cv.addEventListener('mousedown',function(e){if(!cv._meta)return;DRAG={x:e.clientX,off:CHOFF};CHCR=null;});
+     window.addEventListener('mouseup',function(){DRAG=null;});
+     cv.addEventListener('mousemove',function(e){var m=cv._meta;if(!m)return;
+       if(DRAG){panTo(e.clientX);return;}
+       var rc=cv.getBoundingClientRect(),sx=cv.width/rc.width,sy=cv.height/rc.height;
+       var mx=(e.clientX-rc.left)*sx,my=(e.clientY-rc.top)*sy;var i=Math.round((mx-m.padL)/m.CW-0.5);i=Math.max(0,Math.min(m.n-1,i));var d=m.vis[i];
+       document.getElementById('rdbox').textContent='O '+d.o.toFixed(0)+' H '+d.h.toFixed(0)+' L '+d.l.toFixed(0)+' C '+d.c.toFixed(0);CHCR={x:m.pxi(i),t:d.t,y:my};drawChart();});
+     cv.addEventListener('mouseleave',function(){if(!DRAG){CHCR=null;drawChart();}});
+     // 터치: 1손가락 드래그=패닝(2손가락 핀치는 브라우저 페이지줌 유지)
+     cv.addEventListener('touchstart',function(e){if(!cv._meta||e.touches.length!==1)return;DRAG={x:e.touches[0].clientX,off:CHOFF};CHCR=null;},{passive:true});
+     cv.addEventListener('touchmove',function(e){if(!DRAG||e.touches.length!==1)return;panTo(e.touches[0].clientX);e.preventDefault();},{passive:false});
+     cv.addEventListener('touchend',function(){DRAG=null;});
+     // 휠=좌우 패닝, Ctrl+휠=시간 줌(보이는 캔들 수)
+     cv.addEventListener('wheel',function(e){if(!cv._meta)return;e.preventDefault();
+       if(e.ctrlKey){CHN=Math.max(20,Math.min(400,CHN+(e.deltaY>0?12:-12)));}
+       else{CHOFF=CHOFF+(e.deltaY>0?5:-5);}drawChart();},{passive:false});
+     cv.addEventListener('dblclick',function(){CHOFF=0;CHN=110;drawChart();});   // 더블클릭/탭=최신으로 복귀
+   }
    document.querySelectorAll('.tabs .tab[data-tf]').forEach(function(b){b.addEventListener('click',function(){TVmode=false;
-     document.querySelectorAll('.tabs .tab[data-tf]').forEach(function(z){z.classList.remove('on');});b.classList.add('on');CTF=+b.getAttribute('data-tf');showChart();});});
+     document.querySelectorAll('.tabs .tab[data-tf]').forEach(function(z){z.classList.remove('on');});b.classList.add('on');CTF=+b.getAttribute('data-tf');CHOFF=0;showChart();});});
    var et=document.getElementById('emaTab');if(et)et.addEventListener('click',function(){CHEMA=!CHEMA;et.classList.toggle('on',CHEMA);if(!TVmode)drawChart();});
    var tt=document.getElementById('tvTab');if(tt)tt.addEventListener('click',function(){TVmode=!TVmode;tt.classList.toggle('on',TVmode);showChart();});
    window.addEventListener('resize',function(){if(!TVmode)drawChart();});})();
@@ -360,7 +384,7 @@
      if(x.status==='예약')d.style.opacity=.45;
      // 길게눌러 선택(플릭=스크롤, ≥450ms 홀드=진동+선택). 짧은 탭/플릭은 선택 안 함.
      function doSel(){SEL=x.name;document.getElementById('cBot').disabled=false;document.getElementById('cFlat').disabled=(x.status!=='보유');renderCmp(st);
-       box.querySelectorAll('.slot').forEach(e=>e.classList.remove('sel'));d.classList.add('sel');CHSLOT=x;if(!TVmode)drawChart();}
+       box.querySelectorAll('.slot').forEach(e=>e.classList.remove('sel'));d.classList.add('sel');CHSLOT=x;CHOFF=0;if(!TVmode)drawChart();}
      var _pt=null,_sy=0,_base=(x.status==='예약'?'0.45':'');
      d.addEventListener('pointerdown',function(ev){_sy=ev.clientY;d.style.opacity='0.6';
        _pt=setTimeout(function(){_pt=null;d.style.opacity=_base;doSel();feedback(35);},450);});
