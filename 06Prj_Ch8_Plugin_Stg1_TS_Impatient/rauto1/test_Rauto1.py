@@ -119,6 +119,7 @@ def main():
     last_close = float(dd['close'].iloc[-1])
     upnl = round(bot.pos * (last_close - bot.entry_price) / bot.entry_price * 100, 2) if (open_now and not np.isnan(bot.entry_price)) else 0.0
     sd = "L" if bot.pos == 1 else "S" if bot.pos == -1 else "-"
+    open_et = int(pd.Timestamp(bot._h7[bot.entry_i][0]).value // 1_000_000) if (open_now and 0 <= bot.entry_i < len(bot._h7)) else None
 
     # ── 분석 데이터(우측 비교존용): 장세별 PF·자산곡선·승률·손익비·기대값·연속손실 ──
     led = pd.DataFrame(ledger)
@@ -227,7 +228,7 @@ def main():
         "updated": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "slots": [{"name": f"{SLOT}·{STRAT}", "side": sd, "pnl": upnl, "champ": False, "kind": "추세",
                    "status": "보유" if open_now else "대기",
-                   "entry": round(float(bot.entry_price), 2) if open_now else None,
+                   "entry": round(float(bot.entry_price), 2) if open_now else None, "open_et": open_et,
                    "trades": len(bot._trades), "bal": round(acct.bal, 2),
                    "ret": round(ret, 1), "mdd": round(mdd, 1), "equity": equity, "eqt": eqt, "reg": reg,
                    "winrate": winrate, "payoff": payoff, "expect": expect, "consec": consec, "pf": pf_all,

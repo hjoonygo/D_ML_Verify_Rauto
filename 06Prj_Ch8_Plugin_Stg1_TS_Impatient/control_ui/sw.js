@@ -1,5 +1,5 @@
 /* Rauto Control PWA service worker — 셸 캐시(오프라인) + state.json은 항상 네트워크 우선 */
-const CACHE = 'rauto-v22';  // b22: 체결 품질 분석 패널(방향편향·수익집중·백테vs실시간·국면, 폰서 바로)
+const CACHE = 'rauto-v23';  // b23: 진입 깜빡십자가 + 실시간 현재가 챔피언 수익률(바이낸스 ticker)
 const SHELL = ['./control_dashboard.html', './manifest.json', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', (e) => {

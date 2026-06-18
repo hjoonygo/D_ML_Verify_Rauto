@@ -116,7 +116,7 @@ def main():
                       "profit_net": None, "withdraw": None, "seed_topup": None, "other_cost": None},
              "updated": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
              "slots": [{"name": f"{SLOT}·{STRAT}", "side": ("S" if king.pos == -1 else "L" if king.pos == 1 else "-"),
-                        "pnl": 0.0, "champ": CHAMP, "kind": "듀얼", "status": "보유" if king.pos != 0 else "대기",
+                        "pnl": 0.0, "champ": CHAMP, "kind": "듀얼", "status": "보유" if king.pos != 0 else "대기", "open_et": (int(pd.Timestamp(king._h7[king.entry_i][0]).value // 1_000_000) if (king.pos != 0 and 0 <= king.entry_i < len(king._h7)) else None),
                         "entry": None, "trades": len(king._trades) + len(sw.trades), "bal": round(bal, 2),
                         "ret": round(ret, 1), "mdd": round(mdd, 1), "equity": equity, "eqt": eqt,
                         "reg": {"up": None, "down": None, "range": None}, "winrate": wr, "payoff": None,
