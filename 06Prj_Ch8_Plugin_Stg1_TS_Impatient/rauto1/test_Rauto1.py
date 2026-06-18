@@ -119,7 +119,20 @@ def main():
     last_close = float(dd['close'].iloc[-1])
     upnl = round(bot.pos * (last_close - bot.entry_price) / bot.entry_price * 100, 2) if (open_now and not np.isnan(bot.entry_price)) else 0.0
     sd = "L" if bot.pos == 1 else "S" if bot.pos == -1 else "-"
-    open_et = int(pd.Timestamp(bot._h7[bot.entry_i][0]).value // 1_000_000) if (open_now and 0 <= bot.entry_i < len(bot._h7)) else None
+    ddw = dd[['ts_utc', 'high', 'low', 'close']]
+    def _ms(t): return int(pd.Timestamp(t).value // 1_000_000)
+    def _fillms(bar_t, price, win_start=None):   # 봇 7H봉 라벨 → 실제 체결 분(가격이 [저~고] 지난, bar_t에 최근). 진입십자·ㄱ자 마커 정렬용.
+        p = float(price); tgt = pd.Timestamp(bar_t)
+        t0 = pd.Timestamp(win_start) if win_start is not None else tgt
+        seg = ddw[(ddw.ts_utc >= t0) & (ddw.ts_utc <= tgt + pd.Timedelta(hours=8))]
+        if not len(seg):
+            return _ms(bar_t)
+        hit = seg[(seg.low <= p) & (seg.high >= p)]
+        ts = hit.ts_utc.iloc[(hit.ts_utc - tgt).abs().values.argmin()] if len(hit) else seg.loc[(seg.close - p).abs().idxmin(), 'ts_utc']
+        return _ms(ts)
+    # ★진입십자(열린 포지션)도 닫힌 거래(trd)와 동일하게 실제 체결 분으로 보정 → 15m/1H/4H 전부 캔들 정렬.
+    #   (구 버그: 7H봉 '시작' 라벨이라 진짜 진입(봉마감, ~7h 뒤)보다 일찍 찍힘 → 봉 좁은 15m/1H서 어긋남, 4H는 가려짐)
+    open_et = _fillms(bot._h7[bot.entry_i][0], bot.entry_price) if (open_now and 0 <= bot.entry_i < len(bot._h7) and not np.isnan(bot.entry_price)) else None
 
     # ── 분석 데이터(우측 비교존용): 장세별 PF·자산곡선·승률·손익비·기대값·연속손실 ──
     led = pd.DataFrame(ledger)
@@ -163,24 +176,7 @@ def main():
                     reg[k] = _pf(sub)
         except Exception:
             pass
-        # 체결 표시(차트용): 거래별 진입→청산 ㄱ자. ★et/xt = "실제 체결 분(分) 시각"을 1m에서 역산
-        #   (봇 entry_t/exit_t는 7H봉 라벨이라 체결가와 시각이 어긋남 → 1m close가 체결가에 가장 가까운 분을 찾아 시각 보정)
-        def _ms(t): return int(pd.Timestamp(t).value // 1_000_000)
-        ddw = dd[['ts_utc', 'high', 'low', 'close']]
-        def _fillms(bar_t, price, win_start=None):
-            # win_start~(bar_t+8h) 안에서 그 가격이 봉 [저~고]를 지난 1분 중 bar_t에 가장 가까운 시각.
-            # (청산가는 보유 중 더 낮/높았던 시점값이라 윈도를 진입~청산으로 넓혀 찾음)
-            p = float(price); tgt = pd.Timestamp(bar_t)
-            t0 = pd.Timestamp(win_start) if win_start is not None else tgt
-            seg = ddw[(ddw.ts_utc >= t0) & (ddw.ts_utc <= tgt + pd.Timedelta(hours=8))]
-            if not len(seg):
-                return _ms(bar_t)
-            hit = seg[(seg.low <= p) & (seg.high >= p)]
-            if len(hit):
-                ts = hit.ts_utc.iloc[(hit.ts_utc - tgt).abs().values.argmin()]
-            else:
-                ts = seg.loc[(seg.close - p).abs().idxmin(), 'ts_utc']
-            return int(pd.Timestamp(ts).value // 1_000_000)
+        # 체결 표시(차트용): 거래별 진입→청산 ㄱ자. et/xt = 실제 체결 분(_fillms, 위에서 정의). 진입십자와 동일 로직.
         for _, rr in led.iterrows():
             sdn = "L" if int(rr['side']) == 1 else "S"
             trades.append({"et": _fillms(rr['entry_t'], rr['entry_px']), "ep": float(rr['entry_px']),

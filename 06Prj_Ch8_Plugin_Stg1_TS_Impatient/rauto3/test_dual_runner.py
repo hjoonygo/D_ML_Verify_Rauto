@@ -80,15 +80,26 @@ def main():
     ret = (port[-1] / 20000.0 - 1) * 100
     bal = float(port[-1])
     # 합산 거래목록(차트 마커): king + SW
+    # et/xt = 실제 체결 분(_fillms, 7H봉 라벨→1m 역산) → 15m/1H/4H 캔들 정렬. (구: raw _ms 봉라벨이라 어긋남)
     def _ms(t): return int(pd.Timestamp(t).value // 1_000_000)
+    ddw = dd[['ts_utc', 'high', 'low', 'close']]
+    def _fillms(bar_t, price, win_start=None):
+        p = float(price); tgt = pd.Timestamp(bar_t)
+        t0 = pd.Timestamp(win_start) if win_start is not None else tgt
+        seg = ddw[(ddw.ts_utc >= t0) & (ddw.ts_utc <= tgt + pd.Timedelta(hours=8))]
+        if not len(seg):
+            return _ms(bar_t)
+        hit = seg[(seg.low <= p) & (seg.high >= p)]
+        ts = hit.ts_utc.iloc[(hit.ts_utc - tgt).abs().values.argmin()] if len(hit) else seg.loc[(seg.close - p).abs().idxmin(), 'ts_utc']
+        return _ms(ts)
     trd = []
     for t in king._trades:
-        trd.append({"et": _ms(t['entry_t']), "ep": float(t['entry']), "xt": _ms(t['exit_t']),
+        trd.append({"et": _fillms(t['entry_t'], t['entry']), "ep": float(t['entry']), "xt": _fillms(t['exit_t'], t['exit'], t['entry_t']),
                     "xp": float(t['exit']), "side": "L" if int(t['side']) == 1 else "S",
                     "pnl": round(float(t['R']) * 100, 1)})
     for t in sw.trades:
         R = int(t['side']) * (float(t['exit']) - float(t['entry'])) / float(t['entry']) - SW_COST
-        trd.append({"et": _ms(t['entry_t']), "ep": float(t['entry']), "xt": _ms(t['exit_t']),
+        trd.append({"et": _fillms(t['entry_t'], t['entry']), "ep": float(t['entry']), "xt": _fillms(t['exit_t'], t['exit'], t['entry_t']),
                     "xp": float(t['exit']), "side": ("L" if int(t['side']) == 1 else "S") + "·SW",
                     "pnl": round(R * 100, 1)})
     # 합산 거래성과(품질)
@@ -116,8 +127,8 @@ def main():
                       "profit_net": None, "withdraw": None, "seed_topup": None, "other_cost": None},
              "updated": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
              "slots": [{"name": f"{SLOT}·{STRAT}", "side": ("S" if king.pos == -1 else "L" if king.pos == 1 else "-"),
-                        "pnl": 0.0, "champ": CHAMP, "kind": "듀얼", "status": "보유" if king.pos != 0 else "대기", "open_et": (int(pd.Timestamp(king._h7[king.entry_i][0]).value // 1_000_000) if (king.pos != 0 and 0 <= king.entry_i < len(king._h7)) else None),
-                        "entry": None, "trades": len(king._trades) + len(sw.trades), "bal": round(bal, 2),
+                        "pnl": 0.0, "champ": CHAMP, "kind": "듀얼", "status": "보유" if king.pos != 0 else "대기", "open_et": (_fillms(king._h7[king.entry_i][0], king.entry_price) if (king.pos != 0 and 0 <= king.entry_i < len(king._h7) and not np.isnan(king.entry_price)) else None),
+                        "entry": (round(float(king.entry_price), 2) if (king.pos != 0 and not np.isnan(king.entry_price)) else None), "trades": len(king._trades) + len(sw.trades), "bal": round(bal, 2),
                         "ret": round(ret, 1), "mdd": round(mdd, 1), "equity": equity, "eqt": eqt,
                         "reg": {"up": None, "down": None, "range": None}, "winrate": wr, "payoff": None,
                         "expect": None, "consec": 0, "pf": pf, "px": px, "trd": trd, "wk": None}]}

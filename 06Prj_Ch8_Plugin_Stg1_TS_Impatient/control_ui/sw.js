@@ -1,5 +1,5 @@
 /* Rauto Control PWA service worker — 셸 캐시(오프라인) + state.json은 항상 네트워크 우선 */
-const CACHE = 'rauto-v24';  // b24: 챔피언 2줄(진입가/현재가·실거래OFF·수익률) + 흰십자 항상보임(펄스)
+const CACHE = 'rauto-v25';  // b25: 진입십자·ㄱ자마커 시각보정(open_et/trd=체결분, 전 TF 캔들정렬) + 15m x축 hh:mm + 듀얼 entry표시
 const SHELL = ['./control_dashboard.html', './manifest.json', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', (e) => {
