@@ -1,0 +1,13 @@
+[1;33mThank you for using SmartMoneyConcepts! ⭐ Please show your support by giving a star on the GitHub repository: [4;34mhttps://github.com/joshyattridge/smart-money-concepts[0m
+data 1578240 rows 2023-05-01 00:00:00~2026-04-30 23:59:00
+
+[v2] {'FF_LONG': 2, 'FF_SHORT': None, 'HALT_ENTRY': True}
+   $977,324 (+9673%) MDD-17.0% 거래645 승률35% PF1.92 손익비3.63
+   연도 2023:+163% 2024:+194% 2025:+483% 2026:+116%
+   롱숏 long:+801% short:+984%   reasons={'sl_intrabar': 638, 'ff': 6, 'trend_flip': 1}
+[v3] {'FF_LONG': 1, 'FF_SHORT': 1, 'HALT_ENTRY': True}
+   $748,425 (+7384%) MDD-17.5% 거래651 승률35% PF1.87 손익비3.50
+   연도 2023:+161% 2024:+168% 2025:+425% 2026:+104%
+   롱숏 long:+837% short:+698%   reasons={'sl_intrabar': 622, 'ff': 28, 'trend_flip': 1}
+
+※ off는 king(+11397%/MDD-17.3%/668거래)과 동일해야 정상(동치 자가검증).

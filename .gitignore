@@ -3,3 +3,10 @@
 *.html
 *.log
 __pycache__/
+
+.claude/
+/memory/
+00WorkHstr/Claude_Restore_Kit_BeforeFormat_20260621/
+
+*.parquet
+_v80k_out_12mo.txt

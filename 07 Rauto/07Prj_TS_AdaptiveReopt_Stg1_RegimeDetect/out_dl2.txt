@@ -1,0 +1,9 @@
+=== funding rate ===
+  BTCUSDT: 5931행 → funding_BTCUSDT.csv
+  ETHUSDT: 5931행 → funding_ETHUSDT.csv
+  SOLUSDT: 6006행 → funding_SOLUSDT.csv
+=== 4H klines ===
+  ETHUSDT: 11862행 → klines_ETHUSDT_4h.csv
+  SOLUSDT: 11832행 → klines_SOLUSDT_4h.csv
+  BNBUSDT: 11862행 → klines_BNBUSDT_4h.csv
+DONE aux data

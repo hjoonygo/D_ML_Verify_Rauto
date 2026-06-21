@@ -1,0 +1,21 @@
+[PautoV80k] 📊 데이터 로드: D:/ML/Verify/_v80k_recent_1mo.csv
+[PautoV80k]    47,700봉 / 워밍업: 4500
+[PautoV80k] 🧠 모듈 로드: R=R_ML_V80k_3balancedTBM_R001, P=P_ML_V80k_3balancedTBM_R001, E=E_ML_V80k_3balancedTBM_R001
+[PautoV80k] ▶ 백테 시작 (워밍업 4500봉 후)
+[R_ML_V80k] ✅ Regime v6 로드 완료
+[P_ML_V80k] ✅ TBM_BULL_v2 로드
+[P_ML_V80k] ✅ TBM_CHOP_v2 로드
+[P_ML_V80k] ✅ TBM_BEAR_v2 로드
+[PautoV80k]   봉 10,000/47,700 (21.0%) | capital $9513.99 | wallet $0.00 | realized $-486.01
+[PautoV80k]   봉 20,000/47,700 (41.9%) | capital $7324.35 | wallet $0.00 | realized $-2675.65
+[PautoV80k]   봉 30,000/47,700 (62.9%) | capital $5582.95 | wallet $0.00 | realized $-4417.05
+[PautoV80k]   봉 40,000/47,700 (83.9%) | capital $5042.08 | wallet $0.00 | realized $-4957.92
+[PautoV80k] ✅ 완료 (2430.6초)
+
+[결과 요약]
+  진입: 68건 / 청산: 77건
+  최종 자본: $4,677.02
+  현물 지갑: $0.00
+  총 equity: $4,677.02
+  실현 PnL: $-5,322.98 (-53.23%)
+  거래 로그: G:\내 드라이브\00AI개발지식DB\자산관리\유동자산\자동매매\01 PlugIn 기능모듈\G_Rauto\Rauto_v80k_verify_21fullset\PautoV80k_trades_R_ML_V80k_3balancedTBM_R001.csv

@@ -1,0 +1,57 @@
+================================================================================
+Rauto 라이브 운영 마스터 계획 (Opus×ChatGPT 토론 종결판) · 2026-06-19
+대원칙: 실거래 성공 = 전략 30% / 운영 상태머신 70%. 거래소 = 항상 진실(SoT).
+================================================================================
+
+[합의된 핵심 전환]
+- 연속손실 Halt → 폐기. 대신 Expectancy Drift Monitor(우리 봇 승률34/손익비3.7에 적합).
+- 재시작 = 로컬 state 버리고 거래소서 재구축. 불일치 = 등급별 대응(자동청산은 고아/반대만).
+- 가장 큰 위험 = 해킹 아님 → 주문엔진 사고(30%)·상태복구 사고(20%).
+
+────────────────────────────────────────────────────────────────────────────────
+[A. LiveExecutor 아키텍처 — 최종]
+  MarketData → Signal → Intent Log → Risk(하드캡) → State(recovery) → Order(멱등) → Exchange
+  + 독립 모듈: Reconciliation Engine (30~60초 주기) = Exchange vs Shadow Ledger vs Local 3자 비교
+
+  상태머신: INIT → SYNCING → {FLAT | OPEN} → ENTERING/EXITING → (HALTED | ERROR)
+  · HALTED Tier1 (신규진입 차단 · 청산/손절/익절 허용): Drift(Yellow/Orange)·WS끊김·REST실패
+  · HALTED Tier2 (전체 정지): 고아포지션·반대포지션·원장불일치·중복주문 의심
+  · 해제 = 자동 금지, /admin/unhalt 수동만(자동해제는 무한재시도 루프 위험).
+
+────────────────────────────────────────────────────────────────────────────────
+[B. 컴포넌트 — 구현 우선순위順]
+1) State Engine (Recovery)  ★최우선
+   재시작 시: positionRisk + openOrders + userTrades(72h) + income → 내부상태 재구축.
+   7H 저빈도(일 0.6건)라 '속도보다 보수성'. 트레일은 highest_price를 state저장+OHLC재계산.
+2) Order Engine (Idempotency)
+   clientOrderId 결정적 작명: 7H-{L/S}-{ENTRY/EXIT/SL}-{날짜}-{seq}. 청산도 멱등.
+   타임아웃 시: ★재주문 먼저 금지 → openOrders 조회 → 없을 때만 재주문.
+3) Intent Log
+   주문 전송 전 의도 기록(JSON: signal·size·reason·ts) → 사고 복구·감사.
+4) Shadow Ledger + Reconciliation Engine
+   내부원장(모든 체결 기록) vs 거래소원장, 30~60초 비교 → 불일치 HALT.
+   (7H봇은 거래 적어 원장 가벼움 = 저비용.)
+5) Risk Engine (하드캡 = 운영오류 탐지형)
+   레버 24(전략22 보존·버그만 차단) · 일일손실 -5%→HALT · 분당주문 5 · 미체결 3 · 슬립 0.5% ·
+   ★포지션 sanity: 실제 > 전략계산×1.1 → 즉시 HALT. 연속손실 캡 = 제거.
+6) Expectancy Drift Monitor (연속손실 대체)
+   최근 50~100거래 E[R]/PF를 36개월 분포와 비교. 트리거 = 36mo 하위밴드 이탈 '지속'.
+   ★우리 데이터 캘리브레이션: 롤링50 E[R] 음수는 정상서 1.3%뿐 → '롤50 E[R]<0 또는 PF<1.0이
+   K개창 연속' 을 이상신호로(전략보호 아닌 시장변화·코드버그 조기탐지). 단일창 dip은 무시(노이즈).
+
+   [5-tier Drift 등급]
+   Green=완전일치 / Yellow=수량차≤0.1%(알림) / Orange=0.1~2%(HALT Tier1) /
+   Red=고아포지션(자동Flatten+HALT Tier2) / Black=반대포지션(즉시Flatten·최우선).
+
+────────────────────────────────────────────────────────────────────────────────
+[C. 두 게이트 — MUST]
+지인 배포 전: RBAC(서버단 viewer→/cmd 403)·Bearer 인증·감사로그(90일)·PII마스킹(수익률공개·절대금액숨김)·토큰 폐기절차.
+7/1 실거래 전: 위 LiveExecutor 전체 + NSSM 서비스화(재시작30s·crash3알림·5중지·health6+) + 테스트넷 1일 + 초소액 스모크주문 + 거래소 서브계정 + API키(출금차단·IP화이트=Elastic IP).
+
+────────────────────────────────────────────────────────────────────────────────
+[D. 일정 — 지금 vs Work Order]
+지금(이번 세션 잔여): ① 이메일/텔레그램 b27 배포 ② Bot로딩 난독화(Nuitka/PyArmor 단일파일) ③ 슬롯청산 ④ RBAC+인증.
+Work Order(7/1 도쿄 실거래): LiveExecutor 구현(1→6順) · 도쿄 AWS+Elastic IP · NSSM · 테스트넷1일 · 초소액(300 USDT) 실거래.
+
+[과잉=스킵 합의] Hashicorp Vault·K8s·WAF·IDS/IPS·multi-region·HSM·HMAC·SIEM·EDR.
+================================================================================

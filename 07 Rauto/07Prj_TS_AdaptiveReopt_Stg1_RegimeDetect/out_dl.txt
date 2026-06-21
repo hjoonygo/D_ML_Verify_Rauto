@@ -1,0 +1,19 @@
+=== funding rate ===
+  BTCUSDT: 5931행 → funding_BTCUSDT.csv
+  ETHUSDT: 5931행 → funding_ETHUSDT.csv
+  SOLUSDT: 6006행 → funding_SOLUSDT.csv
+=== 4H klines ===
+Traceback (most recent call last):
+  File "D:\ML\Verify\07 Rauto\07Prj_TS_AdaptiveReopt_Stg1_RegimeDetect\download_aux_data.py", line 61, in <module>
+    n, fp = klines(s, "4h")
+            ^^^^^^^^^^^^^^^
+  File "D:\ML\Verify\07 Rauto\07Prj_TS_AdaptiveReopt_Stg1_RegimeDetect\download_aux_data.py", line 49, in klines
+    out = pd.concat(rows, ignore_index=True).drop_duplicates('open_time').sort_values('open_time')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hjoon\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\core\frame.py", line 7222, in sort_values
+    indexer = nargsort(
+              ^^^^^^^^^
+  File "C:\Users\hjoon\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\core\sorting.py", line 439, in nargsort
+    indexer = non_nan_idx[non_nans.argsort(kind=kind)]
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'str' and 'int'

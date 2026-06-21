@@ -1,0 +1,18 @@
+[1;33mThank you for using SmartMoneyConcepts! ⭐ Please show your support by giving a star on the GitHub repository: [4;34mhttps://github.com/joshyattridge/smart-money-concepts[0m
+data 1578240 2023-05-01 00:00:00~2026-04-30 23:59:00
+
+=== 전표본 (PaperAccount k1.0 lev22 5bp) ===
+  [off] +11397% MDD-17.3% PF1.90 승률34% 거래668 reasons={'sl_intrabar': 667, 'trend_flip': 1}
+  [rc_both] +14054% MDD-23.0% PF1.97 승률35% 거래658 reasons={'sl_intrabar': 657, 'trend_flip': 1}
+  [rc_long] +11110% MDD-17.0% PF1.91 승률34% 거래661 reasons={'sl_intrabar': 660, 'trend_flip': 1}
+
+=== CPCV 표준6(15경로) ===
+   비용   mode |       전표본       p25        최악        평균 | 판정
+  4bp    off |   +17098%    +2558%    +1991%    +3069% | PASS(견고)
+  4bp rc_both |   +20732%    +2744%    +1993%    +3592% | PASS(견고)
+  4bp rc_long |   +16509%    +2537%    +1816%    +2995% | PASS(견고)
+  8bp    off |   +12354%    +2043%    +1591%    +2455% | PASS(견고)
+  8bp rc_both |   +15184%    +2216%    +1612%    +2902% | PASS(견고)
+  8bp rc_long |   +12019%    +2037%    +1455%    +2408% | PASS(견고)
+
+※ off=king +11397%/MDD-17.3%/668 재현해야 정상. PQ와 달리 거래수/reason도 바뀜(손절거리 변경).

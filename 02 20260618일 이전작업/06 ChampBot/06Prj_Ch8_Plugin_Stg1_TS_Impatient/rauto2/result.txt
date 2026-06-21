@@ -1,0 +1,6 @@
+[R2] 성급왕TS 단독 | Dauto 1m 43281행(2026-05-12 10:31:00~2026-06-11 11:51:00) | OHLC결측 0 | oi_z 유한 42517
+[거래] 10건 | 잔고 $12,798.36 (+27.98%/MDD -3.23%) | 7h봉 103 | 갭 0 | 예외 0
+[동치] live≡replay(가드없는 vanilla): False — 성급왕은 1분 인트라바 손절가드로 vanilla replay와 의도적으로 다름(정상)
+[state] state.json 작성 | 보유=True side=S uPnL=0.42%
+
+VERDICT R2 성급왕TS 단독 | PASS — 예외0·동치False·거래10·잔고$12,798(+28.0%/MDD-3.2%) | state.json OK

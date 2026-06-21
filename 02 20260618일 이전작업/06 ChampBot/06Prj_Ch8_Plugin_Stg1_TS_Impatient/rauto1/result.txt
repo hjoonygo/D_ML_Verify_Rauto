@@ -1,0 +1,6 @@
+[R1] TS-성급 단독 | Dauto 1m 43281행(2026-05-12 10:31:00~2026-06-11 11:51:00) | OHLC결측 0 | oi_z 유한 42517
+[거래] 11건 | 잔고 $12,725.38 (+27.25%/MDD -1.64%) | 7h봉 103 | 갭 0 | 예외 0
+[동치] live≡replay: True
+[state] state.json 작성 | 보유=True side=S uPnL=0.33%
+
+VERDICT R1 TS-성급 단독 | PASS — 예외0·동치True·거래11·잔고$12,725(+27.3%/MDD-1.6%) | state.json OK
