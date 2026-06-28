@@ -30,7 +30,12 @@ def git(*a):
 
 
 def main():
-    git("fetch", "origin", "rfrauto")
+    # ★fetch 실패 감지(260629 사고: SYSTEM 계정 인증실패로 fetch가 옛 ref에 멈춤 → local==remote 오판 → 조용히 종료=로그0).
+    fr = git("fetch", "origin", "rfrauto")
+    if fr.returncode != 0:
+        log("FETCH FAIL (rc=%d): %s — ★SYSTEM 계정 GitHub 인증(PAT)/네트워크 점검. origin URL에 PAT 박거나 태스크를 사용자계정으로."
+            % (fr.returncode, (fr.stderr or "").strip()[:200]))
+        return
     local = git("rev-parse", "HEAD").stdout.strip()
     remote = git("rev-parse", "origin/rfrauto").stdout.strip()
     if not remote:

@@ -1,7 +1,16 @@
 STATE_Rauto — 압축 핸드오버 (Claude Code ↔ Claude AI 다리, §11 6칸)
-최종 세션 = 260627_02_OBOICharacter (2026-06-27)
+최종 세션 = 260628_02_LiqBrakePlugin (2026-06-29)
 
-═══ [260627_02_OBOICharacter] 6칸 (★최신 — 이 블록 먼저 읽기) ═══
+═══ [260628_02_LiqBrakePlugin] 6칸 (★최신 — 이 블록 먼저 읽기) ═══
+[1] 직전작업: 강제청산 슬리피지 브레이크 검증(Stg1~7)→★비상 안전장치1호 결정·모듈화(engines/emergency_brake.py 봇무관 PlugIn: worst_mae·시장급변동폭→강제청산0·갭관통0 안전레버 자동산출) + RevoiSafe@ETF 신설(노출3/lev15/증거금20%·예상월복리16.54%OOS·강제청산0) + champion_safety.py 챔피언 가산점(비상안전장치 동점 타이브레이커) + 수익률 라벨 강제hook(.claude/hooks/ret_label_guard.py·memory#6 재범방지). 캡틴 6지시 완료.
+[2] PASS: 무손상 앵커 +1851.6491% 전구간 재현. emergency_brake 자가테스트(강제청산0 lev17·갭관통0 lev14). 스모크 PASS. ★PC 8788 + AWS 본방 둘 다 RevoiSafe 11봇·챔피언=RevoiSafe@ETF 확인(폰 반영OK, push 2cac8ef).
+[3] 다음1수: ★AWS SYSTEM계정 git인증 영구해결(origin URL에 PAT 박기 or Rauto2Deploy 태스크 사용자계정전환) — 현재 SYSTEM fetch실패=무인배포 불가, 캡틴 수동 fetch/reset로만 반영(260629 사고). emergency_brake를 Rauto 결정두뇌 자동사이징에 연동. RevoiSafe CPCV표준6.
+[4] 미결: ★AWS autopull SYSTEM 인증(근본미해결, 캡틴 수동우회). autopull은 fetch실패 감지 패치함(다음 fetch때 deploy.log에 FETCH FAIL 로그). emergency_brake 자동연동 미완(현재 산출/진단만). 38mo데이터(12일갭+oi_zscore미완).
+[5] 알파변동: ★2진실 트레이드오프 — 정상장(역행-1~5%)=저레버 유리(수익무손실)/극단급락(롱-17% 2025-10)=고레버 손실cap(lev17 -16% vs lev3 -51%). RevoiSafe lev15=교집합. 캡틴 직관(강제청산 브레이크) 극단서 정확. 안전레버: 강제청산0 lev≤17·갭관통0 lev≤14(순간급변동 최악6.27%·36mo 4건·7%+0).
+[6] WorkOrder: emergency_brake 2호~(틱슬립·휩소·dd_cut). AWS SYSTEM인증 영구해결. RevoiSafe held-out/CPCV표준6. 다중알파+미시레짐 챔피언선발(최종목표). 산출=engines/emergency_brake.py·champion_safety.py·ret_guard.py · Key(260628_02_LiqBrakePlugin_Key_EmergencyBrake.md)·Guide_Emergency_brake.docx·CLAUDE§27·LogicCatalog D3/D7.
+═══════════════════════════════════════════════════════
+
+═══ [260627_02_OBOICharacter] 6칸 ═══
 [1] 직전작업: 캡틴 'OI 데이터로 OB(오더블록) 성격판별' 5단계 전수검증 → ★OB/OI 5중사망 + ★부수발견 본알파(REVoi 청산 COMBO). 토론 제미나이·ChatGPT(OI=에너지·Response→Magnitude·OB Character) 수렴, but 'OB생존85%'·'청산 무료데이터' 검증서 기각.
 [2] PASS/FAIL: PASS(무손상). BASE(tp0,early0) lev3 = +1851.6% 재현(엔진 early_tp 수정 무해). COMBO M20 = +98,018%/MDD−16.8%/강제청산0/승률71%/PF2.25 (lev4·증거금75). held-out test +902%(vs BASE +304%)·CPCV표준6 p25 +443%·§26 4단(M30 +1.35e7%@L7/M25 +2.67e6%@L6/M20 +98018%@L4·전구간 청산0)·Pine v6·사례6선·비용 gross_R 수정(순손익+$9.8M=무비용+$34.7M−총비용+$24.9M 정상).
    ★OB 5중사망: ①기저 zone69%=착시(추세편향기각·진입가기준 +10~12%p) ②OI가 OB돌파/저지 가르나 AUC0.50 무력·CVD=가격모멘텀중복 ③OB단독 1m+비용 적자(손익비0.74~0.88<1=stop갭) ④REVoi진입오버레이=레버효과(BASE_x1.34 +4513%>BOOST_near +4132%) ⑤REVoi청산오버레이=OB무관(FIX_1% +9785%>OB_TP +3741%).
