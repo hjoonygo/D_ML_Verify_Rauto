@@ -366,7 +366,7 @@ Binance BTC 선물 자동매매 시스템 Rauto(챔피언 아키텍처): TrendSt
 
 ## 27. ★신규 매매봇 Rauto2 등록·로딩·배포 체크리스트 (캡틴 지시 2026-06-29 — "장사 한두번 하나? 할때마다 똑같은 소리" 격노. 매번 같은 시행착오 차단 = 매뉴얼 박제. 신규봇 등록·로딩 시 이 순서를 '자동' 이행)
 - ★★핵심 반복실수 = **두 서버(PC dev + AWS 본방) 중 AWS 누락**. 폰이 보는 곳은 **AWS**다(`API=location.origin` — 연 주소가 곧 서버). PC만 재시작하면 폰엔 '안 뜸'. 매번 이걸로 시간 낭비 → 아래로 끝낸다.
-- **[1] 등록값 산출**: `veri_edge.nameplate`(예상 월복리 OOS·MDD·레짐별 REG_MONTHLY·강제청산) + ★무손상 앵커(+1851.6491%) 1원단위 재현 확인(§15.2). 사이징 근거(강제청산0 레버 §26·갭관통0 폭)는 백테로.
+- **[1] 등록값 산출**: `veri_edge.nameplate`(예상 월복리 OOS·MDD·레짐별 REG_MONTHLY·강제청산) + ★무손상 앵커(+1851.6491%) 1원단위 재현 확인(§15.2). ★사이징 근거 = `engines/emergency_brake.py`(비상 안전장치1호) `recommend(worst_mae, 노출)`/`assess(lev,size,...)` = 강제청산0·갭관통0 안전레버 자동산출(LogicCatalog D7). 향후 모든 새 봇·새버전 장착.
 - **[2] 등록**: `server.py` `BOT_REGISTRY` 1행 + `REG_MONTHLY` 1행(키=`up/down/range`). 봇이름=`(봇명)@(시장버전)`(§16). 안전점수는 `champion_safety.py`가 메타에서 자동(별도 입력 불요). 챔피언 고정 원하면 `CHAMP_PIN`(env `RAUTO2_CHAMP_PIN`).
 - **[3] 로컬검증**: `py_compile`(문법) + 스모크(`Rauto2Live.add_bot` → 슬롯 로딩·`m20`·`safety`·`champ` 확인). 무손상 앵커 재확인.
 - **[4] ★배포 = 반드시 두 곳 다**:
