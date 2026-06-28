@@ -12,6 +12,7 @@ import pandas as pd
 import numpy as np
 from rauto_cex import (RautoCEX, SlipModel, FeeModel, MarginModel, MK, TK,
                        MMR_T1, MMR_T2, TIER, LIQ_SLIP, LIQ_COST)
+import champion_safety as CS   # ★챔피언 비상 안전장치 가산점(독립 공용모듈, 캡틴 지시2 260628_02)
 
 
 def per_trade_pnl(T, size_pct, lev, slip=None, dd_cut=None):
@@ -89,7 +90,7 @@ class BotSlot:
     """봇 1개 = 슬롯. 검증 batch 원장 + per-trade pnl을 미리 산출해두고, reveal(now)로 시간순 드러냄.
        ★봇 무관: 계약 make_trades(d1m,fund)만 맞으면 REVoi·TS·SW 어떤 봇이든 동일하게 받는다."""
 
-    def __init__(self, name, bot, d1m, fund, size_pct, lev, slip=None, dd_cut=None, m20=None, reg_monthly=None):
+    def __init__(self, name, bot, d1m, fund, size_pct, lev, slip=None, dd_cut=None, m20=None, reg_monthly=None, safety_meta=None):
         self.name = name
         self.size_pct = float(size_pct)
         self.lev = float(lev)
@@ -97,6 +98,7 @@ class BotSlot:
         self.dd_cut = dd_cut                                                      # ★Rauto 리스크결정(자기DD 동적사이징)
         self._m20_cert = m20                                                      # ★검증(36mo) MDD 기반 M20 인증값(레지스트리 주입). None이면 워밍업 MDD로 대체
         self.reg_monthly = reg_monthly or {}                                      # ★36mo 레짐별 월수익(기대수익률, 챔피언선정Sys)
+        self.safety_score, self.safety_items = CS.safety_score(safety_meta or {}) # ★비상 안전장치 가산점(독립모듈·챔피언 동점 타이브레이커)
         T = bot.make_trades(d1m, fund)                                            # ① 검증 원장(앵커)
         if "et" in getattr(T, "columns", []) and len(T):
             T = T.sort_values("et").reset_index(drop=True)
@@ -223,6 +225,8 @@ class BotSlot:
         slot["reg_ret"] = self.reg_ret      # ★레짐별 기대수익(per-trade 평균) — 챔피언선정Sys '해당레짐 기대순위'
         slot["reg_monthly"] = self.reg_monthly   # ★36mo 레짐별 월수익(기대수익률 %/월)
         slot["m20"] = bool(self.m20)         # M20 자격(챔피언 풀)
+        slot["safety"] = self.safety_score   # ★비상 안전장치 점수(챔피언 동점 타이브레이커·대시보드 표시)
+        slot["safety_items"] = [it for it in self.safety_items if it["got"]]   # 충족 항목만(보고용)
         return slot
 
 
@@ -246,9 +250,9 @@ class Rauto2Live:
         self._l = self.d1m["low"].values.astype(float)
         self._c = self.d1m["close"].values.astype(float)
 
-    def add_bot(self, name, bot, size_pct, lev, slip=None, dd_cut=None, m20=None, reg_monthly=None):
+    def add_bot(self, name, bot, size_pct, lev, slip=None, dd_cut=None, m20=None, reg_monthly=None, safety_meta=None):
         self.slots.append(BotSlot(name, bot, self.d1m, self.fund, size_pct, lev, slip,
-                                  dd_cut=dd_cut, m20=m20, reg_monthly=reg_monthly))
+                                  dd_cut=dd_cut, m20=m20, reg_monthly=reg_monthly, safety_meta=safety_meta))
         return self.slots[-1]
 
     def px_window(self, now_ms):
@@ -308,16 +312,19 @@ class Rauto2Live:
                     r *= (1.0 + bs.pnl[k] / 100.0)
             return r
 
+        def safe(i):                                          # ★비상 안전장치 가산점(캡틴 지시2): 1차 동점이면 이게 챔피언 가름
+            return self.slots[i].safety_score
+
         if self.champ_mode == "regime":
             reg = self.cur_regime(now_ms)
             scored = [(i, self.slots[i].reg_ret.get(reg)) for i in elig]
             have = [(i, s) for i, s in scored if s is not None]
             if have:
-                return max(have, key=lambda x: x[1])[0]
-            return max(elig, key=recent2w)                    # 레짐 이력 없으면 최근수익 fallback
+                return max(have, key=lambda x: (x[1], safe(x[0])))[0]   # 레짐수익 동점 → 안전점수 높은 봇
+            return max(elig, key=lambda i: (recent2w(i), safe(i)))      # 레짐 이력 없으면 최근수익(동점=안전)
         if self.champ_mode == "maxret":
-            return max(elig, key=lambda i: slots[i]["ret"])
-        return max(elig, key=recent2w)                        # 기본 recent(robust·MDD우위)
+            return max(elig, key=lambda i: (slots[i]["ret"], safe(i)))  # 수익 동점 → 안전점수
+        return max(elig, key=lambda i: (recent2w(i), safe(i)))          # 기본 recent(동점=안전점수 우선)
 
     def state(self, now_ms, with_px=True):
         """b32 대시보드 state.json dict. px=최상위 공유, slots=각 봇 reveal(now)."""

@@ -55,5 +55,17 @@
       "WebFetch(domain:rss.onlinelibrary.wiley.com)"
     ]
   },
-  "autoMemoryDirectory": "D:\\ML\\RfRauto\\memory"
+  "autoMemoryDirectory": "D:\\ML\\RfRauto\\memory",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/ret_label_guard.py\""
+          }
+        ]
+      }
+    ]
+  }
 }
