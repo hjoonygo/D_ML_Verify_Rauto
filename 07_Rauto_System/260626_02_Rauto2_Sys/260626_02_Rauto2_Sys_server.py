@@ -118,7 +118,7 @@ class ReplayEngine:
         self.live_px = []                                            # 최근 1일 실시장 1m [[ms,o,h,l,c],...]
         self.price = None                                           # 현재가
         self.live_src = None
-        self.live_fetch_sec = float(os.environ.get("RAUTO2_LIVE_SEC", "15"))
+        self.live_fetch_sec = float(os.environ.get("RAUTO2_LIVE_SEC", "1"))   # ★1초 갱신(캡틴 지시1: 현재가 실시간. 바이낸스 공개ticker 가벼움)
         for nm in DEFAULT_LOAD:
             self.load_bot(nm)
         print(f"[Rauto2] 모드={self.mode} · 데이터 {len(self.d1m):,}행 · {pd.Timestamp(self.data_start, unit='ms')} ~ "
@@ -381,6 +381,8 @@ class H(http.server.SimpleHTTPRequestHandler):
                       "lev": b["lev"], "sz": b["sz"], "mdd": b.get("mdd"),
                       "desc": b.get("desc", ""), "reg_monthly": REG_MONTHLY.get(b["name"])} for b in BOT_REGISTRY]
             return self._send(200, json.dumps({"bots": avail}, ensure_ascii=False))
+        if p.path == "/price":                                  # ★가벼운 현재가(1초 폴링용·무거운 state 미전송, 캡틴 지시1)
+            return self._send(200, json.dumps({"price": ENG.price}))
         if p.path.startswith("/state.json"):
             if self._role() is None:
                 return self._send(401, json.dumps({"error": "unauthorized"}))

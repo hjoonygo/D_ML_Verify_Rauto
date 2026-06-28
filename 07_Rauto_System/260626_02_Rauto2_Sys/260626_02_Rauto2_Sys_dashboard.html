@@ -440,6 +440,9 @@
  function load(){fetch(API+'/state.json?_='+Date.now()).then(r=>r.json()).then(render).catch(function(){});}
  if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js').catch(function(){});}  // ★PWA 독립앱(풀화면) 설치가능
  load();setInterval(load,1500);
+ // ★현재가 1초 갱신(캡틴 지시1): 무거운 state 대신 가벼운 /price만 1초마다 → 챔피언 바 현재가 즉시 갱신
+ function pollPrice(){fetch(API+'/price').then(function(r){return r.json();}).then(function(j){if(j.price==null||!LAST)return;PRICE=j.price;var champ=(LAST.slots||[]).find(function(s){return s.champ;});if(champ)updChamp(champ,LAST);}).catch(function(){});}
+ setInterval(pollPrice,1000);
 </script>
 </body>
 </html>
