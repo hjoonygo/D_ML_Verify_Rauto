@@ -363,3 +363,17 @@ Binance BTC 선물 자동매매 시스템 Rauto(챔피언 아키텍처): TrendSt
 - ★보고 헤드라인 = 수익률 유지(§19 불변): 36개월 전체 + 분기별 롱/숏을 먼저, MDD 4단·강제청산·CPCV는 그 뒤 보조표.
 - ★흐름: M0(천장·강제청산만 확인) → M30(1차) → M25(2차) → **M20까지 올리며 수익률 방어** = 챔피언 인증. 인증 후보는 held-out·CPCV 표준6(§5.7)도 별도 통과해야 최종 챔피언(§20·§22 경계).
 - 반영처(이 정책의 동기재 5+곳): §0·§5·§14 ADR-002·§15·§19·§20·§22·§25 · BACKTEST_OUTPUT_SYSTEM.md · PIPELINE_GradeStepUp.md · SPEC.md · memory(GUIDE2)·INDEX·STATE. 코드 반영(bt_report 강제청산 카운트·4단 MDD 스윕)은 별도 Stg.
+
+## 27. ★신규 매매봇 Rauto2 등록·로딩·배포 체크리스트 (캡틴 지시 2026-06-29 — "장사 한두번 하나? 할때마다 똑같은 소리" 격노. 매번 같은 시행착오 차단 = 매뉴얼 박제. 신규봇 등록·로딩 시 이 순서를 '자동' 이행)
+- ★★핵심 반복실수 = **두 서버(PC dev + AWS 본방) 중 AWS 누락**. 폰이 보는 곳은 **AWS**다(`API=location.origin` — 연 주소가 곧 서버). PC만 재시작하면 폰엔 '안 뜸'. 매번 이걸로 시간 낭비 → 아래로 끝낸다.
+- **[1] 등록값 산출**: `veri_edge.nameplate`(예상 월복리 OOS·MDD·레짐별 REG_MONTHLY·강제청산) + ★무손상 앵커(+1851.6491%) 1원단위 재현 확인(§15.2). 사이징 근거(강제청산0 레버 §26·갭관통0 폭)는 백테로.
+- **[2] 등록**: `server.py` `BOT_REGISTRY` 1행 + `REG_MONTHLY` 1행(키=`up/down/range`). 봇이름=`(봇명)@(시장버전)`(§16). 안전점수는 `champion_safety.py`가 메타에서 자동(별도 입력 불요). 챔피언 고정 원하면 `CHAMP_PIN`(env `RAUTO2_CHAMP_PIN`).
+- **[3] 로컬검증**: `py_compile`(문법) + 스모크(`Rauto2Live.add_bot` → 슬롯 로딩·`m20`·`safety`·`champ` 확인). 무손상 앵커 재확인.
+- **[4] ★배포 = 반드시 두 곳 다**:
+  · **PC(8788 dev)**: 기존 서버 `taskkill /F /PID <8788점유PID>` → `run.bat` 재실행(self-locating). (PC 절전死 주의 — dev 전용.)
+  · **★AWS(본방·폰이 보는 곳, 절대 빠뜨리지 말 것)**: `git add -A` → `git commit` → `git push origin HEAD:rfrauto`(아웃바운드=캡틴 승인) → AWS `rauto2_autopull.py`가 `git reset --hard origin/rfrauto` + 자동재시작(주기 폴링). push 안 하면 폰엔 영원히 '안 뜸'.
+- **[5] ★확인 = 두 서버 다** `/state.json`(상태경로 = `/state.json`, `/state` 아님 = 'not found'):
+  · `curl http://localhost:8788/state.json` → 새 봇 슬롯·`champ`·`safety` 확인(PC).
+  · `curl https://ec2amaz-cor6gpg.tail305e55.ts.net/state.json` → 새 봇 확인(AWS·폰 본방, autopull 주기 경과 후).
+- **[6] ★'안 뜸' 진단 순서(이대로만)**: ⒜**AWS 미배포**(=push 누락·autopull 미경과 — 90% 이게 원인) → push 확인·autopull 로그 확인 ⒝상태경로 `/state.json` 맞는지 ⒞`sw.js`=네트워크전용이라 **캐시 아님**(단 폰 PWA는 앱 완전종료·재실행 1회는 해볼 것) ⒟`/bots`엔 BOT_REGISTRY 정적, 슬롯·safety는 `/state.json`에. → ★앞으로 '안 뜸'에 ①②반복 설명 금지, 이 진단표로 바로 처리.
+- 단일출처 = 여기(CLAUDE.md §27) + 상세 = `00_Basic_Setup_Package/260627_02_Rauto2_Guide_Operation.md`(신규봇 매뉴얼 절). 실증 = 260628_02_LiqBrakePlugin(RevoiSafe@ETF 등록 시 PC만 재시작·AWS 누락으로 '안 뜸' 재발 → 이 체크리스트 신설).
