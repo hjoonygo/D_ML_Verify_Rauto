@@ -1,0 +1,35 @@
+[작업분석] RAUTO_ConceptRefine_06_Ch5_Stg1_ReTest  (2026-05-31T21:10:02)
+[오염검사 종합] PASS
+------------------------------------------------------------
+  O 1.필수파일존재: all present
+  O 2.결과CSV非공백: ok
+  O 3.코드해시기록: {'test_06Prj_Ch5_RAUTO_ConceptRefine_Stg1_ReTest.py': '90f3445cb191aac1', 'check_06Prj_Ch5_RAUTO_ConceptRefine_Stg1_ReTest.py': 'c1661b88d3f750d2'}
+  O 4.거래중복없음: 중복0행
+  O 5.미래참조가드: 음수shift/미래봉 미사용(주석제외, 하네스+엔진2 검사)
+  O 6.거래비중첩(봇별): 중첩0건
+  O 7.노출스윕완전: 추세8·횡보8·시나리오8
+  O 8.VERDICT존재: VERDICT Stg1_ReTest | 비용=왕복0.14%통일 펀딩=REAL(BTCUSDT...
+  O 9.엔진원본일치(무수정증빙): SpTrd_Fib_V1_Champion.py=일치 SidewayDCA_Stg7_engine.py=일치
+  O 10.노출/청산점검작동: n_liq칼럼=True 추세안전E=1.2 횡보안전E=5.0
+------------------------------------------------------------
+[VERDICT] VERDICT Stg1_ReTest | 비용=왕복0.14%통일 펀딩=REAL(BTCUSDT_funding_history_8h.csv, 3288건, 누락0) | 추세봇 최대안전노출(MDD>=-35%·청산0)=1.2  | 횡보봇z1.0 최대안전노출=5.0 atr_ratio=O oi=O(src=Merged_Data.csv) | z=0 참고(E2.5): PF3.084 cumR74.3% MDD-8.6% n75 | 겹침: 겹친시간 429.0h | 추세 보유합 13391.0h, 횡보 보유합 704.0h | 겹침비율 추세3% 횡보61% | 분할A점검: 분할A PF1.643 cumR1x177.3% vs 분할없음 PF1.407 cumR1x121.6% | 체결창(20봉)내청산 305/318건(96%) 그 R합 38.17%
+[비용/펀딩] 왕복 0.0014 / REAL(BTCUSDT_funding_history_8h.csv, 3288건, 누락0)
+[최대안전노출] 추세 E=1.2 횡보 E=5.0 (MDD한도 -35.0%)
+[코드해시] {'test_06Prj_Ch5_RAUTO_ConceptRefine_Stg1_ReTest.py': '90f3445cb191aac1', 'check_06Prj_Ch5_RAUTO_ConceptRefine_Stg1_ReTest.py': 'c1661b88d3f750d2'}
+[노출스윕]
+  추세봇 E0.3: PF1.643 cumR66.8% MDD-8.4% 청산0 -> 안전
+  추세봇 E0.6: PF1.643 cumR167.7% MDD-16.3% 청산0 -> 안전
+  추세봇 E0.9: PF1.643 cumR314.7% MDD-23.5% 청산0 -> 안전
+  추세봇 E1.2: PF1.643 cumR521.5% MDD-30.2% 청산0 -> 안전
+  추세봇 E1.5: PF1.643 cumR802.7% MDD-36.3% 청산0 -> MDD초과
+  추세봇 E2.0: PF1.643 cumR1476.5% MDD-45.5% 청산0 -> MDD초과
+  추세봇 E2.5: PF1.643 cumR2453.6% MDD-53.6% 청산0 -> MDD초과
+  추세봇 E3.0: PF1.643 cumR3757.1% MDD-60.5% 청산0 -> MDD초과
+  횡보봇z1.0 E1.0: PF2.653 cumR26.9% MDD-3.5% 청산0 -> 안전
+  횡보봇z1.0 E1.5: PF2.653 cumR42.6% MDD-5.2% 청산0 -> 안전
+  횡보봇z1.0 E2.0: PF2.653 cumR59.9% MDD-6.9% 청산0 -> 안전
+  횡보봇z1.0 E2.5: PF2.653 cumR79.0% MDD-8.6% 청산0 -> 안전
+  횡보봇z1.0 E3.0: PF2.653 cumR100.1% MDD-10.3% 청산0 -> 안전
+  횡보봇z1.0 E3.5: PF2.653 cumR123.3% MDD-12.0% 청산0 -> 안전
+  횡보봇z1.0 E4.0: PF2.653 cumR148.8% MDD-13.6% 청산0 -> 안전
+  횡보봇z1.0 E5.0: PF2.653 cumR207.2% MDD-16.9% 청산0 -> 안전

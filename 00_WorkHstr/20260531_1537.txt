@@ -1,0 +1,27 @@
+[작업분석] ChampBot_SidewayDCA4RAUTO_06_Ch4_Stg7  (2026-05-31T15:37:07)
+[오염검사 종합] PASS
+----------------------------------------------------------------
+  O 1.필수파일존재: all present
+  O 2.결과CSV非공백: ok
+  O 3.코드해시기록: {'test_06Prj_Ch4_SidewayDCA4RAUTO_Stg7.py': '44eca825b426ddf2', 'check_06Prj_Ch4_SidewayDCA4RAUTO_Stg7.py': 'ba77763ae73dc294'}
+  O 4.거래중복없음: 진입시간 중복 0건
+  O 5.미래참조가드: 음수shift 없음 + oi_zscore resample last(과거24h, 미래참조없음)
+  O 6.연도3모드기록: 연도별 3모드 4행 (off/hi/dz)
+  O 7.시나리오완전: 핵심 S1/S6/S7/S8 중 4개 + yearlyO + verdictO
+  O 8.VERDICT존재: VERDICT B-SidewayDCA무덤 | OFF[PF2.099 cumR20.4% MDD-8.6%...
+----------------------------------------------------------------
+[VERDICT] VERDICT B-SidewayDCA무덤 | OFF[PF2.099 cumR20.4% MDD-8.6% n90] | HI현행[PF3.084 cumR22.98% MDD-8.6% n75 막은거래R평균-0.002 p0.0186] | DZ무덤[PF2.283 cumR19.2% MDD-8.6% n79 막은거래R평균0.001 p0.3337] | 판정: HI가 낫거나같음 | oi_zscore=O
+[무덤필터 효과] PF 2.099->? | MDD ?%->?% | 수익금 ?->?
+[거래·trend_flip] 90->?건 | trend_flip ?->?
+[코드해시] {'test_06Prj_Ch4_SidewayDCA4RAUTO_Stg7.py': '44eca825b426ddf2', 'check_06Prj_Ch4_SidewayDCA4RAUTO_Stg7.py': 'ba77763ae73dc294'}
+[8시나리오 요약]
+  S1_OFF_차단없음: OFF PF cumR -> ON PF cumR 
+  S1_HI_현행(z>=0전체차단): OFF PF cumR -> ON PF cumR 
+  S1_DZ_무덤만(0<=z<1): OFF PF cumR -> ON PF cumR 
+  S7_HI_z>=0.0: OFF PF cumR -> ON PF cumR 
+  S7_HI_z>=0.5: OFF PF cumR -> ON PF cumR 
+  S7_HI_z>=1.0: OFF PF cumR -> ON PF cumR 
+  S7_DZ_0~0.5: OFF PF cumR -> ON PF cumR 
+  S7_DZ_0.5~1: OFF PF cumR -> ON PF cumR 
+  S8_위험_3모드: OFF PF cumR -> ON PF cumR 
+  S6_순열검정: OFF PF cumR -> ON PF cumR 

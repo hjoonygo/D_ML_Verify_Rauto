@@ -1,0 +1,25 @@
+VERDICT 08Prj_Dauto_Ch2_Stg13_OiZscoreAdapter | 오염검사 5/5 | VERDICT Stg13 | 채택 — 유일일치 oi_sum|w1440|ddof1|mp720|sh1|cl10.0 | 기준재현 불일치 0/1577520 | Dauto aux 미생성(데이터/커버 확인) | 겹침0행→재현검증 대체
+[PASS] dauto_collector.py(§8) | 0aa01d98688f6629
+[PASS] Merged_Data.csv 크기대조 | 476327648
+[PASS] oi_zscore_adapter.py 존재 | 
+[PASS] stg13_grid.csv 존재 | 
+[PASS] 결과 존재 | VERDICT Stg13 | 채택 — 유일일치 oi_sum|w1440|ddof1|mp720|sh1|cl10.0 | 기준재현 불일치 0/1577520 | Dauto
+
+[전문]
+[데이터] Merged_Data.csv 1578240행 | 기간 2023-05-01 00:00:00+00:00~2026-04-30 23:59:00+00:00 | 기준 oi_zscore_24h 유한 1577520행(99.95%)
+
+[A 격자] 후보 96개 | 일치(값불일치0+NaN패턴 완전일치) 1개
+     oi_sum|w1440|ddof1|mp720|sh1|cl10.0 | 공통 1577520 | 값불일치 0 | 패턴불일치 0
+     oi_sum|w1440|ddof1|mp720|sh1|clNone | 공통 1577520 | 값불일치 22 | 패턴불일치 0
+       oi_sum|w1440|ddof1|mp1|sh1|cl10.0 | 공통 1577520 | 값불일치 0 | 패턴불일치 709
+     oi_sum|w1440|ddof1|mpwin|sh1|cl10.0 | 공통 1576800 | 값불일치 0 | 패턴불일치 720
+       oi_sum|w1440|ddof1|mp1|sh1|clNone | 공통 1577520 | 값불일치 22 | 패턴불일치 709
+     oi_sum|w1440|ddof1|mpwin|sh1|clNone | 공통 1576800 | 값불일치 22 | 패턴불일치 720
+
+[채택 수식] oi_sum|w1440|ddof1|mp720|sh1|cl10.0 → z = clip((x - mean_1440) / std_1440(ddof=1), ±10.0), min_periods=720, shift=1, x=oi_sum
+[B-① 어댑터=기준 재현] 공통 1577520행 | 불일치 0 (허용오차 1e-06) | PASS
+  ※ Merged(~2026-04-30)와 Dauto(2026-05-12~) 겹침 0행 — 본 재현이 겹침검증의 대체(캡틴 보고).
+[B-② Dauto aux] 43281행(2026-05-12 10:31:00~2026-06-11 11:51:00) | oi_src {'hist': 43168, 'live': 69, 'na': 44}
+  z 유한 0행(0.00%) — hist/na는 NaN 전파(진입필터 통과 관성, 캡틴 확정)
+
+VERDICT Stg13 | 채택 — 유일일치 oi_sum|w1440|ddof1|mp720|sh1|cl10.0 | 기준재현 불일치 0/1577520 | Dauto aux 미생성(데이터/커버 확인) | 겹침0행→재현검증 대체

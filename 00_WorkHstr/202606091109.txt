@@ -1,0 +1,9 @@
+[07Prj_Ch2_Stg6_TrendStack_RegimeRecheck] build6_v1 2026-06-09 11:09
+목적: label_smc(미래참조) 장세약점이 feat_struct(실시간)로 재현되나
+오염검사 7/8 (NG) / 전체복리 908% / 매칭 100%
+feat_struct 약점장세(PF<1.5): ['uptrend']
+  downtrend: n=59 PF=2.36 ret=105.0%
+  range: n=105 PF=2.34 ret=345.0%
+  uptrend: n=100 PF=1.3 ret=11.0%
+판정: feat_struct로 약점 재현시 진입필터 가능 / 미재현시 미래참조환상(접음)
+MDD-20% 기준. featstruct_sha=7d71aa2bbee2

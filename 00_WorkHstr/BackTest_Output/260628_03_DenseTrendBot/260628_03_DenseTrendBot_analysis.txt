@@ -1,0 +1,36 @@
+================================================================================
+DENSE TREND BOT  [260628_01 Stg3]  POST-ETF ONLY (2024-01-01+)
+================================================================================
+8H bars: 3288  range 2023-05-01 00:00:00 ~ 2026-04-30 16:00:00
+
+--- N sweep (post-2024 eval, gross & net 8bp) ---
+  N=10: trades=106  gross PF=1.20 sumR=+0.456 | net8bp PF=1.12 sumR=+0.287 win%=33
+  N=20: trades= 69  gross PF=1.27 sumR=+0.428 | net8bp PF=1.19 sumR=+0.318 win%=35
+  N=30: trades= 61  gross PF=1.05 sumR=+0.084 | net8bp PF=0.99 sumR=-0.014 win%=30
+  N=40: trades= 51  gross PF=1.00 sumR=-0.003 | net8bp PF=0.94 sumR=-0.085 win%=27
+
+[PRIMARY] Donchian-20 (a-priori classic, net 8bp), post-2024: trades=69 PF=1.19 sumR=+0.318 meanR=+0.00461 win%=35
+
+POST-2024 baselines: REVoi trades=209 PF=0.99 sumR=-0.024 | sparse-TS trades=33 PF=1.37 sumR=+0.098
+
+--- POST-2024 correlation (monthly) ---
+  REVoi vs DenseTrend : Pearson=-0.344  Spearman=-0.433  (n=28 months)
+  REVoi vs SparseTS   : Pearson=+0.059
+  months REVoi<0 = 17 : DenseTrend mean=+0.0438 (>0 in 10/17)
+  REVoi      : sumR=-0.024  finalEq=0.847x  maxDD(monthly,unsized)=-26.0%
+  DenseTrend : sumR=+0.318  finalEq=1.111x  maxDD(monthly,unsized)=-31.5%
+  Combo50    : sumR=+0.147  finalEq=1.088x  maxDD(monthly,unsized)=-22.0%
+  drawdown-series corr REVoi vs DenseTrend = -0.279
+
+--- DenseTrend quarterly long/short (post-2024) ---
+     Q  n   sumR    PF  long_sumR  short_sumR
+2024Q1  5  0.443 4.448      0.483      -0.039
+2024Q2  9 -0.132 0.383     -0.090      -0.042
+2024Q3  9 -0.036 0.860     -0.061       0.025
+2024Q4  8  0.114 1.710      0.155      -0.041
+2025Q1  8 -0.163 0.359     -0.013      -0.150
+2025Q2  7  0.162 2.678      0.238      -0.077
+2025Q3  7 -0.025 0.713      0.039      -0.064
+2025Q4  7 -0.049 0.755     -0.106       0.057
+2026Q1  7 -0.010 0.958     -0.170       0.160
+2026Q2  2  0.015 1.381      0.015       0.000

@@ -1,0 +1,22 @@
+260625_01_RautoSysReform2 — 검증 데이터 manifest
+(zip 동봉분 + 원위치 참조분. 재현엔 둘 다 필요.)
+
+[zip 동봉]
+- back2tv_rev_winners.json   (config, ~0.04MB, SHA256 16=29B699D0E3B14178) — REV_MDD25_36mo 파라미터(레버3/증거금75 기준 앵커 +1851.6%).
+- BTCUSDT_funding_history_8h.csv (실펀딩 Perp 8h, ~0.2MB) — raw_irreplaceable. 원위치 08_BTC_Data/raw_irreplaceable/.
+
+[원위치 참조(용량 커서 미동봉 — derived=재생성 대상)]
+- Merged_Data.csv  (1m OHLC+OI 등, ~454MB, 1,578,240행, 2023-05~2026-04)
+  위치 = D:\ML\RfRauto\08_BTC_Data\derived\Merged_Data.csv
+  로더 = fib_replay_1m.load_1m() (research 폴더 03_IDEA4Bot/260623_07_RfRautoAlphaUp).
+  성격 = derived(재생성 가능, G백업 안 함). 원천 = 08_BTC_Data/raw_irreplaceable + regenerate_scripts.
+
+[검증 research 엔진(원위치, 본 세션 무수정·SHA256 동일)]
+- 03_IDEA4Bot/260623_07_RfRautoAlphaUp/ : blend_opt.py(rev_side, DA5513504318D524) · bt_full.py(gen_trades, 8CC9C1330ADDD55B)
+  · fib_replay_1m.py(load_1m/load_funding, 022D9BAC59831665) · back2tv_REVoi.py(liq_eval, B5E2EDB20606802B)
+- 04_공용엔진코드/engines/ : trendstack_signal_engine.py(C9D784BFD81E8ED4) · rauto_cex.py(BAF0CDFD8E8A2A02) · rauto_datahub.py(1C46A40383789D23)
+
+[재현 명령]
+set PYTHONIOENCODING=utf-8
+python 260625_01_RautoSysReform2_OrchestratorAnchorTest.py   # +1851.6%/MDD-24.6%/0.000%p
+python 260625_01_RautoSysReform2_BotTrustGates_REVoi.py      # 4관문 ✅ / 현실+1483.3%

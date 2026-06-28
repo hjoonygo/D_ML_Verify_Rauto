@@ -1,0 +1,10 @@
+[07Prj_Ch1_RautoGreedShortGuard_stg4] 검증 20260604_2007  통과 0/8
+============================================================
+[FAIL] S1_files: missing=['stg4_lev_summary.csv', 'stg4_lev_equity.csv', 'stg4_lev_coverage.csv', 'summary.csv']
+[FAIL] S2_rows9: rows=0 (expect 9)
+[FAIL] S3_cols: no summary
+[FAIL] S4_fab_pos: no final_fab
+[FAIL] S5_liq_mono: no cols
+[FAIL] S6_equity_len: err [Errno 2] No such file or directory: 'D:\\ML\\Verify\\07Prj_Ch1_RautoGreedShortGuard_stg4\\stg4_lev_equity.csv'
+[FAIL] S7_lev_set: no lev
+[FAIL] S8_md5: {'stg4_lev_summary.csv': 'NA', 'stg4_lev_equity.csv': 'NA', 'stg4_lev_coverage.csv': 'NA', 'summary.csv': 'NA'}

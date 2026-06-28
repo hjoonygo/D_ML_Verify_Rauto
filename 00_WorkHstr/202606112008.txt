@@ -1,0 +1,13 @@
+VERDICT 08Prj_Dauto_Ch1_Collector_Stg1_RestPoller | 오염검사 3/4 | collector_sha256=89ba917283d40781... | 분당 3콜(가중치~4/2400) read-only | 저장루트 C:\BinanceData
+[PASS] 동봉파일6종 | 전부 존재
+[FAIL] read-only(금지문자열0) | 발견 ['check_08Prj_Dauto_Ch1_Collector_Stg1_RestPoller.py:/order', 'check_08Prj_Dauto_Ch1_Collector_Stg1_RestPoller.py:apikey', 'check_08Prj_Dauto_Ch1_Collector_Stg1_RestPoller.py:api_key', 'check_08Prj_Dauto_Ch1_Collector_Stg1_RestPoller.py:secret', 'check_08Prj_Dauto_Ch1_Collector_Stg1_RestPoller.py:signature', 'check_08Prj_Dauto_Ch1_Collector_Stg1_RestPoller.py:listenkey']
+[PASS] CSV스키마13컬럼 | BTCUSDT_1m_20260611.csv 헤더 일치
+[PASS] PC실측(=사전실행) | VERDICT 4/4 PASS | A=30min GAP=3min | root=C:\BinanceData
+
+[전문] VERDICT 4/4 PASS | A=30min GAP=3min | root=C:\BinanceData
+[PASS] A1_30분행수 | live 29행 / 기대 29±1
+[PASS] A2_결측0 | live행 결측 0건
+[PASS] B1_구멍백필 | 구멍 2분 중 2행 복구, oi_src=['na']
+[PASS] B2_oi_src플래그 | 플래그 유효성(['na'])
+
+collector SHA256(전체): 89ba917283d407814eea5f1d7da9e0daa2817a2d69194618fbc7c29f997bd5f4

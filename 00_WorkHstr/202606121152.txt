@@ -1,0 +1,19 @@
+VERDICT 08Prj_Dauto_Ch2_Stg15_AtrRatioAdapter | 오염검사 6/6 | VERDICT Stg15 | 채택 — ①수식 0불일치 | ②워밍업 N=1374H봉(22.8일), Dauto31일 충족 | ③aux 생성OK·na행 가격무결
+[PASS] regime_feature_extractor(원본) | c3ace85e44cad8b2
+[PASS] dauto_collector.py(§8) | 0aa01d98688f6629
+[PASS] dauto_loader.py 존재 | 
+[PASS] atr_ratio_adapter.py 존재 | 
+[PASS] stg15_warmup.csv 존재 | 
+[PASS] 결과 존재 | VERDICT Stg15 | 채택 — ①수식 0불일치 | ②워밍업 N=1374H봉(22.8일), Dauto31일 충족 | ③aux 생성OK·na행 가격무결
+
+[전문]
+[데이터] Merged_Data.csv 1578240행 2023-05-01 00:00:00~2026-04-30 23:59:00
+[① 수식게이트] 4H봉 6577 | 값불일치 0/1563840 (1e-6) | NaN패턴불일치 0 | PASS
+[② 워밍업] cut=30일(181 4H봉): 오차<0.001 도달 N=133봉(22.2일) | 오차<1e-06 도달 N=181봉(30.2일)
+[② 워밍업] cut=45일(271 4H봉): 오차<0.001 도달 N=130봉(21.7일) | 오차<1e-06 도달 N=223봉(37.2일)
+[② 워밍업] cut=60일(361 4H봉): 오차<0.001 도달 N=137봉(22.8일) | 오차<1e-06 도달 N=231봉(38.5일)
+[② 판정] N_warm(1e-3 최대) = 137 4H봉(22.8일) vs Dauto 보유 31일(186 4H봉) → 충족
+[③ Dauto aux] 43281행 | atr_ratio 유한 28792(66.52%) | atr_warm(수렴전) 32969(76.17%)
+[③ na행 무결] oi_src=na 44행 중 OHLC 무결 44행 → 가격 무결 — atr 계산 영향 0 확인
+
+VERDICT Stg15 | 채택 — ①수식 0불일치 | ②워밍업 N=1374H봉(22.8일), Dauto31일 충족 | ③aux 생성OK·na행 가격무결

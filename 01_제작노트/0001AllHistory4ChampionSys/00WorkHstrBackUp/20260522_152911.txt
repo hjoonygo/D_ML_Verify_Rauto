@@ -1,0 +1,23 @@
+[작업분석] Rauto_Stage1e_2026-05-22  2026-05-22 15:29
+============================================================
+[오염검사 8+1]
+  PASS | 1.결과파일존재 | trades 5개, summary=O
+  PASS | 2.잔존섞임없음 | stale=없음
+  PASS | 3.파일명일치 | 위반=없음
+  PASS | 4.데이터정상(상위) | 1578240행 hash=e0b37b64
+  PASS | 5.중복없음 | 중복행 0
+  PASS | 6.빔/NaN없음 | 거래있는config 5/5, NaN=0
+  PASS | 8.출력경로(..\00WorkHstr) | D:\ML\Verify\00WorkHstr
+  PASS | 7.INDEX 이중기록없음 | 신규
+  => 종합: ALL PASS
+
+[입력 데이터]
+  D:\ML\Verify\Merged_Data_with_Regime_Features.csv
+  행수 1578240 | 기간 2023-05-01 00:00:00+00:00~2026-04-30 23:59:00+00:00 | 해시 e0b37b64
+
+[config별 성과]
+  S1e_trades_rr30.csv: 진입 94 | PF 0.487 | 순익 -1,150$
+  S1e_trades_rr35.csv: 진입 44 | PF 0.176 | 순익 -1,112$
+  S1e_trades_rr40.csv: 진입 29 | PF 0.144 | 순익 -811$
+  S1e_trades_rr45.csv: 진입 17 | PF 0.2 | 순익 -344$
+  S1e_trades_rr50.csv: 진입 14 | PF 0.094 | 순익 -497$

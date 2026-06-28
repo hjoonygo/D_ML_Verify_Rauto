@@ -1,0 +1,32 @@
+최근 1달(2026-05-22 이후) 수정된 구글독스 = 수동 Export 대상 8개
+(캡틴이 직접 구글독스 열기 → 파일 > 다운로드 > Word(.docx) 로 받아 이 폴더에 저장)
+작성: 2026-06-22 (Claude가 추출 시도했으나 바이너리 docx는 도구로 신뢰성 없어 목록만 제공)
+─────────────────────────────────────────────────────────────
+
+1. ★참사노트  #백테스팅의 구조적 신뢰성 확보  (수정 2026-06-21)
+   https://docs.google.com/document/d/1Mq3q-d0rm-ARFK-FDo4PwmDxrIQjxt8TsTyQ_xZ0vjA/edit
+   (= 6/20 저녁 깨달음: 백테 신뢰도 미확보 + 5단계 대책. ReArchitect 주춧돌)
+
+2. MOM OF future BTC 전략 제작 노트  (수정 2026-06-20, 허브문서)
+   https://docs.google.com/document/d/1f3kjZ8sI8oX7aejCoej9PLiDzkBR9bv9toFeyy_6Ev4/edit
+
+3. 전략개발구상 일지  (수정 2026-06-22)
+   https://docs.google.com/document/d/1QGQ97zTwDiJP5QVvt-PW8iX4XJxlB_i8DM66bw_qYe4/edit
+
+4. #전략탐색및 검색방법#전략개발구상 일지  (수정 2026-06-22)
+   https://docs.google.com/document/d/1-QGSmVv3WJCfYkTeSUw78ClZdzZQaqDB4paxeknhIo0/edit
+
+5. #RautoTrendStack 추세추종매매봇#전략개발구상 일지  (수정 2026-06-20)
+   https://docs.google.com/document/d/1ssHd8xuQ26lumsZA06DugECCGAA8sHvo-SEo-_tSzBg/edit
+
+6. 끊김없이 다음할것  (수정 2026-06-13)
+   https://docs.google.com/document/d/1DBdyglwgOl2nFW7aSP15CY05C2FqSGjSEF3G2w5BgsU/edit
+
+7. #꼭짚어야할 개발아이디어  (수정 2026-06-11)
+   https://docs.google.com/document/d/1mElJxtkEeGMCLlAu--S5hJBerlyvJJ81oHmyns_l_r4/edit
+
+8. #36개월Data로 인프라알파 하락장최적화  (수정 2026-05-23)
+   https://docs.google.com/document/d/1OrJb3Uz7b2RORLNNKarvWZDt5T1zuX04Y3QZ_zuxl7g/edit
+─────────────────────────────────────────────────────────────
+※ Claude는 매 세션 이 8개(특히 1·6·7번)를 Work Order/Handover/INDEX와 크로스체크해
+   "이어서 할 것·미결 아이디어"를 캡틴에게 브리핑한다. (지침: daily-continuity-crosscheck)

@@ -1,0 +1,50 @@
+[작업분석] RAUTO_ConceptRefine_06_Ch5_Stg5_MetaVolDefense  (2026-06-01T00:19:10)
+[오염검사] PASS
+------------------------------------------------------------
+  O 1.필수파일존재: all present
+  O 2.결과CSV非공백: ok
+  O 3.코드해시기록: {'test_06Prj_Ch5_RAUTO_ConceptRefine_Stg5_MetaVolDefense.py': '2313843745a16ba4', 'check_06Prj_Ch5_RAUTO_ConceptRefine_Stg5_MetaVolDefense.py': '1013c2566e65d6d4'}
+  O 4.거래중복없음: 중복0행
+  O 5.미래참조가드+label제외: 음수shift 미사용(주석제외) — 특징 과거봉만 | label_smc 특징제외 확인
+  O 6.거래/특징 정합: 행318 vs 엔진318
+  O 7.CVD모드기록: 진짜CVD(taker_buy/delta 15m→7h)
+  O 8.메타OOS AUC산출: weak검증0.454 long검증0.18
+  O 9.잭팟보존율산출: 메타보존84.4% 볼타게팅보존130.3%
+  O 10.엔진해시+VERDICT: SpTrd_Fib_V1_Champion.py=일치 SidewayDCA_Stg7_engine.py=일치 | VERDICT有
+------------------------------------------------------------
+[VERDICT] VERDICT Stg5v2 | 펀딩=REAL(3288) | CVD=진짜CVD(taker_buy/delta 15m→7h) | 특징29개 | 거래318 약회복66 장기95 잭팟48 | 단변량Top3(약회복):top_retail_divergence(0.663), feat_break_8(0.604), cvd_press(0.595) | 메타 weak검증AUC 0.454(RF0.533)/long 0.18(RF0.28) | 메타방어: 기본376.3%/MDD-25.8->방어287.9%/MDD-15.9, 잭팟보존84.4% | 볼타게팅best(q0.7): 701.4%/MDD-29.3, 잭팟보존130.3% | => 방어무효(④보수노출 확정→페이퍼)
+[CVD] 진짜CVD(taker_buy/delta 15m→7h)
+[메타라벨 OOS] 약회복 검증AUC 0.454(학습0.859,RF0.533) / 장기 검증0.18(RF0.28)
+[메타방어] 기본 376.3%/MDD-25.8 -> 방어 287.9%/MDD-15.9 | 잭팟보존 84.4%
+[볼타게팅best] cumR 701.4%/MDD -29.3 | 잭팟보존 130.3%
+[단변량 분리력(약회복)]
+  top_retail_divergence: AUC0.663 (약회복 0.2774 vs 그외 -0.0374)
+  feat_break_8: AUC0.604 (약회복 -0.0056 vs 그외 0.0072)
+  cvd_press: AUC0.595 (약회복 -0.0186 vs 그외 -0.0037)
+  taker_ratio: AUC0.595 (약회복 0.4907 vs 그외 0.4981)
+  atrcmp: AUC0.589 (약회복 0.2121 vs 그외 0.1389)
+  ema_fan: AUC0.579 (약회복 -0.0023 vs 그외 0.0039)
+  feat_struct_5: AUC0.576 (약회복 0.0 vs 그외 0.0)
+  feat_struct_8: AUC0.576 (약회복 0.0 vs 그외 0.0)
+  feat_struct_12: AUC0.576 (약회복 0.0 vs 그외 0.0)
+  adx: AUC0.569 (약회복 23.7392 vs 그외 27.0513)
+  taker_imbalance_5m_avg: AUC0.561 (약회복 1.1939 vs 그외 1.1215)
+  feat_break_5: AUC0.556 (약회복 -0.0105 vs 그외 -0.0004)
+  feat_break_12: AUC0.55 (약회복 0.0057 vs 그외 0.0085)
+  oi_zscore_24h: AUC0.546 (약회복 -0.4563 vs 그외 -0.2667)
+  atr_ratio: AUC0.539 (약회복 1.0069 vs 그외 1.0208)
+  chop: AUC0.53 (약회복 51.9771 vs 그외 51.137)
+  ema20_slope: AUC0.528 (약회복 0.0006 vs 그외 -0.0001)
+  rvol: AUC0.527 (약회복 0.0113 vs 그외 0.011)
+  vol_z: AUC0.527 (약회복 -0.2336 vs 그외 -0.2937)
+  bb_width_pct: AUC0.524 (약회복 0.4432 vs 그외 0.4649)
+  adx_chg: AUC0.521 (약회복 -1.0457 vs 그외 -0.6853)
+  drop: AUC0.519 (약회복 0.0152 vs 그외 0.0163)
+  absret: AUC0.517 (약회복 0.0089 vs 그외 0.008)
+  er: AUC0.516 (약회복 0.1672 vs 그외 0.1871)
+  bandw: AUC0.511 (약회복 0.1165 vs 그외 0.115)
+  cvd_slope: AUC0.508 (약회복 -0.009 vs 그외 -0.0081)
+  oi_change_1h_pct: AUC0.507 (약회복 0.0261 vs 그외 -0.0226)
+  norm_atr: AUC0.507 (약회복 1.4579 vs 그외 1.445)
+  signflip: AUC0.503 (약회복 4.7576 vs 그외 4.8016)
+[코드해시] {'test_06Prj_Ch5_RAUTO_ConceptRefine_Stg5_MetaVolDefense.py': '2313843745a16ba4', 'check_06Prj_Ch5_RAUTO_ConceptRefine_Stg5_MetaVolDefense.py': '1013c2566e65d6d4'}

@@ -1,0 +1,28 @@
+D:\ML\RfRauto\03_IDEA4Bot\260623_07_RfRautoAlphaUp\exit_upgrade.py:355: SyntaxWarning: invalid escape sequence '\$'
+  ax[1].set_title("분기 수익률 Quarterly Return (%, 격리마진 복리) — 막대 / 누적자본 Cum.\$ - 선", fontweight="bold")
+D:\ML\RfRauto\03_IDEA4Bot\260623_07_RfRautoAlphaUp\exit_upgrade.py:358: SyntaxWarning: invalid escape sequence '\$'
+  axt = ax[1].twinx(); axt.plot(x, tab.누적자본, color="#5c6bc0", lw=2, marker="o", ms=3, label="누적자본 Cumulative \$"); axt.set_yscale("log"); axt.set_ylabel("누적자본 Cum. \$ (log)")
+D:\ML\RfRauto\03_IDEA4Bot\260623_07_RfRautoAlphaUp\exit_upgrade.py:358: SyntaxWarning: invalid escape sequence '\$'
+  axt = ax[1].twinx(); axt.plot(x, tab.누적자본, color="#5c6bc0", lw=2, marker="o", ms=3, label="누적자본 Cumulative \$"); axt.set_yscale("log"); axt.set_ylabel("누적자본 Cum. \$ (log)")
+D:\ML\RfRauto\03_IDEA4Bot\260623_07_RfRautoAlphaUp\exit_upgrade.py:364: SyntaxWarning: invalid escape sequence '\$'
+  f"36개월 누적 \${tab.누적자본.iloc[-1]:,.0f} (시작 \$10k) · 롱 R합 {tab.롱_R합.sum():+.0f}% / 숏 R합 {tab.숏_R합.sum():+.0f}% · 영문/한글 병기",
+D:\ML\RfRauto\03_IDEA4Bot\260623_07_RfRautoAlphaUp\exit_upgrade.py:364: SyntaxWarning: invalid escape sequence '\$'
+  f"36개월 누적 \${tab.누적자본.iloc[-1]:,.0f} (시작 \$10k) · 롱 R합 {tab.롱_R합.sum():+.0f}% / 숏 R합 {tab.숏_R합.sum():+.0f}% · 영문/한글 병기",
+============================================================================================
+[LP → 청산 스텝업 연결 — Stg2] 레버3/증거금75 고정 · 이산 레짐 vs LP(이산/연속) · CPCV 표준6 본선
+[관문0 앵커 OFF] 복리 +1852% · MDD -24.6% · 청산 0 (앵커 +1852%/MDD-25)
+
+설정                         full복리%    MDD%   청산  CPCV_p25      중앙    음수폴드%  MDD-20위반%
+기준 OFF                        1852   -24.6    0     106.8   166.2        0         40
+이산R ×1.4 (비중31%)              1991   -22.4    0      92.7   176.4        0          7
+LP이산 ×1.4 (비중36%)             1603   -25.7    0      79.3   178.6        7         40
+LP연속 ×1.4 (비중42%)             1714   -23.2    0      97.5   155.6        7          7
+이산R ×2.0 (비중31%)              2065   -22.9    0     107.1   167.1        0          0
+LP이산 ×2.0 (비중36%)             1355   -26.4    0      55.4   151.5        7         40
+LP연속 ×2.0 (비중42%)             1688   -24.3    0      96.9   148.0        7         40
+
+[본선 판정 §5.7] p25>0 AND MDD-20위반0:
+   ✅ 이산R ×2.0 (비중31%): full+2065%·p25+107.1%·위반0%
+
+[저장] LP_exit_compare_CPCV.csv
+[정직 注] 레버3/75 고정 1차. 통과 후보는 held-out 재확인 + 4단 MDD 게이트(§26) 확장=Stg3. full표본은 참고(과적합 상한).

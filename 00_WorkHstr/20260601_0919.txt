@@ -1,0 +1,18 @@
+[작업분석] RAUTO_ConceptRefine_06_Ch5_Stg7_FullScorecard (2026-06-01T09:19:59)
+[오염검사] PASS
+------------------------------------------------------------
+  O 1.필수파일: ok
+  O 2.CSV非공백: ok
+  O 3.코드해시: {'test_06Prj_Ch5_RAUTO_ConceptRefine_Stg7_FullScorecard.py': 'd66d684789160eaa', 'check_06Prj_Ch5_RAUTO_ConceptRefine_Stg7_FullScorecard.py': '47083f25ef24ad6c'}
+  O 4.중복없음(거래): 중복0
+  O 5.미래참조가드: 음수shift 미사용 — 엔진 무수정, 라벨은 사후집계만
+  O 6.거래수집계: 추세318+횡보86=404건
+  O 7.장세별: 산출
+  O 8.연도별: 산출
+  O 9.롱숏별: 산출 | SpTrd_Fib_V1_Champion.py=OK SidewayDCA_Stg7_engine.py=OK
+  O 10.VERDICT(요약): 추세봇 PF1.643 수익률177.27% 손익비3.581 318건 $88635.0 | 횡보봇 PF2.653 ...
+------------------------------------------------------------
+[성적표 요약] 추세봇 PF1.643 수익률177.27% 손익비3.581 318건 $88635.0 | 횡보봇 PF2.653 수익률24.18% 손익비1.027 86건 $7904.0
+[노출] 추세봇 명목$50000.0고정단리 / 횡보봇 2.5배복리
+[펀딩] REAL | [라벨] label_smc_8
+[코드해시] {'test_06Prj_Ch5_RAUTO_ConceptRefine_Stg7_FullScorecard.py': 'd66d684789160eaa', 'check_06Prj_Ch5_RAUTO_ConceptRefine_Stg7_FullScorecard.py': '47083f25ef24ad6c'}

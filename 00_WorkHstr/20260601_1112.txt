@@ -1,0 +1,19 @@
+[작업분석] RAUTO_AlphaUp_06_Ch5_Stg11_LongMacdMLSizing (2026-06-01T11:12:15)
+[오염검사] PASS
+------------------------------------------------------------
+  O 1.필수파일: ok
+  O 2.CSV非공백: ok
+  O 3.코드해시: {'test_06Prj_Ch5_RAUTO_AlphaUp_Stg11_LongMacdMLSizing.py': '64aaa98980e7baf6', 'check_06Prj_Ch5_RAUTO_AlphaUp_Stg11_LongMacdMLSizing.py': '32c4a2a091378180'}
+  O 4.중복없음: 중복0
+  O 5.미래참조가드: 음수shift 미사용 — 장기MACD/임계 과거봉·학습기간만 | 임계=학습기간만 확인
+  O 6.장기MACD장세정확도: 정확도17.0%(기준선36.5%)
+  O 7.ML그리드20조합: 그리드 20행(일치5×불일치4)
+  O 8.청산/MDD: 단리MDD-61.0% 최저자본$7004.0 청산NO | 그리드내청산발생:NO
+  O 9.세축성적표+엔진해시: 장세/연도/롱숏 산출 | SpTrd_Fib_V1_Champion.py=OK SidewayDCA_Stg7_engine.py=OK
+  O 10.VERDICT: 최적 일치×2.6/불일치×0.15 적용PF1.788/329.3%
+------------------------------------------------------------
+[장기MACD 장세] 정확도 17.0%(기준선36.5%)
+[ML최적] 일치×2.6/불일치×0.15 | 거래318(일치176/불일치142)
+[성과] base PF1.643/177.27% -> 적용 PF1.788/329.3%/$164649.0
+[위험] 단리MDD -61.0% 최저자본 $7004.0 청산 NO | 그리드내청산:NO
+[코드해시] {'test_06Prj_Ch5_RAUTO_AlphaUp_Stg11_LongMacdMLSizing.py': '64aaa98980e7baf6', 'check_06Prj_Ch5_RAUTO_AlphaUp_Stg11_LongMacdMLSizing.py': '32c4a2a091378180'}

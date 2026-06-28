@@ -1,0 +1,18 @@
+VERDICT Stg13_OiZscoreAdapter 사전탐색 | 중단 — oi_zscore_24h 생성 코드 D:\ML\verify 내 부재, 캡틴에게 원본 요청 (추정 구현 금지 준수)
+
+[탐색 범위 — 전수검색 4축]
+1) **/*.py 'oi_zscore' 매칭 50+파일 → 전부 소비자(merged 컬럼 read/reindex), 생성식 없음
+2) 생성 대입 패턴(oi_zscore*=) 매칭 전수 → 동일(소비자 주석/리샘플 last 뿐)
+3) 데이터 계보 확인: Merged_Data.csv(476,327,648B, 2026-05-11 00:58) = Merged_36mo_With_OI_Derived_REPAIRED.csv 동일 크기·시각 사본.
+   파생 원본 Merged_36mo_With_OI_Derived.csv 는 2026-05-07 17:11 생성 — 그 생성 스크립트가 부재.
+   고유 파생컬럼(oi_drop_after_spike·taker_imbalance_5m_avg) 역추적 7파일 → 전부 소비자.
+4) 레거시(수익난 모델by제미나이/RautoV80k/Pauto* )·bat/ps1/sh/json/yaml/ipynb/txt/md → 생성식 없음
+   (PastBackTest_PautoV75.py 187줄 openInterestHist 수집은 있으나 zscore 계산 아님)
+
+[소비자 측 정의 단서(참고 — 수식 아님)]
+- SidewayDCA_Stg7_engine.py 106줄: "oi_zscore_24h = merged_data 컬럼(그 시점 과거 24h 기준). 진입시점에 알 수 있음 → 미래참조 없음"
+- 06Prj_Ch4_Stg1 14줄: "24시간 OI가 평소대비 몇σ"
+→ '과거 24h 롤링 z'로 추정되나, 정확한 창(1440분/창최소치)·모집단(sum vs value)·ddof 미상 — 추정 구현 금지 대상.
+
+[캡틴 요청사항] Merged_36mo_With_OI_Derived.csv(2026-05-07) 생성 스크립트 원본(또는 위치).
+확보 시 Stg13 어댑터(Dauto CSV→동일 수식→market.aux) + 겹침구간 z값 일치 대조(허용오차 명시) 진행.

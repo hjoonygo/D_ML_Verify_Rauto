@@ -1,0 +1,27 @@
+[작업분석] SidewayDCA_AlphaUp_05_Ch1_Stg6  (2026-05-31T01:47:53)
+[오염검사 종합] PASS
+------------------------------------------------------------
+  O 1.필수파일존재: all present
+  O 2.결과CSV非공백: ok
+  O 3.코드해시기록: {'test_05Prj_Ch1_Stg6_SidewayDCA_AlphaUp.py': 'a40d0070202b54ba', 'check_05Prj_Ch1_Stg6_SidewayDCA_AlphaUp.py': '7d0ca401fb25eac6'}
+  O 4.거래중복없음: 중복0행
+  O 5.미래참조가드: 음수shift/미래봉 미사용(주석제외 코드검사)
+  O 6.거래비중첩: 중첩0건
+  O 7.8시나리오완전: 8행
+  O 8.VERDICT존재: VERDICT stg6 OI 2차필터 | 필터:OFF[PF1.539 cumR15....
+  O 9.인트라바모호도기록: 모호봉 0.5% (held 221봉 중 1봉)
+  O 10.정밀필터작동: FILTER 3변형, precise 차단 15.0건 | trades=FILTER_1차+2차(OI)
+  O 11.OI2차필터작동: OI 7변형, 1차+2차 거래75.0 PF3.084
+------------------------------------------------------------
+[VERDICT] VERDICT stg6 OI 2차필터 | 필터:OFF[PF1.539 cumR15.95% MDD-13.4% WFE80.8%]->1차[PF2.099 cumR20.4% MDD-8.6% WFE116.4%] | 고원 atrLo:편차5.3%p(고원) | short:편차4.8%p(고원) | slmultON:편차0.6%p(고원) | ★OI: 1차[PF2.099 cumR20.4% MDD-8.6% WFE116.4%]->1차+2차[PF3.084 cumR22.98% MDD-8.6% WFE73.8% 거래75] | OI임계 편차6.9%p(뾰족-주의) | 펀딩=REAL(BTCUSDT_funding_history_8h.csv, 3288건/예상3285, 커버100%, 누락0) | atr_ratio=O oi_zscore=O
+[인트라바모호도] 0.5%  (8h봉 1개만 보던 OLD가 익절/손절 순서를 추측해야 했던 봉 비율)
+[코드해시] {'test_05Prj_Ch1_Stg6_SidewayDCA_AlphaUp.py': 'a40d0070202b54ba', 'check_05Prj_Ch1_Stg6_SidewayDCA_AlphaUp.py': '7d0ca401fb25eac6'}
+[8시나리오 누적R(train/test)]
+  SCEN_clean_range: train n17 R3.38% | test n19 R4.09%
+  SCEN_break_up: train n0 R0.0% | test n0 R0.0%
+  SCEN_break_down: train n0 R0.0% | test n0 R0.0%
+  SCEN_fake_break: train n0 R0.0% | test n0 R0.0%
+  SCEN_v_reversal: train n0 R0.0% | test n0 R0.0%
+  SCEN_low_vol_range: train n4 R-1.15% | test n8 R2.25%
+  SCEN_strong_trend: train n0 R0.0% | test n0 R0.0%
+  SCEN_regime_shift: train n15 R11.43% | test n12 R2.97%

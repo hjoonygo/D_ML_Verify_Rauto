@@ -1,0 +1,22 @@
+# RfRauto .gitignore — 코드·문서·메모리 백업 목적. 대용량 데이터·바이너리·재생성물 제외.
+# === 대용량 시장데이터(재생성 가능·수백MB) ===
+08_BTC_Data/
+**/Merged_Data.csv
+**/Merged_*.csv
+**/BTCUSDT_*.csv
+**/*funding*.csv
+# === 재생성물(차트·압축·캐시) ===
+*.png
+*.zip
+*.pyc
+__pycache__/
+.ipynb_checkpoints/
+# === 분석 산출 대용량(원장 CSV는 재생성·py로 복원) ===
+00_WorkHstr/BackTest_Output/**/*.csv
+# === OS·임시 ===
+.DS_Store
+Thumbs.db
+*.tmp
+
+# 대용량 샘플 state(재생성)
+**/*_state_sample.json

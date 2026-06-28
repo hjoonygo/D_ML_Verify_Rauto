@@ -1,0 +1,9 @@
+[07Prj_Ch3_Stg1_TrendStack_UptrendCutCPCV] build_ch3s1_v1 2026-06-09 14:57
+목적: 추세봇 uptrend(feat_struct 실시간) 진입 0.3배 '단일룰'의 4년 폴드 견고성(블록CPCV+WF+2024게이트)
+오염검사 7/8 (NG)
+전체: 기준선 ret908% MDD-26.6% Calmar34.19
+      0.3룰  ret878% MDD-15.9% Calmar55.1
+uptrend거래=100 / CPCV폴드=41 MDD개선=98%
+2024게이트(Calmar유지>=0.85)=PASS (cal_keep=0.89)
+판정: 룰은 MDD/Calmar 견고개선·2024생존이면 1순위 통과 → 2순위(OPV·n·N 그리드+PBO)로
+MDD-20% 기준. code_sha={'test': '754688b1fc69', 'check': '2b16caf3f5ef'}

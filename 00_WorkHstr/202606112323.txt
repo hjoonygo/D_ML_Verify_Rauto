@@ -1,0 +1,9 @@
+VERDICT 07Prj_Ch4_RunAWS_Stg11_RegimeAllocSweep | 오염검사 4/5 | 결과없음
+[PASS] causal_ledger.csv(§8/근간) | c4964c5566af9631
+[PASS] trendstack_signal_engine.py(§8/근간) | c9d784bfd81e8ed4
+[PASS] 07Prj_Ch2_Stg2_TrendStack_OPVnNSweep_devledger.csv(§8/근간) | a786876e1b565617
+[PASS] Stg6 합성 사본=원본 | 동일
+[FAIL] 결과 존재 | 결과없음
+
+[전문]
+

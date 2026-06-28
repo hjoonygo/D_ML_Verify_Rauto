@@ -1,0 +1,25 @@
+[작업분석] SidewayDCA_AlphaUp_05_Ch1_Stg2  (2026-05-30T21:23:14)
+[오염검사 종합] PASS
+------------------------------------------------------------
+  O 1.필수파일존재: all present
+  O 2.결과CSV非공백: ok
+  O 3.코드해시기록: {'test_05Prj_Ch1_Stg2_SidewayDCA_AlphaUp.py': 'efa15c84a8dc078a', 'check_05Prj_Ch1_Stg2_SidewayDCA_AlphaUp.py': '2fc51a32c667c8ca'}
+  O 4.거래중복없음: 중복0행
+  O 5.미래참조가드: 음수shift/미래봉 미사용(주석제외 코드검사)
+  O 6.거래비중첩: 중첩0건
+  O 7.8시나리오완전: 8행
+  O 8.VERDICT존재: VERDICT stg2 정직화 | OLD PF=1.293 cumR=9.92% MD...
+  O 9.인트라바모호도기록: 모호봉 0.5% (held 194봉 중 1봉)
+------------------------------------------------------------
+[VERDICT] VERDICT stg2 정직화 | OLD PF=1.293 cumR=9.92% MDD=-20.6% -> HONEST(무캡) PF=1.379 cumR=10.02% MDD=-17.9% WFE=77.2% | 인트라바모호도=0.5% | 펀딩=REAL(sample_BTCUSDT_funding_history_8h.csv, 37건) | 캡추천=MDD를 -15% 안으로 넣는 캡 없음(추가검토)
+[인트라바모호도] 0.5%  (8h봉 1개만 보던 OLD가 익절/손절 순서를 추측해야 했던 봉 비율)
+[코드해시] {'test_05Prj_Ch1_Stg2_SidewayDCA_AlphaUp.py': 'efa15c84a8dc078a', 'check_05Prj_Ch1_Stg2_SidewayDCA_AlphaUp.py': '2fc51a32c667c8ca'}
+[8시나리오 누적R(train/test)]
+  SCEN_clean_range: train n17 R3.63% | test n18 R3.75%
+  SCEN_break_up: train n0 R0.0% | test n0 R0.0%
+  SCEN_break_down: train n0 R0.0% | test n0 R0.0%
+  SCEN_fake_break: train n0 R0.0% | test n0 R0.0%
+  SCEN_v_reversal: train n0 R0.0% | test n0 R0.0%
+  SCEN_low_vol_range: train n4 R-0.54% | test n8 R0.9%
+  SCEN_strong_trend: train n0 R0.0% | test n0 R0.0%
+  SCEN_regime_shift: train n35 R4.41% | test n24 R-2.12%

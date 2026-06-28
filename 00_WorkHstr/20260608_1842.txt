@@ -1,0 +1,11 @@
+=== CHECK 07Prj_Ch2_SidewayDCARebuild_Stg1_ExpCutLiqSweep (8시나리오 오염검사) ===
+[1.파일명] 폴더=07Prj_Ch2_SidewayDCARebuild_Stg1_ExpCutLiqSweep OK
+[2.엔진해시] SidewayDCA_Stg7_engine.py: OK 무수정
+[3.결과파일] 3종 존재 | 원장 86 스윕 1392 후보 30 OK
+[4.MAE정합] 물리위반 0건 OK
+[5.격리상한] entry% 초과손실 0건 OK
+[6.MDD절대선] 후보 중 -15% 초과 0건 OK
+[7.실효노출한축] PF 불변성 OK
+[8.컷분해] n_rec+n_dir != n_cut 0건 OK
+[VERDICT] best EXP4×lev15 cutnone ret148.8% MDD-13.6% worst-9.7% CPCVp25 0.7093 | recover0/direct0 | 원장 86건 | 컷없음기준선 포함 스윕 1392
+[결과] 8시나리오 8/8 PASS

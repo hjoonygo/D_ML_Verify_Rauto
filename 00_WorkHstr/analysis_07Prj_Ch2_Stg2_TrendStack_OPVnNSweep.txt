@@ -1,0 +1,5 @@
+[07Prj_Ch2_Stg2_TrendStack_OPVnNSweep] 추세봇 POC평균회귀 진입수량 조절 최적화
+검증: PASS 18 / FAIL 0
+최적: OPV=0.25 n=0.6 N=1.0 EXP=1.75 총수익=900% MDD=-19.7% CPCVp25=2.7156
+늘림(동일)120건 / 줄임(반대)120건
+순수수량효과(EXP0.825 고정): ret=223% MDD=-9.7%

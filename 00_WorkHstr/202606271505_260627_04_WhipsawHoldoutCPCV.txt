@@ -1,0 +1,19 @@
+[휩소 오버레이 정직검증 — held-out + CPCV 표준6] 260627_04_WhipsawHoldoutCPCV
+[방법] R+P70 베이스 고정 · OFF vs WHIP_soft(저변동&OI충격 사이즈0.5) · 폴드별 train서 M20(MDD≥-20) 최대수익 사이징 재선택→보류 test 채점(커닝0·purge1M).
+[휩소축소 대상] 저변동(ATR≤Q30)&OI충격(|oi_z|≥1.0) 동시 = 19% 진입.
+
+[★① held-out (train≤2024 최적 → test 2025~26, 진짜 OOS)]
+팔               train사이징       train수익/MDD     ★test수익  testMDD    test연환산    강제청산
+OFF                L8/85      +14839%/-19%      +3195%     -24%     +1275%       0
+WHIP_soft          L6/75       +2754%/-18%      +1032%     -14%      +517%       0
+
+[★② CPCV 표준6 (15경로·재선택·purge — 본선 잣대)]
+팔              p25(연%)    중앙(연%)     음수폴드%     폴드MDD최악   MDD-20위반%    경로
+OFF             +1290%    +1949%        0%        -45%         57%    14
+WHIP_soft       +1299%    +2204%        0%        -41%         71%    14
+
+[판정]
+  · held-out OOS: WHIP_soft test +1032%/MDD-14% vs OFF +3195%/MDD-24% → WHIP_soft 열위
+  · CPCV 표준6: WHIP_soft p25 +1299%·위반 71% vs OFF p25 +1290%·위반 57% → WHIP_soft 열위/동등
+  · ★M20 본선(p25>0·MDD-20위반0): WHIP_soft = 미달
+  · 결론: 휩소 오버레이는 OOS서 미검증/부분(헛수치 위 쌓기 금지 — in-sample +8657%는 천장).

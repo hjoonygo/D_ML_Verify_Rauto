@@ -1,0 +1,17 @@
+VERDICT 06Prj_Ch6_Stg2_SwitchWalkForward | 8시나리오 8/8 PASS | [3모드] ①스위칭 PF1.662/530.68%/MDD-29.2(청산NO) vs ②병행 PF1.671/410.73%/MDD-27.5 vs ③단독추세 PF1.643/521.45% / 단독횡보정밀 PF2.099/152.38% | [워크포워드] 창6 통합OOS PF1.321 창별[0.697, 0.798, 1.893, 1.272, 1.447, 2.112] 안정NO | ★2025 R합: 스위칭5.77% vs 병행48.75% vs 단독추세2.07% | 칩정의 CHOP>65.0&ER<0.35&ADX<25.0_FROZEN 정밀필터ON | check:PASS
+
+[8시나리오 상세]
+  [OK] S1 필수파일/비공백 : 6종 OK
+  [OK] S2 엔진해시 무수정 : 일치
+  [OK] S3 미래참조 가드(shift- 없음) : 없음
+  [OK] S4 거래>0 & 스위칭거래>0 : 추세318/횡보90/스위칭311
+  [OK] S5 라벨 봇입력 배제 : False
+  [OK] S6 칩정의 동결+정밀필터ON+OI꺼짐 : CHOP>65.0&ER<0.35&ADX<25.0_FROZEN | filter=precise | OI=False
+  [OK] S7 워크포워드 창>=5 & 통합OOS PF존재 : 창6 통합OOS PF1.321 안정NO
+  [OK] S8 펀딩 REAL(추세·횡보) : 추세REAL/횡보REAL
+
+[엔진 무수정 해시]
+  SpTrd_Fib_V1_Champion.py = 7f9192e3d50b1afd...
+  SidewayDCA_Stg7_engine.py = dfdfac4394cd7809...
+
+[메모] 결정용 깨끗한 숫자. 워크포워드 OOS PF가 창마다 1 넘고 안정하면 스위칭 알파 인정. 노출은 위험사이징(PF불변).

@@ -1,0 +1,105 @@
+STATE_Rauto — 압축 핸드오버 (Claude Code ↔ Claude AI 다리, §11 6칸)
+최종 세션 = 260627_02_OBOICharacter (2026-06-27)
+
+═══ [260627_02_OBOICharacter] 6칸 (★최신 — 이 블록 먼저 읽기) ═══
+[1] 직전작업: 캡틴 'OI 데이터로 OB(오더블록) 성격판별' 5단계 전수검증 → ★OB/OI 5중사망 + ★부수발견 본알파(REVoi 청산 COMBO). 토론 제미나이·ChatGPT(OI=에너지·Response→Magnitude·OB Character) 수렴, but 'OB생존85%'·'청산 무료데이터' 검증서 기각.
+[2] PASS/FAIL: PASS(무손상). BASE(tp0,early0) lev3 = +1851.6% 재현(엔진 early_tp 수정 무해). COMBO M20 = +98,018%/MDD−16.8%/강제청산0/승률71%/PF2.25 (lev4·증거금75). held-out test +902%(vs BASE +304%)·CPCV표준6 p25 +443%·§26 4단(M30 +1.35e7%@L7/M25 +2.67e6%@L6/M20 +98018%@L4·전구간 청산0)·Pine v6·사례6선·비용 gross_R 수정(순손익+$9.8M=무비용+$34.7M−총비용+$24.9M 정상).
+   ★OB 5중사망: ①기저 zone69%=착시(추세편향기각·진입가기준 +10~12%p) ②OI가 OB돌파/저지 가르나 AUC0.50 무력·CVD=가격모멘텀중복 ③OB단독 1m+비용 적자(손익비0.74~0.88<1=stop갭) ④REVoi진입오버레이=레버효과(BASE_x1.34 +4513%>BOOST_near +4132%) ⑤REVoi청산오버레이=OB무관(FIX_1% +9785%>OB_TP +3741%).
+[3] 다음1수: ①진짜 held-out(early_tp% train 재탐색→test, 현재0.75%는 36mo최적·train→test통과) ②38개월 데이터확장(Dauto 5/12~6/22 OHLCV+OI+taker+funding 있으나 12일갭+OI결측+oi_zscore재구축=오염위험) ③CPCV표준6 정밀(엔진내장 거래)·실거래 ④§9 확정알파 등재=캡틴 최종'채택'승인 ⑤추세봇 상관낮은 포폴(260627_01 대결론, 병렬).
+[4] 미결: COMBO=★캡틴 채택승인·§9 등재 완료(2026-06-27·조건부·신뢰85, CLAUDE.md §9·§14 ADR-004). 실거래 사이징=진짜OOS(lev3)·버퍼. 정식化 잔여=38개월(Dauto갭)·CPCV표준6 정밀(엔진내장)·실거래(testnet). 비용세부(maker/taker 횟수)는 early_tp 근사(gross_R·총비용 헤드라인은 정상). 박제 완료(memory·STATE·INDEX·KeyNote·Guide v7·Hstr ADR·LogicCatalog·재현zip·CLAUDE §9/§14).
+[5] 알파변동(★전환점): REVoi 청산 업그레이드 COMBO = tp_frac0.7(구조 부분익절) + early_tp(고정 조기익절·전량). 발견경위=REVoi fibstop이 이익 늦게청산(되돌려줌)→조기익절. 기존 tp_frac(260626_02 +11810%) 재확인·강화='REVoi 진짜레버=청산'. 엔진=bt_full.gen_trades/REVoi_bot early_tp_pct·early_frac opt-in 내장(0=앵커동일)+bt_report gross_R+back2tv_REVoi 전달.
+   ★진짜 held-out 재최적(Stg10·신뢰85): early_tp **train최적=test최적=1.0% 정확일치(거리0)=강건·과적합아님**. 진짜 OOS=held-out test **+2121%/MDD−5.5%(lev3) vs early-off +304% = 7배**. §26 M20(36mo천장)=early1.0/lev5 **+3,229,453%/MDD−19.8%/청0**(승률69%/PF2.28). early_tp plateau(0.5~1.25%)+대칭손절폭락(REVoi손절핵심)=과적합아님 보강. Back2TV=260627_16_COMBO_M20_tp07e100_L5(0.75% 260627_15는 plateau 내 보존). ★채택 early_tp=1.0%.
+[6] Work Order: OB-OI 성격판별 WO=★완료(5중사망). REVoi COMBO 정식화(진짜held-out·38개월·CPCV표준6·§9등재).
+   ★★최종목표 WO(2026-06-28 캡틴) = **다중알파 + 미시레짐 챔피언선발 → 매월 +**: REVoi COMBO(역추세)와 전혀 다른 성격(상관0/음) 알파 검색·개발 + 디테일 장세판별(미시레짐) → 레짐별 최적봇 선발 → 매월 수익 +. 하위=추세봇포폴(과제2)·미시레짐세분(과제1)·COMBO(1번봇). 단일출처=Work_Order_MultiAlpha_RegimeChampion_20260628.md. 완료=36개월 전월 양수+CPCV표준6+상관낮음+MDD−20+환각0.
+   ★Rauto2(RfRauto) 적용완료(2026-06-27~28): COMBO 로딩·봇이름표·매매내역표·AWS 1복붙배포. 모듈화=보류. Guide/Key=260627_02_Rauto2_*.
+═══════════════════════════════════════════════════════
+
+[1] 직전작업
+- ★Rauto2 = 옛 b32(control_server 8787·폰 대시보드) 개조 + 신규 5모듈 코어 연결 = '서버+폰서 REVoi 실시간 백테' 구동 완성.
+- 신규엔진 2개: rauto_live.py(리플레이/라이브 구동기=검증 batch원장 시간순 드러내기, 룩어헤드 차단·중앙px) + rauto_datafeed.py(바이낸스 공개REST/Dauto CSV 라이브 교신).
+- 서버 260626_02_Rauto2_Sys_server.py(포트8788, b32 개조·인프로세스 rauto_live·리플레이클록) + dashboard.html(최상위 state.px 공유·리플레이컨트롤·실시장 토글) + run.bat/nssm.
+
+[2] PASS/FAIL + 핵심수치
+- PASS(무손상). 매칭 시뮬 3관문(A무손상 +1851.65% 0.000%p·B거래오버레이 최종잔고차$0.000000·C중앙px 캔들동일) + rauto_live 4관문(무손상·룩어헤드0·단조·중앙px) + 서버 스모크(끝까지=앵커 +1851.6%/932거래, 라이브 현재가 실수신).
+- ★차트버그('봇마다 실시간차트 상이') 근본원인 규명·구조해소: 옛=슬롯마다 자기 px / Rauto2=중앙 px 1개 최상위 공유 → 캔들 전봇 동일·거래만 상이.
+- 검증엔진 7개 SHA256 무수정(rauto_live/datafeed는 호출만). MDD4단 비교 실증: 슬롯 MDD25(+1851%/-24.6%) vs MDD해제(+853337%/-85.2%).
+
+[★fleet] 멀티봇 8종 생성·Rauto2 동시로딩 검증완료(260626_02, 캡틴 "하나만 고르면 미래 막힘"). 전부 강제청산0·중앙px공유·각자거래.
+[★폰수정 4종 완료·검증(260626_02, 캡틴 지시)]
+- 수정1(차트 5월~안보임): datafeed가 Dauto미러(Verify)도 읽고 build_warmup이 Dauto(과거)+바이낸스(최근)를 now까지 머지 + px윈도우 45일(다운샘플~8000점) + 워밍업60일. → px 5/12~6/26 검증OK·5월거래66건.
+- 수정2(체결품질분석→챔피언선정Sys): 1.레짐분석 2.해당레짐 기대수익순위 3.현재레짐 실현순위 4.최근15일순위(각 1~3위). 엔진=reg_lab 7일통일·reg_ret·trd.reg·slot.m20, 대시보드 champSysBox.
+- 수정3(리플레이시각 삭제→Emergency 복원): 'Gho, HyoungJoon! Emergency' 버튼+모달(안전중지/강제중지/재개). 서버 /cmd champ_stop_graceful·force·resume→emergency 플래그 검증OK.
+- 수정4(판정 삭제→이메일 복원): 'Champ. Performance to Crew' 버튼+/email(Gmail+Telegram). 시크릿=rauto_secrets.txt(.example 템플릿). 미설정시 graceful 안내 검증OK.
+- ★챔피언 m20자격 = 검증(36mo) MDD 정적기준(레지스트리 mdd, M20_TIER_THR -22)으로 수정(워밍업 변동 무관, §26 인증). 풀=M20·R+P70단순·M4b·M5게이트·결합.
+- 봇관리 = ★폴더베이스 아님(옛 b32=C:\Rauto1~8 폴더+subprocess). Rauto2=코드 BOT_REGISTRY(리스트)+인메모리 BotSlot 슬롯, 중앙 1m px 공유. → C:\Rauto1~8 삭제안전(옛 b32 8787 끄고).
+- 기본로딩=8봇 전부(캡틴: 만든 8개 바로 보이게). 슬롯창 4개높이+스크롤(.slist max198px).
+- ★챔피언선정Sys = 3줄: 'Win the CHAMPION  Regime:<레짐>'(19px골드) / 기대수익률1위(36mo 레짐별 월수익=REG_MONTHLY 정적, 하락장 R+P70단순 +29.4%/월) / 현재Regime수익1위(에피소드 시작후 실현·/N일). 둘다 M20풀만.
+- ★PWA 독립앱(풀화면): manifest.json(display fullscreen)+sw.js(네트워크전용·캐시안함)+아이콘192/512 + 헤드메타. 안드로이드는 HTTPS필요.
+- ★HTTPS = Tailscale serve(이 PC ai-ml): `tailscale serve --bg 8788` → https://ai-ml.tail305e55.ts.net (유효인증서·검증200). 폰 z-fold7서 이 주소로 '앱 설치'=완전 풀화면. 재적용=setup_https_tailscale.bat. AWS=ec2amaz-cor6gpg서 동일 실행.
+[★2026-06-27 AWS 청소 + 옛Rauto삭제 + Dauto복구 — 캡틴 RDP+클립보드(PowerShell)로 수행, Claude 원격불가(자격증명없음)라 명령 제공·교차검증]
+- 옛 Rauto(b32) 완전삭제: 8787 죽음(PC서 교차검증 포트닫힘·HTTP무응답). 삭제=C:\Rauto1~8 + run_Rauto + run_Rauto_Impatient + RautoControl + RautoRepo(옛 dev repo 0.32GB) + 루트 옛파일3(AWS_ONECLICK.bat·Rauto1_deploy.zip·Rauto_ControlApp_PWA.zip) + 옛작업 Kill_Guard·Telegram_Poll. = 'PAPER 동치깨짐' 알림 발신원(환각오염) 제거.
+- ★보존(절대): C:\Dauto·C:\BinanceData·시스템폴더·C:\Boot(부팅!)·Documents and Settings(정션)·rclone·Rauto2_incoming.
+- ★Dauto 근본버그 수정(전환점): Dauto_Collector 태스크=SYSTEM계정인데 run_collector.bat이 `python`(=Administrator 전용설치 C:\Users\Administrator\AppData\Local\Programs\Python\Python310)을 PATH로 호출 → SYSTEM PATH엔 없어 즉시종료·10초루프死. 수정=bat이 python 전체경로 호출(백업 run_collector.bat.bak). → 상시가동 True, 멈춘 12분 백필 0손실. (재부팅 시 어차피 터질 잠재버그를 이번에 해소.)
+- ★파일교류 미결: Taildrop PC→AWS '전송'은 됐으나 AWS '수신' 0건(원인 미규명) → 삭제는 클립보드 복붙으로 우회. 정석안=Taildrop+rclone(AWS→구글드라이브), 가이드 AWS_file_exchange_guide.md.
+[★2026-06-27 Rauto2 AWS 24/7 배포 완료 — PC 절전死 해결]
+- 배포처 = C:\Rauto2 (AWS ec2amaz-cor6gpg). SYSTEM 태스크 'Rauto2Server'(/sc onstart·재부팅자동) → run_aws.bat(★python 전체경로=SYSTEM서 작동·자동재시작loop·라이브·warmup60). 8슬롯·regime/champ 검증OK.
+- HTTPS = AWS tailscale serve → ★폰 본방 = https://ec2amaz-cor6gpg.tail305e55.ts.net (유효인증서·PWA설치=풀화면·24/7). PC ai-ml 주소는 dev용(절전死).
+- 번들 = 엔진10+추가2 + 리서치.py/.json + 서버런타임(36개월 대용량 제외, 라이브=바이낸스+Dauto C:\BinanceData). 전송 = Tailscale HTTP-pull(PC `python -m http.server 9000`→AWS Invoke-WebRequest 100.89.47.2:9000). Taildrop 수신실패 우회.
+- ★배포중 발견·해결 2버그(실repo backport 완료): ⒜bt_full.py가 rauto_paper_engine·rauto_contract를 D:\ML\Verify\...\ImpatientFork\bots 하드코딩경로로 import(AWS엔 없어 死) → 그 2모듈을 engines에 추가(이제 self-locating). ⒝blend_opt.py `import optuna`(AWS無) 최상위 → optional(try/except+18줄 가드). 라이브는 optuna 불필요.
+- ★미결: ①Taildrop 수신실패 원인 ②AWS rclone 구글드라이브 백업 ③7/1까지 챔피언 전환로직 정밀화 ④bt_full 하드코딩경로 self-locating화(현재 무해-engines에도 있음) ⑤PC쪽 임시 Rauto2(8788)/serve 정리(dev용 유지중).
+  엔진: REVoi_bot(tp_frac·regime_factor·gate=알파) + rauto_live per_trade_pnl(dd_cut=Rauto 리스크) + revoi_regime.py(게이트·레짐스텝 자기완결). 서버 BOT_REGISTRY 8종.
+  8종(슬립0, Merged): #6 M20챔피언(R+P70 lev6/55 regime1.4) +10453%/MDD-20 · #7 R+P70단순(lev6/55) +11810%/MDD-19.9 · #5 M25(lev5/85) +35554%/-25.2 · #4 M30(lev8/65) +114147%/-30 · #3 M0천장(lev16/100) +19.5억%/-70 · #8 M4b DD컷(dd-8%×0.5) +5133%/-15.9 · #9 M5게이트(추세역행차단) +4986%/-20.8·799거래 · #11 결합R+P80(gate+dd, lev6/75 tp0.8) +8813%/-18.6·799거래.
+  레짐DNA: 전봇 하락장(급락받아치기) 압도·상승장(랠리) 약함→추세봇 상보 필요. 수익달 최소음수=M5게이트(5/38).
+  ★챔피언 자동선발 구현완료(결정두뇌, RAUTO2_CHAMP_MODE): M20자격 풀(전체MDD≥-22=M20·R+P70단순·M4b·M5게이트·결합, 공격용 M25/M30/M0 제외)에서 전환.
+    모드 = recent(최근2주 최고·기본·robust) | regime(현 7일레짐 과거최고봇·없으면 최근fallback) | maxret. = M0천장 회피 검증OK.
+    근거(RotationSim, 동일노출 정규화): 레짐전환 +5176%/MDD-20.5% > 최고단일 +4965%/-25.4% · 최근1주 +4081%/-15.6%(MDD우위). ★단 같은 위험등급만(레버섞으면 MDD폭발). 7/1까지 추가수정(캡틴).
+[3] 다음 1수
+- ★운영모드(live) 완성·검증됨: 캡틴 개념정정(36개월=개발용 / 폰·서버=워밍업+실시간) 반영. RAUTO2_MODE=live → build_warmup(30일, Dauto/바이낸스) → REVoi forward + 주기 재계산(REBUILD_SEC). 스모크 OK(now=실시각·REVoi 최근거래·현재가 라이브).
+- ★oi_zscore 라이브 브리지 해결: oi_zscore_24h ≡ 누적OI 인과24h롤링z → REVoi 앵커 +1851.65% 1원단위 재현(룩어헤드0). datafeed.build_warmup/oi_zscore_from_series.
+- 남은(추천순): ②RfRauto git 다리(코드만 AWS pull, 아웃바운드=캡틴 승인) ③폰 패닝 미세조정(구현완료·폰 실측) ④AWS 배포+옛8787 정리.
+- 캡틴 폰 테스트 후: 인수인계 §17 풀패키지. (선택)testnet 실주문(RautoCEX Live).
+
+[4] 미결 플래그 (신뢰도)
+- 봇 신뢰 자동화 미완(80): ②피처 룩어헤드는 봇별 1회 수동 · ③held-out 재최적은 봇별 심화.
+- ★라이브 REVoi 신호 = 해결(90): oi_zscore 라이브계산 검증(앵커 1원단위)+운영모드(워밍업+forward) 구현·스모크OK. 남은 건 AWS 실배포·장기 Dauto OI연결 확인뿐. (데이터갭 무관 — 운영은 워밍업+실시간이라 36개월·갭과 독립.)
+- RautoCEX Live(실주문) 미구현 · 슬립 틱실측(안전장치7) 미반영(현 청산슬립0=낙관).
+- AWS=C:만(D:없음) → 운영모드는 D:경로 의존 없어 무관. 코드전송=git 다리 또는 번들(캡틴 선택·아웃바운드 승인).
+- STATE_Rauto.txt 이 파일 신규생성(이전 RfRauto 시대 미존재).
+- ★MDD 4단 게이트(전환점·2026-06-26 캡틴) = 지침 박제 완료, **코드 반영 미완(70)**: bt_report에 강제청산 카운트 + M0/M30/M25/M20 4단 MDD 스윕 = 별도 Stg. 단일출처 CLAUDE.md §26·§14 ADR-002.
+
+[5] 알파 변동
+- ★전환점 — REVoi 청산향상 '부분익절(tp_frac)' 채택검증 통과 = M20 챔피언후보 확립(260626_02).
+  · 진단: REVoi는 강건(전기간 PF1.49). 진짜 레버는 진입게이트가 아니라 청산 '구조 부분익절'(tp_frac).
+  · 효과(M20 사이징 lev6/증거금55%·exp3.3): 복리 +11,810%(슬립0)/MDD−19.9%/강제청산0 (앵커 tp0 +1851.6%/MDD-24.6% 대비 6배+M20통과).
+  · 검증(고정config): CPCV표준6 p25+253.7%/음수폴드0 + held-out OOS(train→test 최근12개월 거래수준 +205%/MDD-19.2%) + 민감도(tp0.5~0.8·레짐1.0~2.0 전부 양호=칼날아님).
+  · ★정직단서(과대금지): 내 cpcv_std6 'MDD-20위반0'은 **월해상도**(거래수준 MDD는 −19.9%=−20 경계). 더 보수적 held-out '재최적'(세션01 cpcv_reopt_exit)은 **MDD-20위반 7%·최악폴드 −21.4%**. → exp3.3은 −20 '이빠이(경계)' = 실거래 채택 시 **버퍼 사이징 권장**(exp~3.0·MDD~−17%) + 그 1폴드 닫기(tp0.8/소폭트림). 부수: 레짐스텝 불필요(R×1.0+P70 ≥ R×1.4).
+  · §26 4단게이트(R+P70): M0 lev16+24억%(MDD-72) / M30 lev8 +124842% / M25 lev5 +38345% / M20 lev6 +11109~11810%(MDD-19.8%). 전구간 강제청산0.
+  · 무손상: tp_frac=0이면 앵커 +1851.65% 1원단위 동일(REVoi_bot 하위호환). Back2TV=260626_03_REVoi_RP70_M20Max_Back2TV(Pine v6·사례6선).
+  · 미결: §9 정식 '확정알파' 등재는 캡틴 최종 '채택' 승인 후(검증은 통과). 더 깊은 OOS=train서 rev파라미터 재탐색은 별도.
+- ★★독립 Dauto 현실체크(캡틴 의심 적중, 260626_02): +11810%는 과적합 천장(허수)임을 독립데이터로 확증.
+  · 데이터무결성: Merged(2024-03) vs 바이낸스 오차 0.00(완전동일) · Dauto vs 바이낸스 평균0.07 → 데이터 깨끗(11810%는 데이터버그 아님, '최대사이징 천장'이 맞음).
+  · ★순수 Dauto 백테(독립 최근31일 2026-05-21~06-21, 현실비용 lev6/55): 앵커 −31.4%/MDD−33.3% · R+P70 −21.8%/MDD−25.6%(−20 돌파!). = REVoi 현재 드로다운(5~6월 불리장세, 캡틴 라이브 −7.8% 일치).
+  · 결론: 실거래 +11810% 기대 진입=손실. exp3.3 M20이빠이는 현장세 과공격(버퍼 필수). REVoi는 진짜알파나 현재 약세→라이브 직행 금지 + 추세봇 상보포폴 필요(데이터 재확인). src=DautoBacktest.py.
+
+[6] Work Order (미래)
+- ★라이브 REVoi 신호 브리지: oi_zscore_24h 라이브 파이프라인(Dauto OI+어댑터) + 2026-05~06 데이터갭 메움 → 라이브 walk-forward(rauto_live.append_1m/rebuild_slot 이미 구비).
+- RautoCEX Live(testnet 실주문) — resolve_replay≡RautoCEX 증명 후 수렴.
+- TS·SW 멀티봇 봇계약으로 슬롯 추가·4관문 검증.
+- ④관제센터 슬롯·챔피언선발(CPCV/held-out 게이트, full표본 금지). 슬립 틱실측 보정(안전장치7).
+
+단일출처: CLAUDE.md §24·§25 · SPEC=07_Rauto_System/260625_01_Rauto_Sys_Reform_SPEC.md §4 ④ · 재현zip=07_Rauto_System/260625_01_RautoSysReform2/260625_01_RautoSysReform2.zip(+G백업).
+
+[이력]
+- 2026-06-25 260625_01_RautoSysReform2: 메모리 통폐합 + 관제센터 봇무관 구조개편 + 봇 신뢰 4관문(REVoi PASS). (이전 세션 260625_01_Rauto_Sys_Reform = ①RautoCEX·②DataHub·③신호결정분리.)
+- 2026-06-26 260626_01_REVoiLevelUp: ★MDD 4단 게이트 정책(전환점·리스크 기준 변경) 박제 — M0 무제한/M30 −30%/M25 −25%/M20 −20% 각 최대수익+강제청산 횟수 의무. MDD−20=탐색 족쇄→챔피언 인증 게이트(실거래 자격, 미달=로딩○·실거래✕)로 이동. 11개 지침문서 동시기재(CLAUDE §0·§5·§14 ADR-002·§15·§19·§20·§22·§25·§26 + BACKTEST/PIPELINE/SPEC + memory + WO). 코드 반영=별도 Stg.
+- 2026-06-26 260626_01_REVoiLevelUp(계속): 장세판별 토론(제미나이·ChatGPT) 선행연구 조건검색 검증→압력엔진 방향확정(KeyNote 260626_01_..._Key_PressureEngineDirection.md, 보물창고). ★압력 3축 전부 기각: Lev 진입솎기=노출효과(순수효과 −) · Lev/Trend/Exec 청산연결=CPCV본선 미달(위반40%) vs 기존 이산R×2.0 +2065%/p25+107%/위반0% = 미시구조 단독 약함 3차 재확인(선행연구·§GUIDE2 E 일치). ★청산세팅 확정=R+P(70%): 현실(스프1bp) +2083%/MDD−15%/청산0(슬립0 상한 +2592%, OFF현실 +1483%서 갱신). per_trade net 스프 미반영=상한 정정. Back2TV(Pine 임베드400/935·사례6선·통합표) 산출=260626_02_REVoi_RP70_Real_Back2TV. 앵커 +1851.6% 전구간 무손상. 다음=R+P held-out §9확정→챔피언 인증 M20·4단게이트 현실 정밀재산출.
+- 2026-06-26 260626_02_Rauto2_Sys: ★Rauto2 = 옛 b32 개조 + 신규 5모듈 코어로 '서버(8788)+폰서 REVoi 실시간 백테' 구동 완성. 신규엔진 rauto_live(리플레이=검증원장 시간순 드러내기·룩어헤드차단·중앙px) + rauto_datafeed(바이낸스 공개REST/Dauto 라이브교신). 매칭시뮬 3관문+rauto_live 4관문+서버 스모크 전부 PASS, 앵커 +1851.6% 무손상. ★캡틴 지적 '봇마다 실시간차트 상이' 근본원인 규명(슬롯별 자기 px)·구조해소(중앙 px 1개 최상위 공유=캔들 동일·거래만 상이). 라이브탭=실시장 캔들·현재가 실수신(REVoi 라이브신호=oi_zscore 파이프라인+데이터갭 브리지 남음). 산출 07_Rauto_System/260626_02_Rauto2_Sys/.
+- 2026-06-27 260627_01_RegimeCertCard: ★캡틴 제안1(레짐별×설정별 챔피언 인증카드) Stg1 완료 + ★전환점 ADR-003(현실 비용 단일모델 재인증). 8봇(서버 BOT_REGISTRY)×비용3(슬립0/현실/보수)×레짐4(전체/상승/하락/횡보) 마스터 산출표 + R+P70 §26 4단 레버스윕 부록. ★무손상: 8봇 슬립0 전부 STATE:38 정확재현(M0천장 +19.5억%까지)+현실=§24 RautoCEX 1원단위 동일+앵커 tp0 +1851.65%. ★전환점: 옛 '현실 +11109%'는 슬립0 천장(+10453%) 초과=불가능=비용/라벨 혼동 → §24 RautoCEX 단일모델로 통일 = **현실 M20챔피언 +7670%**(슬립0 +10453%·보수+5bp +1578%·MDD-20.8%). ★부수발견: M20챔피언(lev6/55)이 현실비용서 MDD-20.8%=자기 M20 위반 → 현실 M20 준수=lev3/100 +5278%/MDD-19%(버퍼사이징). ★레짐DNA(현실): 전봇 하락장·횡보장 압도·상승장 약함=추세봇 상보 필수. ★비용민감도: 1bp 스프가 932거래×레버로 ~25% 드래그, 5bp면 -85%=틱슬립 실측(안전장치7) 정량근거. 강제청산 전부0(lev≤16). 앞으로 토론승인 전 선행연구: ChatGPT 9엔진(State-Driven) 명세 평가=~70% 이미 구축(재작성 위험)·Meta-Regime=약한알파/과적합·세션엔진=24/7코인 저우선·곱게이팅=과적합. 산출 03_IDEA4Bot/260627_01_RegimeCertCard/ + 00_WorkHstr/BackTest_Output/260627_01_RegimeCertCard/.
+- 2026-06-27 260627_01_RegimeCertCard(Stg2~5 분석아크·★세션 대결론): 인증카드 토대로 '레짐 챔피언교체·휩소 오버레이'를 정직검증. ★일관 결론=**단일 REVoi 알파로는 MDD-20 챔피언 인증 불가 → 상관 낮은 추세봇과의 포트폴리오가 진짜 길**(WO '추세봇 상보'·선행연구 평가와 수렴).
+  · Stg2(ChampSwitchReturn): M20 5봇풀 레짐 챔피언교체(즉시청산없음·매거래경계). 정직(최근실현) 로테 +4542% < 고정최고단일 +8669%(performance-chasing 손해) · 검증맵 로테 +9729%는 레짐맵 미래참조(곡선이 최고단일과 겹침=실익~0) · 교체해도 MDD 안줄어듦(-21~22%). ★근본원인=5봇 전부 같은 REV알파(상관높음)→교체=같은곡선 셔플=분산효과0. 병행균등 +5709%/MDD-20%(MDD최선).
+  · Stg3(WhipsawRiskOverlay): 휩소-회피 로직 §26 4단 최대수익(MDD 임의클램프 금지·캡틴). ★정답=솎기(skip) 아닌 사이즈축소(0.5). WHIP_soft(저변동&OI충격 ×0.5) M20 in-sample +8657%(OFF +5904% 대비 +47%·강제청산0). 표적=저변동&OI충격 동시 19%.
+  · Stg4(WhipsawHoldoutCPCV): WHIP_soft 정직검증. ★in-sample +8657%=과적합 천장(OOS서 사라짐, held-out WHIP≈OFF). ★단 진짜효과=리스크감소: CPCV MDD-20위반 50%→36%·p25 +112→+123(수익 안깎고 드로다운↓)=내 평가 'regime=리스크오버레이' 적중. ★단독 MDD-20 본선 미달(위반36%≠0).
+  · Stg5(LeverBlendMDD20): 휩소+진입품질(G추세역행·S2강OI충격·SK극단쏠림) 배합. ★레버 더 얹을수록 OOS MDD-20위반 늘어남(W 36%→W+G 50%→ALL 57%)=과적합/노이즈. 휩소(W) 단독이 OOS 최선. ★어떤 배합도 위반0 미달=단일알파 MDD-20 불가 3차 확정. 단 §26 4단천장(M0 +1.3억%/M30 +6.7만%/M25 +2만%)은 거대=가능성 안잘림(캡틴 지침).
+  · 무손상 전 Stg=OFF lev6/55 +8669%/-21% 재현. 검증엔진 무수정 호출. 산출 03_IDEA4Bot/260627_01_RegimeCertCard/{Stg2~5}.py + BackTest_Output/260627_{02~05}_*.
+  · ★다음 1수(최우선) = **추세봇(REVoi와 상관 낮은 추세추종) 알파를 봇계약으로 만들어 REVoi와 포트폴리오 → MDD-20 인증 재타지** (Stg2·4·5 + WO + 선행연구 전부 수렴). 그 외 WO 과제2~6(구조레벨 OB/POC·HTF→LTF·청산맵).
+- 2026-06-27 ★다음 세션 목표(캡틴 재지정, 세션 끝): **OB의 OI 성격 판별 → 진입/청산 로직 완성(스윙용)**. 관건=OB서 OI증가가 신규숏(저지)인지 롱청산/신규롱인지 방향분해(OI는 롱숏 쌍생성=모호). 도구=OI변화×가격 4사분면 + CVD(taker delta) + 펀딩 + (가능시)롱숏 별도 청산데이터. → OB 저지/돌파 분류 → 불리진입 취소·유리진입 증량·청산결정. 완료=적중률>기저(51~53%)+CPCV/held-out/환각0/§26 4단. 정직경계=미시구조 단독 약함 3차(§23·GUIDE2 E) but '적용방식이 알파 가름'+OI 롱숏모호성 해소는 미탐색(가능성). 단독과신 금지. WO=00_Basic_Setup_Package/Work_Order_OB_OI_Character_20260627.md. ★추세봇 포폴은 병렬 WO(둘 다 REVoi 보완).

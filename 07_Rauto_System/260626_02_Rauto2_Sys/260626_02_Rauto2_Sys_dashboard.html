@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, user-scalable=yes, viewport-fit=cover"/>
+<title>Rauto2</title>
+<meta name="theme-color" content="#0e1116"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Rauto2"/>
+<link rel="manifest" href="/manifest.json"/>
+<link rel="apple-touch-icon" href="/icon-192.png"/>
+<link rel="icon" type="image/png" href="/icon-192.png"/>
+<style>
+ :root{--bg:#0e1116;--card:#161b22;--card2:#1b212a;--bd:#27303a;--mut:#8b98a5;--fg:#e6edf3;
+  --grn:#1d9e75;--grnbg:#13311f;--red:#e24b4a;--redbg:#3a1718;--blu:#378add;--blubg:#10283f;
+  --gold:#caa53a;--goldbg:#2e2913}
+ *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
+ html{height:100%}
+ body{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:-apple-system,Roboto,'Noto Sans KR',sans-serif;font-size:14px}
+ .wrap{padding:8px;max-width:1200px;margin:0 auto}
+ .app{display:grid;grid-template-columns:1fr;gap:10px;border:1.5px solid var(--blu);border-radius:16px;padding:10px;background:#0c0f14}
+ @media(min-width:760px){ .app{grid-template-columns:minmax(0,1fr) minmax(0,1fr)} }
+ .hdr{display:flex;align-items:center;justify-content:space-between;gap:8px}
+ .hdr .ttl{font-size:16px;font-weight:700;color:var(--blu)}
+ .hdr .sub{font-size:11px;color:var(--mut)}
+ .rep{background:var(--card2);border-radius:10px;padding:9px 11px;display:flex;flex-direction:column;gap:8px}
+ .repline{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px}
+ .repline b{color:var(--fg)}
+ .bar{position:relative;height:8px;background:#0b0e13;border-radius:5px;overflow:hidden}
+ .bar>i{position:absolute;left:0;top:0;bottom:0;background:var(--blu);border-radius:5px}
+ .repbtns{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+ .repbtns button{background:transparent;color:var(--fg);border:0.5px solid var(--bd);border-radius:8px;padding:9px 2px;font-size:12px}
+ .repbtns button.on{background:var(--blubg);border-color:var(--blu);color:#7fb6ee}
+ .panel{display:flex;flex-direction:column}
+ .ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;font-size:13px;font-weight:600}
+ .tabs{display:flex;gap:5px;margin-bottom:6px;flex-wrap:wrap;align-items:center}
+ .tab{font-size:11px;border:0.5px solid var(--bd);color:var(--mut);padding:3px 9px;border-radius:10px;cursor:pointer}
+ .tab.on{background:var(--blubg);color:#7fb6ee;border-color:var(--blu)}
+ #chartwrap{position:relative;width:100%;aspect-ratio:1/1}
+ #cchart{width:100%;height:100%;display:block;border-radius:8px;background:#0b0e13;cursor:crosshair}
+ #rdbox{position:absolute;left:8px;top:6px;font-size:10.5px;color:#9aa6b2;pointer-events:none;white-space:nowrap}
+ .chartwarn{width:100%;aspect-ratio:1/1;display:none;align-items:center;justify-content:center;text-align:center;background:var(--redbg);border-radius:8px;color:#f3a0a0;font-weight:600}
+ .slot{display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:9px;border:0.5px solid var(--bd);cursor:pointer}
+ .slot.sel{background:var(--blubg);border-color:var(--blu)}
+ .slot.champ{background:var(--goldbg);border-color:#5a4d18}
+ .slot .snm{flex:1;font-size:13.5px}
+ .slist{display:flex;flex-direction:column;gap:6px;max-height:198px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+ .ctrl{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+ .ctrl button{background:transparent;color:var(--fg);border:0.5px solid var(--bd);border-radius:8px;padding:11px 4px;font-size:12.5px}
+ .stbox{background:var(--card);border-radius:12px;padding:10px}
+ .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:2px 8px;margin-top:6px}
+ .stat{display:flex;justify-content:space-between;font-size:12px;padding:3px 4px}
+ .stat .sk{color:var(--mut)}
+ /* 수정1: 챔피언 바 */
+ .champbar{display:flex;flex-direction:column;gap:6px;background:var(--goldbg);border-radius:10px;padding:9px 12px}
+ .champgrid{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+ .cgTitle{font-size:12px;color:var(--gold);font-weight:600}
+ .cgName{font-size:15px;font-weight:700;color:var(--fg);margin-top:2px}
+ .cgR{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+ .cgPx{font-size:11.5px;color:var(--mut);white-space:nowrap}
+ .sidebadge{font-size:12px;padding:2px 9px;border-radius:12px;font-weight:600}
+ .pbadge{font-size:10.5px;font-weight:700;color:#e0b341;border:1px solid #6a5618;background:#241f10;border-radius:6px;padding:3px 7px}
+ .champbar.paper{background:var(--card2)} .champbar.paper .cgName,.champbar.paper .cgTitle{color:#aeb6bf}
+ .acctline{display:flex;align-items:center;justify-content:space-between;font-size:12.5px;color:var(--mut);background:rgba(0,0,0,.22);border-radius:7px;padding:6px 9px}
+ .acctline b{color:var(--fg);font-weight:700}
+ /* 수정2: 체결 품질 분석 */
+ .diag{margin-top:8px;padding:8px 10px;background:var(--card2);border:0.5px solid var(--bd);border-radius:8px;font-size:11px}
+ .diag .dh{font-weight:600;margin-bottom:5px;color:#cbd5e1}
+ .diag .dr{display:flex;justify-content:space-between;gap:8px;padding:2px 0;border-top:0.5px solid #20272f}
+ .diag .dr span{color:var(--mut)} .diag .dr b{font-weight:600;text-align:right}
+ .diag .dverdict{margin-top:6px;padding-top:6px;border-top:0.5px solid var(--bd);color:#cbd5e1;font-size:10.5px;line-height:1.45}
+ .emgbtn{width:100%;background:#d10000;color:#fff;border:none;border-radius:9px;padding:13px;font-size:14px;font-weight:800;letter-spacing:.3px}
+ .emgbtn.act{background:#ff1a1a;animation:emgblink .9s infinite}
+ @keyframes emgblink{50%{background:#7a0000}}
+ .emailbtn{width:100%;background:#0d47a1;color:#fff;border:none;border-radius:10px;padding:22px;font-size:14.5px;font-weight:700;margin-top:6px}
+ .emailbtn:disabled{opacity:.5}
+ /* 수정3: 비교 카드 */
+ .cmpcard{border-radius:12px;padding:10px;background:var(--card);margin-bottom:8px}
+ .cmptitle{font-size:13.5px;font-weight:600;border-radius:7px;padding:5px 10px;margin-bottom:9px}
+ .reg{display:flex;gap:6px;margin:8px 0}
+ .regc{flex:1;text-align:center;border-radius:7px;padding:6px 2px}
+ .regc .rl{font-size:10.5px} .regc .rv{font-size:15px;font-weight:600}
+ .vd{background:var(--blubg);border:0.5px solid var(--blu);border-radius:10px;padding:10px 12px;font-size:12.5px;line-height:1.45}
+ .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);align-items:center;justify-content:center;z-index:9;padding:18px}
+ .modal .box{background:var(--card);border:0.5px solid var(--bd);border-radius:14px;padding:16px;max-width:420px;width:100%}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <div class="app">
+  <div class="left" style="display:flex;flex-direction:column;gap:10px">
+   <div class="hdr">
+     <div><div class="ttl">Rauto2 · 실시간 백테 <span id="ver" style="font-size:10px;color:#5a6472;font-weight:400">r1.0 · 260626_02</span></div><div class="sub" id="sub">중앙 1m 단일출처 · 봇별 캔들 동일</div></div>
+     <span id="dauto" class="sub" style="padding:3px 9px;border-radius:20px;background:var(--grnbg);color:#5fd3a0">● 리플레이</span>
+   </div>
+
+   <!-- 수정1: 챔피언 바(실거래여부·진입가/현재가·포지션수익률·계좌잔고) -->
+   <div class="champbar" id="champbar">
+     <div class="champgrid">
+       <div><div class="cgTitle">🏆 CHAMPION</div><div class="cgName" id="champNm">—</div></div>
+       <div class="cgR">
+         <div class="cgPx" id="champPx">—</div>
+         <div style="display:flex;gap:6px;align-items:center">
+           <span class="pbadge" id="champPaper" style="display:none">실거래 OFF</span>
+           <span class="sidebadge" id="champSide" style="background:var(--redbg);color:#f3a0a0">—</span>
+         </div>
+       </div>
+     </div>
+     <div class="acctline"><span>실제 계좌 잔고</span><b id="acctBal">— USDT</b></div>
+   </div>
+
+   <div class="rep">
+     <button id="bEmg" class="emgbtn" onclick="emgOpen()">🛑 Gho, HyoungJoon! Emergency</button>
+     <div class="repbtns" id="repbtns">
+       <button id="bPause" onclick="rcmd('replay_pause')">⏸ 일시정지</button>
+       <button id="bResume" onclick="rcmd('replay_resume')">▶ 재생</button>
+       <button onclick="rcmd('replay_restart')">⏮ 처음</button>
+       <button onclick="rcmd('replay_end')">⏭ 끝</button>
+       <button onclick="rcmd('replay_speed', SPEED_NEXT())">⏩ 속도</button>
+     </div>
+   </div>
+
+   <div class="panel">
+     <div class="ph"><span>차트 · 체결 (UTC)</span><span id="selnm" class="sub">—</span></div>
+     <div class="tabs">
+       <span class="tab" data-tf="15">15m</span><span class="tab" data-tf="60">1H</span>
+       <span class="tab on" data-tf="240">4H</span><span class="tab" data-tf="1440">1D</span>
+       <span style="flex:1"></span><span class="tab on" id="emaTab">EMA</span>
+       <span class="tab" id="liveTab">📋 매매내역</span>
+     </div>
+     <div id="chartwrap"><canvas id="cchart"></canvas><div id="rdbox"></div></div>
+     <div id="tradesbox" style="display:none;aspect-ratio:1/1;overflow:auto"></div>
+     <div id="chartwarn" class="chartwarn">가격 데이터 없음</div>
+     <div id="diagbox" class="diag" style="display:none"></div>
+   </div>
+
+   <div class="panel">
+     <div class="ph"><span style="font-weight:400;color:var(--mut)">슬롯 · 수익률순 (캔들 동일 · 거래만 다름)</span></div>
+     <div id="slots" class="slist"></div>
+   </div>
+   <div class="ctrl">
+     <button onclick="openLoad()">⬇ Bot 로딩</button>
+     <button onclick="load()">⟳ 갱신</button>
+   </div>
+  </div>
+
+  <div class="right" style="display:flex;flex-direction:column;gap:6px">
+   <div style="font-size:14px;font-weight:600">챔피언 ↕ 선택 슬롯 분석 비교 · 장세별</div>
+   <div id="cmpChamp"></div>
+   <div style="text-align:center;color:var(--mut)">↕</div>
+   <div id="cmpSel"></div>
+   <div style="flex:1"></div>
+   <button id="bEmail" class="emailbtn" onclick="emailSend()">📧 Champ. Performance to Crew</button>
+  </div>
+ </div>
+</div>
+
+<div class="modal" id="loadModal"><div class="box">
+  <h3>⬇ Bot 로딩 / 제거</h3>
+  <p id="loadInfo" style="font-size:11.5px;color:var(--mut);margin:4px 0 10px"></p>
+  <div id="loadList"></div>
+  <button onclick="closeLoad()" style="width:100%;background:transparent;color:var(--mut);border:0.5px solid var(--bd);border-radius:8px;padding:9px;margin-top:6px">닫기</button>
+</div></div>
+
+<div class="modal" id="emgModal"><div class="box">
+  <h3 style="color:#f3a0a0">🛑 긴급 — 챔피언 실거래 제어</h3>
+  <p style="font-size:11.5px;color:var(--mut);margin:4px 0 12px">챔피언봇의 실거래(라이브 주문)를 중단합니다. 페이퍼/리플레이 중엔 상징적 표시이며 라이브 연동 시 실제 주문이 멈춥니다.</p>
+  <button onclick="emgCmd('champ_stop_graceful')" style="width:100%;background:var(--redbg);color:#f3a0a0;border:0.5px solid var(--bd);border-radius:9px;padding:12px;margin-bottom:8px;font-size:13px;font-weight:600">⏹ 안전 중지 (신규진입만 차단·보유는 정상청산)</button>
+  <button onclick="emgCmd('champ_stop_force')" style="width:100%;background:#3a1414;color:#ff8a8a;border:0.5px solid #5a2020;border-radius:9px;padding:12px;margin-bottom:8px;font-size:13px;font-weight:600">⛔ 강제 중지 (즉시 전량 청산)</button>
+  <button onclick="emgCmd('resume')" style="width:100%;background:var(--grnbg);color:#5fd3a0;border:0.5px solid var(--bd);border-radius:9px;padding:12px;margin-bottom:8px;font-size:13px;font-weight:600">▶ 재개</button>
+  <button onclick="emgClose()" style="width:100%;background:transparent;color:var(--mut);border:0.5px solid var(--bd);border-radius:8px;padding:9px;margin-top:4px">닫기</button>
+</div></div>
+
+<script>
+ var API=location.origin, SEL=null, LAST=null, PX=[], SPEEDS=[60,240,720,1440,4320], SI=1;
+ var CTF=240, CHEMA=true, CHOFF=0, CHN=110, CHCR=null, VIEW='replay', PRICE=null, SHOW_TRADES=false;
+ function SPEED_NEXT(){SI=(SI+1)%SPEEDS.length;return SPEEDS[SI];}
+ function fmt(n){return (n>=0?'+':'')+(+n).toFixed(1)+'%';}
+ function pad2(v){return(v<10?'0':'')+v;}
+ function hhmm(ms){var d=new Date(ms);return pad2(d.getUTCHours())+':'+pad2(d.getUTCMinutes());}
+ function dlab(ms){var d=new Date(ms);return(d.getUTCFullYear()%100)+'/'+pad2(d.getUTCMonth()+1)+'/'+pad2(d.getUTCDate());}
+ function rcmd(a,v){fetch(API+'/cmd?action='+a+(v!=null?'&v='+v:''),{method:'POST'}).then(r=>r.json()).then(function(){load();}).catch(function(){});}
+ // ── 봇 로딩/제거 ──
+ function openLoad(){fetch(API+'/bots').then(r=>r.json()).then(function(j){
+   var box=document.getElementById('loadList');box.innerHTML='';
+   document.getElementById('loadInfo').textContent='전체 '+(j.bots||[]).length+'종 · 탭하면 로딩/제거 · 예상수익=36개월 레짐별 월수익(참고·상한). 모든 슬롯은 중앙 캔들 공유.';
+   function rc(v){return v>=0?'#5fd3a0':'#f3a0a0';}
+   function pm(v){return (v>=0?'+':'')+v+'%';}
+   (j.bots||[]).forEach(function(b){var row=document.createElement('button');
+     row.style.cssText='width:100%;text-align:left;background:var(--card2);color:var(--fg);border:0.5px solid var(--bd);border-radius:9px;padding:10px 11px;margin-bottom:7px;font-size:13px';
+     var rm=b.reg_monthly;
+     var regline = rm ? ('<div style="font-size:11px;margin-top:4px">예상수익/월 &nbsp;'
+         +'<span style="color:var(--mut)">상승</span> <b style="color:'+rc(rm.up)+'">'+pm(rm.up)+'</b> &nbsp;'
+         +'<span style="color:var(--mut)">하락</span> <b style="color:'+rc(rm.down)+'">'+pm(rm.down)+'</b> &nbsp;'
+         +'<span style="color:var(--mut)">횡보</span> <b style="color:'+rc(rm.range)+'">'+pm(rm.range)+'</b></div>') : '';
+     row.innerHTML=(b.loaded?'✅ ':'⬇ ')+'<b>'+b.name+'</b> '
+         +'<span style="color:var(--mut);font-size:10px">레버'+b.lev+'/증거금'+b.sz+'%'+(b.mdd!=null?(' · MDD'+b.mdd+'%'):'')+'</span>'
+         +(b.desc?('<div style="font-size:10px;color:var(--mut);margin-top:2px">'+b.desc+'</div>'):'')
+         +regline;
+     row.onclick=function(){var ep=b.loaded?'/remove':'/load';fetch(API+ep+'?bot='+encodeURIComponent(b.name),{method:'POST'}).then(r=>r.json()).then(function(){openLoad();load();});};
+     box.appendChild(row);});
+   document.getElementById('loadModal').style.display='flex';}).catch(e=>alert('목록 실패:'+e));}
+ function closeLoad(){document.getElementById('loadModal').style.display='none';}
+ // ── 캔들 집계(1m→TF) ──
+ function aggPx(px,m){if(!px||!px.length)return [];var out=[],cur=null,sp=m*60000;
+   for(var j=0;j<px.length;j++){var d=px[j],bt=Math.floor(d[0]/sp)*sp;
+     if(!cur||cur.t!==bt){cur={t:bt,o:d[1],h:d[2],l:d[3],c:d[4]};out.push(cur);}
+     else{cur.h=Math.max(cur.h,d[2]);cur.l=Math.min(cur.l,d[3]);cur.c=d[4];}}return out;}
+ // ── 차트: 최상위 PX(전 봇 공유) + 선택 슬롯 trd 오버레이 ──
+ function drawChart(){var cv=document.getElementById('cchart');if(!cv)return;var wrap=document.getElementById('chartwrap');
+   var cw=wrap.clientWidth||320,ch=wrap.clientHeight||320;cv.width=cw;cv.height=ch;var g=cv.getContext('2d');g.clearRect(0,0,cw,ch);
+   if(!PX||!PX.length){g.fillStyle='#6b7480';g.font='12px sans-serif';g.textAlign='center';g.fillText('가격 데이터 없음',cw/2,ch/2);return;}
+   var all=aggPx(PX,CTF),SP=CTF*60000;
+   var N=Math.min(CHN,all.length||1),maxOff=Math.max(0,all.length-N);
+   if(CHOFF<0)CHOFF=0;if(CHOFF>maxOff)CHOFF=maxOff;
+   var end=all.length-CHOFF,vis=all.slice(end-N,end),T0=vis[0].t,T1=vis[vis.length-1].t+SP;
+   var padR=50,padB=26,padT=8,padL=4,n=vis.length,CW=(cw-padR-padL)/n;
+   var lo=1e18,hi=-1e18;vis.forEach(function(d){lo=Math.min(lo,d.l);hi=Math.max(hi,d.h);});var rng=(hi-lo)||1;
+   var slot=(LAST&&LAST.slots||[]).find(function(x){return x.name===SEL;});
+   var trd=((slot&&slot.trd)||[]).filter(function(tr){return tr.xt>=T0&&tr.et<T1;});
+   function py(v){return padT+(hi-v)/rng*(ch-padB-padT);}
+   function pxi(i){return padL+(i+0.5)*CW;}
+   g.strokeStyle='#1b212a';g.fillStyle='#6b7480';g.font='10px sans-serif';g.textAlign='left';
+   for(var q=0;q<=3;q++){var yy=padT+q*((ch-padB-padT)/3);g.beginPath();g.moveTo(padL,yy);g.lineTo(cw-padR,yy);g.stroke();g.fillText((hi-rng*q/3).toFixed(0),cw-padR+4,yy+3);}
+   var spanD=(vis[n-1].t-vis[0].t)/86400000;g.textAlign='center';
+   for(var t=0;t<=3;t++){var ix=Math.round(t*(n-1)/3);var xx=Math.min(Math.max(pxi(ix),22),cw-padR-22);g.fillText(spanD<=2?hhmm(vis[ix].t):dlab(vis[ix].t),xx,ch-padB+13);}
+   g.textAlign='right';g.fillStyle='#556';g.fillText('UTC',cw-padR,ch-padB+22);
+   var bw=Math.max(1.5,CW*0.6);
+   vis.forEach(function(d,i){var up=d.c>=d.o;g.strokeStyle=up?'#26a69a':'#ef5350';g.fillStyle=up?'#26a69a':'#ef5350';
+     g.beginPath();g.moveTo(pxi(i),py(d.h));g.lineTo(pxi(i),py(d.l));g.stroke();
+     var yb=py(Math.max(d.o,d.c)),hb=Math.max(1,Math.abs(py(d.o)-py(d.c)));g.fillRect(pxi(i)-bw/2,yb,bw,hb);});
+   if(CHEMA){var k=2/10,e=null;g.strokeStyle='#e0a23a';g.lineWidth=1.4;g.beginPath();vis.forEach(function(d,i){e=(e==null)?d.c:e+k*(d.c-e);i?g.lineTo(pxi(i),py(e)):g.moveTo(pxi(i),py(e));});g.stroke();g.lineWidth=1;}
+   function near(t){var bi=0,bs=1e18;for(var z=0;z<vis.length;z++){var dt=Math.abs(vis[z].t+SP/2-t);if(dt<bs){bs=dt;bi=z;}}return bi;}
+   function clmp(p,c){return Math.max(c.l,Math.min(c.h,p));}
+   trd.forEach(function(tr){var ie=near(tr.et),ix=near(tr.xt);if(ix<ie)ix=ie;var ce=vis[ie],cx=vis[ix];
+     var Xe=pxi(ie),Xx=pxi(ix),Ye=py(clmp(tr.ep,ce)),Yx=py(clmp(tr.xp,cx)),col=tr.side==='S'?'#ff3d8b':'#3b82f6';
+     g.strokeStyle=col;g.lineWidth=0.8;g.beginPath();g.moveTo(Xe,Ye);g.lineTo(Xx,Ye);g.stroke();
+     g.strokeStyle='#fff';g.lineWidth=1.0;g.setLineDash([4,3]);g.beginPath();g.moveTo(Xx,Ye);g.lineTo(Xx,Yx);g.stroke();g.setLineDash([]);
+     var hl=Math.max(5,CW*0.3+3);g.strokeStyle='#fff';g.lineWidth=0.5;
+     g.beginPath();g.moveTo(Xe-hl,Ye);g.lineTo(Xe+hl,Ye);g.moveTo(Xe,Ye-hl);g.lineTo(Xe,Ye+hl);g.stroke();
+     g.beginPath();g.moveTo(Xx-hl,Yx);g.lineTo(Xx+hl,Yx);g.moveTo(Xx,Yx-hl);g.lineTo(Xx,Yx+hl);g.stroke();g.lineWidth=1;
+     if(tr.pnl!=null){g.font='bold 9px sans-serif';g.textAlign='right';g.fillStyle=tr.pnl<0?'#ef5350':'#3b82f6';g.fillText((tr.pnl>0?'+':'')+tr.pnl+'%',Xx,Math.min(Ye,Yx)-4);}});
+   // 열린 포지션(진행중)
+   if(slot&&slot.open_et&&slot.entry){var oi=slot.open_et<vis[0].t?0:near(slot.open_et);
+     var Xo=pxi(oi),Yo=py(Math.max(lo,Math.min(hi,slot.entry))),Yc=py(vis[n-1].c),ocol=slot.side==='S'?'#ff3d8b':'#3b82f6';
+     g.strokeStyle=ocol;g.setLineDash([4,3]);g.beginPath();g.moveTo(Xo,Yo);g.lineTo(pxi(n-1),Yc);g.stroke();g.setLineDash([]);
+     var hl2=Math.max(10,CW*0.5+6);g.strokeStyle='#fff';g.lineWidth=2.2;
+     g.beginPath();g.moveTo(Xo-hl2,Yo);g.lineTo(Xo+hl2,Yo);g.moveTo(Xo,Yo-hl2);g.lineTo(Xo,Yo+hl2);g.stroke();g.lineWidth=1;
+     g.fillStyle=ocol;g.font='bold 9px sans-serif';g.textAlign='left';g.fillText('진입',Xo+hl2+2,Yo-3);}
+   if(VIEW==='live'&&PRICE!=null){var Yp=py(Math.max(lo,Math.min(hi,PRICE)));   // 실시장 현재가 라인
+     g.strokeStyle='#e0a23a';g.setLineDash([5,3]);g.beginPath();g.moveTo(padL,Yp);g.lineTo(cw-padR,Yp);g.stroke();g.setLineDash([]);
+     g.fillStyle='#2e2913';g.fillRect(cw-padR,Yp-7,50,14);g.fillStyle='#e0c45a';g.font='bold 9px sans-serif';g.textAlign='left';g.fillText(Math.round(PRICE),cw-padR+3,Yp+3);}
+   if(CHCR){g.strokeStyle='#5a6472';g.setLineDash([3,3]);g.beginPath();g.moveTo(CHCR.x,padT);g.lineTo(CHCR.x,ch-padB);g.moveTo(padL,CHCR.y);g.lineTo(cw-padR,CHCR.y);g.stroke();g.setLineDash([]);}
+   cv._meta={vis:vis,pxi:pxi,CW:CW,padL:padL,n:n};}
+ (function(){var cv=document.getElementById('cchart');var DRAG=null;
+   var HOLD=null,ENG=false,VEL=0,LASTX=0,LASTT=0,INERTIA=null,STX=0,STY=0;   // 폰 꾹누름+관성 패닝 상태
+   function panTo(x){var m=cv._meta;if(!m||!DRAG)return;var rc=cv.getBoundingClientRect(),sx=cv.width/rc.width;CHOFF=DRAG.off+Math.round((x-DRAG.x)*sx/m.CW);drawChart();}
+   if(cv){cv.addEventListener('mousedown',function(e){if(cv._meta){DRAG={x:e.clientX,off:CHOFF};}});
+     window.addEventListener('mouseup',function(){DRAG=null;});
+     cv.addEventListener('mousemove',function(e){var m=cv._meta;if(!m)return;if(DRAG){panTo(e.clientX);return;}
+       var rc=cv.getBoundingClientRect(),sx=cv.width/rc.width,sy=cv.height/rc.height;var mx=(e.clientX-rc.left)*sx,my=(e.clientY-rc.top)*sy;
+       var i=Math.round((mx-m.padL)/m.CW-0.5);i=Math.max(0,Math.min(m.n-1,i));var d=m.vis[i];
+       document.getElementById('rdbox').textContent='O '+d.o.toFixed(0)+' H '+d.h.toFixed(0)+' L '+d.l.toFixed(0)+' C '+d.c.toFixed(0);CHCR={x:m.pxi(i),y:my};drawChart();});
+     // ★폰 패닝(캡틴 사양 2026-06-26): 화면 꾹 누른 뒤(≈220ms) 밀면 = 그 '거리'만큼 시간이동 + 손 뗄 때 '속도'만큼 관성.
+     //   꾹누름 전 큰 이동은 페이지 스크롤로 양보(차트 오작동 방지). engage 시 짧은 진동 피드백.
+     cv.addEventListener('touchstart',function(e){if(!cv._meta||e.touches.length!==1)return;
+       if(INERTIA){cancelAnimationFrame(INERTIA);INERTIA=null;}
+       var t=e.touches[0];STX=t.clientX;STY=t.clientY;LASTX=t.clientX;LASTT=Date.now();VEL=0;ENG=false;
+       HOLD=setTimeout(function(){ENG=true;DRAG={x:STX,off:CHOFF};if(navigator.vibrate)navigator.vibrate(25);},220);},{passive:true});
+     cv.addEventListener('touchmove',function(e){if(e.touches.length!==1)return;var t=e.touches[0];
+       if(!ENG){if(Math.abs(t.clientX-STX)>14||Math.abs(t.clientY-STY)>14){clearTimeout(HOLD);HOLD=null;}return;}
+       e.preventDefault();panTo(t.clientX);
+       var now=Date.now(),dt=now-LASTT;if(dt>0)VEL=(t.clientX-LASTX)/dt;LASTX=t.clientX;LASTT=now;},{passive:false});
+     cv.addEventListener('touchend',function(){if(HOLD){clearTimeout(HOLD);HOLD=null;}
+       if(ENG&&cv._meta){var rc=cv.getBoundingClientRect(),sx=cv.width/rc.width,v=VEL*sx;   // 화면px/ms = 미는 속도
+         (function glide(){v*=0.92;if(Math.abs(v)<0.015||!cv._meta){INERTIA=null;return;}    // 마찰 감속(관성)
+           CHOFF+=v*16/cv._meta.CW;drawChart();INERTIA=requestAnimationFrame(glide);})();}
+       ENG=false;DRAG=null;});
+     cv.addEventListener('wheel',function(e){if(!cv._meta)return;e.preventDefault();if(e.ctrlKey){CHN=Math.max(20,Math.min(400,CHN+(e.deltaY>0?12:-12)));}else{CHOFF+=(e.deltaY>0?5:-5);}drawChart();},{passive:false});
+     cv.addEventListener('dblclick',function(){CHOFF=0;CHN=110;drawChart();});}
+   document.querySelectorAll('.tabs .tab[data-tf]').forEach(function(b){b.addEventListener('click',function(){
+     document.querySelectorAll('.tabs .tab[data-tf]').forEach(function(z){z.classList.remove('on');});b.classList.add('on');CTF=+b.getAttribute('data-tf');CHOFF=0;drawChart();});});
+   var et=document.getElementById('emaTab');if(et)et.addEventListener('click',function(){CHEMA=!CHEMA;et.classList.toggle('on',CHEMA);drawChart();});
+   var lt=document.getElementById('liveTab');if(lt)lt.addEventListener('click',function(){SHOW_TRADES=!SHOW_TRADES;lt.classList.toggle('on',SHOW_TRADES);if(LAST)render(LAST);});
+   window.addEventListener('resize',drawChart);})();
+ function heatCol(v){return v>=1.6?['var(--grnbg)','#5fd3a0']:v>=1.2?['#2a2009','#e3b455']:['var(--redbg)','#f3a0a0'];}
+ // 수정3: 자산곡선(SVG) — 옛 b32 eqChart 이식
+ function eqChart(eq,eqt,clr){
+   if(!eq||eq.length<2)return '<div style="height:84px;color:var(--mut);font-size:11px;display:flex;align-items:center;justify-content:center">자산곡선 데이터 없음(거래 부족)</div>';
+   var W=300,Hc=72,pt=4,mn=Math.min.apply(null,eq),mx=Math.max.apply(null,eq),rg=(mx-mn)||1;
+   function X(i){return (i/(eq.length-1))*W;} function Y(v){return pt+(mx-v)/rg*(Hc-pt);}
+   var pts=eq.map(function(v,i){return X(i).toFixed(1)+','+Y(v).toFixed(1);}).join(' ');
+   var area=pts+' '+W+','+Hc+' 0,'+Hc;
+   var base=(10000>=mn&&10000<=mx)?'<line x1="0" y1="'+Y(10000).toFixed(1)+'" x2="'+W+'" y2="'+Y(10000).toFixed(1)+'" stroke="#3a434e" stroke-dasharray="3 3"/>':'';
+   var labs='';
+   if(eqt&&eqt.length===eq.length){var span=eqt[eqt.length-1]-eqt[0];
+     var fd=function(ms){var d=new Date(ms),pz=function(x){return(x<10?'0':'')+x;};return span>5184000000?((d.getUTCFullYear()%100)+'/'+pz(d.getUTCMonth()+1)):(pz(d.getUTCMonth()+1)+'/'+pz(d.getUTCDate()));};
+     [0,(eq.length-1)>>1,eq.length-1].forEach(function(i){var a=i===0?'start':(i===eq.length-1?'end':'middle');labs+='<text x="'+X(i).toFixed(0)+'" y="86" fill="#6b7480" font-size="9" text-anchor="'+a+'">'+fd(eqt[i])+'</text>';});}
+   return '<svg viewBox="0 0 300 90" style="width:100%;height:auto;display:block">'+base+'<polygon points="'+area+'" fill="'+clr+'22"/><polyline points="'+pts+'" fill="none" stroke="'+clr+'" stroke-width="2"/>'+labs+'</svg>';}
+ function cmpCard(el,s,gold){ if(!s){el.innerHTML='';return;}
+   var tc=gold?'var(--gold)':'#7fb6ee',tb=gold?'var(--goldbg)':'var(--blubg)';
+   var reg=s.reg||{},names=['상승','하락','횡보'],keys=['up','down','range'];
+   var rh=keys.map(function(k,i){var v=reg[k]; if(v==null)return '<div class="regc" style="background:var(--card2)"><div class="rl" style="color:var(--mut)">'+names[i]+'</div><div class="rv">—</div></div>';
+     var c=heatCol(v);return '<div class="regc" style="background:'+c[0]+';color:'+c[1]+'"><div class="rl">'+names[i]+'</div><div class="rv">'+(+v).toFixed(2)+'</div></div>';}).join('');
+   function st(k,v){return '<div class="stat"><span class="sk">'+k+'</span><span>'+(v==null?'—':v)+'</span></div>';}
+   var wk=s.wk||{};
+   var cv=function(v,t){return '<span style="color:'+(v>=0?'#5fd3a0':'#f3a0a0')+'">'+t+'</span>';};  // ★적자=빨강/흑자=녹색 통일(캡틴 지시3)
+   var allS='<div class="stats">'+st('거래',s.trades!=null?s.trades+'건':null)+st('승률',s.winrate!=null?s.winrate+'%':null)+st('수익률',s.ret!=null?cv(s.ret,fmt(s.ret)):null)+st('손익비',s.payoff)+st('PF',s.pf)+st('연속손실',s.consec!=null?s.consec+'회':null)+'</div>';
+   var wkS='<div class="stats">'+st('거래',wk.trades!=null?wk.trades+'건':null)+st('승률',wk.winrate!=null?wk.winrate+'%':null)+st('수익률',wk.ret!=null?cv(wk.ret,((wk.ret>0?'+':'')+wk.ret+'%')):null)+st('손익비',wk.payoff)+st('PF',wk.pf)+st('연속손실',wk.consec!=null?wk.consec+'회':null)+'</div>';
+   el.innerHTML='<div class="cmpcard"><div class="cmptitle" style="color:'+tc+';background:'+tb+'">'+(gold?'🏆 ':'✓ ')+s.name+(s.kind?' ('+s.kind+')':'')+'</div>'+
+    '<div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:1px"><span style="color:var(--mut)">자산곡선 · UTC</span><span>수익률 <b style="color:'+(s.ret==null?'var(--mut)':(s.ret>=0?'#5fd3a0':'#f3a0a0'))+'">'+(s.ret!=null?fmt(s.ret):'—')+'</b> · MDD <b style="color:var(--red)">'+(s.mdd!=null?(+s.mdd).toFixed(1)+'%':'—')+'</b></span></div>'+
+    eqChart(s.equity,s.eqt,gold?'#1d9e75':'#378add')+
+    '<div style="font-size:11px;color:var(--mut);margin:8px 0 2px">장세별 PF · 상승/하락/횡보</div><div class="reg">'+rh+'</div>'+
+    '<div style="font-size:11px;color:'+tc+';font-weight:600;margin:9px 0 2px;border-top:0.5px solid var(--bd);padding-top:7px">전체 통계</div>'+allS+
+    '<div style="font-size:11px;color:'+tc+';font-weight:600;margin:9px 0 2px;border-top:0.5px solid var(--bd);padding-top:7px">최근 1주</div>'+wkS+'</div>';}
+ // ★최근 매매현황 표(캡틴 260627_02): 차트 길이만큼 최근거래. 실거래=USDT·가상=수익률%
+ function fmtT(ms,f){var d=new Date(ms),Z=function(n){return(n<10?'0':'')+n;};
+   var MM=Z(d.getUTCMonth()+1),DD=Z(d.getUTCDate()),HH=Z(d.getUTCHours()),mm=Z(d.getUTCMinutes());
+   return f==='in'?(MM+DD+HH+mm):(DD+HH+mm);}   // 진입 MMDDHHmm · 청산 DDHHmm (UTC)
+ function tradesTable(sel,st){
+   var trd=(sel&&sel.trd)||[];
+   if(!trd.length)return '<div style="color:var(--mut);padding:30px;text-align:center;font-size:12px">선택 슬롯의 거래 없음 (슬롯을 탭해 선택)</div>';
+   var CAP=2000; var all=trd.slice().reverse();   // 최신 위
+   var rows=all.length>CAP?all.slice(0,CAP):all;  // ★드래그로 전체(무리방지 상한 2000)
+   var live=st.live===true;
+   var note=all.length>CAP?(' · 표시 최근 '+CAP):'';
+   var h='<div style="font-size:11px;color:var(--mut);padding:6px 4px;position:sticky;top:0;background:var(--card);z-index:1">'+(sel.name||'')+' · 전체 '+all.length+'거래'+note+' · '+(live?'실거래 USDT':'가상 수익률%')+' (UTC·드래그 스크롤)</div>';
+   h+='<table style="width:100%;font-size:11px;border-collapse:collapse">';
+   h+='<tr style="color:var(--mut);text-align:left"><th>진입~청산</th><th>방향@가·수량</th><th>레버</th><th>수익−비용=실수익</th></tr>';
+   rows.forEach(function(t){
+     var raw=live?t.net_usdt:t.net_pct;
+     var val=(raw>=0?'+':'')+(raw!=null?raw.toFixed(2):'?')+(live?'U':'%');
+     var vc=raw>=0?'#5fd3a0':'#f3a0a0';
+     h+='<tr style="border-top:0.5px solid #1a1f28">'
+      +'<td style="white-space:nowrap">'+fmtT(t.et,'in')+'~'+fmtT(t.xt,'out')+'</td>'
+      +'<td style="white-space:nowrap"><b style="color:'+(t.side==='L'?'#5fd3a0':'#f3a0a0')+'">'+t.side+'</b>'+t.ep.toFixed(1)+'@'+(t.qty!=null?t.qty.toFixed(3):'—')+'</td>'
+      +'<td>'+(t.lev!=null?t.lev+'배':'—')+'</td>'
+      +'<td style="white-space:nowrap">'+(t.gross_pct!=null?t.gross_pct.toFixed(2):'—')+'−'+(t.cost_pct!=null?t.cost_pct.toFixed(2):'—')+'=<b style="color:'+vc+'">'+val+'</b></td></tr>';
+   });
+   return h+'</table>';}
+ // 수정1: 챔피언선정 Sys — 딱 3줄 (제목+Regime / 기대수익1위 / 현재Regime 수익1위)
+ function champSysBox(st){var el=document.getElementById('diagbox');if(!el)return;
+   var slots=(st&&st.slots)||[];if(!slots.length){el.style.display='none';el.innerHTML='';return;}
+   el.style.display='block';
+   var REGK={up:'상승추세',down:'하락추세',range:'횡보'};
+   var px=(st&&st.px)||PX||[];
+   // 현 레짐 에피소드(7일추세 연속구간) — 시작·지속일 (px 인과 계산)
+   function episode(){if(!px||px.length<3)return {reg:(st.regime||'range'),start:(st.now||0),days:0};
+     var n=px.length,reg=new Array(n),j=0;
+     for(var i=0;i<n;i++){var tgt=px[i][0]-7*86400000;while(j<i&&px[j][0]<tgt)j++;var k=Math.max(0,j-1);
+       var ch=(px[i][4]/px[k][4]-1)*100;reg[i]=ch>3?'up':(ch<-3?'down':'range');}
+     var cur=reg[n-1],i2=n-1;while(i2>0&&reg[i2-1]===cur)i2--;
+     return {reg:cur,start:px[i2][0],days:(px[n-1][0]-px[i2][0])/86400000};}
+   var ep=episode(),cur=ep.reg;
+   function comp(a){var C=1;for(var i=0;i<a.length;i++)C*=(1+a[i]/100);return C;}
+   // 기대수익 = 36mo 레짐별 월수익(정적·reg_monthly)
+   function expM(s){return (s.reg_monthly&&s.reg_monthly[cur]!=null)?s.reg_monthly[cur]:null;}
+   // 현재 레짐 에피소드 실현수익(에피소드 시작 이후 거래)
+   function sinceEp(s){var a=(s.trd||[]).filter(function(t){return t.et>=ep.start;});if(!a.length)return null;
+     return (comp(a.map(function(t){return t.pnl;}))-1)*100;}
+   // ★M20 자격 풀만(챔피언 후보) — 공격용(M0천장 등) 제외
+   function best(fn){var b=null;slots.forEach(function(s){if(!s.m20)return;var v=fn(s);if(v!=null&&(b==null||v>b.v))b={n:s.name,v:v};});return b;}
+   var e1=best(expM),c1=best(sinceEp);
+   function nm(x){return x?x.n.replace(/\(.*$/,''):'—';}                       // 괄호설명 제거(짧게)
+   function pc(v){return (v>=0?'+':'')+v.toFixed(1)+'%';}
+   var col=function(v){return v>=0?'#5fd3a0':'#f3a0a0';};
+   el.innerHTML=
+     '<div class="dr" style="border:0;align-items:baseline"><span style="font-size:19px;font-weight:800;letter-spacing:.3px;color:var(--gold)">Win the CHAMPION</span>'+
+       '<b style="font-size:13px;font-weight:400;color:var(--mut)">Regime: <span style="font-size:15px;font-weight:800;color:var(--gold)">'+(REGK[cur]||cur)+'</span></b></div>'+
+     '<div class="dr"><span>기대수익률 1위</span><b>'+nm(e1)+' <span style="color:'+(e1?col(e1.v):'#888')+'">'+(e1?pc(e1.v)+'/월':'—')+'</span></b></div>'+
+     '<div class="dr"><span>현재 Regime 수익 1위</span><b>'+nm(c1)+' <span style="color:'+(c1?col(c1.v):'#888')+'">'+(c1?pc(c1.v)+'/'+Math.max(1,Math.round(ep.days))+'일':'—')+'</span></b></div>';}
+ // 수정1: 챔피언 바 갱신
+ function updChamp(champ,st){
+   var live=st.live===true;
+   document.getElementById('champbar').classList.toggle('paper',!live);
+   document.getElementById('champPaper').style.display=live?'none':'inline-block';
+   var a=st.acct||{};
+   document.getElementById('acctBal').textContent=(live&&a.balance!=null)?(Number(a.balance).toLocaleString()+' USDT'):'— USDT';
+   if(!champ)return;
+   document.getElementById('champNm').textContent=champ.name;
+   var sb=document.getElementById('champSide'),pxd=document.getElementById('champPx');
+   var sd=champ.side,e=champ.entry,cur=(PRICE!=null)?PRICE:(PX.length?PX[PX.length-1][4]:null);
+   var mv=(sd!=='-'&&e&&cur!=null)?((sd==='S'?-1:1)*(cur-e)/e*100):(champ.pnl||0);
+   sb.textContent=(sd==='-'||!e)?'대기':(sd+' '+fmt(mv));
+   sb.style.background=sd==='L'?'var(--grnbg)':sd==='S'?'var(--redbg)':'var(--card2)';
+   sb.style.color=sd==='L'?'#5fd3a0':sd==='S'?'#f3a0a0':'var(--mut)';
+   pxd.textContent=(sd==='-'||!e)?('현재 '+(cur!=null?Math.round(cur).toLocaleString():'—')):('진입 '+Math.round(e).toLocaleString()+' / 현재 '+(cur!=null?Math.round(cur).toLocaleString():'—'));}
+ function renderCmp(champ,sel){
+   cmpCard(document.getElementById('cmpChamp'),champ,true);
+   cmpCard(document.getElementById('cmpSel'),(sel&&sel!==champ)?sel:null,false);}
+ function render(st){LAST=st;PRICE=st.price;
+   if(st.ver){var ve=document.getElementById('ver');if(ve)ve.textContent=st.ver+' · :'+(st.port||'');}  // ★서버 버전 표식(옛/신 구분)
+   PX=(VIEW==='live')?(st.live_px||[]):(st.px||[]);    // ★리플레이=중앙 백테 px / 실시장=라이브 피드 px
+   var slots=st.slots||[];
+   var champ=slots.find(x=>x.champ)||slots[0]||null;
+   if(SEL==null||!slots.find(x=>x.name===SEL))SEL=champ?champ.name:null;
+   // 헤더 sub = 모드 + 현재가
+   document.getElementById('sub').textContent=(VIEW==='live'
+     ?('실시장 라이브'+(st.live_src?('('+st.live_src+')'):'')+(PRICE?(' · 현재가 '+Math.round(PRICE).toLocaleString()):' · 수신대기'))
+     :'중앙 1m 단일출처 · 봇별 캔들 동일'+(PRICE?(' · BTC '+Math.round(PRICE).toLocaleString()):''));
+   // 운영/리플레이 상태 (수정3: 리플레이시각 제거 · Emergency 버튼)
+   var rp=st.replay||{};var LIVE=(rp.mode==='live');
+   document.getElementById('repbtns').style.display=LIVE?'none':'grid';   // 운영모드선 리플레이 버튼 숨김
+   document.getElementById('bPause').classList.toggle('on',rp.paused);
+   document.getElementById('bResume').classList.toggle('on',!rp.paused);
+   var eb=document.getElementById('bEmg');if(eb){eb.classList.toggle('act',!!st.emergency);eb.textContent=st.emergency?'🛑 긴급중지됨 — 탭하여 제어':'🛑 Gho, HyoungJoon! Emergency';}
+   var dz=document.getElementById('dauto');dz.textContent=LIVE?'● 라이브 운영':(rp.paused?'● 정지':'● 리플레이');
+   dz.style.background=(LIVE||!rp.paused)?'var(--grnbg)':'var(--redbg)';dz.style.color=(LIVE||!rp.paused)?'#5fd3a0':'#f3a0a0';
+   // 슬롯
+   var ord=slots.slice().sort((a,b)=>(b.champ?1e9:b.ret)-(a.champ?1e9:a.ret));
+   var box=document.getElementById('slots');box.innerHTML='';
+   ord.forEach(function(x){var d=document.createElement('div');
+     d.className='slot'+(x.champ?' champ':'')+(x.name===SEL?' sel':'');
+     d.onclick=function(){SEL=x.name;render(LAST);};
+     var sc=x.side==='L'?'#5fd3a0':x.side==='S'?'#f3a0a0':'var(--mut)';
+     var chk=x.name===SEL?'<span style="color:var(--blu);font-size:16px">☑</span>':(x.champ?'🏆':'<span style="width:16px;display:inline-block"></span>');
+     d.innerHTML=chk+'<span class="snm" style="'+(x.champ?'color:var(--gold);font-weight:600':'')+'">'+x.name+'</span><span style="color:'+sc+';min-width:14px;text-align:center">'+(x.side==='-'?'·':x.side)+'</span><span style="font-weight:600;color:'+sc+';min-width:60px;text-align:right">'+fmt(x.ret)+'</span>';
+     box.appendChild(d);});
+   document.getElementById('selnm').textContent=SEL||'—';
+   var sel=slots.find(x=>x.name===SEL)||champ;
+   updChamp(champ,st); renderCmp(champ,sel); champSysBox(st);   // 수정1·2·3
+   var cw=document.getElementById('chartwarn'),wr=document.getElementById('chartwrap'),tb=document.getElementById('tradesbox');
+   if(SHOW_TRADES){wr.style.display='none';cw.style.display='none';tb.style.display='block';tb.innerHTML=tradesTable(sel,st);}
+   else{tb.style.display='none';if(PX.length){cw.style.display='none';wr.style.display='block';drawChart();}else{cw.style.display='flex';wr.style.display='none';}}
+ }
+ // 수정3: 긴급중지 제어
+ function emgOpen(){document.getElementById('emgModal').style.display='flex';}
+ function emgClose(){document.getElementById('emgModal').style.display='none';}
+ function emgCmd(a){if(a!=='resume'&&!confirm('정말 챔피언 실거래를 중단할까요?\n('+a+')'))return;rcmd(a);emgClose();}
+ // 수정4: 챔피언 성과를 이메일+텔레그램으로 크루에게
+ function emailSend(){var b=document.getElementById('bEmail');if(b){b.disabled=true;b.textContent='전송중…';}
+   function rst(){if(b){b.disabled=false;b.textContent='📧 Champ. Performance to Crew';}}
+   fetch(API+'/email',{method:'POST'}).then(r=>r.json()).then(function(j){
+     if(j.ok)alert('전송 완료\n· 이메일: '+(j.email?'OK':'실패'+(j.err_email?(' ('+j.err_email+')'):''))+'\n· 텔레그램: '+(j.telegram?'OK':'실패'+(j.err_tg?(' ('+j.err_tg+')'):'')));
+     else alert('전송 실패: '+(j.error||'챔피언 없음 또는 시크릿 미설정'));
+     rst();
+   }).catch(function(e){alert('전송 오류: '+e);rst();});}
+ function load(){fetch(API+'/state.json?_='+Date.now()).then(r=>r.json()).then(render).catch(function(){});}
+ if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js').catch(function(){});}  // ★PWA 독립앱(풀화면) 설치가능
+ load();setInterval(load,1500);
+</script>
+</body>
+</html>

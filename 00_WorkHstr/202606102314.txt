@@ -1,0 +1,26 @@
+작업분석 — 07Prj_Ch4_RunAWS_Stg5_Y2025Diag
+초기자본 $10,000 · devledger 264거래 재구성 · 2025 약세 원인 진단(읽기전용)
+
+[1] 오염검사 — 근간 데이터·원본 로직 SHA256 무수정 대조
+  [OK] 07Prj_Ch2_Stg2_TrendStack_OPVnNSweep_devledger.csv  a786876e1b565617…
+  [OK] bot_trendstack_signal.py  040da0d277d166ca…
+  [OK] trendstack_poc.py  3065230c60756bac…
+[1b] 필수 파일 존재
+  [OK] test_07Prj_Ch4_RunAWS_Stg5_Y2025Diag.py
+  [OK] check_07Prj_Ch4_RunAWS_Stg5_Y2025Diag.py
+  [OK] run.bat
+  [OK] 07Prj_Ch4_RunAWS_Stg5_Y2025Diag_results.csv
+[1c] 중복 .py: 없음
+
+[2] 진단 데이터
+  [summary] n_trades_2025 = 92
+  [summary] pf_2025 = 1.24
+  [summary] neg_months_2025 = 6
+  [composition] downtrend_pct_2025 = 32.6
+  [composition] downtrend_pct_other = 17.0
+  [degradation] uptrend = allPF=1.45;2025PF=0.58;n=27;degraded=True
+  [degradation] downtrend = allPF=3.49;2025PF=1.43;n=30;degraded=True
+  [degradation] volatile_range = allPF=2.31;2025PF=1.32;n=14;degraded=True
+  [degradation] dead_range = allPF=1.17;2025PF=1.67;n=21;degraded=False
+
+[결론] 2025 약세 = 열화(degradation). 구성은 오히려 유리(downtrend 비중 최대)였으나 추세장세 PF가 일제히 붕괴(uptrend·downtrend·volatile). 즉 2025는 추세가 안 통한 해 → 추세봇 사이징으론 불가. dead_range(횡보)만 유지/개선 → SidewayDCA가 정확히 그 구간 커버. [결론] SidewayDCA 착수가 매월양수의 정답.

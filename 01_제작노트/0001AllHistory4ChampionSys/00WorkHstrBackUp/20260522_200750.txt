@@ -1,0 +1,27 @@
+[작업분석] V2_mtf_endcheck  2026-05-22 20:07
+============================================================
+[오염검사 8+1]
+  PASS | 1.결과파일존재 | trades 9개, summary=O
+  PASS | 2.잔존섞임없음 | stale=없음
+  PASS | 3.파일명일치 | 위반=없음
+  PASS | 4.데이터정상(상위) | 1578240행 hash=e0b37b64
+  PASS | 5.중복없음 | 중복행 0
+  PASS | 6.빔/NaN없음 | 거래있는config 9/9, NaN=0
+  PASS | 8.출력경로(..\00WorkHstr) | D:\ML\Verify\00WorkHstr
+  PASS | 7.INDEX 이중기록없음 | 신규
+  => 종합: ALL PASS
+
+[입력 데이터]
+  D:\ML\Verify\Merged_Data_with_Regime_Features.csv
+  행수 1578240 | 기간 2023-05-01 00:00:00+00:00~2026-04-30 23:59:00+00:00 | 해시 e0b37b64
+
+[config별 성과]
+  V2_trades_S1_cur_opt.csv: 진입 218 | PF 0.606 | 순익 -5,669$
+  V2_trades_S2_cur_con.csv: 진입 218 | PF 0.61 | 순익 -5,644$
+  V2_trades_S3_tp13_opt.csv: 진입 1404 | PF 0.249 | 순익 -8,784$
+  V2_trades_S4_tp13_con.csv: 진입 1409 | PF 0.26 | 순익 -8,747$
+  V2_trades_S5_slob100_con.csv: 진입 127 | PF 0.681 | 순익 -4,255$
+  V2_trades_S6_slob200_con.csv: 진입 112 | PF 0.63 | 순익 -4,900$
+  V2_trades_S7_slob300_con.csv: 진입 112 | PF 0.601 | 순익 -5,361$
+  V2_trades_S8_combo_con.csv: 진입 854 | PF 0.303 | 순익 -7,215$
+  V2_trades_S9_v2base_con.csv: 진입 1384 | PF 0.274 | 순익 -8,714$

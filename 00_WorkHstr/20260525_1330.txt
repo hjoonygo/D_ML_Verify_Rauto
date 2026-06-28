@@ -1,0 +1,23 @@
+[작업분석] SpTrd_Fib_V0_stg6 | 2026-05-25 13:30
+============================================================
+[오염검사 8항목]
+  PASS 1.결과파일존재: sfstg6_summary=O, sfstg6_trades=O, sfstg6_mlrank=O
+  PASS 2.잔존섞임없음: stale=없음
+  PASS 3.파일명일치: 위반=없음
+  PASS 4.데이터정상: 행1,578,240 기간1095일 해시e0b37b64
+  PASS 5.중복없음: 진입시간 중복 0건
+  PASS 6.빔/NaN없음: 유효행30/전체31 누적R_NaN0
+  PASS 7.INDEX이중기록: 신규
+  PASS 8.출력경로: D:\ML\Verify\00WorkHstr
+
+오염검사 종합: ALL PASS
+============================================================
+[알파 판정 (SpTrd+Fib stg6 ML-filter)]
+  - ML메모: ML_TOP_signal=bandw | 추천필터=adx_20 (test PF 1.399) | method=RandomForest(train)
+  - 기준선(필터X): 전체 누적R136.59% PF1.474 거래334.0
+  - 기준선 학습/검증: train PF1.779 / test PF1.138 -> 둘다양
+  -   필터후보 adx_20_test: test PF1.399 R42.23% 거래129.0
+  -   필터후보 atrcmp_0.8_test: test PF1.305 R36.01% 거래138.0
+  -   필터후보 adx_25_test: test PF1.266 R23.61% 거래105.0
+
+[합격선] 7h가 6/8h와 함께 양(고원) + 학습·검증 둘다 PF>1.

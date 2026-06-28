@@ -1,0 +1,39 @@
+[작업분석] 05Alpha_Up_Ch1_S4C_Vrfy_stg2  (2026-05-29T16:43:38)
+[오염검사 종합] PASS
+------------------------------------------------------------
+  O 1.필수파일존재: all present
+  O 2.결과CSV非공백: ok
+  O 3.코드해시기록: {'test_05Alpha_UpCh1_stg2_Sideway4Champ_Vrfy.py': '9f76395aa05b9ef0', 'check_05Alpha_UpCh1_stg2_Sideway4Champ_Vrfy.py': '8cebb4e714a86a62'}
+  O 4.거래중복없음: 중복0행
+  O 5.미래참조가드: 미래참조 패턴 미사용(체결 open_[i+1] 확인)
+  O 6.거래비중첩: 중첩0건(모드x방향)
+  O 7.월별-거래합일치: 월별합=거래수 일치:True
+  O 8.VERDICT존재: VERDICT: A(HIGH_BASE 원본)가 우위 test PF 1.021 > 0.673...
+------------------------------------------------------------
+[VERDICT] VERDICT: A(HIGH_BASE 원본)가 우위 test PF 1.021 > 0.673 || A_HIGH_BASE BEST[TF2h_osL35_osS55_ADX_TREND_adx25_BOTH] train PF=2.171 cumR=45.32% | test PF=1.021 cumR=1.08% WFE=47.0% || LONG n66 승39.4% R19.57% PF1.453 손익비2.236 $1947 || SHORT n78 승43.6% R26.84% PF1.574 손익비2.036 $2807 || B_LOW_BASE BEST[TF2h_osL35_osS55_ADX_TREND_adx25_BOTH] train PF=1.096 cumR=4.28% | test PF=0.673 cumR=-17.78% WFE=61.4% || LONG n66 승28.8% R-12.76% PF0.722 손익비1.787 $-1291 || SHORT n78 승26.9% R-0.73% PF0.986 손익비2.677 $-233
+[코드해시] {'test_05Alpha_UpCh1_stg2_Sideway4Champ_Vrfy.py': '9f76395aa05b9ef0', 'check_05Alpha_UpCh1_stg2_Sideway4Champ_Vrfy.py': '8cebb4e714a86a62'}
+[월별 롱/숏 요약 (앞 24행)]
+  [A_HIGH_BASE] 2023-05 LONG: n1 승0.0% R-1.16% PF0.0 손익비0.0 $-116.0
+  [A_HIGH_BASE] 2023-06 LONG: n2 승100.0% R5.7% PF999.0 손익비0.0 $577.64
+  [A_HIGH_BASE] 2023-07 LONG: n3 승66.7% R-0.3% PF0.742 손익비0.371 $-30.83
+  [A_HIGH_BASE] 2023-08 LONG: n2 승50.0% R0.34% PF4.927 손익비4.927 $33.55
+  [A_HIGH_BASE] 2023-09 LONG: n1 승100.0% R1.21% PF999.0 손익비0.0 $120.9
+  [A_HIGH_BASE] 2023-12 LONG: n1 승0.0% R-1.16% PF0.0 손익비0.0 $-116.0
+  [A_HIGH_BASE] 2024-01 LONG: n1 승0.0% R-1.16% PF0.0 손익비0.0 $-116.0
+  [A_HIGH_BASE] 2024-03 LONG: n1 승0.0% R-1.16% PF0.0 손익비0.0 $-116.0
+  [A_HIGH_BASE] 2024-04 LONG: n5 승60.0% R5.46% PF3.352 손익비2.234 $542.41
+  [A_HIGH_BASE] 2024-06 LONG: n3 승66.7% R2.72% PF235.91 손익비117.955 $272.82
+  [A_HIGH_BASE] 2024-07 LONG: n4 승50.0% R4.67% PF3.012 손익비3.012 $463.82
+  [A_HIGH_BASE] 2024-08 LONG: n2 승50.0% R0.98% PF1.842 손익비1.842 $95.18
+  [A_HIGH_BASE] 2024-09 LONG: n2 승50.0% R-0.75% PF0.35 손익비0.35 $-75.92
+  [A_HIGH_BASE] 2024-10 LONG: n5 승40.0% R3.33% PF1.956 손익비2.933 $322.24
+  [A_HIGH_BASE] 2024-11 LONG: n2 승50.0% R10.47% PF10.022 손익비10.022 $1033.06
+  [A_HIGH_BASE] 2024-12 LONG: n1 승0.0% R-1.16% PF0.0 손익비0.0 $-116.0
+  [A_HIGH_BASE] 2025-01 LONG: n2 승50.0% R4.27% PF4.678 손익비4.678 $420.38
+  [A_HIGH_BASE] 2025-02 LONG: n1 승0.0% R-1.16% PF0.0 손익비0.0 $-116.0
+  [A_HIGH_BASE] 2025-03 LONG: n3 승33.3% R2.9% PF2.251 손익비4.502 $279.57
+  [A_HIGH_BASE] 2025-05 LONG: n3 승0.0% R-3.48% PF0.0 손익비0.0 $-343.98
+  [A_HIGH_BASE] 2025-06 LONG: n1 승100.0% R0.32% PF999.0 손익비0.0 $31.93
+  [A_HIGH_BASE] 2025-07 LONG: n2 승0.0% R-2.32% PF0.0 손익비0.0 $-230.65
+  [A_HIGH_BASE] 2025-08 LONG: n3 승33.3% R-2.17% PF0.064 손익비0.127 $-216.25
+  [A_HIGH_BASE] 2025-10 LONG: n2 승50.0% R1.88% PF2.623 손익비2.623 $184.79

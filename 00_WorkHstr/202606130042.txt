@@ -1,0 +1,50 @@
+VERDICT 07Prj_Ch4_RunAWS_Stg16_OpsGuard | 오염검사 18/18 [PC모드] | VERDICT Stg16 OpsGuard | 8/8 PASS — KillSwitch(단방향·자동복구금지)+Telegram(env전용·NO-OP안전판·중복방지 diff)+가시성(status 4축·/status·/kill) | 봇 본체 무수정(S8 해시 10종) | 실발송 0(전부 mock)
+[PASS] ops_common.py 해시상수 | 250e9e28a9323d35
+[PASS] alert_telegram.py 해시상수 | c8fce012facdd5ee
+[PASS] kill_guard.py 해시상수 | d5ef46d9faf3d559
+[PASS] alert_check.py 해시상수 | 7153989666603c05
+[PASS] ops_status.py 해시상수 | be840c09b8a6db3d
+[PASS] telegram_poll.py 해시상수 | d6eda28d5029908f
+[PASS] status_check.bat 해시상수 | 2106b4f57c674db4
+[PASS] 봇무수정 trendstack_signal_engine.py | c9d784bfd81e8ed4
+[PASS] 봇무수정 bot_trendstack_signal.py | 040da0d277d166ca
+[PASS] 봇무수정 rauto_paper_engine.py | f3ff3e652c2d6033
+[PASS] 봇무수정 rauto_contract.py | 40b974ac7859a95f
+[PASS] 봇무수정 SidewayDCA_Stg7_engine.py | dfdfac4394cd7809
+[PASS] 봇무수정 bot_sidewaydca_signal.py | f758ef6d8c2d77b6
+[PASS] 봇무수정 oi_zscore_adapter.py | 32b373cfc33817c3
+[PASS] 봇무수정 atr_ratio_adapter.py | b2e4a1107707935d
+[PASS] 봇무수정 dauto_loader.py | 97f894f3adaafb7b
+[PASS] 봇무수정 regime_feature_extractor.py | c3ace85e44cad8b2
+[PASS] 결과 존재 | VERDICT Stg16 OpsGuard | 8/8 PASS — KillSwitch(단방향·자동복구금지)+Telegram(env전용·NO-OP안전판·중복방지 di
+
+[전문]
+VERDICT Stg16 OpsGuard | 8/8 PASS — KillSwitch(단방향·자동복구금지)+Telegram(env전용·NO-OP안전판·중복방지 diff)+가시성(status 4축·/status·/kill) | 봇 본체 무수정(S8 해시 10종) | 실발송 0(전부 mock)
+
+[PASS] S1_NO-OP | 
+[PASS] S2_HTTP200페이로드 | 
+[PASS] S3_HTTP404분기 | 
+[PASS] S4_diff중복방지 | 
+[PASS] S5_오류KILL알림 | 
+[PASS] S6_kill_guard | 
+[PASS] S7_poll인증명령 | 
+[PASS] S8_봇무수정해시 | 
+
+[메시지 샘플 — 실발송 양식(머리에 [PAPER]/[LIVE] 태그 부착됨)]
+--- ① 시작 ---
+🟢 Rauto 시작 | 2026-06-12 15:42 UTC | Rauto_Daily 첫 OK 완주 | OK 2026-06-13 00:11 UTC | 예외0·갭0·동치True | date=2026-06-12 bars=1440 bal_ts=11365.23 bal_sw=10000.0 oi_z=100.0% atr=100.0% damp=0 blk=0
+--- ② 진입 ---
+📈 진입 | TS LONG | 2026-05-15 18:00:00 UTC | 진입가 $79,459 | 슬롯잔고 $10,000 | lev22 x k0.77
+--- ③ 청산 ---
+📉 청산 | TS LONG | 2026-05-16 08:00:00 UTC | 청산가 $78,400 | P&L -1.19% (-118.54$) | 잔고 $9,881.46 | 사유 trend_flip
+--- ④ 오류 ---
+🚨 오류 | ★긴급 2026-06-13 00:12 UTC | 동치깨짐 | date=2026-06-12
+--- ④ KILL ---
+🚨 ★KILL 2026-06-12 15:42 UTC | kill.flag 감지 | 태스크비활성 Rauto_Daily:TEST-SKIP Dauto_Collector:TEST-SKIP | 해제=수동(flag삭제+/ENABLE)
+--- /status 회신 ---
+📊 상태
+Rauto_Daily: 미등록
+Dauto_Collector: 미등록
+Dauto 최근행: 2026-06-11 11:51:00 (BTCUSDT_1m_20260611.csv)
+health: ★KILL 2026-06-12 15:42 UTC | kill.flag 감지 | 태스크비활성 Rauto_Daily:TEST-SKIP Dauto_Collector:TEST-SKIP | 해제=수동(flag삭제+/ENABLE)
+scorecard: 2026-06-11,712,0,0,0,0,0.0,0.0,11365.23,10000.0,100.0,0,0.0,0.0,,O,-2.53,0.0,100.0,100.0,0

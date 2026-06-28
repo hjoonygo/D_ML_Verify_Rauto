@@ -1,0 +1,31 @@
+[작업분석] 05Alpha_Up_Ch1_SLfibAB_stg1  (2026-05-29T10:18:15)
+[오염검사 종합] PASS
+------------------------------------------------------------
+  O 1.필수파일존재: all present
+  O 2.결과CSV非공백: ok
+  O 3.코드해시기록: {'test_05Alpha_UpCh1_stg1.py': '445b1a91bf44fe51', 'check_05Alpha_UpCh1_stg1.py': 'b3324b4676887078'}
+  O 4.거래중복없음: 중복0행
+  O 5.미래참조가드: 미래참조 패턴 미사용(체결 open_[i+1] 확인)
+  O 6.거래비중첩: 중첩0건(모드별)
+  O 7.8시나리오완전: 16행(8x모드수)
+  O 8.VERDICT존재: VERDICT: 결론: A(HIGH_BASE 원본)가 우위 (test PF 1.277 > ...
+------------------------------------------------------------
+[VERDICT] VERDICT: 결론: A(HIGH_BASE 원본)가 우위 (test PF 1.277 > 1.229) -> 설계수정 불필요 || A_HIGH_BASE BEST TF8h_dm1.5_adx22_a0.3_d0.1_sh1_n1 | train PF=1.684 cumR=10.86% MDD=-13.0% | test PF=1.277 cumR=4.45% MDD=-11.8% | WFE=75.8% | LONG PF=1.391 n52 cumR9.44% / SHORT PF=1.752 n50 cumR5.87% || B_LOW_BASE BEST TF8h_dm1.5_adx22_a0.5_d0.1_sh0_n1 | train PF=1.489 cumR=6.33% MDD=-13.4% | test PF=1.229 cumR=2.8% MDD=-10.2% | WFE=82.5% | LONG PF=1.362 n53 cumR9.13% / SHORT PF=0 n0 cumR0%
+[코드해시] {'test_05Alpha_UpCh1_stg1.py': '445b1a91bf44fe51', 'check_05Alpha_UpCh1_stg1.py': 'b3324b4676887078'}
+[8시나리오 누적R (sl_mode별 train/test)]
+  [HIGH_BASE] SCEN_clean_range: train n17 R2.23% | test n17 R2.72%
+  [HIGH_BASE] SCEN_break_up: train n0 R0.0% | test n0 R0.0%
+  [HIGH_BASE] SCEN_break_down: train n0 R0.0% | test n0 R0.0%
+  [HIGH_BASE] SCEN_fake_break: train n0 R0.0% | test n0 R0.0%
+  [HIGH_BASE] SCEN_v_reversal: train n0 R0.0% | test n0 R0.0%
+  [HIGH_BASE] SCEN_low_vol_range: train n4 R-0.42% | test n8 R2.14%
+  [HIGH_BASE] SCEN_strong_trend: train n0 R0.0% | test n0 R0.0%
+  [HIGH_BASE] SCEN_regime_shift: train n32 R9.06% | test n24 R-0.41%
+  [LOW_BASE] SCEN_clean_range: train n7 R0.49% | test n5 R1.9%
+  [LOW_BASE] SCEN_break_up: train n0 R0.0% | test n0 R0.0%
+  [LOW_BASE] SCEN_break_down: train n0 R0.0% | test n0 R0.0%
+  [LOW_BASE] SCEN_fake_break: train n0 R0.0% | test n0 R0.0%
+  [LOW_BASE] SCEN_v_reversal: train n0 R0.0% | test n0 R0.0%
+  [LOW_BASE] SCEN_low_vol_range: train n2 R-1.6% | test n3 R0.94%
+  [LOW_BASE] SCEN_strong_trend: train n0 R0.0% | test n0 R0.0%
+  [LOW_BASE] SCEN_regime_shift: train n22 R7.44% | test n14 R-0.04%

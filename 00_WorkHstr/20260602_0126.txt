@@ -1,0 +1,19 @@
+VERDICT 06Prj_Ch6_Stg7_TrendGateCPCV | 8시나리오 8/8 PASS | [gate 4종 CPCV p25] none 1.414 / adx 1.383 / er 1.497 / adx_bb 1.341 -> BEST er (도움) | [칩장진입] 전체 PF1.575/수익137.8 -> 칩제외 PF1.802/수익46.25 (제외 198건/수익91.56%) -> PF↑수익↓(라우팅자살골 재확인) | check:PASS
+
+[8시나리오 상세]
+  [OK] S1 필수파일/비공백(6종) : 6종 OK
+  [OK] S2 엔진해시 무수정(gate는 인자, 수정아님) : 일치
+  [OK] S3 미래참조 가드(shift- 없음) : 없음
+  [OK] S4 gate 4종 전부 실행 & 거래>0 : gate종류 4 / none거래 267
+  [OK] S5 label 입력배제 : False
+  [OK] S6 gate 4종 CPCV p25 산출 : none/adx/er/adx_bb p25 = ['1.414', '1.383', '1.497', '1.341']
+  [OK] S7 칩장진입 PF·수익 트레이드오프 기록 : 전체 PF1.575/수익137.8 -> 칩제외 PF1.802/수익46.25 | PF↑수익↓(라우팅자살골 재확인)
+  [OK] S8 결론 기록완료(gate효과+칩장트레이드오프) : BEST gate er -> 도움 / 칩장 PF↑수익↓(라우팅자살골 재확인)
+
+[엔진 무수정 해시] (gate_mode는 run_strategy 인자 — 엔진 수정 아님)
+  SpTrd_Fib_V1_Champion.py = 7f9192e3d50b1afd...
+  SidewayDCA_Stg7_engine.py = dfdfac4394cd7809...
+
+[메모] 추세봇 내장 gate_mode(장세판단 로직)가 칩장 추세봇에 도움되나 검증. 표준값 고정(ER0.40/ADX25).
+  ★해석: BEST gate의 CPCV p25가 none보다 높으면 게이트 도움. 칩장진입 제외는 PF↑수익↓면 라우팅자살골 재확인.
+  (A)계열 결과 → 이걸로 (B)엔진수정 필요여부를 사장님과 결정. 엔진수정은 무수정원칙 깨므로 신중.

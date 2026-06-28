@@ -1,0 +1,19 @@
+================================================================================
+Work Order — oi_zscore_24h 실시간 어댑터 (등록일 2026-06-11, 캡틴 지시)
+※기존 Work Order는 docx 관행이나 python-docx 미설치로 txt 등록(내용 동일 효력).
+================================================================================
+[배경]
+- Dauto 수집봇 v1(08Prj_Ch1_Stg1)이 원시 open_interest를 1분 단위로 수집 중
+  (C:\BinanceData, oi_src=live/hist/na). v1은 oi_zscore_24h를 계산하지 않음(캡틴 확정).
+- SidewayDCA 신호봇(07Prj_Ch4_Stg7)·TrendStack 신호봇은 oi_zscore를 market.aux로 주입받음.
+
+[과제]
+1) 기존 Merged_Data 파이프라인의 oi_zscore_24h '생성 코드'를 먼저 찾는다.
+   - D:\ML\verify 내 .py 전수검색 + 캡틴 문의. ★못 찾으면 추정 구현 금지 — 캡틴에게 원본 요청.
+2) 찾은 계산식을 §2 증거(총 줄수+핵심 줄번호 인용)와 함께 제출.
+3) 어댑터 Stg: Dauto CSV(open_interest) → oi_zscore_24h 계산 → 겹치는 기간에서
+   기존 Merged_Data 컬럼과 수치 일치 검증(허용오차 명시) → PASS 후 라이브 aux 공급원 채택.
+
+[선행조건] 07Prj_Ch4_Stg7 SidewayDCAStream PASS (진행 중)
+[착수조건] 캡틴 승인 후 별도 Stg로
+================================================================================

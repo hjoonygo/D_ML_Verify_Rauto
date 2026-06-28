@@ -1,0 +1,22 @@
+[작업분석] RAUTO_ConceptRefine_06_Ch5_Stg3_Trend1mExit  (2026-05-31T22:28:53)
+[오염검사] PASS
+------------------------------------------------------------
+  O 1.필수파일존재: all present
+  O 2.결과CSV非공백: ok
+  O 3.코드해시기록: {'test_06Prj_Ch5_RAUTO_ConceptRefine_Stg3_Trend1mExit.py': 'f593bb288fc3f85b', 'check_06Prj_Ch5_RAUTO_ConceptRefine_Stg3_Trend1mExit.py': '81977cae7694ba9d'}
+  O 4.거래중복없음: 중복0행
+  O 5.미래참조가드: 음수shift 미사용(주석제외, 하네스+엔진)
+  O 6.V0복제=엔진일치: repl_ok=True, n엔진318/V0318
+  O 7.분할1m=7h동등(no-op): 최대평단차=0.000000
+  O 8.버전3개산출: 버전3개, 갭(청산-153.5/현실-183.7)
+  O 9.엔진원본일치(무수정증빙): SpTrd_Fib_V1_Champion.py=일치 SidewayDCA_Stg7_engine.py=일치
+  O 10.VERDICT존재: VERDICT Stg3 | 펀딩=REAL(3288건) | V0복제=엔진:100% 일치 | ...
+------------------------------------------------------------
+[VERDICT] VERDICT Stg3 | 펀딩=REAL(3288건) | V0복제=엔진:100% 일치 | 분할1m=7h:no-op(최대차0.000000) | V0 376.3%(PF1.643,MDD-25.8) / VE_1m청산 529.8%(PF1.822,MDD-24.3) / V1_현실 560.0%(PF1.837,MDD-28.0) | 청산갭 -153.5%p, 현실판갭 -183.7%p | 거래수 엔진318/V0318/VE318/V1319 | 지정노출(향후) 추세E=1.5 횡보E=10.0
+[버전갭] V0 376.3% / VE_1m청산 529.8% / V1_현실 560.0%  (청산갭 -153.5%p, 현실판갭 -183.7%p)
+[분할 no-op] 7h평단=1m평단 최대차 0.000000 (결정2는 효과없음 확정)
+[버전 상세]
+  V0_7h복제(=엔진): cumR376.3% PF1.643 MDD-25.8% n318(sl296/flip22)
+  VE_1m청산만: cumR529.8% PF1.822 MDD-24.3% n318(sl315/flip3)
+  V1_현실판(+슬리피지): cumR560.0% PF1.837 MDD-28.0% n319(sl316/flip3)
+[코드해시] {'test_06Prj_Ch5_RAUTO_ConceptRefine_Stg3_Trend1mExit.py': 'f593bb288fc3f85b', 'check_06Prj_Ch5_RAUTO_ConceptRefine_Stg3_Trend1mExit.py': '81977cae7694ba9d'}

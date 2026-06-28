@@ -1,0 +1,17 @@
+[작업분석] RAUTO_AlphaUp_06_Ch5_Stg9_PovScorecard (2026-06-01T10:07:09)
+[오염검사] PASS
+------------------------------------------------------------
+  O 1.필수파일: ok
+  O 2.CSV非공백: ok
+  O 3.코드해시: {'test_06Prj_Ch5_RAUTO_AlphaUp_Stg9_PovScorecard.py': '67e39fb42a54bb89', 'check_06Prj_Ch5_RAUTO_AlphaUp_Stg9_PovScorecard.py': '451210ff4b6959df'}
+  O 4.중복없음: 중복0
+  O 5.미래참조가드: 음수shift 미사용 — 엔진 무수정, dev 진입시점 과거기반
+  O 6.거래/POV분포: 거래318(일치160/반대152/중립6)
+  O 7.장세별: 산출
+  O 8.연도별: 산출
+  O 9.롱숏별: 산출 | SpTrd_Fib_V1_Champion.py=OK SidewayDCA_Stg7_engine.py=OK
+  O 10.VERDICT: base PF1.643/승률31.4%/손익비3.581/수익률177.27%/$88635.0 -> POV PF1...
+------------------------------------------------------------
+[VERDICT] base PF1.643/승률31.4%/손익비3.581/수익률177.27%/$88635.0 -> POV PF1.646/승률31.4%/손익비3.588/수익률210.67%/$105337.0
+[사이징] 일치×2.0 반대×0.25 | 거래318(일치160/반대152/중립6)
+[코드해시] {'test_06Prj_Ch5_RAUTO_AlphaUp_Stg9_PovScorecard.py': '67e39fb42a54bb89', 'check_06Prj_Ch5_RAUTO_AlphaUp_Stg9_PovScorecard.py': '451210ff4b6959df'}

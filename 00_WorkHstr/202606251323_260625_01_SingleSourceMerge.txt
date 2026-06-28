@@ -1,0 +1,5 @@
+[단일출처 복구] 260625_01_RevoiExitRegime
+CLAUDE.md 두 집(Verify/RfRauto) 포크를 합집합 병합 → §0~23 24섹션, RfRauto 정본 + Verify 미러(md5 동일=포크소멸). 백업 .prefork.bak.
+memory: Verify 34 ⊇ RfRauto_ref 29 → RfRauto/memory 34개 정본화(Verify와 diff 0). memory_ref_from_verify=대체됨.
+남은(캡틴): 세션을 D:/ML/RfRauto 폴더로 재오픈 + autoMemoryDirectory→RfRauto/memory(IDE/런치 설정). 그 전엔 Verify 미러로 규칙 동일적용.
+주의: CLAUDE.md §0 "본진=D:/ML/verify" 문구는 구식(RfRauto로 정정 필요, 캡틴 확인대기).

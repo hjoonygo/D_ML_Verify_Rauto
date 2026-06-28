@@ -1,0 +1,19 @@
+[작업분석] RAUTO_AlphaUp_06_Ch5_Stg15_ChopFilterDualBot (2026-06-01T12:32:21)
+[오염검사] PASS
+------------------------------------------------------------
+  O 1.필수파일: ok
+  O 2.CSV非공백: ok
+  O 3.코드해시: {'test_06Prj_Ch5_RAUTO_AlphaUp_Stg15_ChopFilterDualBot.py': '0e934f3ca9f29abc', 'check_06Prj_Ch5_RAUTO_AlphaUp_Stg15_ChopFilterDualBot.py': 'a0dc7cfb494dbb9b'}
+  O 4.중복없음: 중복0
+  O 5.미래참조가드: 음수shift 미사용 — CHOP/ER/ADX 진입시점 과거봉 | 칩임계=학습기간 선택 | label미사용
+  O 6.연도분포: CHOP/ER/ADX 연도별 산출
+  O 7.칩그리드: 그리드 27조합 | best CHOP>65·ER<0.35·×0.0
+  O 8.★2025두봇합산: 추세1.73->칩필터4.81% +횡보4.85% =합산9.66%
+  O 9.횡보봇추출+엔진해시: 횡보봇 105거래 | SpTrd_Fib_V1_Champion.py=OK SidewayDCA_Stg7_engine.py=OK
+  O 10.VERDICT: 칩필터後 OOS 54.12->54.16% MDD-24.9%
+------------------------------------------------------------
+[칩필터] best CHOP>65·ER<0.35·×0.0 (칩거래 7건, 2025중 4건)
+[★2025] 추세봇 1.73% -> 칩필터 4.81% | 횡보봇 4.85% | 두봇합산 9.66%
+[전체] base 177.27%/MDD-25.8 -> 칩필터 178.31%/MDD-24.9(청산NO)
+[OOS] base 54.12% -> 칩필터 54.16%
+[코드해시] {'test_06Prj_Ch5_RAUTO_AlphaUp_Stg15_ChopFilterDualBot.py': '0e934f3ca9f29abc', 'check_06Prj_Ch5_RAUTO_AlphaUp_Stg15_ChopFilterDualBot.py': 'a0dc7cfb494dbb9b'}

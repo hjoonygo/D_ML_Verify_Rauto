@@ -1,0 +1,28 @@
+[작업분석] 04All_IDEA4Concept_ch9_SideWayDCA_Alpha_stg11  (2026-05-30T18:21:44)
+[오염검사 종합] FAIL
+------------------------------------------------------------
+  X 1.필수파일존재: 누락:['run_04All_IDEA4Concept_ch9_SideWayDCA_Alpha_stg11.bat']
+  O 2.결과CSV非공백: ok
+  O 3.코드해시기록: {'test_04All_IDEA4Concept_ch9_SideWayDCA_Alpha_stg11.py': 'b7866463ebb5ba18', 'check_04All_IDEA4Concept_ch9_SideWayDCA_Alpha_stg11.py': '7ff4f134a8cc8531'}
+  O 4.거래중복없음: 중복0행
+  O 5.미래참조가드: shift(-)/[i+1] 진입신호 미사용 확인
+  O 6.거래비중첩: 중첩0건
+  O 7.8시나리오완전: 8행
+  O 8.VERDICT존재: VERDICT stg11 | BEST_PF(제약없음) TF8h regime=pct30_5 mode=stg9_...
+------------------------------------------------------------
+[VERDICT] VERDICT stg11 | BEST_PF(제약없음) TF8h regime=pct30_5 mode=stg9_only | train PF=1.7 cumR=11.09% | test PF=1.296 cumR=4.72% | all MDD=-17.3% final=$14222.0 WFE=76.2% || BEST_PF_MDD_CAPPED=없음 || MIX효과: mix_avg_cumR=-16.6% single_avg=-16.3% | mix_avg_MDD=-41.7% single=-42.7% | mix_avg_PF=0.79 single=0.84
+[코드해시] {'test_04All_IDEA4Concept_ch9_SideWayDCA_Alpha_stg11.py': 'b7866463ebb5ba18', 'check_04All_IDEA4Concept_ch9_SideWayDCA_Alpha_stg11.py': '7ff4f134a8cc8531'}
+[8시나리오 누적R(train/test)]
+  SCEN_clean_range: train n19 R2.9% | test n21 R3.95%
+  SCEN_break_up: train n0 R0.0% | test n0 R0.0%
+  SCEN_break_down: train n0 R0.0% | test n0 R0.0%
+  SCEN_fake_break: train n0 R0.0% | test n0 R0.0%
+  SCEN_v_reversal: train n0 R0.0% | test n0 R0.0%
+  SCEN_low_vol_range: train n0 R0.0% | test n0 R0.0%
+  SCEN_strong_trend: train n0 R0.0% | test n0 R0.0%
+  SCEN_regime_shift: train n34 R8.19% | test n28 R0.77%
+
+[장세별 거래 분포 (best 채택안)]
+  uptrend: n40 R합6.69% 평균0.1673%
+  downtrend: n19 R합-0.91% 평균-0.0479%
+  range: n43 R합10.03% 평균0.2332%

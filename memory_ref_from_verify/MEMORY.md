@@ -1,0 +1,31 @@
+# Memory Index
+
+- [cp949 콘솔 → PYTHONIOENCODING=utf-8 필수](cp949-utf8-python-console.md) — 캡틴 승인 표준, run.bat 1줄째 + 직접 실행 시 env 선설정
+- [bat/cmd는 100% 영어만](bat-cmd-ascii-only.md) — ★절대규칙(CLAUDE.md §1박제). 한글 set값/echo가 cp949 cmd서 깨짐. bat은 bash heredoc+CRLF, python작성 금지(\t깨짐), chcp/&/FOR 금지, python 전체경로
+- [self-locating + 배치는 실행명령만 + NSSM](self-locating-and-minimal-bat.md) — ★절대규칙(§1박제). 어느 폴더서 실행해도 자동탐색, 하드코딩경로 금지, 배치 군더더기 금지, 운영=NSSM(창없음), "창 열어두라" 안내 금지
+- [클로드 설정 D이사·멀티부팅·C포맷 대비](claude-config-on-d-multiboot.md) — 메모리=D:/ML/Verify/memory로 이사(autoMemoryDirectory). 부활키트=D:/ML/00AI_SYS(git밖). 새 OS선 데이터SSD를 D로 지정필수, 새 메모리는 D에 쓴다
+- [D:\ML 멀티사업 루트 구조·00AI_SYS 공통인프라](ml-root-multi-business-layout.md) — D:\ML=전사업루트, 00AI_SYS=AI/PC/AWS공통(사업밖), 사업별 폴더·memory 분리. 공통규칙은 추후 상위 D:\ML\CLAUDE.md로
+- [Rauto 알림·폰 연동 = 텔레그램·Gmail·Tailscale](rauto-notify-telegram-phone.md) — 봇 @RautoChampBot, 토큰=AWS env(백업 00AI_SYS/secrets), 폰 z-fold7가 Tailscale로 control_server 8787 접속. RBAC 미정의 플래그
+- [bat은 실제 실행으로 검증·추측금지](bat-verify-by-actual-run.md) — ★캡틴 반복지적. 복원bat=임시USERPROFILE override+stdin으로 실행후 Test-Path, winget=winget show로 ID확인, PS선 cmd/c금지 &bat직접, background는 완료후 확인
+- [부활 첫임무 = 전 디바이스 점검·세팅](post-restore-first-task-device-check.md) — 클로드 부활 후 노트북·AWS·폰 작업가능 자가점검+미비시세팅. Python 노트북3.12≠AWS3.10, AWS시각=UTC(state stale 착시주의)
+- [개인 작업환경 복원 = 크롬·HWP사전·네이버메모·보안](user-workspace-restore.md) — 백업 00AI_SYS/user_apps. 크롬=구글동기화 자동복원, HWP 한자사전 hjuser6.dic, 보안=Windows Defender(V3 비권장)
+- [AWS schtasks SYSTEM 함정 2종](aws-schtasks-system-pitfalls.md) — python 풀경로 필수·setx /M 필수, 진단=Last Result+ops_alert.log
+- [★한국어 전용 소통](korean-only-communication.md) — 모든 소통·셸 echo 라벨 100% 한국어, 영어 ASCII는 오직 .bat/set값/경로(cp949). 위반=말안듣는것(캡틴 격노 2026-06-22, CLAUDE.md §10박제)
+- [★자동 파일링 운영모델](auto-filing-operating-model.md) — 캡틴은 계획+검증결과만, 클로드가 파일정리·백업·자가세팅 전부 자동. 네이밍규칙 확정됐으니 일상산출물은 확인없이 자동명명(규칙=사전승인)
+- [★일일 연속성 크로스체크](daily-continuity-crosscheck.md) — 매세션 제작노트(참사5단계·아이디어)↔WorkOrder·Handover·INDEX 대조해 '이어서할것·미결' 브리핑(캡틴 연속작업)
+- [★알파연구 스레드 현재상태·다음1수](alpha-research-thread-state.md) — ★새세션 이어가기용 라이브상태. 최강결합=mom_24h+oi_z(IC가중덧셈) 실체결시뮬 +90%/MDD-39%/CPCV p25양수=진짜알파(MDD가 -20%위반). 다음=VR<1레짐게이트+레짐인지청산을 realistic_sl_sim에 적용해 MDD축소. 도구·궤적 AlphaIC_FundOiCvd_Stg1 폴더
+- [★RfRauto Ver2.0 재건(진행중)](rfrauto-restructure.md) — 수익률환상 참사→재건. D:\ML\Verify→D:\ML\RfRauto 멀티사업구조, 4단계 알파파이프라인. OI 3중백업 완료, 이관 미완
+- [캡틴 설명 스타일](captain-explain-style.md) — 축약 금지·문장으로 풀어쓰기, 중요한 함의는 정면으로 질문해 승인받기
+- [캡틴 발언은 그의 맥락으로 먼저 이해](interpret-captain-context-first.md) — 틀렸다 단정·교정 금지, 내가 못 알아들었나 먼저 의심. 뻔한 설명·확인질문 금지
+- [한번 승인=재질문 금지 일괄진행](batch-once-approved-no-reask.md) — 승인된 패턴은 끝까지 완주, 블로커만 가정+문서화로 돌파(§1 금지선 예외)
+- [저장위치 확인 + 강조 자동라우팅](save-location-and-emphasis-routing.md) — 작업후 위치확인·저장, 강조내용 문서별 라우팅(CLAUDE.md §12·§13)
+- [파일 만들기 전 파일명 확인](confirm-filename-before-creating.md) — ★§16박제. 산출물 생성 전 파일명 캡틴 확인필수·임의명명 금지. 파토Stg는 다음작업이 번호승계
+
+- [손절터치 재구성 룩어헤드 버그](sl-touch-reconstruction-lookahead.md) — 7H봇 SL터치는 et+7H부터 탐색(진입봉시작 X), 안그러면 진입전 가격을 갭오인=허깨비 청산
+- [실측 슬리피지 = 바이낸스 틱](binance-tick-data-real-slippage.md) — 과거=Vision아카이브·최근=REST API(fromId), aggTrades로 실제 체결가 측정
+- [Fast-Fail·IC 레버 검증=알파아님](fastfail-ic-tested-negative.md) — AI토론 2레버 백테완료, 1%틱손절이 이미 Fast-Fail·피처 중복0, 재시도 불요
+- [챔피언 청산=미개척 최대레버](champion-exit-untouched-lever.md) — 성급왕 청산 667/668 sl_intrabar Fib트레일, 선행작업은 sizing/entry만 손댐. 앵커 하니스(comprehensive_4bot/bt36_ledgers, +11397% 재현)·king봇 서브클래스로 청산포크. 월+5%p는 MDD-20%와 충돌 정직경계
+- [미시구조는 BTC방향예측 약함](microstructure-weak-for-btc-direction.md) — ★펀딩/OI/CVD/다코인쏠림 전부 IC<0.07=약함(실측 2026-06-22). 제미나이 'Funding+OI역추세'·'다코인→BTC방향' 둘다 기각. 챔피언엣지=가격구조추세지 미시구조 아님→이피처는 필터/오버레이로만. 신규수집(베이시스/DVOL/다코인)=방향알파용 저효율. 단 [[alpha-verification-system]]서 펀딩 역추세는 '알파가능성O'(2020-26)로 정정됨
+- [★챔피언 수익 청산체결가 인플레](champion-return-exit-fill-inflated.md) — ★+11397%(R2)는 1m검증 안되는 트레일청산 110거래(16.5%,전부100%승)에 ~99% 의존. 검증된 558건만 +39%. exit_px=계산된 트레일값(§15-3 정량확증). '확정엣지' 인용금지·미확정(신뢰80). 1m트레일 실체결 재실행으로만 진짜값. §9·§15 소급전파 필요
+- [탐색법 경계: 브루트 vs 캐스케이드](search-method-brute-vs-cascade-boundary.md) — 가격레벨 탐색 방법선택. 한번 탐색윈도 W<40만 1m봉(≈0.8년)=브루트 / >=40만 or RAM초과=캐스케이드. ★per-거래 체결검증은 봇TF무관 거의항상 브루트(짧은TF=보유창↓=브루트더유리). 캐스는 전기간1쿼리·틱데이터서만 승. pick_search_method()
+- [알파 검증 시스템(3단판정)](alpha-verification-system.md) — ★alpha_verification_system.py=신호알파 3단 자동판정(①가능성=WF부호안정·방향자동발견 ②엣지=SPRT ③배포=CPCV+DSR+비용). 참사 재발방지 표준잣대. '방향 정반대도 부호안정이면 알파가능성有'(캡틴 지적)를 코드화. Funding_level 2020-26=가능성O·배포X. 새 신호는 이 시스템 통과必

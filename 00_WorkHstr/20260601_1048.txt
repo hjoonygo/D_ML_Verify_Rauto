@@ -1,0 +1,19 @@
+[작업분석] RAUTO_AlphaUp_06_Ch5_Stg10_MtfMacdRegime (2026-06-01T10:48:22)
+[오염검사] PASS
+------------------------------------------------------------
+  O 1.필수파일: ok
+  O 2.CSV非공백: ok
+  O 3.코드해시: {'test_06Prj_Ch5_RAUTO_AlphaUp_Stg10_MtfMacdRegime.py': '09d424467968b07c', 'check_06Prj_Ch5_RAUTO_AlphaUp_Stg10_MtfMacdRegime.py': 'e2be8ba932268007'}
+  O 4.중복없음: 중복0
+  O 5.미래참조가드+임계: 음수shift 미사용 — MACD/임계 과거봉·학습기간만 | 임계=학습기간만 확인
+  O 6.MACD장세OOS정확도: 7h정확도32.9%(기준선36.5%)
+  O 7.혼동행렬: 산출
+  O 8.3자비교: OOS base54.12/무조건57.01/조건부41.45%
+  O 9.다중TF+엔진해시: AUC={'6h': 0.522, '7h': 0.496, '8h | SpTrd_Fib_V1_Champion.py=OK SidewayDCA_Stg7_engine.py=OK
+  O 10.VERDICT: 조건부POV 제한적/무효 — base 유지 권고
+------------------------------------------------------------
+[MACD장세] 7h정확도 32.9%(기준선36.5%) | 다중TF {'6h': 32.2, '7h': 32.9, '8h': 30.0} | 추세AUC {'6h': 0.522, '7h': 0.496, '8h': 0.477}
+[OOS 3자] base PF1.641/54.12% | 무조건 PF1.577/57.01% | 조건부 PF1.444/41.45%
+[전체 3자] base 177.27% | 무조건 229.69% | 조건부 162.13%
+[판정] 조건부POV 제한적/무효 — base 유지 권고
+[코드해시] {'test_06Prj_Ch5_RAUTO_AlphaUp_Stg10_MtfMacdRegime.py': '09d424467968b07c', 'check_06Prj_Ch5_RAUTO_AlphaUp_Stg10_MtfMacdRegime.py': 'e2be8ba932268007'}

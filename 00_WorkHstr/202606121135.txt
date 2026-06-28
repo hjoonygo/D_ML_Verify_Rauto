@@ -1,0 +1,24 @@
+VERDICT 07Prj_Ch4_RunAWS_Stg14_LivePaperWarmup | 오염검사 10/10 | VERDICT Stg14완전체(OI축) | PASS — 예외0·동치(oi포함)True·TS7/SW0거래·스코어카드 31일·z커버 98.2% | k0.77+ER댐핑+Stg13 aux(REPAIRED 계보) | 잔여: atr_ratio 미공급·AWS live 12h 워밍업 후 공식1주
+[PASS] trendstack_signal_engine.py(§8) | c9d784bfd81e8ed4
+[PASS] bot_trendstack_signal.py(§8) | 040da0d277d166ca
+[PASS] rauto_paper_engine.py(§8) | f3ff3e652c2d6033
+[PASS] rauto_contract.py(§8) | 40b974ac7859a95f
+[PASS] SidewayDCA_Stg7_engine.py(§8) | dfdfac4394cd7809
+[PASS] bot_sidewaydca 사본=Stg8 인증판 | 동일
+[PASS] oi_zscore_adapter 사본=Stg13 확정판 | 동일
+[PASS] paper_ledger.csv 존재 | 
+[PASS] scorecard_daily.csv 존재 | 
+[PASS] 결과 존재 | VERDICT Stg14완전체(OI축) | PASS — 예외0·동치(oi포함)True·TS7/SW0거래·스코어카드 31일·z커버 98.2% | k0.77+ER댐핑
+
+[전문]
+[입력] Dauto 1m 43281행(2026-05-12 10:31:00~2026-06-11 11:51:00) | OHLC결측 제외 0행
+[aux] Stg13 어댑터(REPAIRED 계보): z 유한 42517행(98.23%) | blunt 43236행 | atr_ratio 미공급(공식1주 과제)
+[배선] TS+SW BotPlugin → 배분레이어 k=0.77·SW ER>=0.4×0.5 → 슬롯계좌 $10k×2 | 완전체(OI축) 모드
+
+[처리] 1m 43281행 | 갭 0건 | 7h봉 103 | 8h봉 90 | 예외 0
+[워밍업] TS 필요60×7h=충족(103) | SW 필요60×8h=충족(90)
+[거래] TS 7건(잔고 $11,365.23 +13.65%/MDD -2.53%) | SW 0건(잔고 $10,000.00 +0.00%/MDD 0.00%) | SW차단 0
+[동치] TS 라이브≡리플레이: True
+[댐핑] ER>=0.4 SW진입 0건 (댐핑P&L합 +0.0000 / 무댐핑가상 +0.0000)
+
+VERDICT Stg14완전체(OI축) | PASS — 예외0·동치(oi포함)True·TS7/SW0거래·스코어카드 31일·z커버 98.2% | k0.77+ER댐핑+Stg13 aux(REPAIRED 계보) | 잔여: atr_ratio 미공급·AWS live 12h 워밍업 후 공식1주

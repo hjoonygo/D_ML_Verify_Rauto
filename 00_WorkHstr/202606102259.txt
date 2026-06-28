@@ -1,0 +1,22 @@
+작업분석 — 07Prj_Ch4_RunAWS_Stg4_OPVSweep
+초기자본 $10,000 복리 · devledger 264 실거래 재구성(절대수치 근사, OPV 상대비교)
+
+[1] 오염검사 — 근간 데이터·원본 로직 SHA256 무수정 대조
+  [OK] 07Prj_Ch2_Stg2_TrendStack_OPVnNSweep_devledger.csv  a786876e1b565617…
+  [OK] bot_trendstack_signal.py  040da0d277d166ca…
+  [OK] trendstack_poc.py  3065230c60756bac…
+[1b] 필수 파일 존재
+  [OK] test_07Prj_Ch4_RunAWS_Stg4_OPVSweep.py
+  [OK] check_07Prj_Ch4_RunAWS_Stg4_OPVSweep.py
+  [OK] run.bat
+  [OK] 07Prj_Ch4_RunAWS_Stg4_OPVSweep_results.csv
+[1c] 중복 .py: 없음
+
+[2] OPV 스윕 · CPCV 견고성
+  OPV=0.1 발동243  full 585.1%/MDD-15.4% Calmar38.1  CPCV최악MDD -19.0% 한도위반 0
+  OPV=0.15 발동233  full 636.6%/MDD-15.4% Calmar41.4  CPCV최악MDD -19.0% 한도위반 0
+  OPV=0.25 발동217  full 724.9%/MDD-15.4% Calmar47.2  CPCV최악MDD -20.2% 한도위반 1
+  OPV=0.4 발동201  full 742.6%/MDD-15.9% Calmar46.6  CPCV최악MDD -20.1% 한도위반 1
+  OPV=0.6 발동179  full 792.7%/MDD-15.9% Calmar49.7  CPCV최악MDD -20.5% 한도위반 1
+
+[판정] 오염검사 OK · 기준 OPV=0.25(CPCV위반1,Calmar47.2) / 견고쿠션 OPV=0.15(0위반) / Calmar최고 OPV=0.6(49.7) → full MDD 거의 평평, 여지 작음. NMULT와 같은축

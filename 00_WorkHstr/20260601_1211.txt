@@ -1,0 +1,18 @@
+[작업분석] RAUTO_AlphaUp_06_Ch5_Stg14_MLSizingScorecard (2026-06-01T12:11:46)
+[오염검사] PASS
+------------------------------------------------------------
+  O 1.필수파일: ok
+  O 2.CSV非공백: ok
+  O 3.코드해시: {'test_06Prj_Ch5_RAUTO_AlphaUp_Stg14_MLSizingScorecard.py': '50099fa85840ce87', 'check_06Prj_Ch5_RAUTO_AlphaUp_Stg14_MLSizingScorecard.py': '8f279472e353313c'}
+  O 4.중복없음: 중복0
+  O 5.미래참조가드: 음수shift 미사용 — 특징 과거봉, 모델 학습기간 fit | 모델=학습기간만 fit | label제외
+  O 6.ML정확도+그리드: OOS정확도62.8% | 그리드 9조합
+  O 7.세축성적표: 장세/연도/롱숏 산출
+  O 8.★2025집중+MDD제약: 2025 base1.73%->ML-6.31% | 최적MDD-33.5%(한계-35)
+  O 9.청산/MDD+엔진해시: 청산NO MDD-33.5% | SpTrd_Fib_V1_Champion.py=OK SidewayDCA_Stg7_engine.py=OK
+  O 10.VERDICT: 추세×1.5/횡보×0.7 전체177.27->249.39%
+------------------------------------------------------------
+[ML장세] OOS정확도 62.8% | 최적배수 추세×1.5/횡보×0.7
+[전체] base PF1.643/177.27%/MDD-25.8 -> ML PF1.745/249.39%/MDD-33.5(청산NO)
+[★2025] base 1.73% -> ML -6.31% | ML예측분포 {'downtrend': np.int64(42), 'uptrend': np.int64(34), 'dead_range': np.int64(22), 'volatile_range': np.int64(15)}
+[코드해시] {'test_06Prj_Ch5_RAUTO_AlphaUp_Stg14_MLSizingScorecard.py': '50099fa85840ce87', 'check_06Prj_Ch5_RAUTO_AlphaUp_Stg14_MLSizingScorecard.py': '8f279472e353313c'}

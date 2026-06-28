@@ -1,0 +1,44 @@
+[작업분석] InfraA_V3_stg2  2026-05-24 15:01
+========================================================================
+[오염검사 8항목]
+  PASS | 1.결과파일존재 | guard_summary=O, guard_trades=O
+  PASS | 2.잔존섞임없음 | stale=없음
+  PASS | 3.파일명일치 | 위반=없음
+  PASS | 4.데이터정상(36mo) | 1578240행 1095일 hash=e0b37b64
+  PASS | 5.중복없음 | 설정내 진입시간 중복 0
+  PASS | 6.빔/NaN없음 | summary 12행, 누적R NaN 0
+  PASS | 8.출력경로(..\00WorkHstr) | D:\ML\Verify\00WorkHstr
+  PASS | 7.INDEX이중기록없음 | 신규
+  => 종합: ALL PASS
+
+[입력데이터]
+  D:\ML\Verify\Merged_Data_with_Regime_Features.csv | 1578240행 1095일 hash e0b37b64
+
+[빈구간 보호선 효과 — 같은 C0 진입집합, 펀딩 8h이산 고정]
+  (liq=강제청산 hole=구멍 gap=빈구간보호선발동 win=피보승자)
+  [B0_base |ALL  ] 거래248 liq9 hole25 gap0 win80 OBe132 누적R-53.39% PF0.72 파산YES 최저$-1197.0
+  [B0_base |train] 거래132 liq7 hole16 gap0 win41 OBe68 누적R-53.34% PF0.577 파산YES 최저$-1197.0
+  [B0_base |test ] 거래116 liq2 hole9 gap0 win39 OBe64 누적R-0.05% PF0.999 파산NO 최저$2639.0
+  [B1_tight|ALL  ] 거래248 liq0 hole25 gap204 win19 OBe0 누적R-25.08% PF0.713 파산YES 최저$-682.0
+  [B1_tight|train] 거래132 liq0 hole16 gap105 win11 OBe0 누적R-16.28% PF0.7 파산NO 최저$1270.0
+  [B1_tight|test ] 거래116 liq0 hole9 gap99 win8 OBe0 누적R-8.8% PF0.734 파산NO 최저$5384.0
+  [B2_full |ALL  ] 거래248 liq0 hole30 gap195 win23 OBe0 누적R-24.58% PF0.754 파산YES 최저$81.0
+  [B2_full |train] 거래132 liq0 hole19 gap98 win15 OBe0 누적R-13.65% PF0.781 파산NO 최저$2195.0
+  [B2_full |test ] 거래116 liq0 hole11 gap97 win8 OBe0 누적R-10.93% PF0.708 파산NO 최저$4053.0
+  [B3_loose|ALL  ] 거래248 liq0 hole30 gap48 win52 OBe118 누적R-59.24% PF0.649 파산YES 최저$-938.0
+  [B3_loose|train] 거래132 liq0 hole19 gap24 win29 OBe60 누적R-33.32% PF0.656 파산YES 최저$-938.0
+  [B3_loose|test ] 거래116 liq0 hole11 gap24 win23 OBe58 누적R-25.93% PF0.638 파산YES 최저$-284.0
+
+[★판정 — 보호선이 liq 잡고 승자 보존하나 / tight vs loose]
+  liq(강제청산): B0 9 | B2_tight 0 | B3_loose 0
+  피보승자(보존핵심): B0 80 | B2_tight 23 | B3_loose 52
+  전체 누적R%: B0 -53.39 | B2_tight -24.58 | B3_loose -59.24
+  파산: B0 YES | B2_tight YES | B3_loose YES
+  검증기 누적R%: B0 -0.05 | B2_tight -10.93 | B3_loose -25.93
+
+  [B2_tight] liq 9↓ / 승자손실 57 / 누적R +28.81%p / 파산 YES => 승자과다사망
+  [B3_loose] liq 9↓ / 승자손실 28 / 누적R -5.85%p / 파산 YES => 승자과다사망
+  => 둘 다 미흡. 보호선 정의 재검토 또는 hole 우선 검토 필요.
+
+  ※ 변경=Phase2 빈구간 보호선 + TP부호. 진입로직·엔진 나머지 무수정. hole은 이번 대상 아님(stg3).
+    펀딩 8h이산 고정. 보호선=min(진입가*1.03, 직전OB top), REDUCE후~피보발동전만 작동.

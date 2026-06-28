@@ -1,0 +1,18 @@
+[07Prj_Ch3_Stg10_TrendStackSelfContainedSizing] 자기완결 사이징 봇 검증
+신호=SpTrd_Fib_V1_Champion 1:1(동일거래). 사이징=봇 자체계산.
+OPVnN(POC/dev) devledger 줄임 120건[기대120] / feat_struct_8(SMC swing8 shift8).
+
+  [PASS] S1 3엔진 추출(신호·POC·regime 함수·상수)
+  [PASS] S2 신호≡소스 동일거래(게이트 없음)
+  [PASS] S3 신호≡소스 동일거래(ER0.45+무덤)
+  [PASS] S4 OPVnN 라이브배수 devledger 120건 재현
+  [PASS] S5 OPVnN 역회귀 발동 → ×0.6(하락숏)
+  [PASS] S6 업트렌드 숏컷 → size 0
+  [PASS] S7 동일방향 → ×N(1.0)=base(롱)
+  [PASS] S8 feat_struct_8 3상태 + shift(실시간安)
+  [PASS] S9 1m→7h·4H 이중 리샘플
+  [PASS] S10 BotPlugin 계약 준수
+  [PASS] S11 POC 과거60봉만(미래참조 없음)
+
+종합: 11/11 PASS
+한계: +827% 수치·feat 정답 대조는 PC 실데이터(698MB). 봉경계(7h/4H) 원점 PC 캘리브레이션 필요.

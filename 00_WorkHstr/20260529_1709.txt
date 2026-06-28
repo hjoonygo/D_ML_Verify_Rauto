@@ -1,0 +1,31 @@
+[작업분석] 05Alpha_Up_Ch1_SLpos_stg3  (2026-05-29T17:09:15)
+[오염검사 종합] PASS
+------------------------------------------------------------
+  O 1.필수파일존재: all present
+  O 2.결과CSV非공백: ok
+  O 3.코드해시기록: {'test_05Alpha_UpCh1_stg3_SLpos_Sweep.py': 'a94a183b1bc564e5', 'check_05Alpha_UpCh1_stg3_SLpos_Sweep.py': '3d4d8ab248c5b3f4'}
+  O 4.거래중복없음: 중복0행
+  O 5.미래참조가드: 미래참조 패턴 미사용(체결 open_[i+1] 확인)
+  O 6.거래비중첩: 중첩0건(모드x방향)
+  O 7.SL모드8종완전: 모드 8종 / 기대8종 충족
+  O 8.VERDICT존재: VERDICT: 최고고정 FIX080(testPF 1.132) > A_STEP(1.021)...
+------------------------------------------------------------
+[VERDICT] VERDICT: 최고고정 FIX080(testPF 1.132) > A_STEP(1.021) -> 고정SL 우위, 알파상승 || A_STEP BEST[TF2h_osL35_osS55_ADX_TREND_adx25_BOTH] trainPF=2.171 testPF=1.021 WFE=47.0% || L n66 승39.4% R19.57% PF1.453 손익비2.236 $1947 || S n78 승43.6% R26.84% PF1.574 손익비2.036 $2807 || FIX020 BEST[TF4h_osL45_osS65_OFF_adx20_BOTH] trainPF=0.87 testPF=0.895 WFE=102.9% || L n117 승22.2% R0.31% PF1.003 손익비3.512 $-421 || S n35 승17.1% R-15.01% PF0.507 손익비2.45 $-1442 || FIX030 BEST[TF2h_osL35_osS55_ADX_TREND_adx25_BOTH] trainPF=1.044 testPF=0.667 WFE=63.9% || L n66 승28.8% R-13.22% PF0.712 손익비1.762 $-1330 || S n78 승26.9% R-2.94% PF0.944 손익비2.564 $-439 || FIX040 BEST[TF2h_osL35_osS55_ADX_TREND_adx25_BOTH] trainPF=1.285 testPF=0.764 WFE=59.5% || L n66 승33.3% R-4.76% PF0.894 손익비1.788 $-577 || S n78 승30.8% R4.45% PF1.088 손익비2.448 $283 || FIX050 BEST[TF2h_osL35_osS55_ADX_TREND_adx25_BOTH] trainPF=1.585 testPF=0.804 WFE=50.7% || L n66 승34.8% R1.07% PF1.024 손익비1.915 $-22 || S n78 승33.3% R12.51% PF1.257 손익비2.514 $1129 || FIX060 BEST[TF2h_osL35_osS55_ADX_TREND_adx25_BOTH] trainPF=1.902 testPF=0.912 WFE=47.9% || L n66 승37.9% R10.32% PF1.237 손익비2.029 $921 || S n78 승37.2% R20.57% PF1.434 손익비2.423 $2043 || FIX070 BEST[TF2h_osL35_osS55_ADX_TREND_adx25_BOTH] trainPF=2.218 testPF=1.021 WFE=46.0% || L n66 승39.4% R19.57% PF1.453 손익비2.236 $1947 || S n78 승43.6% R28.63% PF1.612 손익비2.086 $3028 || FIX080 BEST[TF2h_osL35_osS55_ADX_TREND_adx25_BOTH] trainPF=2.528 testPF=1.132 WFE=44.8% || L n66 승43.9% R28.81% PF1.671 손익비2.132 $3064 || S n78 승46.2% R36.69% PF1.788 손익비2.086 $4091"
+[코드해시] {'test_05Alpha_UpCh1_stg3_SLpos_Sweep.py': 'a94a183b1bc564e5', 'check_05Alpha_UpCh1_stg3_SLpos_Sweep.py': '3d4d8ab248c5b3f4'}
+[SL위치 스윕 — 위치별 평균 test PF (롱/숏)]
+  A_STEP LONG: 평균testPF 1.414 cumR 12.75% PF>1비율 73.0%
+  A_STEP SHORT: 평균testPF 1.433 cumR 11.1% PF>1비율 85.0%
+  FIX020 LONG: 평균testPF 0.673 cumR -15.15% PF>1비율 12.0%
+  FIX020 SHORT: 평균testPF 0.539 cumR -18.32% PF>1비율 0.0%
+  FIX030 LONG: 평균testPF 0.756 cumR -10.5% PF>1비율 19.0%
+  FIX030 SHORT: 평균testPF 0.659 cumR -13.03% PF>1비율 0.0%
+  FIX040 LONG: 평균testPF 0.907 cumR -4.99% PF>1비율 42.0%
+  FIX040 SHORT: 평균testPF 0.812 cumR -7.47% PF>1비율 31.0%
+  FIX050 LONG: 평균testPF 1.019 cumR -0.1% PF>1비율 54.0%
+  FIX050 SHORT: 평균testPF 0.942 cumR -2.84% PF>1비율 27.0%
+  FIX060 LONG: 평균testPF 1.207 cumR 6.04% PF>1비율 65.0%
+  FIX060 SHORT: 평균testPF 1.179 cumR 4.04% PF>1비율 65.0%
+  FIX070 LONG: 평균testPF 1.417 cumR 12.87% PF>1비율 73.0%
+  FIX070 SHORT: 평균testPF 1.438 cumR 11.27% PF>1비율 88.0%
+  FIX080 LONG: 평균testPF 1.629 cumR 19.61% PF>1비율 96.0%
+  FIX080 SHORT: 평균testPF 1.725 cumR 18.32% PF>1비율 92.0%

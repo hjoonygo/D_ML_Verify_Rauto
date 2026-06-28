@@ -1,0 +1,27 @@
+[작업분석] Sideway4Champ_V2_stg2  (2026-05-27T23:09:53)
+[오염검사 종합] PASS
+------------------------------------------------------------
+  O 1.필수파일존재: all present
+  O 2.결과CSV非공백: ok
+  O 3.코드해시기록: {'measure.py': 'c2cec8316dddae4e', 'check.py': '53451d98cd0822ad'}
+  O 4.결과중복없음: 중복0행
+  O 5.측정성격명시: 측정용 미래봉(진입신호 아님) 명시됨
+  O 6.Hurst범위타당: H 0.47~0.53
+  O 7.회귀표완전: 180행
+  O 8.VERDICT존재: VERDICT: TF4h H=0.489(RANDOM) HL=1386.5 ...
+------------------------------------------------------------
+[VERDICT] VERDICT: TF4h H=0.489(RANDOM) HL=1386.5 | TF6h H=0.5(RANDOM) HL=916.7 | TF8h H=0.514(RANDOM) HL=717.2 | TF12h H=0.526(RANDOM) HL=454.8
+[코드해시] {'measure.py': 'c2cec8316dddae4e', 'check.py': '53451d98cd0822ad'}
+[TF별 Hurst/반감기 (all/train/test)]
+  TF4h all: H=0.489 HL=1386.5봉 VR5=0.988 VR10=0.9
+  TF4h train: H=0.508 HL=14506.8봉 VR5=0.923 VR10=0.793
+  TF4h test: H=0.471 HL=534.2봉 VR5=1.052 VR10=0.87
+  TF6h all: H=0.5 HL=916.7봉 VR5=0.903 VR10=0.838
+  TF6h train: H=0.511 HL=10747.8봉 VR5=0.992 VR10=0.901
+  TF6h test: H=0.479 HL=346.0봉 VR5=0.863 VR10=0.832
+  TF8h all: H=0.514 HL=717.2봉 VR5=0.974 VR10=0.916
+  TF8h train: H=0.521 HL=64514.2봉 VR5=0.813 VR10=0.916
+  TF8h test: H=0.491 HL=273.2봉 VR5=0.787 VR10=0.752
+  TF12h all: H=0.526 HL=454.8봉 VR5=0.87 VR10=0.892
+  TF12h train: H=0.529 HL=3949.0봉 VR5=0.859 VR10=0.732
+  TF12h test: H=0.502 HL=173.6봉 VR5=0.898 VR10=0.861

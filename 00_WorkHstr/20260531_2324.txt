@@ -1,0 +1,30 @@
+[작업분석] RAUTO_ConceptRefine_06_Ch5_Stg4_StreakML  (2026-05-31T23:24:10)
+[오염검사] PASS
+------------------------------------------------------------
+  O 1.필수파일존재: all present
+  O 2.결과CSV非공백: ok
+  O 3.코드해시기록: {'test_06Prj_Ch5_RAUTO_ConceptRefine_Stg4_StreakML.py': 'e27295093750055c', 'check_06Prj_Ch5_RAUTO_ConceptRefine_Stg4_StreakML.py': 'c8d7cf5837b6d01d'}
+  O 4.특징행중복없음: 중복0행
+  O 5.미래참조가드: 음수shift 미사용(주석제외, 하네스+엔진) — 특징은 과거봉만
+  O 6.특징행수=엔진거래수: 특징318 vs 엔진318
+  O 7.라벨무결(시작<=출혈): 출혈194 시작49
+  O 8.AUC산출(단·다변량): 단변량11특징, 다변량 in_streak검증AUC=0.547
+  O 9.엔진원본일치(무수정증빙): SpTrd_Fib_V1_Champion.py=일치 SidewayDCA_Stg7_engine.py=일치
+  O 10.VERDICT존재: VERDICT Stg4 | 거래318 출혈거래194 출혈시작49 | 단변량 분리력Top3:...
+------------------------------------------------------------
+[VERDICT] VERDICT Stg4 | 거래318 출혈거래194 출혈시작49 | 단변량 분리력Top3: bandw(AUC0.578), rvol(AUC0.575), absret(AUC0.569) | 다변량 검증AUC: in_streak 0.547(학습0.661) / streak_start 0.473(학습0.736) -> 예측불가(심판은 늦은반응만) | RF검증AUC0.499 중요특징:absret0.18,bandw0.16,atr_ratio0.14,rvol0.13,oi_z0.09 | 출혈군집3개 크기:[np.int64(32), np.int64(122), np.int64(40)] | 횡보봇: 추세출혈기간 5.32%(38건) / 그외 18.87%(48건)
+[예측가능성] in_streak 검증AUC 0.547(학습0.661) / streak_start 검증 0.473 -> 예측불가(심판은 늦은반응만)
+[최강특징] bandw (AUC 0.578) | sklearn=True
+[단변량 분리력]
+  bandw: AUC0.578 효과크기0.35 (출혈0.1208 vs 정상0.1067)
+  rvol: AUC0.575 효과크기0.306 (출혈0.0118 vs 정상0.01)
+  absret: AUC0.569 효과크기0.381 (출혈0.0094 vs 정상0.0062)
+  drop: AUC0.557 효과크기0.254 (출혈0.0176 vs 정상0.0137)
+  atrcmp: AUC0.522 효과크기0.077 (출혈0.1649 vs 정상0.1371)
+  oi_z: AUC0.52 효과크기-0.038 (출혈-0.3253 vs 정상-0.2758)
+  signflip: AUC0.518 효과크기0.047 (출혈4.8196 vs 정상4.75)
+  er: AUC0.513 효과크기-0.093 (출혈0.1777 vs 정상0.1912)
+  atr_ratio: AUC0.502 효과크기0.044 (출혈1.0215 vs 정상1.0123)
+  chop: AUC0.501 효과크기0.019 (출혈51.3731 vs 정상51.2148)
+  adx: AUC0.5 효과크기-0.049 (출혈26.1387 vs 정상26.7162)
+[코드해시] {'test_06Prj_Ch5_RAUTO_ConceptRefine_Stg4_StreakML.py': 'e27295093750055c', 'check_06Prj_Ch5_RAUTO_ConceptRefine_Stg4_StreakML.py': 'c8d7cf5837b6d01d'}

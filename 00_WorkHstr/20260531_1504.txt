@@ -1,0 +1,45 @@
+[작업분석] ChampBot_SidewayDCA4RAUTO_06_Ch4_Stg5  (2026-05-31T15:04:30)
+[오염검사 종합] PASS
+----------------------------------------------------------------
+  O 1.필수파일존재: all present
+  O 2.결과CSV非공백: ok
+  O 3.코드해시기록: {'test_06Prj_Ch4_SidewayDCA4RAUTO_Stg5.py': 'f9989accd2add016', 'check_06Prj_Ch4_SidewayDCA4RAUTO_Stg5.py': 'e38632dc6c00b589'}
+  O 4.거래중복없음: 진입시간 중복 0건
+  O 5.미래참조가드: 음수shift 없음 + dz_oi backward(resample last)
+  O 6.연도일관성기록: 연도×ER 24행, 원본대비우위 21건
+  O 7.8시나리오완전: S1~S8 중 8개
+  O 8.VERDICT존재: VERDICT ER심화 | 원본 fin14761 | ER최고=ER0.45 score=88.0 견고(...
+----------------------------------------------------------------
+[VERDICT] VERDICT ER심화 | 원본 fin14761 | ER최고=ER0.45 score=88.0 견고(실력) (train1.414 test2.393 일관4/4년 gap0.979) | 고원(인접ER 다같이 좋음=실력) | 견고ER=[0.45
+[무덤필터 효과] PF ?->? | MDD ?%->?% | 수익금 14761.0->?
+[거래·trend_flip] ?->?건 | trend_flip ?->?
+[코드해시] {'test_06Prj_Ch4_SidewayDCA4RAUTO_Stg5.py': 'f9989accd2add016', 'check_06Prj_Ch4_SidewayDCA4RAUTO_Stg5.py': 'e38632dc6c00b589'}
+[8시나리오 요약]
+  S1_ER0.35: OFF PF cumR -> ON PF cumR nan
+  S1_ER0.4: OFF PF cumR -> ON PF cumR nan
+  S1_ER0.45: OFF PF cumR -> ON PF cumR nan
+  S1_ER0.5: OFF PF cumR -> ON PF cumR nan
+  S1_ER0.55: OFF PF cumR -> ON PF cumR nan
+  S1_ER0.6: OFF PF cumR -> ON PF cumR nan
+  S2_연도일관_ER0.35: OFF PF cumR -> ON PF cumR 원본대비 우위 3/4년 | 2023:+38vs+38O 2024:+84vs+80O 2025:-24vs-20X 2026:+41vs+39O 
+  S2_연도일관_ER0.4: OFF PF cumR -> ON PF cumR 원본대비 우위 3/4년 | 2023:+38vs+38O 2024:+83vs+80O 2025:-21vs-20X 2026:+40vs+39O 
+  S2_연도일관_ER0.45: OFF PF cumR -> ON PF cumR 원본대비 우위 4/4년 | 2023:+38vs+38O 2024:+83vs+80O 2025:-17vs-20O 2026:+39vs+39O 
+  S2_연도일관_ER0.5: OFF PF cumR -> ON PF cumR 원본대비 우위 4/4년 | 2023:+38vs+38O 2024:+83vs+80O 2025:-20vs-20O 2026:+39vs+39O 
+  S2_연도일관_ER0.55: OFF PF cumR -> ON PF cumR 원본대비 우위 3/4년 | 2023:+34vs+38X 2024:+81vs+80O 2025:-20vs-20O 2026:+39vs+39O 
+  S2_연도일관_ER0.6: OFF PF cumR -> ON PF cumR 원본대비 우위 4/4년 | 2023:+38vs+38O 2024:+80vs+80O 2025:-20vs-20O 2026:+39vs+39O 
+  S3_3자_2023: OFF PF cumR -> ON PF cumR 원본 +38% | S2 +37% | ER0.45 +38%
+  S3_3자_2024: OFF PF cumR -> ON PF cumR 원본 +80% | S2 +95% | ER0.45 +83%
+  S3_3자_2025: OFF PF cumR -> ON PF cumR 원본 -20% | S2 -27% | ER0.45 -17%
+  S3_3자_2026: OFF PF cumR -> ON PF cumR 원본 +39% | S2 +26% | ER0.45 +39%
+  S4_gap분해_ER0.45: OFF PF cumR -> ON PF cumR train내부 2023:PF1.716 2024:PF1.899 2025:PF0.844 | test2026 PF2.393
+  S5_WF_23→24: OFF PF cumR -> ON PF cumR train최적ER0.35(PF1.72) → test PF1.92 vs 원본test PF1.84
+  S5_WF_23~24→25: OFF PF cumR -> ON PF cumR train최적ER0.35(PF1.85) → test PF0.78 vs 원본test PF0.82
+  S5_WF_23~25→26: OFF PF cumR -> ON PF cumR train최적ER0.45(PF1.41) → test PF2.39 vs 원본test PF2.39
+  S6_OI분포_ER0.45: OFF PF cumR -> ON PF cumR ER0.45 거래수 328 vs 원본 334 (차단 6건)
+  S7_큰이익3제거: OFF PF cumR -> ON PF cumR 상위3제거 PF1.236 (원래 1.512) — 급락안하면 견고
+  S8_ML_ER0.45: OFF PF cumR -> ON PF cumR 일관4/4년 score88.0 견고(실력)
+  S8_ML_ER0.5: OFF PF cumR -> ON PF cumR 일관4/4년 score88.0 견고(실력)
+  S8_ML_ER0.6: OFF PF cumR -> ON PF cumR 일관4/4년 score78.0 견고(실력)
+  S8_ML_ER0.35: OFF PF cumR -> ON PF cumR 일관3/4년 score66.0 보통
+  S8_ML_ER0.4: OFF PF cumR -> ON PF cumR 일관3/4년 score66.0 보통
+  S8_ML_ER0.55: OFF PF cumR -> ON PF cumR 일관3/4년 score66.0 보통

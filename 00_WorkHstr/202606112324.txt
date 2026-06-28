@@ -1,0 +1,20 @@
+VERDICT 07Prj_Ch4_RunAWS_Stg11_RegimeAllocSweep | 오염검사 5/5 | VERDICT Stg11 | A안 개선O(MDD -19.33→-16.24 음수달 9→9) | CPCV 비견고 | 이득 +535.2%p → 기각, 고정 k 유지(가이드 미달) | 오라클상한 +234%p·지속률29%(회의실 참고)
+[PASS] causal_ledger.csv(§8/근간) | c4964c5566af9631
+[PASS] trendstack_signal_engine.py(§8/근간) | c9d784bfd81e8ed4
+[PASS] 07Prj_Ch2_Stg2_TrendStack_OPVnNSweep_devledger.csv(§8/근간) | a786876e1b565617
+[PASS] Stg6 합성 사본=원본 | 동일
+[PASS] 결과 존재 | VERDICT Stg11 | A안 개선O(MDD -19.33→-16.24 음수달 9→9) | CPCV 비견고 | 이득 +535.2%p → 기각, 고정 k 유지(가
+
+[전문]
+[A-TS] dead_range×0.5: 61/264건 ★라벨근사(사후 라벨 계열, 측정 전용 — 실시간 사용 금지 §1)
+[A-SW] ER>=0.4×0.5: 6/84건 (ER=박제 compute_signals, 마감 7h봉 asof)
+
+[대조 k=0.77] cell                            ret%     MDD%    음수달
+          BASE_fixed_k0.77              1059.6   -19.33      9/36
+          A_regime_w0.5_k0.77           1062.3   -16.24      9/36
+
+[CPCV 6그룹15경로] BASE mean 139.4% worstMDD -23.6% breach 1 | A안 mean 140.5% worstMDD -21.1% breach 1
+[년도별 ret%] 2023: base 78.6 → A 79.9 | 2024: base 164.4 → A 175.2 | 2025: base 79.4 → A 71.0 | 2026: base 36.8 → A 37.3
+[k 상향 여지] A안 가중 시 MDD -19.5% 이내 최대 k=0.9 → ret 1594.8% / MDD -18.83%
+
+VERDICT Stg11 | A안 개선O(MDD -19.33→-16.24 음수달 9→9) | CPCV 비견고 | 이득 +535.2%p → 기각, 고정 k 유지(가이드 미달) | 오라클상한 +234%p·지속률29%(회의실 참고)
