@@ -149,8 +149,10 @@ Binance BTC 선물 자동매매 시스템 Rauto(챔피언 아키텍처): TrendSt
 - AI 이식성(다른 AI로 교체해도 동일 작업): 새 AI 온보딩 5단계 —
   ① CLAUDE.md 정독(규칙) ② STATE_Rauto.txt(현황 1장) ③ 00WorkHstr_INDEX.txt(시간순 Stg)
   ④ Basic/Guide/Hstr 문서맵(§6) ⑤ §8 해시로 무수정 엔진 확인. 드라이브 직접접근만 되면 어떤 AI든 동일 산출 가능.
-- GitHub: origin = https://github.com/hjoonygo/D_ML_Verify_Rauto.git 연결됨(자격증명 helper=manager, 인증 작동).
-  백업·이력은 git commit/push로(캡틴 승인 후). gh CLI는 미설치(PR자동화용 선택, push엔 불필요).
+- GitHub: origin = https://github.com/hjoonygo/D_ML_Verify_Rauto.git (자격증명 helper=manager, 인증 작동).
+  · ★정정(2026-06-28): 이 origin엔 **두 갈래**가 있다 — `master`(=옛 `D:\ML\Verify` 이력, 마지막 6-21) / **`rfrauto`(=본진 `D:\ML\RfRauto` 백업, 2026-06-28 신설)**.
+  · 본진 RfRauto는 이제 **자체 git 저장소**(`D:\ML\RfRauto\.git`, 첫 커밋 797beb8·918파일·대용량데이터 `.gitignore` 제외). 백업 = `git push origin HEAD:rfrauto`(브랜치 분리=비파괴, master 안 건드림). **push는 캡틴 승인 후.**
+  · 옛 `D:\ML\Verify`는 별개 작업트리(master). 혼동 금지. gh CLI 미설치(push엔 불필요).
 
 ## 13. 강조 자동 라우팅 · 문서 작성지침 (캡틴 지시 2026-06-15)
 - 가능 여부(정직): 완전 무인 자동(훅)은 판단이 필요해 제한적. 실효 방식 = AI가 매 턴 따르는 '라우팅

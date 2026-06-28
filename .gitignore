@@ -20,3 +20,8 @@ Thumbs.db
 
 # 대용량 샘플 state(재생성)
 **/*_state_sample.json
+
+# 시크릿·런타임 상태(자동pull 시 덮어쓰기 방지·절대 커밋금지)
+**/rauto_secrets.txt
+**/state.json
+**/*_runtime_state.json
