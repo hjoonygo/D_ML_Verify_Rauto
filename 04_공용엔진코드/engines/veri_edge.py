@@ -44,11 +44,15 @@ class VeriEdge:
     def _liq(self, sub, size_pct, lev, slip_bp=0.0):
         if len(sub) == 0:
             return 0.0, 0.0, 0, {}
-        exp = size_pct / 100.0 * lev
+        exp0 = size_pct / 100.0 * lev
+        # ★레짐적응 사이징(rauto_regime_sizing): 원장에 'size_mult' 컬럼 있으면 per-trade 노출배수 적용.
+        #   없으면 mult=1.0 = 기존과 100% 동일(하위호환·무손상). off(전부1.0)면 앵커 무변.
+        mult = sub["size_mult"].values.astype(float) if "size_mult" in sub.columns else None
         R = sub["R"].values - (slip_bp / 1e4) * sub["_market"].values.astype(float)   # ★시장청산에 슬립근사
         MAE, FUND, MK = sub["mae"].values, sub["fund"].values, sub["mkey"].values
         bal = peak = 10000.0; mdd = 0.0; nliq = 0; mfac = {}
         for i in range(len(R)):
+            exp = exp0 * (mult[i] if mult is not None else 1.0)
             mmr = self.MMR_T2 if exp * bal > self.TIER else self.MMR_T1
             hsd = 1.0 / lev - mmr - self.SLIP
             if MAE[i] <= -hsd:

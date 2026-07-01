@@ -13,18 +13,24 @@ import numpy as np
 from rauto_cex import (RautoCEX, SlipModel, FeeModel, MarginModel, MK, TK,
                        MMR_T1, MMR_T2, TIER, LIQ_SLIP, LIQ_COST)
 import champion_safety as CS   # ★챔피언 비상 안전장치 가산점(독립 공용모듈, 캡틴 지시2 260628_02)
+try:
+    from rauto_regime_sizing import apply_rally_damp   # ★L2 레짐적응 사이징(봇무관 PlugIn, 260702_01). 없으면 무시(하위호환)
+except Exception:
+    apply_rally_damp = None
 
 
 def per_trade_pnl(T, size_pct, lev, slip=None, dd_cut=None):
     """거래원장 → per-trade 계좌손익%(list) + 최종잔고·MDD%·강제청산수.
        RautoCEX.run() 루프를 동일 모델로 1:1 미러(가드=테스트가 final 일치 assert).
-       ★dd_cut=(thr,scale): 자기자본 드로다운<=thr면 노출×scale(동적사이징=Rauto 리스크결정·§25). None=고정(기존 동일)."""
+       ★dd_cut=(thr,scale): 자기자본 드로다운<=thr면 노출×scale(동적사이징=Rauto 리스크결정·§25). None=고정(기존 동일).
+       ★size_mult 컬럼: 있으면 per-trade 노출배수(레짐적응 사이징=rauto_regime_sizing·L2 랠리억제). 없으면 무손상."""
     fee = FeeModel()
     slip = slip or SlipModel(0.0, 0.0)
     base_exp = size_pct / 100.0 * lev
     R = T["R"].values.astype(float)
     MAE = T["mae"].values.astype(float)
     FUND = T["fund"].values.astype(float)
+    SMULT = T["size_mult"].values.astype(float) if "size_mult" in T else None   # ★레짐적응 사이징(없으면 기존 동일)
     REASON = T["reason"].values if "reason" in T else np.array(["fibstop"] * len(R))
     bal = 10000.0
     peak = 10000.0
@@ -41,6 +47,8 @@ def per_trade_pnl(T, size_pct, lev, slip=None, dd_cut=None):
         m = 1.0
         if dd_cut is not None and (bal / peak - 1.0) <= dd_cut[0]:   # 자기 드로다운 컷
             m = dd_cut[1]
+        if SMULT is not None:                                        # ★레짐damp 합성(랠리 역주행 노출↓·없으면 무손상)
+            m *= SMULT[i]
         exp = base_exp * m                                          # MarginModel.step 1:1 (m=1이면 기존 동일)
         mmr = MMR_T2 if exp * bal > TIER else MMR_T1
         hsd = 1.0 / lev - mmr - LIQ_SLIP
@@ -90,12 +98,13 @@ class BotSlot:
     """봇 1개 = 슬롯. 검증 batch 원장 + per-trade pnl을 미리 산출해두고, reveal(now)로 시간순 드러냄.
        ★봇 무관: 계약 make_trades(d1m,fund)만 맞으면 REVoi·TS·SW 어떤 봇이든 동일하게 받는다."""
 
-    def __init__(self, name, bot, d1m, fund, size_pct, lev, slip=None, dd_cut=None, m20=None, reg_monthly=None, safety_meta=None):
+    def __init__(self, name, bot, d1m, fund, size_pct, lev, slip=None, dd_cut=None, m20=None, reg_monthly=None, safety_meta=None, rally_damp=None):
         self.name = name
         self.size_pct = float(size_pct)
         self.lev = float(lev)
         self.slip = slip or SlipModel(0.0, 0.0)
         self.dd_cut = dd_cut                                                      # ★Rauto 리스크결정(자기DD 동적사이징)
+        self.rally_damp = rally_damp                                             # ★L2 레짐적응 사이징(랠리 역주행 노출↓·§25 결정두뇌). None=off=무손상
         self._m20_cert = m20                                                      # ★검증(36mo) MDD 기반 M20 인증값(레지스트리 주입). None이면 워밍업 MDD로 대체
         self.reg_monthly = reg_monthly or {}                                      # ★36mo 레짐별 월수익(기대수익률, 챔피언선정Sys)
         self.safety_score, self.safety_items = CS.safety_score(safety_meta or {}) # ★비상 안전장치 가산점(독립모듈·챔피언 동점 타이브레이커)
@@ -104,6 +113,8 @@ class BotSlot:
             T = T.sort_values("et").reset_index(drop=True)
         else:                                                                     # ★거래 0건(짧은 워밍업·조용한 장) 견고처리
             T = pd.DataFrame(columns=["et", "xt", "xt_fill", "side", "entry", "exit", "R", "mae", "fund", "reason"])
+        if rally_damp is not None and apply_rally_damp is not None and len(T):    # ★L2: size_mult 컬럼 부착(per_trade_pnl이 읽음)
+            T = apply_rally_damp(T, d1m, int(getattr(bot, "rev_tf", 240)), thr=rally_damp[0], factor=rally_damp[1])
         self.T = T
         self.pnl, self.final, self.mdd_full, self.nliq = per_trade_pnl(T, size_pct, lev, self.slip, dd_cut=dd_cut)
         # 시각·가격 사전배열(reveal 빠르게)
@@ -250,9 +261,9 @@ class Rauto2Live:
         self._l = self.d1m["low"].values.astype(float)
         self._c = self.d1m["close"].values.astype(float)
 
-    def add_bot(self, name, bot, size_pct, lev, slip=None, dd_cut=None, m20=None, reg_monthly=None, safety_meta=None):
+    def add_bot(self, name, bot, size_pct, lev, slip=None, dd_cut=None, m20=None, reg_monthly=None, safety_meta=None, rally_damp=None):
         self.slots.append(BotSlot(name, bot, self.d1m, self.fund, size_pct, lev, slip,
-                                  dd_cut=dd_cut, m20=m20, reg_monthly=reg_monthly, safety_meta=safety_meta))
+                                  dd_cut=dd_cut, m20=m20, reg_monthly=reg_monthly, safety_meta=safety_meta, rally_damp=rally_damp))
         return self.slots[-1]
 
     def px_window(self, now_ms):

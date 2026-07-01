@@ -186,6 +186,10 @@ D10 검증방법론 · D11 실행·체결 · D12 데이터·피처
 - 현재최선: rauto_paper_engine 1:1(exp=size%/100×lev; hsd=1/lev−mmr−SLIP; mae≤−hsd면 청산 p=−exp×(hsd+COST+|fund|)). 레버×증거금 격자서 최고복리.
 - 재사용노트: ★선형모델 금지 — 레버 과하면 청산돼 수익 안 늚(레버30=단일월+6040%여도 계좌 파산). 최적레버가 진짜로 정해짐. 출처 Back2TV 2026-06-24.
 
+### [D3.사이징] ★L2 랠리억제 = 레짐적응 사이징 (봇무관 PlugIn, 260702_01 신뢰85)
+- 현재최선: engines/rauto_regime_sizing.py — 진입 미세레짐(7일추세 causal shift1)에 따라 노출배수(size_mult 컬럼). ★L2 = 상승추세(7일≥+3%)서 역주행(숏) 진입 노출 ×0.5(강도 0.3~0.5). 비대칭(급락롱=REVoi 강점 절대안건드림). veri_edge._liq·rauto_live.per_trade_pnl이 컬럼 있으면 읽고 없으면 무시(하위호환·무손상). emergency_brake(D7)와 동일 '봇무관 PlugIn' 패턴 = 사이징은 Rauto 결정두뇌(§25).
+- 재사용노트: ★진단이 먼저(Stg1 손실지도) — REVoi 손실 무더기는 '휩소하락'이 아니라 '랠리 역주행 숏'(gross손실 39%·거의본전). ★held-out OOS로 검증(Stg2): L2=수익2배(레버업)·같은노출선 리스크리듀서(MDD-15→-13). skip(×0)=레버업 함정(CPCV위반↑). ★단 어떤 사이징 지렛대도 단일 REVoi로 CPCV MDD-20 위반0 불가(4차확인)=추세봇 상보 필수. 출처 260702_01_MicroRegimeWhip, RevoiRally@ETF 실증.
+
 ### [D8.백테검증] Back2TV 환각·미래참조 원천차단
 - 현재최선: ①검증엔진만 ②1m 체결 전수겹침 ③룩어헤드 규명(피봇=확정봉키·진입가 base폴백·신호 봉시작 open·oi_zscore 롤링z 아핀상쇄). 하나라도 실패=폐기.
 - 재사용노트: ★환각0(verify 통과) ≠ 미래보장(과적합 별개 관문). oi_zscore 아핀상쇄 실증 2.4e-9. 출처 Back2TV 공용 2026-06-24, CLAUDE.md §20.

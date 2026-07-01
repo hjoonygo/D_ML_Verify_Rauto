@@ -215,6 +215,13 @@ Binance BTC 선물 자동매매 시스템 Rauto(챔피언 아키텍처): TrendSt
   ④해결법: bt_full.gen_trades·REVoi_bot에 early_tp_pct·early_frac opt-in 내장(0=앵커 +1851.6% 무손상) + 무비용 gross_R(비용분해). ★방법론 교훈=단순대조(노출통제 p25÷노출·고정익절 FIX)가 알파환상 깸.
   ⑤결론: COMBO=tp_frac0.7+early_tp1.0%. §26 M20(36mo천장) lev5 +3,229,453%/MDD−19.8%/청0. ★진짜 OOS(held-out test, lev3) +2121%/MDD−5.5% vs off +304%·train최적=test최적 1.0% 일치=강건·CPCV p25+443%. §9 등재(조건부).
   ⑥향후적용방안: ★조건부=실거래 사이징 진짜OOS(lev3)·버퍼. 미완=38개월·CPCV표준6 정밀·실거래(testnet)→정식. 멀티봇(TS·SW)도 early_tp opt-in 범용청산레버 적용 가능. 5곳기재=§9·여기(§14)·Hstr_Ver_Up_REVoi(ADR)·KeyNote(260627_02_..._Key_OBdead_ComboTP.md)·INDEX·memory(GUIDE2)·LogicCatalog(D2).
+- ★실사례 ADR-005 (L2 랠리억제 = 휩소 지렛대·레짐적응 사이징 신설, 2026-07-02 세션 260702_01_MicroRegimeWhip):
+  ①문제제기: 라이브 챔피언이 '하락'레짐서 7일실현 −2.24%(이름표 +39% 상한과 괴리). 캡틴 "휩소를 넘어갈 방법 찾자". 원인=7일추세 ±3% 3분류가 '급락(REVoi 승)'과 '휩소/약한하락(REVoi 패)'을 down 한 칸으로 묶음.
+  ②원인분석: ★손실지도 진단(Stg1·causal 미세레짐 8피처·검증엔진만) 반전 — '휩소하락'은 손실무더기 아님(31거래·약양성 +0.15%R·gross손실 6%). ★진짜 저EV 병목=랠리(상승장 역주행 숏, 245거래·거의본전 +0.01%R·gross손실 39%). REVoi=역추세라 상승추세를 계속 페이딩(숏)해 런오버. net음수 레짐0 → 병목='순손실'이 아니라 '저EV 역주행 군집'(레버·군집시 드로다운·바닥↓).
+  ③대안검토: 3지렛대 held-out(train≤2024→test2025+)+CPCV 표준6(Stg2): (a)L1 하락ER솎기=OOS 열위(휩소하락 작아 양EV까지 날림)·기각 (b)EX early_tp강화(1.0→0.5%)=OOS 크게열위(1%가 최적·승자잘림)·기각 (c)★L2 랠리억제(상승&숏 사이징×0.5)=held-out OOS 수익 2배(+1058→+2155%)·CPCV p25최고·채택. Stg3 정밀화: 강도 ×0.3~0.5(skip=레버업 함정 위반↑)·임계 7일추세+3%·비대칭(급락롱=REVoi 강점 절대안건드림)·같은노출선 MDD↓(-15→-13, 리스크리듀서).
+  ④해결법: ★봇무관 PlugIn engines/rauto_regime_sizing.py(진입 미세레짐→노출배수 size_mult 컬럼·causal shift1·§25 결정두뇌 도메인, emergency_brake 동일패턴) + veri_edge._liq·rauto_live.per_trade_pnl이 size_mult 있으면 읽고 없으면 무시(하위호환·무손상) + 신규봇 RevoiRally@ETF 등록(BOT_REGISTRY/REG_MONTHLY, RevoiSafe 노출3+L2). 무손상 +1851.6491% 전구간 재현·스모크 PASS.
+  ⑤결론: ★'휩소 넘기'의 정답 = 휩소하락 솎기가 아니라 '랠리 역주행 억제'. L2=사이징 오버레이(봇 알파 불변) — 같은노출선 리스크리듀서(MDD-14.8→-12.6·매월양수↑), 줄인위험을 레버로 바꾸면 OOS 수익 2배. ★단 어떤 지렛대도 CPCV MDD-20 위반0 미달(전부57%)=단일 REVoi로 챔피언인증 불가 4차확정 → 추세봇 상보 포트폴리오가 유일한 길(260627_01 대결론 수렴).
+  ⑥향후적용방안: L2=범용 레짐적응 사이징(다른 봇도 적용가능). MDD-20/매월양수 100%는 추세봇 상보(최종목표 과제2)로. RevoiRally@ETF 배포(§27, 캡틴승인). 5곳기재=여기(§14)·LogicCatalog(D3 카드)·KeyNote(260702_01_MicroRegimeWhip_Key_RallyDampLever.md)·INDEX·STATE·memory(MEMORY.md#11·GUIDE2). (§9 확정알파 등재는 추세봇 상보 완성 후 — L2는 지렛대/도구, 챔피언 아님.)
 
 ## 15. 백테 검증 필수 5관문 (캡틴 지시 2026-06-18 — 이번 세션 재구성 버그 3종 재발방지 = 모든 테스트에 의무적용)
 모든 백테·수익률 주장은 아래 5관문 통과 시에만 '신뢰'로 보고. 하나라도 미달이면 '미검증'으로 명시(헛수치 위에 쌓기 금지).

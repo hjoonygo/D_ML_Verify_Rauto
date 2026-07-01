@@ -1,7 +1,25 @@
 STATE_Rauto — 압축 핸드오버 (Claude Code ↔ Claude AI 다리, §11 6칸)
-최종 세션 = 260628_02_LiqBrakePlugin (2026-06-29)
+최종 세션 = 260702_01_MicroRegimeWhip (2026-07-02)
 
-═══ [260628_02_LiqBrakePlugin] 6칸 (★최신 — 이 블록 먼저 읽기) ═══
+═══ [260702_01_MicroRegimeWhip] 6칸 (★최신 — 이 블록 먼저 읽기) ═══
+[1] 직전작업: ★"휩소 넘기" 진단→검증→결정두뇌 반영(5Stg). Stg1 손실지도 진단(causal 미세레짐 8피처·검증엔진만) → ★반전: '휩소하락'은 손실무더기 아님(31거래·약양성), 진짜 저EV 병목=랠리(상승장 역주행 숏, gross손실 39%). Stg2 3지렛대 held-out+CPCV: ★L2 랠리억제(상승&숏 사이징×0.5)=held-out OOS 수익 2배(+1058→+2155%)·CPCV p25최고 · L1(하락ER솎기)·EX(early_tp강화)=해로움 기각 · ★단일알파 MDD-20 불가 4차확인(전 지렛대 CPCV위반57%). Stg3 정밀화: 강도×0.3~0.5(skip=레버업함정)·임계+3·비대칭(급락롱 절대안건드림) · 같은노출서 MDD↓(리스크리듀서) · 매월양수100% 미달(추세봇 상보 필요). Stg4~5 결정두뇌 반영.
+[2] PASS/FAIL: ★무손상 전구간 +1851.6491% 재현(BASE 앵커·RevoiSafe 컬럼없음 불변). py_compile 4파일+모듈 자가검증+스모크 PASS. 검증엔진 무수정·호출만. FAIL 없음.
+[3] 다음1수: ★추세봇 상보 포트폴리오(REVoi와 상관낮은 추세추종)=MDD-20 챔피언인증의 유일한 길(4차확인·최종목표 과제2). + RevoiRally@ETF 배포(PC재시작+AWS push, 캡틴 승인후 커밋). + L2 x0.3 공격변형·추세봇 조합 재타진.
+[4] 미결: ★배포 대기(인수인계 후 한번에 커밋→PC 8788재시작+AWS push origin HEAD:rfrauto=아웃바운드 캡틴승인). AWS Rauto2Deploy 자동배포 태스크 여전히 미설정(지난세션). RevoiRally 라이브 per-trade 노출표시(qty)는 size_mult 미반영(pnl은 반영·경미).
+[5] 알파변동: ★L2 랠리억제 = 신규 검증 지렛대(사이징 오버레이·§25 결정두뇌). held-out OOS 수익 2배(레버업시)·같은노출선 리스크리듀서(MDD-14.8→-12.6). 봇무관 PlugIn engines/rauto_regime_sizing.py(emergency_brake 동일패턴). 신규봇 RevoiRally@ETF 등록(예상월복리15.93%OOS·OOS_MDD-12.6·강제청산0). ★단일 REVoi로 MDD-20/매월양수 불가 4차확정=추세봇 상보 필수.
+[6] WorkOrder: 추세봇 상보 포폴(최우선·MDD-20 유일길) · RevoiRally 배포 · L2공격변형×추세봇 · (기존)COMBO 정식化·틱슬립·AWS자동배포. 산출=03_IDEA4Bot/260702_01_MicroRegimeWhip/(Stg1~5) · 00_WorkHstr/BackTest_Output/260702_01_*(3폴더) · engines/rauto_regime_sizing.py · KeyNote 260702_01_MicroRegimeWhip_Key_RallyDampLever.md.
+═══════════════════════════════════════════════════════
+
+═══ [260629_01_BotLoadSlotUI] 6칸 ═══
+[1] 직전작업: 폰 Rauto2 GUI 대수술 — ⬇Bot로딩 8슬롯 챔피언시스템 재설계(1번=챔피언 샛노랑볼드+테두리+🏆·최신로딩순·미로딩대기열톤다운·최대8·이머전시=챔피언없음) + 타이틀삭제 + 리플레이버튼(⏸▶⏮⏭⏩)제거 + 차트(세로85%·4H=10일 CHN60·롱/이익=쨍한청색#22a7ff·숏/손실=짙은핑크#ff2d78) + 슬롯리스트(챔피언1번줄포함·현레짐 예상수익(녹)/실현수익 +X%N일·순위정렬·빈칸방지) + 폰GUI 가이드북 신설(Rauto2_Phone_GUI_Guide.md).
+[2] PASS/FAIL: 코드검증 PASS(JS node--check·py_compile·서버스모크=로딩8·챔피언RevoiSafe·8칸초과거부). UI만이라 무손상앵커 무관. PC dev=live모드로 전환·전수정 반영. ★AWS 자동배포 FAIL — Rauto2Deploy 스케줄태스크 미설정(deploy.log 부재로 확인)=push해도 폰본방 미반영. git PAT인증은 복원됨(fetch OK).
+[3] 다음1수: ★★캡틴 지시(2026-07-01) = ①실시간(라이브 causal) 미세레짐 분류 정밀화 ②휩소장 내성 강화 ③40일+ 8%미만=문제→floor↑. + AWS Rauto2Deploy 태스크 생성(자동배포 복원, PowerShell 1덩어리 안내함).
+[4] 미결: AWS Rauto2Deploy 태스크 미설정(캡틴 AWS RDP서 schtasks 생성 대기·PAT는 복원). 수정1 색해석(숏선+손실 둘다 짙은핑크) 캡틴 확인대기. PC dev는 background 프로세스(재부팅시 재기동 필요).
+[5] 알파변동(★실증): 라이브 '하락'레짐 7일 실현 = 챔피언 RevoiSafe −2.24%·최고 REVoi@ETF −1.67%(에피5거래·7.1일). 이름표 하락 +39%(36mo in-sample 상한)과 괴리 = 이번 하락이 급락아닌 **약한·휩소성 미끌림(7일 −3.21%, −3%선 겨우통과)**인데 7일추세가 급락과 한칸. 안전사이징 방어확인(RevoiSafe −2.24% vs M0천장 lev16 −22%). = 미시레짐 세분·휩소내성 필요의 숫자 실증.
+[6] WorkOrder: ★실시간 미세레짐+휩소내성(단일출처=Work_Order_MultiAlpha_RegimeChampion ★다음세션지시절 + 레지스터 최우선行). AWS 자동배포 태스크 영구화. 산출=dashboard.html(수정1~8, 커밋 c7b3526까지 origin/rfrauto) · Rauto2_Phone_GUI_Guide.md · 260627_02_Rauto2_Guide_Operation.md §3 갱신.
+═══════════════════════════════════════════════════════
+
+═══ [260628_02_LiqBrakePlugin] 6칸 ═══
 [1] 직전작업: 강제청산 슬리피지 브레이크 검증(Stg1~7)→★비상 안전장치1호 결정·모듈화(engines/emergency_brake.py 봇무관 PlugIn: worst_mae·시장급변동폭→강제청산0·갭관통0 안전레버 자동산출) + RevoiSafe@ETF 신설(노출3/lev15/증거금20%·예상월복리16.54%OOS·강제청산0) + champion_safety.py 챔피언 가산점(비상안전장치 동점 타이브레이커) + 수익률 라벨 강제hook(.claude/hooks/ret_label_guard.py·memory#6 재범방지). 캡틴 6지시 완료.
 [2] PASS: 무손상 앵커 +1851.6491% 전구간 재현. emergency_brake 자가테스트(강제청산0 lev17·갭관통0 lev14). 스모크 PASS. ★PC 8788 + AWS 본방 둘 다 RevoiSafe 11봇·챔피언=RevoiSafe@ETF 확인(폰 반영OK, push 2cac8ef).
 [3] 다음1수: ★AWS SYSTEM계정 git인증 영구해결(origin URL에 PAT 박기 or Rauto2Deploy 태스크 사용자계정전환) — 현재 SYSTEM fetch실패=무인배포 불가, 캡틴 수동 fetch/reset로만 반영(260629 사고). emergency_brake를 Rauto 결정두뇌 자동사이징에 연동. RevoiSafe CPCV표준6.
