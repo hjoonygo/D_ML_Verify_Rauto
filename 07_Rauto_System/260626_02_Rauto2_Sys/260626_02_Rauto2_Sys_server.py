@@ -86,7 +86,8 @@ REG_MONTHLY = {
     "M5게이트(음수월최소)": {"up": 5.1, "down": 19.5, "range": 9.8},
     "결합R+P80(방어수익)": {"up": 4.3, "down": 19.5, "range": 11.1},
 }
-DEFAULT_LOAD = [b["name"] for b in BOT_REGISTRY]   # ★기본 = 8봇 전부 로딩(캡틴: 만든 8개를 바로 보이게). /remove로 빼기 가능.
+MAX_SLOTS = 8                                       # ★챔피언 시스템 슬롯 상한(캡틴 2026-06-29). load_bot에서 강제.
+DEFAULT_LOAD = [b["name"] for b in BOT_REGISTRY]   # ★기본 로딩 후보(레지스트리 11종). load_bot 8제한으로 앞 8개만 자동 로딩·나머지는 대기열(/load로 교체).
 _BOTKEYS = ("tp_frac", "regime_factor", "gate", "gate_lo", "gate_hi", "early_tp_pct", "early_frac")   # REVoiBot로 가는 알파파라미터(★early_tp 추가 260627_02)
 
 
@@ -187,6 +188,8 @@ class ReplayEngine:
             return False, "unknown bot"
         if name in self.loaded:
             return False, "already loaded"
+        if len(self.loaded) >= MAX_SLOTS:                        # ★챔피언 시스템 슬롯 최대 8개(캡틴 2026-06-29). 초과=거부.
+            return False, f"챔피언 시스템 슬롯 최대 {MAX_SLOTS}개 (기존 봇을 먼저 제거하세요)"
         with self.lock:
             p = dict(self.cfg[b["key"]]["p"])
             for k in _BOTKEYS:                          # ★봇 알파파라미터 주입(tp_frac·regime_factor·gate…)

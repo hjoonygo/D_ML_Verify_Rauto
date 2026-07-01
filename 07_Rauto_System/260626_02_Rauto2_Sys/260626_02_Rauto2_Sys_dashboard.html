@@ -83,8 +83,21 @@
  .regc{flex:1;text-align:center;border-radius:7px;padding:6px 2px}
  .regc .rl{font-size:10.5px} .regc .rv{font-size:15px;font-weight:600}
  .vd{background:var(--blubg);border:0.5px solid var(--blu);border-radius:10px;padding:10px 12px;font-size:12.5px;line-height:1.45}
- .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);align-items:center;justify-content:center;z-index:9;padding:18px}
- .modal .box{background:var(--card);border:0.5px solid var(--bd);border-radius:14px;padding:16px;max-width:420px;width:100%}
+ .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);align-items:flex-start;justify-content:center;z-index:9;padding:6px}
+ .modal .box{background:var(--card);border:0.5px solid var(--bd);border-radius:14px;padding:12px;max-width:420px;width:100%;max-height:98vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+ #loadModal h3{margin:2px 0 8px}
+ /* ── Bot 로딩 모달: 챔피언 시스템 8슬롯 + 하단 미로딩 대기열 ── */
+ .lslotarea{display:flex;flex-direction:column;gap:5px}
+ .lslot{display:flex;align-items:flex-start;gap:8px;width:100%;text-align:left;background:var(--card2);color:var(--fg);border:0.5px solid var(--bd);border-radius:9px;padding:6px 9px;font-size:12.5px}
+ .lslot .lck{width:20px;text-align:center;font-size:14px;flex-shrink:0;line-height:1.25}
+ .lslot .lbody{flex:1;min-width:0;line-height:1.28}
+ .lslot .lnm{font-weight:600}
+ .lslot.champ{border:1.6px solid #ffe14d;background:#332d10}
+ .lslot.champ .lnm{color:#ffe14d;font-weight:800;letter-spacing:.2px}   /* 샛노란 볼드 */
+ .lslot.empty{opacity:.4;justify-content:center;align-items:center;color:var(--mut);border-style:dashed;font-size:11px;padding:6px 9px}
+ .lslot.tap{cursor:pointer} .lslot.lock{cursor:default}
+ .ldiv{font-size:10.5px;color:var(--mut);margin:8px 2px 3px;border-top:0.5px solid var(--bd);padding-top:6px}
+ .lreg{display:flex;flex-direction:column;gap:5px;max-height:150px;overflow-y:auto;-webkit-overflow-scrolling:touch}  /* 하단 2칸분 보임+스크롤 */
 </style>
 </head>
 <body>
@@ -158,10 +171,11 @@
 </div>
 
 <div class="modal" id="loadModal"><div class="box">
-  <h3>⬇ Bot 로딩 / 제거</h3>
-  <p id="loadInfo" style="font-size:11.5px;color:var(--mut);margin:4px 0 10px"></p>
-  <div id="loadList"></div>
-  <button onclick="closeLoad()" style="width:100%;background:transparent;color:var(--mut);border:0.5px solid var(--bd);border-radius:8px;padding:9px;margin-top:6px">닫기</button>
+  <h3>🏆 챔피언 시스템 슬롯 <span style="font-size:11px;color:var(--mut);font-weight:400">최대 8 · 1번=현 챔피언</span></h3>
+  <div id="loadSlots" class="lslotarea"></div>
+  <div class="ldiv" id="loadRegHdr">등록봇 대기열 · 탭하여 로딩 (최근 등록순)</div>
+  <div id="loadReg" class="lreg"></div>
+  <button onclick="closeLoad()" style="width:100%;background:transparent;color:var(--mut);border:0.5px solid var(--bd);border-radius:8px;padding:9px;margin-top:10px">닫기</button>
 </div></div>
 
 <div class="modal" id="emgModal"><div class="box">
@@ -183,25 +197,68 @@
  function dlab(ms){var d=new Date(ms);return(d.getUTCFullYear()%100)+'/'+pad2(d.getUTCMonth()+1)+'/'+pad2(d.getUTCDate());}
  function rcmd(a,v){fetch(API+'/cmd?action='+a+(v!=null?'&v='+v:''),{method:'POST'}).then(r=>r.json()).then(function(){load();}).catch(function(){});}
  // ── 봇 로딩/제거 ──
- function openLoad(){fetch(API+'/bots').then(r=>r.json()).then(function(j){
-   var box=document.getElementById('loadList');box.innerHTML='';
-   document.getElementById('loadInfo').textContent='전체 '+(j.bots||[]).length+'종 · 탭하면 로딩/제거 · 예상수익=36개월 레짐별 월수익(참고·상한). 모든 슬롯은 중앙 캔들 공유.';
+ var MAXSLOT=8;
+ function openLoad(){Promise.all([
+     fetch(API+'/bots').then(r=>r.json()),
+     fetch(API+'/state.json').then(r=>r.json()).catch(function(){return LAST||{};})   // ★최신 로딩순서=state.json을 그때그때 새로(stale LAST 금지)
+   ]).then(function(arr){
+   var j=arr[0]||{}, bots=j.bots||[];
+   var st=arr[1]||LAST||{}, slotsSt=st.slots||[], loadedOrder=st.loaded||[], emergency=!!st.emergency;
+   var champObj=slotsSt.find(function(x){return x.champ;});
+   var champName=champObj?champObj.name:null;
    function rc(v){return v>=0?'#5fd3a0':'#f3a0a0';}
    function pm(v){return (v>=0?'+':'')+v+'%';}
-   (j.bots||[]).forEach(function(b){var row=document.createElement('button');
-     row.style.cssText='width:100%;text-align:left;background:var(--card2);color:var(--fg);border:0.5px solid var(--bd);border-radius:9px;padding:10px 11px;margin-bottom:7px;font-size:13px';
+   function bodyHtml(b){                                         // 지금 형태 유지: 레버/증거금/MDD + desc + 레짐수익
      var rm=b.reg_monthly;
      var regline = rm ? ('<div style="font-size:11px;margin-top:4px">예상수익/월 &nbsp;'
          +'<span style="color:var(--mut)">상승</span> <b style="color:'+rc(rm.up)+'">'+pm(rm.up)+'</b> &nbsp;'
          +'<span style="color:var(--mut)">하락</span> <b style="color:'+rc(rm.down)+'">'+pm(rm.down)+'</b> &nbsp;'
          +'<span style="color:var(--mut)">횡보</span> <b style="color:'+rc(rm.range)+'">'+pm(rm.range)+'</b></div>') : '';
-     row.innerHTML=(b.loaded?'✅ ':'⬇ ')+'<b>'+b.name+'</b> '
-         +'<span style="color:var(--mut);font-size:10px">레버'+b.lev+'/증거금'+b.sz+'%'+(b.mdd!=null?(' · MDD'+b.mdd+'%'):'')+'</span>'
+     return '<div style="font-size:10px;color:var(--mut);margin-top:2px">레버'+b.lev+'/증거금'+b.sz+'%'+(b.mdd!=null?(' · MDD'+b.mdd+'%'):'')+'</div>'
          +(b.desc?('<div style="font-size:10px;color:var(--mut);margin-top:2px">'+b.desc+'</div>'):'')
          +regline;
-     row.onclick=function(){var ep=b.loaded?'/remove':'/load';fetch(API+ep+'?bot='+encodeURIComponent(b.name),{method:'POST'}).then(r=>r.json()).then(function(){openLoad();load();});};
-     box.appendChild(row);});
-   document.getElementById('loadModal').style.display='flex';}).catch(e=>alert('목록 실패:'+e));}
+   }
+   var byName={}; bots.forEach(function(b){byName[b.name]=b;});
+   var loadedNames=bots.filter(function(b){return b.loaded;}).map(function(b){return b.name;});
+   var loadedCount=loadedNames.length;
+   // ── 슬롯 순서: [챔피언(1번 고정)] + [나머지 최신 로딩순] ──
+   var oidx={}; loadedOrder.forEach(function(n,i){oidx[n]=i;});   // append순(로딩된 순)
+   var nonChamp=loadedNames.filter(function(n){return n!==champName;})
+       .sort(function(a,b){return (oidx[b]==null?-1:oidx[b])-(oidx[a]==null?-1:oidx[a]);});  // 최신(큰 idx) 먼저
+   var slotOrder=[]; if(champName&&byName[champName]) slotOrder.push(champName);
+   slotOrder=slotOrder.concat(nonChamp).slice(0,MAXSLOT);
+   // ── 슬롯 영역 렌더(8칸: 로딩봇 + 빈칸) ──
+   var area=document.getElementById('loadSlots'); area.innerHTML='';
+   function removeBot(name){fetch(API+'/remove?bot='+encodeURIComponent(name),{method:'POST'}).then(r=>r.json()).then(function(){openLoad();load();});}
+   for(var i=0;i<MAXSLOT;i++){
+     var nm=slotOrder[i];
+     if(nm==null){var e=document.createElement('div');e.className='lslot empty';e.textContent='· 빈 슬롯 '+(i+1)+' ·';area.appendChild(e);continue;}
+     var b=byName[nm], isChamp=(nm===champName), lock=(isChamp&&!emergency);   // 챔피언 1번만 잠금(Emergency 해제 시 풀림)
+     var mark=isChamp?(lock?'🏆':'🏆☑'):'✅';
+     var row=document.createElement('div');
+     row.className='lslot'+(isChamp?' champ':'')+(lock?' lock':' tap');
+     row.innerHTML='<span class="lck">'+mark+'</span><div class="lbody"><span class="lnm">'+nm+'</span>'+bodyHtml(b)+'</div>';
+     if(!lock){ (function(name){row.onclick=function(){removeBot(name);};})(nm); }
+     area.appendChild(row);
+   }
+   // ── 하단 미로딩 대기열(최근 등록순=역순, 2칸 보임+스크롤) ──
+   var reg=document.getElementById('loadReg'); reg.innerHTML='';
+   var unloaded=bots.filter(function(b){return !b.loaded;}).reverse();   // 최근 등록순
+   document.getElementById('loadRegHdr').textContent='등록봇 대기열 · 탭하여 로딩 (최근 등록순) · '+loadedCount+'/'+MAXSLOT+' 슬롯';
+   if(!unloaded.length){reg.innerHTML='<div style="font-size:11px;color:var(--mut);padding:8px 4px">모든 등록봇이 로딩됨</div>';}
+   unloaded.forEach(function(b){
+     var row=document.createElement('div'); row.className='lslot tap';
+     row.innerHTML='<span class="lck">⬇</span><div class="lbody"><span class="lnm">'+b.name+'</span>'+bodyHtml(b)+'</div>';
+     row.onclick=function(){
+       if(loadedCount>=MAXSLOT){alert('챔피언 시스템 슬롯은 최대 '+MAXSLOT+'개입니다.\n기존 봇을 먼저 제거하세요.');return;}
+       fetch(API+'/load?bot='+encodeURIComponent(b.name),{method:'POST'}).then(r=>r.json()).then(function(res){
+         if(res&&res.ok===false){alert(res.info||'로딩 실패');}
+         openLoad();load();});
+     };
+     reg.appendChild(row);
+   });
+   document.getElementById('loadModal').style.display='flex';
+ }).catch(e=>alert('목록 실패:'+e));}
  function closeLoad(){document.getElementById('loadModal').style.display='none';}
  // ── 캔들 집계(1m→TF) ──
  function aggPx(px,m){if(!px||!px.length)return [];var out=[],cur=null,sp=m*60000;
