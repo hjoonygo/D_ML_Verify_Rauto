@@ -4,10 +4,10 @@ STATE_Rauto — 압축 핸드오버 (Claude Code ↔ Claude AI 다리, §11 6칸
 ═══ [260702_01_MicroRegimeWhip] 6칸 (★최신 — 이 블록 먼저 읽기) ═══
 [1] 직전작업: ★"휩소 넘기" 진단→검증→결정두뇌 반영(5Stg). Stg1 손실지도 진단(causal 미세레짐 8피처·검증엔진만) → ★반전: '휩소하락'은 손실무더기 아님(31거래·약양성), 진짜 저EV 병목=랠리(상승장 역주행 숏, gross손실 39%). Stg2 3지렛대 held-out+CPCV: ★L2 랠리억제(상승&숏 사이징×0.5)=held-out OOS 수익 2배(+1058→+2155%)·CPCV p25최고 · L1(하락ER솎기)·EX(early_tp강화)=해로움 기각 · ★단일알파 MDD-20 불가 4차확인(전 지렛대 CPCV위반57%). Stg3 정밀화: 강도×0.3~0.5(skip=레버업함정)·임계+3·비대칭(급락롱 절대안건드림) · 같은노출서 MDD↓(리스크리듀서) · 매월양수100% 미달(추세봇 상보 필요). Stg4~5 결정두뇌 반영.
 [2] PASS/FAIL: ★무손상 전구간 +1851.6491% 재현(BASE 앵커·RevoiSafe 컬럼없음 불변). py_compile 4파일+모듈 자가검증+스모크 PASS. 검증엔진 무수정·호출만. FAIL 없음.
-[3] 다음1수: ★추세봇 상보 포트폴리오(REVoi와 상관낮은 추세추종)=MDD-20 챔피언인증의 유일한 길(4차확인·최종목표 과제2). + RevoiRally@ETF 배포(PC재시작+AWS push, 캡틴 승인후 커밋). + L2 x0.3 공격변형·추세봇 조합 재타진.
-[4] 미결: ★배포 대기(인수인계 후 한번에 커밋→PC 8788재시작+AWS push origin HEAD:rfrauto=아웃바운드 캡틴승인). AWS Rauto2Deploy 자동배포 태스크 여전히 미설정(지난세션). RevoiRally 라이브 per-trade 노출표시(qty)는 size_mult 미반영(pnl은 반영·경미).
-[5] 알파변동: ★L2 랠리억제 = 신규 검증 지렛대(사이징 오버레이·§25 결정두뇌). held-out OOS 수익 2배(레버업시)·같은노출선 리스크리듀서(MDD-14.8→-12.6). 봇무관 PlugIn engines/rauto_regime_sizing.py(emergency_brake 동일패턴). 신규봇 RevoiRally@ETF 등록(예상월복리15.93%OOS·OOS_MDD-12.6·강제청산0). ★단일 REVoi로 MDD-20/매월양수 불가 4차확정=추세봇 상보 필수.
-[6] WorkOrder: 추세봇 상보 포폴(최우선·MDD-20 유일길) · RevoiRally 배포 · L2공격변형×추세봇 · (기존)COMBO 정식化·틱슬립·AWS자동배포. 산출=03_IDEA4Bot/260702_01_MicroRegimeWhip/(Stg1~5) · 00_WorkHstr/BackTest_Output/260702_01_*(3폴더) · engines/rauto_regime_sizing.py · KeyNote 260702_01_MicroRegimeWhip_Key_RallyDampLever.md.
+[3] 다음1수: ★★추세봇 상보 포트폴리오(REVoi와 상관낮은 추세추종)=수익+안전 동시개선·MDD-20 챔피언인증의 유일한 길(4차확인·최종목표 과제2). L2는 폐기(아래 [5]).
+[4] 미결: ★AWS Rauto2Deploy 자동배포 태스크 여전히 미설정(지난세션·SYSTEM git인증)→push해도 폰 자동반영 안될수 있음(캡틴 수동 fetch/reset). 이번 커밋=RevoiRally 등록 커밋(fa6adc1) 후 '제거' 재커밋+PC재시작+AWS push.
+[5] 알파변동(★정정): L2 랠리억제 = **폐기**(Stg6 §19 정밀비교). 같은 안전사이징(lev15/sz20·20%cap)선 RevoiRally가 RevoiSafe보다 OOS현실 -93%p 악화(+1058%→+965%)=개선 아님. 원인=COMBO early_tp가 이미 랠리 수익화→L2 진입-사이징 중복·수익만 깎음. 앞서 'OOS 2배'는 전부 레버업(20%cap 깸)효과. 안전장치는 둘다 정상(강제청산0·최악-6.3%·cap19.1%). → **RevoiRally 제거**. 엔진 PlugIn(engines/rauto_regime_sizing.py·veri_edge/rauto_live size_mult 하위호환)만 미래자산 보존(inert). ★단일 REVoi로 MDD-20/매월양수·수익개선 불가 4차확정=추세봇 상보가 유일.
+[6] WorkOrder: ★추세봇 상보 포폴(최우선·유일길) · (기존)COMBO 정식化·틱슬립·AWS자동배포. 산출=03_IDEA4Bot/260702_01_MicroRegimeWhip/(Stg1~6) · 00_WorkHstr/BackTest_Output/260702_01_*(4폴더) · engines/rauto_regime_sizing.py(보존) · KeyNote 260702_01_MicroRegimeWhip_Key_RallyDampLever.md(정정판).
 ═══════════════════════════════════════════════════════
 
 ═══ [260629_01_BotLoadSlotUI] 6칸 ═══
