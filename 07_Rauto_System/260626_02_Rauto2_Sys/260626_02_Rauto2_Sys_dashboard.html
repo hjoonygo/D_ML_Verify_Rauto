@@ -183,7 +183,7 @@
 
 <script>
  var API=location.origin, SEL=null, LAST=null, PX=[], SPEEDS=[60,240,720,1440,4320], SI=1;
- var CTF=240, CHEMA=true, CHOFF=0, CHN=84, CHCR=null, VIEW='replay', PRICE=null, SHOW_TRADES=false;
+ var CTF=240, CHEMA=true, CHOFF=0, CHN=60, CHCR=null, VIEW='replay', PRICE=null, SHOW_TRADES=false;
  function SPEED_NEXT(){SI=(SI+1)%SPEEDS.length;return SPEEDS[SI];}
  function fmt(n){return (n>=0?'+':'')+(+n).toFixed(1)+'%';}
  function pad2(v){return(v<10?'0':'')+v;}
@@ -330,7 +330,7 @@
            CHOFF+=v*16/cv._meta.CW;drawChart();INERTIA=requestAnimationFrame(glide);})();}
        ENG=false;DRAG=null;});
      cv.addEventListener('wheel',function(e){if(!cv._meta)return;e.preventDefault();if(e.ctrlKey){CHN=Math.max(20,Math.min(400,CHN+(e.deltaY>0?12:-12)));}else{CHOFF+=(e.deltaY>0?5:-5);}drawChart();},{passive:false});
-     cv.addEventListener('dblclick',function(){CHOFF=0;CHN=84;drawChart();});}
+     cv.addEventListener('dblclick',function(){CHOFF=0;CHN=60;drawChart();});}
    document.querySelectorAll('.tabs .tab[data-tf]').forEach(function(b){b.addEventListener('click',function(){
      document.querySelectorAll('.tabs .tab[data-tf]').forEach(function(z){z.classList.remove('on');});b.classList.add('on');CTF=+b.getAttribute('data-tf');CHOFF=0;drawChart();});});
    var et=document.getElementById('emaTab');if(et)et.addEventListener('click',function(){CHEMA=!CHEMA;et.classList.toggle('on',CHEMA);drawChart();});
@@ -478,7 +478,7 @@
      d.onclick=function(){SEL=x.name;render(LAST);};
      var sc=x.side==='L'?'#5fd3a0':x.side==='S'?'#f3a0a0':'var(--mut)';
      var chk=x.name===SEL?'<span style="color:var(--blu);font-size:16px">☑</span>':'<span style="width:16px;display:inline-block"></span>';
-     var rr=x._rret, rrTxt=(rr==null)?('· '+epDays+'일'):((rr>=0?'+':'')+rr.toFixed(1)+'% '+epDays+'일'), rrCol=(rr==null)?'var(--mut)':(rr>=0?'#5fd3a0':'#f3a0a0');
+     var rr=x._rret, has=(rr!=null), rrTxt=(has?((rr>=0?'+':'')+rr.toFixed(1)):'0.0')+'% '+epDays+'일', rrCol=(!has)?'var(--mut)':(rr>=0?'#5fd3a0':'#f3a0a0');   // 거래없음=회색 0.0%(빈칸방지)
      d.innerHTML=chk+'<span class="snm">'+x.name+'</span><span style="color:'+sc+';min-width:14px;text-align:center">'+(x.side==='-'?'·':x.side)+'</span><span style="font-weight:600;color:'+rrCol+';min-width:80px;text-align:right">'+rrTxt+'</span>';
      box.appendChild(d);});
    document.getElementById('selnm').textContent=SEL||'—';
