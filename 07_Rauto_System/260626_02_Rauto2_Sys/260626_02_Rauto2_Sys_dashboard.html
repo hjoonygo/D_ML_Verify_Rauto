@@ -38,10 +38,10 @@
  .tabs{display:flex;gap:5px;margin-bottom:6px;flex-wrap:wrap;align-items:center}
  .tab{font-size:11px;border:0.5px solid var(--bd);color:var(--mut);padding:3px 9px;border-radius:10px;cursor:pointer}
  .tab.on{background:var(--blubg);color:#7fb6ee;border-color:var(--blu)}
- #chartwrap{position:relative;width:100%;aspect-ratio:1/1}
+ #chartwrap{position:relative;width:100%;aspect-ratio:1/0.85}
  #cchart{width:100%;height:100%;display:block;border-radius:8px;background:#0b0e13;cursor:crosshair}
  #rdbox{position:absolute;left:8px;top:6px;font-size:10.5px;color:#9aa6b2;pointer-events:none;white-space:nowrap}
- .chartwarn{width:100%;aspect-ratio:1/1;display:none;align-items:center;justify-content:center;text-align:center;background:var(--redbg);border-radius:8px;color:#f3a0a0;font-weight:600}
+ .chartwarn{width:100%;aspect-ratio:1/0.85;display:none;align-items:center;justify-content:center;text-align:center;background:var(--redbg);border-radius:8px;color:#f3a0a0;font-weight:600}
  .slot{display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:9px;border:0.5px solid var(--bd);cursor:pointer}
  .slot.sel{background:var(--blubg);border-color:var(--blu)}
  .slot.champ{background:var(--goldbg);border-color:#5a4d18}
@@ -129,13 +129,6 @@
 
    <div class="rep">
      <button id="bEmg" class="emgbtn" onclick="emgOpen()">🛑 Gho, HyoungJoon! Emergency</button>
-     <div class="repbtns" id="repbtns">
-       <button id="bPause" onclick="rcmd('replay_pause')">⏸ 일시정지</button>
-       <button id="bResume" onclick="rcmd('replay_resume')">▶ 재생</button>
-       <button onclick="rcmd('replay_restart')">⏮ 처음</button>
-       <button onclick="rcmd('replay_end')">⏭ 끝</button>
-       <button onclick="rcmd('replay_speed', SPEED_NEXT())">⏩ 속도</button>
-     </div>
    </div>
 
    <div class="panel">
@@ -147,13 +140,13 @@
        <span class="tab" id="liveTab">📋 매매내역</span>
      </div>
      <div id="chartwrap"><canvas id="cchart"></canvas><div id="rdbox"></div></div>
-     <div id="tradesbox" style="display:none;aspect-ratio:1/1;overflow:auto"></div>
+     <div id="tradesbox" style="display:none;aspect-ratio:1/0.85;overflow:auto"></div>
      <div id="chartwarn" class="chartwarn">가격 데이터 없음</div>
      <div id="diagbox" class="diag" style="display:none"></div>
    </div>
 
    <div class="panel">
-     <div class="ph"><span style="font-weight:400;color:var(--mut)">슬롯 · 수익률순 (캔들 동일 · 거래만 다름)</span></div>
+     <div class="ph"><span style="font-weight:400;color:var(--mut)">슬롯 · 현재 레짐 수익순 · 챔피언 제외 (캔들 동일)</span></div>
      <div id="slots" class="slist"></div>
    </div>
    <div class="ctrl">
@@ -190,7 +183,7 @@
 
 <script>
  var API=location.origin, SEL=null, LAST=null, PX=[], SPEEDS=[60,240,720,1440,4320], SI=1;
- var CTF=240, CHEMA=true, CHOFF=0, CHN=110, CHCR=null, VIEW='replay', PRICE=null, SHOW_TRADES=false;
+ var CTF=240, CHEMA=true, CHOFF=0, CHN=84, CHCR=null, VIEW='replay', PRICE=null, SHOW_TRADES=false;
  function SPEED_NEXT(){SI=(SI+1)%SPEEDS.length;return SPEEDS[SI];}
  function fmt(n){return (n>=0?'+':'')+(+n).toFixed(1)+'%';}
  function pad2(v){return(v<10?'0':'')+v;}
@@ -337,7 +330,7 @@
            CHOFF+=v*16/cv._meta.CW;drawChart();INERTIA=requestAnimationFrame(glide);})();}
        ENG=false;DRAG=null;});
      cv.addEventListener('wheel',function(e){if(!cv._meta)return;e.preventDefault();if(e.ctrlKey){CHN=Math.max(20,Math.min(400,CHN+(e.deltaY>0?12:-12)));}else{CHOFF+=(e.deltaY>0?5:-5);}drawChart();},{passive:false});
-     cv.addEventListener('dblclick',function(){CHOFF=0;CHN=110;drawChart();});}
+     cv.addEventListener('dblclick',function(){CHOFF=0;CHN=84;drawChart();});}
    document.querySelectorAll('.tabs .tab[data-tf]').forEach(function(b){b.addEventListener('click',function(){
      document.querySelectorAll('.tabs .tab[data-tf]').forEach(function(z){z.classList.remove('on');});b.classList.add('on');CTF=+b.getAttribute('data-tf');CHOFF=0;drawChart();});});
    var et=document.getElementById('emaTab');if(et)et.addEventListener('click',function(){CHEMA=!CHEMA;et.classList.toggle('on',CHEMA);drawChart();});
@@ -429,6 +422,16 @@
        '<b style="font-size:13px;font-weight:400;color:var(--mut)">Regime: <span style="font-size:15px;font-weight:800;color:var(--gold)">'+(REGK[cur]||cur)+'</span></b></div>'+
      '<div class="dr"><span>기대수익률 1위</span><b>'+nm(e1)+' <span style="color:'+(e1?col(e1.v):'#888')+'">'+(e1?pc(e1.v)+'/월':'—')+'</span></b></div>'+
      '<div class="dr"><span>현재 Regime 수익 1위</span><b>'+nm(c1)+' <span style="color:'+(c1?col(c1.v):'#888')+'">'+(c1?pc(c1.v)+'/'+Math.max(1,Math.round(ep.days))+'일':'—')+'</span></b></div>';}
+ // ★현재 레짐 에피소드(7일추세 연속구간) + 에피소드내 실현수익 — 슬롯 순위 공용(지시3)
+ function currentEpisode(st){var px=(st&&st.px)||PX||[];
+   if(!px||px.length<3)return {reg:(st&&st.regime)||'range',start:(st&&st.now)||0,days:0};
+   var n=px.length,reg=new Array(n),j=0;
+   for(var i=0;i<n;i++){var tgt=px[i][0]-7*86400000;while(j<i&&px[j][0]<tgt)j++;var k=Math.max(0,j-1);
+     var ch=(px[i][4]/px[k][4]-1)*100;reg[i]=ch>3?'up':(ch<-3?'down':'range');}
+   var cur=reg[n-1],i2=n-1;while(i2>0&&reg[i2-1]===cur)i2--;
+   return {reg:cur,start:px[i2][0],days:(px[n-1][0]-px[i2][0])/86400000};}
+ function retSinceEp(s,epStart){var a=(s.trd||[]).filter(function(t){return t.et>=epStart;});
+   if(!a.length)return null;var C=1;for(var i=0;i<a.length;i++)C*=(1+a[i].pnl/100);return (C-1)*100;}
  // 수정1: 챔피언 바 갱신
  function updChamp(champ,st){
    var live=st.live===true;
@@ -460,21 +463,23 @@
      :'중앙 1m 단일출처 · 봇별 캔들 동일'+(PRICE?(' · BTC '+Math.round(PRICE).toLocaleString()):''));
    // 운영/리플레이 상태 (수정3: 리플레이시각 제거 · Emergency 버튼)
    var rp=st.replay||{};var LIVE=(rp.mode==='live');
-   document.getElementById('repbtns').style.display=LIVE?'none':'grid';   // 운영모드선 리플레이 버튼 숨김
-   document.getElementById('bPause').classList.toggle('on',rp.paused);
-   document.getElementById('bResume').classList.toggle('on',!rp.paused);
    var eb=document.getElementById('bEmg');if(eb){eb.classList.toggle('act',!!st.emergency);eb.textContent=st.emergency?'🛑 긴급중지됨 — 탭하여 제어':'🛑 Gho, HyoungJoon! Emergency';}
    var dz=document.getElementById('dauto');dz.textContent=LIVE?'● 라이브 운영':(rp.paused?'● 정지':'● 리플레이');
    dz.style.background=(LIVE||!rp.paused)?'var(--grnbg)':'var(--redbg)';dz.style.color=(LIVE||!rp.paused)?'#5fd3a0':'#f3a0a0';
-   // 슬롯
-   var ord=slots.slice().sort((a,b)=>(b.champ?1e9:b.ret)-(a.champ?1e9:a.ret));
+   // 슬롯 (지시3: 챔피언 제외 + 현재 레짐 에피소드 수익률·지속일 · 순위정렬 · 녹/적)
+   var ep=currentEpisode(st), epDays=Math.max(1,Math.round(ep.days));
+   var champName=st.emergency?null:((slots.find(function(x){return x.champ;})||{}).name);   // 이머전시=챔피언없음
+   var lst=slots.filter(function(x){return x.name!==champName;});                             // 챔피언 제외(상단 바에 있음)
+   lst.forEach(function(x){x._rret=retSinceEp(x,ep.start);});
+   lst.sort(function(a,b){return (b._rret==null?-1e9:b._rret)-(a._rret==null?-1e9:a._rret);}); // 레짐 수익 순위
    var box=document.getElementById('slots');box.innerHTML='';
-   ord.forEach(function(x){var d=document.createElement('div');
-     d.className='slot'+(x.champ?' champ':'')+(x.name===SEL?' sel':'');
+   lst.forEach(function(x){var d=document.createElement('div');
+     d.className='slot'+(x.name===SEL?' sel':'');
      d.onclick=function(){SEL=x.name;render(LAST);};
      var sc=x.side==='L'?'#5fd3a0':x.side==='S'?'#f3a0a0':'var(--mut)';
-     var chk=x.name===SEL?'<span style="color:var(--blu);font-size:16px">☑</span>':(x.champ?'🏆':'<span style="width:16px;display:inline-block"></span>');
-     d.innerHTML=chk+'<span class="snm" style="'+(x.champ?'color:var(--gold);font-weight:600':'')+'">'+x.name+'</span><span style="color:'+sc+';min-width:14px;text-align:center">'+(x.side==='-'?'·':x.side)+'</span><span style="font-weight:600;color:'+sc+';min-width:60px;text-align:right">'+fmt(x.ret)+'</span>';
+     var chk=x.name===SEL?'<span style="color:var(--blu);font-size:16px">☑</span>':'<span style="width:16px;display:inline-block"></span>';
+     var rr=x._rret, rrTxt=(rr==null)?('· '+epDays+'일'):((rr>=0?'+':'')+rr.toFixed(1)+'% '+epDays+'일'), rrCol=(rr==null)?'var(--mut)':(rr>=0?'#5fd3a0':'#f3a0a0');
+     d.innerHTML=chk+'<span class="snm">'+x.name+'</span><span style="color:'+sc+';min-width:14px;text-align:center">'+(x.side==='-'?'·':x.side)+'</span><span style="font-weight:600;color:'+rrCol+';min-width:80px;text-align:right">'+rrTxt+'</span>';
      box.appendChild(d);});
    document.getElementById('selnm').textContent=SEL||'—';
    var sel=slots.find(x=>x.name===SEL)||champ;
