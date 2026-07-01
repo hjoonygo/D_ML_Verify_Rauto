@@ -96,8 +96,11 @@
  .lslot.champ .lnm{color:#ffe14d;font-weight:800;letter-spacing:.2px}   /* 샛노란 볼드 */
  .lslot.empty{opacity:.4;justify-content:center;align-items:center;color:var(--mut);border-style:dashed;font-size:11px;padding:6px 9px}
  .lslot.tap{cursor:pointer} .lslot.lock{cursor:default}
+ .lslot.queue{background:#12171e;border-color:#1f252d}          /* 대기열=1톤 다운(바탕색) */
+ .lslot.queue .lnm{color:#8b98a5;font-weight:500}               /* 대기열 이름=글씨 톤다운 */
+ .lslot.queue .lck{opacity:.65}
  .ldiv{font-size:10.5px;color:var(--mut);margin:8px 2px 3px;border-top:0.5px solid var(--bd);padding-top:6px}
- .lreg{display:flex;flex-direction:column;gap:5px;max-height:150px;overflow-y:auto;-webkit-overflow-scrolling:touch}  /* 하단 2칸분 보임+스크롤 */
+ .lreg{display:flex;flex-direction:column;gap:5px;max-height:150px;overflow-y:auto;-webkit-overflow-scrolling:touch;margin-top:9px;border-top:0.5px solid var(--bd);padding-top:9px}  /* 로딩슬롯과 구분선 + 2칸분 보임+스크롤 */
 </style>
 </head>
 <body>
@@ -171,9 +174,7 @@
 </div>
 
 <div class="modal" id="loadModal"><div class="box">
-  <h3>🏆 챔피언 시스템 슬롯 <span style="font-size:11px;color:var(--mut);font-weight:400">최대 8 · 1번=현 챔피언</span></h3>
   <div id="loadSlots" class="lslotarea"></div>
-  <div class="ldiv" id="loadRegHdr">등록봇 대기열 · 탭하여 로딩 (최근 등록순)</div>
   <div id="loadReg" class="lreg"></div>
   <button onclick="closeLoad()" style="width:100%;background:transparent;color:var(--mut);border:0.5px solid var(--bd);border-radius:8px;padding:9px;margin-top:10px">닫기</button>
 </div></div>
@@ -206,6 +207,7 @@
    var st=arr[1]||LAST||{}, slotsSt=st.slots||[], loadedOrder=st.loaded||[], emergency=!!st.emergency;
    var champObj=slotsSt.find(function(x){return x.champ;});
    var champName=champObj?champObj.name:null;
+   if(emergency){champName=null;}   // ★이머전시(챔피언청산·거래중지) 후 = 챔피언 없음(캡틴 2026-06-29). 슬롯 전체 편집가능.
    function rc(v){return v>=0?'#5fd3a0':'#f3a0a0';}
    function pm(v){return (v>=0?'+':'')+v+'%';}
    function bodyHtml(b){                                         // 지금 형태 유지: 레버/증거금/MDD + desc + 레짐수익
@@ -244,10 +246,9 @@
    // ── 하단 미로딩 대기열(최근 등록순=역순, 2칸 보임+스크롤) ──
    var reg=document.getElementById('loadReg'); reg.innerHTML='';
    var unloaded=bots.filter(function(b){return !b.loaded;}).reverse();   // 최근 등록순
-   document.getElementById('loadRegHdr').textContent='등록봇 대기열 · 탭하여 로딩 (최근 등록순) · '+loadedCount+'/'+MAXSLOT+' 슬롯';
    if(!unloaded.length){reg.innerHTML='<div style="font-size:11px;color:var(--mut);padding:8px 4px">모든 등록봇이 로딩됨</div>';}
    unloaded.forEach(function(b){
-     var row=document.createElement('div'); row.className='lslot tap';
+     var row=document.createElement('div'); row.className='lslot tap queue';   // ★대기열=1톤 다운 구별
      row.innerHTML='<span class="lck">⬇</span><div class="lbody"><span class="lnm">'+b.name+'</span>'+bodyHtml(b)+'</div>';
      row.onclick=function(){
        if(loadedCount>=MAXSLOT){alert('챔피언 시스템 슬롯은 최대 '+MAXSLOT+'개입니다.\n기존 봇을 먼저 제거하세요.');return;}
